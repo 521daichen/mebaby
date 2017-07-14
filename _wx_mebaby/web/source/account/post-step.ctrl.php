@@ -33,7 +33,7 @@ if($step == 1) {
 	if (!empty($uniacid)) {
 		$state = uni_permission($uid, $uniacid);
 		if ($state != ACCOUNT_MANAGE_NAME_FOUNDER && $state != ACCOUNT_MANAGE_NAME_OWNER) {
-			itoast('没有该公众号操作权限！', '', '');
+			+itoast('没有该公众号操作权限！', '', '');
 		}
 		if (is_error($permission = uni_create_permission($_W['uid'], 2))) {
 			itoast($permission['message'], '' , 'error');
