@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+header{height:130px; position: relative;}
+.tooth{width:100%;position: absolute;left:0;bottom:0;}
+.card{height:8.2em;display:block;margin:0.3em auto 0;position: relative;z-index: 97}
+.shadw{height:8.9em;display:block;margin:-8.5em auto 0;position: relative;}
+.cid{height:1em;display:block;margin:-3.9em auto 0;text-align:left;width:184px;position: relative;z-index:98;font-size:0.8em;color:#7E5F11}
+.cidvvvip{font-family:abc;height:1em;display:block;margin:-1.6em auto 0;text-align:center;width:184px;position: relative;z-index:98;font-size:1.3em;letter-spacing:1px;background-image:-webkit-gradient(linear,left top,right bottom,from(#7d7245),color-stop(0.27, #ffffc5),color-stop(0.48, #7d7245),color-stop(0.72, #ffffc5),to(#7d7245));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;}
+@font-face{font-family:'abc'; src:url(../font/calibri.ttf);}
+.grade{height:1em;display:block;margin:0.5em auto 0;text-align:left;width:184px;position: relative;z-index:99;font-size:0.8em;color:#7E5F11}
+.grade span{float:right}
+
+.zt{text-align: center;font-size: 0.8em;margin-top:0.5em;height: 2em;line-height: 2em}
+section dl dt{background: #fff;height:3em;line-height: 3em;border-top:1px solid #D8D8D8;border-bottom:1px solid #D8D8D8;padding:0 6%;position: relative;}
+section dl dt span{display: block;height:24px;width:24px;background: url(../img/arr.png) no-repeat;float: right;margin-top: 0.8em;background-size:100% 100%;-webkit-transform:rotate(90deg);}
+section dl dd{padding:1em 6%;background: #FCFCFC;border-bottom: 1px solid #D8D8D8;line-height: 1.8em;font-size: 0.8em;color:#333}
+
+ 
+#id img{width:6em;vertical-align: middle;margin-right:0.5em}
+#info img{width:80% !important;margin:0 auto;display:block;height:auto}
+.qrcode{width:1.5em;position: absolute;right:10px;top:12px}
+#qrcode_box img{width:80%;display:block;margin:0 auto;}
+.radbox{border-radius: 10px;border: 1px solid #D8D8D8;margin:0 auto;background:#fff;padding:0.2em;width:92%;margin:0 auto 1em}
+.radbox h1{font-size: 1em;height:2.6em;line-height: 2.6em; border-bottom: 1px dotted #d8d8d8;color:#333;width:69%;margin-left: 2%; padding:0 0.6em;text-overflow: ellipsis;}
+.text_a{font-size: 0.8em;padding:0.8em 1.4em;line-height: 1.6em; height:auto;text-overflow: ellipsis;}
+.noinfo h1{text-align:center;border:0;font-size:1em;line-height:2.8em}
+ 
+.rotate{-webkit-transform:rotate(360deg);}
+.rotates{-webkit-transform:rotate(90deg);}
+/**/

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>爱要大声说出来</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+		background:url('../addons/member/template/mobile/static/activity/2016520/bg.png') repeat;
+		font-family: '微软雅黑'
+	}
+	img{
+		display: block;
+		width:100%;
+		height:100%;
+	}
+	.topContainer{
+		width: 100%;
+		height: auto;
+		background: url('../addons/member/template/mobile/static/activity/2016520/topBg.png') no-repeat;
+		background-size: 100%;
+		overflow: auto;
+		padding-bottom:20px;
+	}
+	.photoContainer{
+        width:90%;
+		height:auto;
+		margin:15% auto 0;
+		background: url('../addons/member/template/mobile/static/activity/2016520/loveWord.png') no-repeat 80% 98%;
+		background-size: 70%;
+		padding-bottom:1em;
+		box-shadow:0 0 15px #aaa;
+	}
+	.photoContainer img{
+		width:90%;
+		height:auto;
+		margin:0 auto;
+		padding-bottom: 50px;
+		padding-top:20px;
+	}
+	.word{
+		width:80%;
+		height:auto;
+		margin: 20px auto;
+		border:10px solid transparent;
+		-webkit-border-image:url('../addons/member/template/mobile/static/activity/2016520/borderCircle2.png') 16 round;
+	}
+	.sweet{
+		background: #fffaf3 url('../addons/member/template/mobile/static/activity/2016520/lineSpot.png') repeat 20px 100px;
+		color: #fb9e8f;
+		padding: 20px;
+		line-height:38px;
+	}
+	.begin,.end{
+		font-size: 18px;
+	}
+	.end{
+		display: block;
+		text-align: right;
+	}
+	.buttonDiv{
+		float: left;
+		width:35%;
+		margin-top:10px;
+		margin-bottom: 50px;	
+		margin-left: 10%;
+		font-size:1em;
+		height:34px;
+		border:0;
+		border-radius:5px;
+		color:#fff;
+	}
+	.Color1{background:#FB9E8F;}
+	.Color2{background:#74DDD3;}
+	.btn{
+    background: #74DDD3;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 10%;
+    font-size: 1em;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+	text-align:center;
+	line-height:40px;
+	margin-bottom:20px;
+	
+    }
+	.btn a{color: #fff; text-decoration:none}	
+	</style>
+</head>
+<body>
+	<div class="topContainer">
+		<div class="photoContainer"><img src="{$mInfo['filename']}"></div>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div class="word">
+		<div class="sweet">
+			<span class="begin"><!--TO : </span><br/>-->{$mInfo['desc']}<br/>
+			<!--<span class="end">From : </span>-->
+		</div>
+	</div>
+    <div class="btn"><a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayStep2&m=member
+">我也要制作</a></div>
+</body>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayShow&m=member&id={$mInfo['id']}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayShow&m=member&id={$mInfo['id']}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+   });
+
+</script>
+</html>

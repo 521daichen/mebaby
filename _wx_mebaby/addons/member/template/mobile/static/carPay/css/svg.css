@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+#main{
+	overflow: hidden;
+	/*border:1px solid #f60;*/
+	position: absolute;
+	}
+ 
+#map{
+	width: 100%;
+	-webkit-user-drag: none;
+	-moz-user-drag: none;
+	-ms-user-drag: none;
+	user-drag: none;
+}
+#zend{
+	text-align:center;
+}
+/*解决安卓地图一闪消失问题*/
+.pinch-zoom-container{
+	width:100%;
+	height:100%;
+}

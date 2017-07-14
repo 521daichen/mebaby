@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$mInfo['name']}</title>
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/> 
+</head>
+<style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+body{font-size:18px;}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, form, fieldset, legend, button, input, textarea,th, td{margin: 0; padding: 0;}
+ul, ol { list-style: none; }
+i,em{font-style:normal}
+a{ text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+}
+body{ background:#1f2944; color:#fff;}
+header img{ width:100%;}
+.title{font-size:1.2em; text-align:center; width:100%; color:#F8F1B3; position: relative;margin-top:-5px;}
+.title1{position: relative;top:-47px;z-index:9;}
+.buttonDiv{color:#fff; font-size:16px; text-align:center; border-radius:5px; width:95%; border:none; padding:10px 0px; margin-left:2.5%; margin-top:15px;}
+	.Color1{background:#FB9E8F;}
+	.Color2{background:#62a8e8;}
+	.Color3{background:#c91822;}
+.show{
+	position:relative;
+	width:95%;
+	margin-left:2.5%;
+	background:url(../addons/member/template/mobile/static/activity/20160901/pic_l.png) no-repeat bottom left;
+	background-size:10%;
+	}	
+.show .show_pic{
+	margin-left:10%;
+	width:80%;
+	}
+.show p{
+	color:#5c83bd;
+	margin-top:5px;
+	margin-left:10%;
+	width:80%;
+	}	
+.pic_r{
+	position:absolute;
+	right:0px;
+	top:-20px;
+	width:40%;
+	}		
+.description{margin-top:30px;font-size:.8em;padding:1em 1.2em 1em 1.3em;line-height:1.8em;color:#fff;background:#3a5b81}
+	.description strong{color:#FFF;font-size:1.2em;}	
+</style>
+<body>
+ <header><img class="top" src="../addons/member/template/mobile/static/activity/20160901/top.png"></header>
+{if $mInfo['filename1'] != ""}
+<h4 class="title title1">潮装达人</h4>
+
+<div class="show">
+<img src="../addons/member/template/mobile/static/activity/20160901/pic_r.png"  class="pic_r"/>
+<img src="{$mInfo['filename1']}" class="show_pic"/>
+<p><em style="background:#5c83bd; color:#fff; padding:0px 5px;">{$mInfo['name']}</em><br>
+{$mInfo['desc']}</p>
+</div>
+{if $openid == $mInfo['openid']}
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivitySelected&m=member&tempid=1&act_id=20160901" ><button type="button" class="Color2 buttonDiv">看看人家都穿啥</button></a>
+{else}
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id=20160901"><button type="button" class="Color3 buttonDiv" style="margin-top:30px;">晒出我的潮装</button></a>
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivitySelected&m=member&tempid=1&act_id=20160901" ><button type="button" class="Color2 buttonDiv">看看人家都穿啥</button></a>
+{/if}
+{/if}
+ <div style="clear:both"></div>
+<div class="description">
+			<strong>活动说明</strong>
+			<p>
+			* 上传自己即将去参加演唱会的装备，包含服饰、道具、数码产品等均可，并附上简单描述或说明即可参与活动；<br />
+			* 活动结束后，赛格评审将从中选出“潮装达人”若干，可获得赛格面值200元两店通用现金卡奖励；<br />
+			* 请正确填写联系方式，便于评选后获奖通知；<br />
+			* 参与活动即代表同意本公众号拥有照片使用权，但不做商业用途;<br />
+			* 获奖公布将于活动结束后一周内微信推送；<br />
+			* 赛格公司在中国法律法规允许范围内拥有解释权。
+            </p>
+		</div>
+<script src="../addons/member/template/mobile/activity/20160714/template1/static/js/zepto.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function setTemplate(){
+		$.post("{php echo $this->createMobileUrl('setTemplate','',true)}",{"id":"{$mInfo['id']}","template":"","act_id":"{$act_id}"},function(msg){
+			if(msg.status){
+				location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityTemp&m=member&id='+msg.id+"&act_id={$act_id}";
+			}else{	
+				alert(msg.msg);
+			}
+		},'json');	
+	}
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$mInfo['id']}&act_id={$act_id}", // 分享链接
+            imgUrl: "http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png", // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$mInfo['id']}&act_id={$act_id}", // 分享链接
+            imgUrl: "http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png", // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+	});
+		
+</script>
+</body>
+</html>

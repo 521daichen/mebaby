@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>3.8上传照片</title>
+</head>
+
+<body>
+<h1>3.8上传照片</h1>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: true,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+</script>
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script>
+    function show() {
+        var images = {
+            localId: [],
+            serverId: []
+        };
+        wx.chooseImage({
+            count:1,
+            success: function(res) {
+                images.localId = res.localIds;
+                var i = 0, length = images.localId.length;
+                images.serverId = [];
+                function upload() {
+                    wx.uploadImage({
+                        localId: images.localId[i],
+                        success: function(res) {
+                            i++;
+                            alert('已上传：' + i + '/' + length);
+                            images.serverId.push(res.serverId);
+                            alert(images.localId);
+                            alert(images.serverId);
+                            var local= JSON.stringify(images.serverId);
+                            var server= JSON.stringify(images.serverId);
+
+
+                            $.ajax({
+                                type:'POST',
+                                url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WomenFace&m=member#',
+                                data:{'localId':local,'serverId':server},
+                                success:function(res){alert('uplad ok');alert(server)},
+                            });
+                            alert('ajax');
+                        },
+                        fail: function(res) {
+                            alert(JSON.stringify(res));
+                        }
+                    });
+                }
+                upload();
+            }
+        });
+    }
+</script>
+
+<button class='upload' onclick="show()">上传照片</button>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$_W['page']['title']}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/coupon.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <span></span>
+</header>
+<div class="clr"></div>
+<section>
+    <div class="explain_s1"><p>请点击查看电子券内的说明进行使用</p></div>
+    <!--<dl class="titp">
+        <dt>可使用优惠券</dt>
+    </dl>-->
+    <!--
+    {loop $coupons $con}
+    <div class="coupon">
+        <a href="{php echo $this->createMobileUrl('couponInfo',array('couponId'=>$con['id']))}">
+            <img src="../addons/member/template/mobile/static/img/coupon_l.png" class="coupon_l"/>
+            <img src="{php echo tomedia($con['thumb']) }"/>
+            <dl>
+                <dd>
+                    <h1>{$con['title']}</h1>有效期至：{php echo date('Y.m.d',$con['endtime'])}
+                </dd>
+            </dl>
+            <img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/>
+        </a>
+    </div>
+    {/loop}
+   -->
+    {if empty($coupons)}
+    <div class="radbox noinfo ">
+        <h1>您暂时没有电子券</h1>
+    </div>
+    {else}
+    <div id="first"></div>
+    {loop $coupons $con}
+    <!--<div class="coupon">-->
+        {if $con['status'] == 2 && date('Y-m-d') <= $con['end_time']}
+        <!--<a href="{php echo $this->createMobileUrl('gouwu',array('price'=>$con['price'],'password'=>$con['password'],'start_time'=>$con['start_time'],'end_time'=>$con['end_time'],'status'=>$con['status']))}">
+            <img src="../addons/member/template/mobile/static/img/coupon_l.png" class="coupon_l"/>
+            <img src="../addons/member/template/mobile/static/img/coupon3.png"/>
+            <dl>
+                <dd>-->
+                    <!-- <h1>{$con['brand']} {$con['price']}元电子券</h1>有效期至：{$con['end_time']} -->
+                    <!--<h1> {$con['price']}元电子券</h1>有效期：{$con['start_time']} &nbsp;&nbsp;-&nbsp;&nbsp;{$con['end_time']}
+                </dd>
+            </dl>
+            <img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/>
+        </a>-->
+        {if $con['card_id'] == 221}
+			<div id="c191">
+        {/if}
+        <a href="{php echo $this->createMobileUrl('gouwu',array('price'=>$con['price'],'password'=>$con['password'],'start_time'=>$con['start_time'],'end_time'=>$con['end_time'],'status'=>$con['status'],'card_id'=>$con['card_id']))}">
+			<dl class="card cardSkin">
+				<dt>
+			         <span class="circle">3年庆</span>
+			         <div class="faceValue"><span>￥</span>{$con['price']}</div>
+			         <div class="cardInfo">
+                     	{if $con['card_id'] == 221}
+                            Dior
+                        {else}
+                        赛格3年庆
+                        {/if}
+                     	<span>现金券</span>
+                     </div>
+		        </dt>
+				<dd>使用期限：{$con['start_time']} ┈┈ {$con['end_time']} 
+				<span>未使用</span>
+				</dd>
+				<dd class="arrow ui-arrowlink"></dd>
+			</dl>
+		</a>
+		{if $con['card_id'] == 221}
+            <div class="ui-splitLine"></div>
+			</div>
+        {/if}
+        {else if $con['status'] > 2}
+        <!--<a href="javascript:void (0)">
+            <img src="../addons/member/template/mobile/static/img/coupon_l.png" class="coupon_l"/>
+            <img src="../addons/member/template/mobile/static/img/coupon3.png"/>
+            <dl>
+                <dd>-->
+                    <!-- <h1>{$con['brand']} {$con['price']}元电子券</h1>使用状态：已使用 -->
+                    <!--<h1>{$con['price']}元电子券</h1>使用状态：已使用
+                </dd>
+            </dl>
+            <img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/>
+        </a>-->
+        <a href="javascript:void (0)">
+			<dl class="card cardSkin">
+				<dt>
+			         <span class="circle">3年庆</span>
+			         <div class="faceValue"><span>￥</span>{$con['price']}</div>
+			         <div class="cardInfo">赛格3年庆<span>现金券</span></div>
+		        </dt>
+				<dd><span>已使用</span></dd>
+				<dd class="arrow ui-arrowlink"></dd>
+			</dl>
+		</a>
+        {else if date('Y-m-d') > $con['end_time']}
+        <!--<a href="javascript:void (0)">
+            <img src="../addons/member/template/mobile/static/img/coupon_l.png" class="coupon_l"/>
+            <img src="../addons/member/template/mobile/static/img/coupon3.png"/>
+            <dl>
+                <dd>
+                    <h1>{$con['brand']} {$con['price']}元电子券</h1>使用状态：已过期
+                </dd>
+            </dl>
+            <img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/>
+        </a>-->
+		<a href="javascript:void (0)">
+			<dl class="card cardSkin">
+				<dt>
+			         <span class="circle">3年庆</span>
+			         <div class="faceValue"><span>￥</span>{$con['price']}</div>
+			         <div class="cardInfo">赛格3年庆<span>现金券</span></div>
+		        </dt>
+				<dd><span>已过期</span></dd>
+				<dd class="arrow ui-arrowlink"></dd>
+			</dl>
+		</a>
+        {/if}
+    <!--</div>-->
+    {/loop}
+<!--     <a href="{php echo $this->createMobileUrl('gouwu',array('price'=>$con['price'],'password'=>$con['password'],'start_time'=>$con['start_time'],'end_time'=>$con['end_time'],'status'=>$con['status']))}">
+			<dl class="card cardSkin">
+				<dt>
+			         <span class="circle">兰蔻</span>
+			         <div class="faceValue"><span>￥</span>{$con['price']}</div>
+			         <div class="cardInfo">兰蔻<span>现金券</span></div>
+		        </dt>
+				<dd>使用期限：{$con['start_time']} ┈┈ {$con['end_time']} 
+				<span>未使用</span>
+				</dd>
+				<dd class="arrow ui-arrowlink"></dd>
+			</dl>
+		</a>-->
+    {/if}
+
+    <!--<div class="coupon"><a href=""><img src="../addons/member/template/mobile/static/img/coupon_l.png"-->
+                                        <!--class="coupon_l"/><img-->
+            <!--src="../addons/member/template/mobile/static/img/coupon1.png"/>-->
+        <!--<dl>-->
+            <!--<dd>-->
+                <!--<h1>免费电脑清灰券</h1>-->
+                <!--有效期至：2015.12.31-->
+            <!--</dd>-->
+        <!--</dl>-->
+        <!--<img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/></a></div>-->
+   <!-- <dl class="titp">
+        <dt>已使用的优惠券</dt>
+    </dl>
+    <div class="coupon gray"><a href=""><img src="../addons/member/template/mobile/static/img/coupon_l.png"
+                                             class="coupon_l"/><img
+            src="../addons/member/template/mobile/static/img/coupon.png"/>
+        <dl>
+            <dd>
+                <h1>免费可乐券</h1>
+                有效期至：2015.2.6
+            </dd>
+        </dl>
+        <img src="../addons/member/template/mobile/static/img/coupon_r.png" class="coupon_r"/></a></div>-->
+</section>
+<div class="clr"></div>
+<footer><br>
+    <br>
+</footer>
+<script type="text/javascript">
+	var firstbox       = document.getElementById("first");
+	var c191           = document.getElementById("c191");
+	firstbox.innerHTML = c191.innerHTML;
+	c191.innerHTML     = "";
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"  content=" initial-scale=1, minimum-scale=1,maximum-scale=1, width=device-width,user-scalable=0">
+	<title>电子寻车</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+	  	padding: 0;
+	  	font-family: '微软雅黑';
+	  	font-size:16px;
+	  	text-decoration: none;
+	}
+	body{
+		background: #ebebeb
+	}
+	.topBox{
+		width: 92%;
+		margin: 20px auto;
+		background: white;
+		border:1px solid #e3e3e3;
+		border-radius: 15px;
+		box-shadow: 0 1px 1px 1px #e3e3e3
+	}
+	.bottomBox{
+		width: 92%;
+		margin: 0 auto;
+		background: white;
+		border:1px solid #e3e3e3;
+		border-radius: 15px;
+		box-shadow: 0 1px 1px 1px #e3e3e3
+	}
+	.box1{
+		width: 100%;
+		overflow: auto;
+		background: #b03799;
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+		color: white;
+		padding:10px 0 10px 0 ;
+	}
+	.box2{
+		width: 100%;
+		overflow: auto;
+		background:white;
+		border-bottom: 1px solid #f6f4f4;
+		padding: 10px 0;
+	}
+	.box3{
+		width: 100%;
+		overflow: auto;
+		background:white;
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+		padding: 10px 0
+	}
+	.box2 li,.box3 li{
+		color:#6a696a
+	}
+	ul{
+		 line-height: 32px;
+		 margin-left:5%;
+		 overflow: hidden;
+	}
+	li{	
+		 float: left;
+		 list-style: none;
+	}
+	p{
+		text-align: right;
+		font-size: 18px;
+		margin-right:5%;
+	}
+	.iconLi1{
+		width: 32px;
+		height: 32px;
+		background:url(images/icon1.png) no-repeat left center;
+		background-size: 60%;
+	}
+	.iconLi2{
+		width: 32px;
+		height: 32px;
+		background:url(images/icon2.png) no-repeat left center;
+		background-size: 70%;
+	}
+	.iconLi3{
+		width: 32px;
+		height: 32px;
+		background:url(images/icon3.png) no-repeat left center;
+		background-size: 70%;
+
+	}
+	.iconLi4{
+		width: 32px;
+		height: 32px;
+		background:url(images/icon4.png) no-repeat left center;
+		background-size: 70%;
+
+	}
+	.tel{
+		background: #333333;
+		border-radius: 30px;
+		text-align: right;
+		margin-right:3%;
+		float: right;
+		color: white;
+		padding: 5px 10px;
+		font-size:16px;
+	}
+	</style>
+</head>
+<body>
+	<div class="topBox">
+			<img src='_wx1_cnsaga/wR/addons/member/template/zhuxue/img/carLocation.png'/>
+			</div>
+	<div class="bottomBox">
+		<div class="box1">
+			<ul>
+				<li class="iconLi1"></li>
+				<li>爱车所在</li>
+			</ul>
+		</div>
+		<div class="box2">
+			<ul>
+				<li class="iconLi2"></li>
+				<li>您的爱车停在</li>
+			</ul>
+			{if $entryInfo !=false}<p>停车区域：{$entryInfo['AreaName']} ,停车编号：{$entryInfo['ParkingNo']}</p>{/if}
+		</div>
+		<div class="box2">
+			<ul>
+				<li class="iconLi3"></li>
+				<li>您的入场时间</li>
+			</ul>
+			{if $parkingInfo!=false}<p>您的车牌号：{$plateName},入场时间：{$parkingInfo['entry_time']}</p>{/if}
+		</div>
+		<div class="box3">
+			<ul>
+				<li class="iconLi4"></li>
+				<li>服务电话：89329596</li>
+			</ul>
+			<a class="tel" href="tel:89329596">点击拨打</a>
+		</div>
+	</div>
+</body>
+</html>

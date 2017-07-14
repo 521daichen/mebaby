@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>绑定车牌号</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/license.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<img src="../addons/member/template/mobile/static/img/license.png" width="100%">
+
+<section>
+    <!--<form  id="from1"  onsubmit="return false" >-->
+    <div class="clr"></div>
+    <ul class="press_list">
+ <li onclick="offon()" class="nobg">
+            <span>
+                <input type="button"  readonly  class="useon"  />
+                <input type="hidden" id="offon" name="isOn"  value="{if $isOnTag == 1}1{else}{$userinfo['isOn']}{/if}" />
+                
+            </span>
+        </li>
+        <li>
+            <b>1</b>
+            {if !empty($userinfo['platenumber'])}
+            <input type="text" value="{$userinfo['platenumber']}" id="cpselect1" readonly   class="text dp" name="platenumber" />
+            <button onclick="cpselect(1)" class="ds1" style="display: none"></button>
+            <button platenumber="{$userinfo['platenumber']}" num="1" class="delete1" onclick="delPlateNumber(this);" ></button>
+            {else}
+            <input type="text" value="" id="cpselect1" readonly class="text dn" name="platenumber1" />
+            <div class="toucharea1" onclick="cpselect(1)"></div>
+            <button onclick="cpselect(1)" class="ds1"></button>
+            <button platenumber="" num="1" class="delete1" onclick="delPlateNumber(this);"   style="display: none"></button>
+            {/if}
+        </li>
+        
+            {if !empty($userinfo['platenumber2'])}
+            <li>
+            <b>2</b>
+            <input type="text" value="{$userinfo['platenumber2']}" id="cpselect2" readonly   class="text dp" name="platenumber" />
+            <button onclick="cpselect(2)" class="ds2" style="display: none"></button>
+            <button platenumber="{$userinfo['platenumber2']}" num="2" class="delete2" onclick="delPlateNumber(this);" ></button>
+            </li>
+            {/if}
+       
+        
+            {if !empty($userinfo['platenumber3'])}
+            <li>
+            <b>3</b>
+            <input type="text" value="{$userinfo['platenumber3']}" id="cpselect3" readonly   class="text dp" name="platenumber" />
+            <button onclick="cpselect(3)" class="ds3" style="display: none"></button>
+            <button platenumber="{$userinfo['platenumber3']}" num="3" class="delete3" onclick="delPlateNumber(this);" ></button>
+            </li>
+            {/if}
+       
+
+       
+    </ul>
+    <!--</form>-->
+</section>
+<div class="clr"></div>
+<div >
+</div>
+<footer style="margin-bottom:0.5em;background:#fff;color:#f20">
+	 
+    亲爱的会员，由于我购物中心会员系统升级，现每卡仅限绑定一个车牌，请您将会员卡名下所绑定车辆信息更换为您常用车辆信息，每车牌只能被绑定一次，绑定信息一年可自行操作更改一次，更改机会不予累计到第二年使用，如需更换两次及两次以上绑定信息，需本人持有效证件前往购物中心会员中心办理变更手续。请您于2016年3月1日完成信息更新。给您带来的不便敬请谅解！
+</footer>
+<footer>
+    使用须知：<br>
+    • 如需使用则需要打开积分抵扣停车费功能；<br>
+    • 每300积分抵扣1小时停车费；<br>
+    • 停车时间不足1小时按1小时计算;<br>
+    • 请在交费时提前出示会员卡;
+</footer>
+
+<div class="d_n" id="cp" >
+    <div class="proys ahy">
+        <div class="clr"></div>
+        <input id="cpvalue" onclick="this.value='';$('#sheng').css('display','block');$('#zimu').css('display','none');$('#num').css('display','none')" value="" readonly>
+        <ul id="sheng">
+            <li onclick="cpadd('陕')">陕</li>
+            <li onclick="cpadd('京')">京</li>
+            <li onclick="cpadd('津')">津</li>
+            <li onclick="cpadd('冀')">冀</li>
+            <li onclick="cpadd('晋')">晋</li>
+            <li onclick="cpadd('蒙')">蒙</li>
+            <li onclick="cpadd('辽')">辽</li>
+            <li onclick="cpadd('吉')">吉</li>
+            <li onclick="cpadd('黑')">黑</li>
+            <li onclick="cpadd('沪')">沪</li>
+            <li onclick="cpadd('苏')">苏</li>
+            <li onclick="cpadd('浙')">浙</li>
+            <li onclick="cpadd('皖')">皖</li>
+            <li onclick="cpadd('闽')">闽</li>
+            <li onclick="cpadd('赣')">赣</li>
+            <li onclick="cpadd('鲁')">鲁</li>
+            <li onclick="cpadd('豫')">豫</li>
+            <li onclick="cpadd('鄂')">鄂</li>
+            <li onclick="cpadd('湘')">湘</li>
+            <li onclick="cpadd('粤')">粤</li>
+            <li onclick="cpadd('桂')">桂</li>
+            <li onclick="cpadd('琼')">琼</li>
+            <li onclick="cpadd('渝')">渝</li>
+            <li onclick="cpadd('川')">川</li>
+            <li onclick="cpadd('贵')">贵</li>
+            <li onclick="cpadd('云')">云</li>
+            <li onclick="cpadd('藏')">藏</li>
+            <li onclick="cpadd('甘')">甘</li>
+            <li onclick="cpadd('青')">青</li>
+            <li onclick="cpadd('宁')">宁</li>
+            <li onclick="cpadd('新')">新</li>
+        </ul>
+        <ul id="zimu" style="display:none">
+            <li onclick="cpadd('A')">A</li>
+            <li onclick="cpadd('B')">B</li>
+            <li onclick="cpadd('C')">C</li>
+            <li onclick="cpadd('D')">D</li>
+            <li onclick="cpadd('E')">E</li>
+            <li onclick="cpadd('F')">F</li>
+            <li onclick="cpadd('G')">G</li>
+            <li onclick="cpadd('H')">H</li>
+            <li onclick="cpadd('I')">I</li>
+            <li onclick="cpadd('J')">J</li>
+            <li onclick="cpadd('K')">K</li>
+            <li onclick="cpadd('L')">L</li>
+            <li onclick="cpadd('M')">M</li>
+            <li onclick="cpadd('N')">N</li>
+            <li onclick="cpadd('O')">O</li>
+            <li onclick="cpadd('P')">P</li>
+            <li onclick="cpadd('Q')">Q</li>
+            <li onclick="cpadd('R')">R</li>
+            <li onclick="cpadd('S')">S</li>
+            <li onclick="cpadd('T')">T</li>
+            <li onclick="cpadd('U')">U</li>
+            <li onclick="cpadd('V')">V</li>
+            <li onclick="cpadd('W')">W</li>
+            <li onclick="cpadd('X')">X</li>
+            <li onclick="cpadd('Y')">Y</li>
+            <li onclick="cpadd('Z')">Z</li>
+        </ul>
+        <input type="text" id="num" onChange="toupper()" placeholder="输入车牌后五位" class="num"  />
+        <div class="clr"></div>
+        <input type="button" class="but2" value="取 消" onclick="cp_noreg()" />
+        <input type="button" class="but2" value="确 定" onclick="cp_n()" />
+        <input type="hidden" id="inputnum" value="" />
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="../addons/member/template/mobile/static/js/jquery.min.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script src="../addons/member/template/mobile/static/js/ac.js?v=12346"></script>
+<script type="text/javascript">
+    function cp_n() {
+        var zhi = $("#inputnum").val();    // 车牌编号
+        var numlength = $("#num").val();
+        var reg = /^([A-Z0-9]{5})|([A-Z0-9]{4}[\u4e00-\u9fa5]{1}$)/;
+        if (reg.test(numlength) && numlength.length == 5) {
+            var platenumber = $("#cpvalue").val() + '·' + numlength;
+            var isOn = $('input[name="isOn"]').val();
+            loading();
+            $.post("{php echo  $this->createMobileUrl('plateNumber')}",{"platenumber":platenumber,"num":zhi,"isOn":isOn},function(msg){
+                layer.closeAll();
+                if (msg.status) {
+                    $('.ds'+zhi).css('display','none');
+                    $('.toucharea'+zhi).css('display','none');
+                    $('.delete'+zhi).attr('platenumber',msg.platenumber).css('display','block');
+                    $('#cpvalue').val('');
+                    $('#num').val('');
+                    $('#sheng').css('display','block');
+                    $('#zimu').css('display','none');
+                    $('#num').css('display','none')
+                    $("#cpselect" + zhi).val(platenumber);
+                    $("#cpselect" + zhi).removeClass();
+                    $("#cpselect" + zhi).addClass("text dp");
+                    
+                    $("#cp").addClass("opxs");
+                    $(".proys").addClass("onexit");
+                    setTimeout(function () {
+                        document.getElementById("cp").className = "d_n";
+                        $(".proys").removeClass("onexit");
+                    }, 350);
+                    $(".press_list").css("display", "");
+
+                    alert(msg.msg);
+//                    window.location.reload();
+                } else {
+                    alert(msg.msg);
+                }
+
+            },'json');
+        } else {
+            alert("车牌号须为字母或数字(5位)");
+        }
+
+    }
+
+    function delPlateNumber(obj){
+        var num = obj.getAttribute('num');
+        layer.open({
+            content: '您确定要解除已经绑定车牌号码<br>'+obj.getAttribute('platenumber')+' ？',
+            btn: ['确定解绑', '返回'],
+            shadeClose: false,
+            style:'text-align:center;width:98%;heigth:60%',
+            yes: function(){
+//                layer.open({content: '你点了确认', time: 1});
+                $.post("{php echo  $this->createMobileUrl('delPlateNumber')}",{'platenumber':obj.getAttribute('platenumber'),"num":num},function(msg){
+                    if (msg.status){
+                        $('.ds'+ num).css('display','block');
+                        $('.delete'+ num).css('display','none');
+                        $('.toucharea'+ num).css('display','block');
+                        $('#cpselect'+num).addClass("text dn").val('');
+                        $('#cpvalue').val('');
+                        $('#num').val('');
+                        $('#sheng').css('display','block');
+                        $('#zimu').css('display','none');
+                        $('#num').css('display','none');
+                        alert(msg.msg);
+                        window.location.reload();
+                    } else {
+                        alert(msg.msg);
+                    }
+                },'json');
+            }
+        });
+    }
+
+    function offon(){
+        var disval = $("#offon").val();
+        var isOn = (disval == 0) ? 1 : 0;
+
+        loading();
+        $.post("{php echo $this->createMobileUrl('setIson')}",{"isOn":isOn},function(msg){
+            layer.closeAll();
+            if (msg.status) {
+                alert('设置成功');
+            } else {
+                alert('设置失败');
+            }
+        },'json');
+        if(disval==0){
+            $("#offon").val(1);
+            $(".useoff").addClass("useon");
+            $(".useoff").removeClass("useoff");
+        }else{
+            $("#offon").val(0);
+            $(".useon").addClass("useoff");
+            $(".useon").removeClass("useon");
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

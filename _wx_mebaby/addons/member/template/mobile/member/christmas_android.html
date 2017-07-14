@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../addons/member/template/mobile/christmas/css/swiper.min.css">
+    <title>打劫赛格美食专列</title>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+            overflow: hidden }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-wrapper {
+            -webkit-transition-timing-function:linear;
+        }
+        .swiper-slide {
+            width: 100%;
+            height: 445px;
+        }
+        /*通用样式*/
+        body {
+            font:12px "microsoft yahei",Arial,Helvetica,sans-serif;
+            color:#000;
+            margin:0;
+            padding:0;
+        }
+        ul,ol,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
+            margin:0;
+            padding:0;
+            list-style:none;
+            font-weight:normal;
+        }
+        #details h2{
+            text-align: center;
+            margin-bottom:10px;
+        }
+        #details h4,#details h5{
+            font-size:16px;
+            margin-bottom:5px;
+        }
+        #details h6{
+            font-size:14px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration:none;
+        }
+        img {
+            max-width:100%;
+        }
+        .ellipsis {
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+            -webkit-text-overflow:ellipsis
+        }
+
+        /*
+        *页面整体
+        */
+        body {
+            width: 100%;
+            background: url("../addons/member/template/mobile/christmas/images/bgshop.png") no-repeat;
+            background-size: 100% auto !important;
+            background-position: 100% 100% ;
+        }
+        body:after {
+              content: "";
+              display: block;
+              clear: both;
+        }
+        /*动画*/
+        .ads_ani {
+            -webkit-animation:op_ads 5s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes op_ads {
+            0% {
+                opacity: 0.8;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.6;
+            }
+        }
+        .in {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:in 3s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes in {
+            0% {
+                margin-top:500px;
+            }
+            100% {
+                margin-top:0px;
+            }
+        }
+        .mountain1 {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: mountain 10s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        .falls {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:falls 3.5s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes falls {
+            0% {
+                top: -500px;
+            }
+            100% {
+                top: 800px;
+            }
+        }
+        .mountain2 {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: mountain 45s linear infinite;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes mountain {
+            from {
+                background-position: 0 100% ;
+            }
+            to {
+                background-position: 0 0;
+            }
+        }
+        .thief {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:thief 2s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes thief {
+            0% {
+                top:110%
+            }
+            100% {
+                top:70%
+            }
+        }
+        /*loading*/
+        @-webkit-keyframes loadroll {
+            0% {
+                -webkit-transform:rotate(360deg);
+            }
+            100% {
+                -webkit-transform:rotate(0deg);
+            }
+        }
+        #loading {
+              background:url('../addons/member/template/mobile/christmas/images/loading_bg.png');
+              background-size:100% 100%;
+              width:100%;
+              height:100%;
+              position: fixed;
+              z-index: 500;
+        }
+        #loading .earth {
+            position: absolute;
+            z-index: 95;
+            width:280px;
+            top:50%;
+            margin-top:-140px;
+            right:20px
+        }
+        #loading .train_r {
+            position: absolute;
+            z-index: 96;
+            width:260px;
+            top:50%;
+            margin-top:-130px;
+            right:30px;
+            animation: loadroll 10s linear infinite;
+        }
+        #loading .title2 {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:440px;
+            top:50%;
+            margin-top:-220px;
+            right:87px
+        }
+        #loading .start {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:200px;
+            top:50%;
+            margin-top:-100px;
+            right:320px;
+            display: none;
+        }
+        #loading .loadpic {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:140px;
+            top:50%;
+            margin-top:-70px;
+            right:320px;
+        }
+        .ads {
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:300;
+            color: #ffffff;
+            background-color: #000000;
+            opacity: 1;
+        }
+        #jump{
+            -webkit-transform: rotate(90deg);
+            position: fixed;
+            z-index:488;
+            padding: 7px 10px;
+            top: 7%;
+            right: 0%;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+            background: -webkit-linear-gradient(270deg,#f57e70,#d74e5b);
+        }
+        #user {
+              position: fixed;
+              top: 75px;
+              right: -70px;
+              width: 200px;
+              z-index:100;
+              font-size: 12px;
+              -webkit-transform: rotate(90deg);
+        }
+        #user>li {
+            float: left;
+            margin-right: 5px;
+        }
+        #user>:first-child {
+            width: 50px;
+        }
+        #user>:nth-child(2) {
+            width: 130px;
+            height: 35px;
+            line-height: 35px;
+        }
+        #user>:last-child {
+            width: 130px;
+        }
+        /*血条*/
+        .blood {
+            width: 100%;
+            height: 15px;
+        }
+        .blood li {
+            width:21%;
+            height: 15px;
+            float: left;
+        }
+        .blood li>img {
+            width:100%;
+        }
+        #player {
+            width:7%;
+            position:fixed;
+            right:3%;
+            top:93%;
+            z-index:20;
+            -webkit-transform: rotate(90deg);
+        }
+        #line {
+            position:fixed;
+            top:7%;
+            left:10%;
+            z-index:600;
+            display: none;
+        }
+        #line>img {
+            width:80%;
+        }
+        .slidertip {
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:250;
+            background-color: rgba(0,0,0,0.6);
+            -webkit-animation:op_ads 2s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        .slidertip>img {
+            width: 30%;
+            margin-top: 70%;
+            margin-left: 30%;
+        }
+        #falls {
+            width:100%;
+            height:40%;
+            position:absolute;
+            top:-500px;
+            left:0;
+            z-index:100;
+        }
+        #robtouch {
+              position:fixed;
+              top:36%;
+              left:3%;
+              z-index: 100;
+              width:13%;
+        }
+        #thief {
+            width: 200px;
+            position: fixed;
+            top: 110%;
+            left: -28px;
+            z-index: 100;
+            transform: rotate(90deg);
+            /*animation: thief 2s linear;*/
+        }
+
+
+        /*打劫次数不足弹窗*/
+
+        .share{
+            background-color: rgba(210,210,210,0.8);
+            width: 300px;
+            height: 160px;
+            box-sizing: border-box;
+            padding: 40px 27px;
+            position: fixed;
+            top: -117px;
+            left: -260px;
+            z-index: 200;
+            font-size: 16px;
+            border:2px solid #fff;
+            border-radius: 5px;
+            text-align: center;
+        }
+        #at {
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index: 1000;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+        }
+        #at h3 {
+            width: 100%;
+            height: 100%;
+        }
+        .chef {
+            width: 50%;
+            -webkit-transform: rotate(90deg);
+            float: right;
+            margin-top: 16%;
+            margin-right: 22%;
+        }
+        .no_reward>.chef {
+            width: 70%;
+            -webkit-transform: rotate(90deg);
+            float: right;
+            margin-top: 75%;
+            margin-right: 15%;
+        }
+        .hidden {
+            display: none;
+        }
+        .east {
+            width:15%;
+            position:fixed;
+            top:55%;
+            left:43%;
+            z-index:200;
+            -webkit-transform: rotate(90deg);
+        }
+        #tCard {
+            width: 75%;
+            height: 22%;
+            color: #fff;
+            position: absolute;
+            top: 57%;
+            left: 15%;
+            -webkit-transform: rotate(90deg);
+            background: url("../addons/member/template/mobile/christmas/images/card.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        #tCard a {
+            color: #ffffff;
+        }
+        #tCard li {
+            float: left;
+            box-sizing: border-box;
+        }
+        #tCard>:first-child {
+            width: 30%;
+            padding-left: 5px;
+            font-size: 25px;
+        }
+        #tCard>:first-child span {
+            display: inline-block;
+            font-size: 85px;
+            margin-top: 25px;
+        }
+        #tCard>:nth-child(2) {
+            width: 60%;
+            height: 35%;
+            padding-top: 18px;
+            font-size: 25px;
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+        #tCard>:last-child {
+            width: 60%;
+            background: #f9788f;
+            padding: 5px;
+            font-weight: 400;
+            border-radius: 7px;
+            margin-left: 10px;
+        }
+        .btn {
+            -webkit-transform: rotate(90deg);
+            width: 100px;
+            position: absolute;
+            top: 68%;
+            left: 5%;
+        }
+        .no_reward>.btn {
+            -webkit-transform: rotate(90deg);
+            width: 100px;
+            margin-top:-26%;
+            margin-left:-4%;
+        }
+        .btn p {
+            float: left;
+            background: #f75472;
+            padding: 3px 18px;
+            border-radius: 6px;
+        }
+        .btn p a {
+            color: #ffffff;
+        }
+
+        /************车头*/
+        .train_head {
+            width: 99%;
+        }
+        /***旗子*/
+        .flag {
+            width: 160px;
+            position: relative;
+            top: -540px;
+            right: -175px;
+            z-index: -10;
+        }
+        /***云朵*/
+        .cloud {
+            width: 30px;
+            position: relative;
+            top: -838px;
+            right: -265px;
+            z-index: -20;
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:cloud 2.4s linear infinite ;
+            -webkit-animation-fill-mode: both;
+        }
+        @-webkit-keyframes cloud {
+            0% {
+                width: 30px;
+                top: -838px;
+                right: -265px;
+                opacity: 1;
+            }
+            99% {
+                top: -550px;
+                right: -500px;
+                opacity: 0;
+            }
+            100% {
+                top: -550px;
+                right: -500px;
+                opacity: 0;
+            }
+        }
+        /***轮子*/
+        .rot {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:wheel 5s linear infinite ;
+        }
+        @-webkit-keyframes wheel {
+            0% {
+                -webkit-transform: rotate(0deg)
+            }
+            50% {
+                -webkit-transform: rotate(-180deg)
+            }
+            100% {
+                -webkit-transform: rotate(-360deg)
+            }
+        }
+        .wheelmiddle {
+              width: 60px;
+              position: relative;
+        }
+        .wheelM-1 {
+            top: -385px;
+        }
+        .wheelM-2 {
+            top: -382px;
+        }
+        .wheelbig {
+            width: 75px;
+            position: relative;
+        }
+        .wheelB-1 {
+            top: -325px;
+        }
+        .wheelB-2 {
+            top: -320px;
+        }
+        /*****************车厢01*/
+        .carriage>div {
+            width:100%;
+            height: 445px;
+        }
+        .wheelsmall {
+            width: 55px;
+            position: relative;
+        }
+        .wheelS-1 {
+            top: -390px;
+        }
+        .wheelS-2 {
+            top: -170px;
+        }
+        #details{
+            background-color: rgba(210,210,210,0.9);
+            -webkit-transform: rotate(90deg);
+            width: 308px;
+            height: 160px;
+            box-sizing: border-box;
+            padding: 10px 27px;
+            position: fixed;
+            top: 280px;
+            left: 27px;
+            z-index: 200;
+            font-size: 16px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+        /**屏幕适应**/
+        @media screen and (max-width:376px) {
+            .swiper-slide {
+                height: 405px;
+            }
+            .wheelM-1 {
+                top: -337px;
+            }
+            .wheelM-2 {
+                top: -335px;
+            }
+            .wheelmiddle {
+                width: 50px;
+            }
+            .wheelB-1 {
+                top: -290px;
+            }
+            .wheelB-2 {
+                top: -285px;
+            }
+            .wheelbig {
+                width: 70px;
+            }
+            .wheelS-1 {
+                top: -360px;
+            }
+            .wheelS-2 {
+                top: -160px;
+            }
+            .flag {
+                width: 145px;
+                top: -480px;
+                right: -165px;
+            }
+            .cloud {
+                width: 26px;
+                top: -756px;
+                right: -240px;
+            }
+            .carriage>div {
+                width: 100%;
+                height: 405px;
+            }
+            #details{
+                width:300px;
+                top:245px;
+                left:10px;
+            }
+            #details h4,#details h5{
+                margin-bottom:3px;
+            }
+            @-webkit-keyframes cloud {
+                0% {
+                    width: 26px;
+                    top: -756px;
+                    right: -240px ;
+                    opacity: 1;
+                }
+                99% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+                100% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+            }
+            #tCard>:first-child {
+                  padding-left: 2px;
+                  font-size: 25px;
+            }
+            #tCard>:first-child span {
+                font-size: 75px;
+                margin-top: 25px;
+            }
+            #tCard>:nth-child(2) {
+                padding-top: 10px;
+                margin-top: 10px;
+            }
+            #tCard>:last-child {
+                padding-left: 5px;
+            }
+            .chef {
+                margin-top: 12%;
+            }
+            #loading .start {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:160px;
+                top:50%;
+                margin-top:-80px;
+                right:290px
+            }
+            #loading .loadpic {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:140px;
+                top:50%;
+                margin-top:-70px;
+                right:310px
+            }
+            .share {
+                width: 280px;
+                padding: 20px 17px;
+                top: -93px;
+                left: -255px;
+            }
+            .no_reward>.btn {
+                margin-top:-25%;
+            }
+        }
+        @media screen and (max-width:360px) {
+            .swiper-slide {
+                height: 390px;
+            }
+            .wheelS-1 {
+                top: -345px;
+            }
+            .wheelS-2 {
+                top: -165px;
+            }
+            .flag {
+                top: -493px;
+                right: -150px;
+            }
+            .carriage>div {
+                height: 390px;
+            }
+            .share {
+                width: 280px;
+                top: -83px;
+                height:150px;
+            }
+            .no_reward>.btn {
+                margin-top:-25%;
+            }
+            #details h4,#details h5{
+                margin-bottom:3px;
+            }
+        }
+        @media screen and (max-width:320px) {
+            #loading .earth {
+                position: absolute;
+                z-index: 95;
+                width:230px;
+                top:50%;
+                margin-top:-115px;
+                right:10px
+            }
+            #loading .train {
+                position: absolute;
+                z-index: 96;
+                width:210px;
+                top:50%;
+                margin-top:-105px;
+                right:20px;
+                animation: loadroll 20s linear infinite;
+            }
+            #loading .title2 {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:240px;
+                top:50%;
+                margin-top:-120px;
+                right:87px
+            }
+            #loading .start {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:160px;
+                top:50%;
+                margin-top:-80px;
+                right:240px
+            }
+            #loading .loadpic {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:140px;
+                top:50%;
+                margin-top:-70px;
+                right:250px
+            }
+            .swiper-slide {
+                height: 345px;
+            }
+            .wheelM-1 {
+                top: -310px;
+            }
+            .wheelM-2 {
+                top: -308px;
+            }
+            .wheelmiddle {
+                width: 45px;
+            }
+            .wheelB-1 {
+                top: -262px;
+            }
+            .wheelB-2 {
+                top: -260px;
+            }
+            .wheelbig {
+                width: 65px;
+            }
+            .wheelS-1 {
+                top: -310px;
+            }
+            .wheelS-2 {
+                top: -145px;
+            }
+            .wheelsmall {
+                width: 50px;
+            }
+            .flag {
+                width: 130px;
+                top: -450px;
+                right: -130px;
+            }
+            .cloud {
+                width: 25px;
+                top: -674px;
+                right: -200px;
+            }
+            .carriage>div {
+                width: 100%;
+                height: 345px;
+            }
+            @-webkit-keyframes cloud {
+                0% {
+                    width: 25px;
+                    top: -674px;
+                    right: -200px;
+                    opacity: 1;
+                }
+                99% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+                100% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+            }
+            #tCard>:first-child span {
+                  font-size: 65px;
+            }
+            .share {
+                width: 260px;
+                height:140px;
+                padding: 15px 8px;
+                top: -58px;
+                left: -230px;
+            }
+            .no_reward>.btn {
+                margin-top:-25%;
+            }
+            .chef {
+                margin-top: 12%;
+            }
+            #details{
+                width:270px;
+                height:140px;
+                top:210px;
+                left:0px;
+            }
+            #details h4,#details h5{
+                margin-bottom:0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <img src="../addons/member/template/mobile/christmas/images/earth.png" class="earth" />
+        <img src="../addons/member/template/mobile/christmas/images/train_rotate.png" class="train_r" />
+        <img src="../addons/member/template/mobile/christmas/images/title2.png" class="title2" />
+        <img src="../addons/member/template/mobile/christmas/images/start.png" class="start" />
+        <img src="../addons/member/template/mobile/christmas/images/loading.gif" class="loadpic" />
+    </div>
+    <!--<div class="ads"><img src="../addons/member/template/mobile/christmas/images/wenzi1.png" alt=""/></div>-->
+    <input type="hidden" id="openId" name="openId" value="{$openId}" />
+    <!--<div id="jump" class="hidden">跳过动画</div>-->
+    <audio id="bgSound" autoplay loop>
+        <source src="../addons/member/template/mobile/christmas/jingle-bells.mp3" type="audio/mpeg">
+    </audio>
+    <!--<div id="line"><img src="../addons/member/template/mobile/christmas/images/lock.png" alt=""/></div>-->
+    <ul id="user" class="hidden">
+        <li><img src="{$headimgurl}" alt=""/></li>
+        <li class="ellipsis">{$nickname}</li>
+        <li>
+            <ul id="blood" class="blood"></ul>
+        </li>
+    </ul>
+    <div id="player"><img id='pIcon' src="../addons/member/template/mobile/christmas/images/play.png" class="play" onclick="music(this);"/></div>
+    <div class="slidertip hidden"><img src="../addons/member/template/mobile/christmas/images/slidertip.png" alt=""/></div>
+    <div id="details" class="hidden">
+        <h2></h2>
+        <h4></h4>
+        <h5></h5>
+    </div>
+    <div id="thief">
+        <a id='rob' href="#"><img src="../addons/member/template/mobile/christmas/images/thief.gif" alt=""/></a>
+        <div id="share" class="share hidden"></div>
+
+    </div>
+    <div class="east hidden"><img src="../addons/member/template/mobile/christmas/images/east.gif" alt=""/></div>
+    <div id="at" class="at">
+        <h3 class="reward hidden">
+            <div class="chef"><img src="../addons/member/template/mobile/christmas/images/reward.png" alt=""/></div>
+            <ul id="tCard">
+                <!--<li>￥<span>1</span></li>-->
+                <!--<li>丸子专卖</li>-->
+                <!--<li>撒尿牛丸*1  海带结*1  鱼豆腐*1</li>-->
+            </ul>
+            <div class="btn">
+                <p><a id='take' href="#">领取</a></p>
+            </div>
+        </h3>
+        <h3 class="no_reward hidden">
+            <div class="chef"><img src="../addons/member/template/mobile/christmas/images/no_reward.png" alt=""/></div>
+            <div class="btn">
+                <p><a id='back' href="#" >返回</a></p>
+            </div>
+        </h3>
+    </div>
+    <!--<div id="falls">-->
+        <!--<img src="../addons/member/template/mobile/christmas/images/falls.gif" alt=""/>-->
+    <!--</div>-->
+    <div id="robtouch" class="hidden"><img src="../addons/member/template/mobile/christmas/images/robbtn.gif"/></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script src="../addons/member/template/mobile/christmas/js/swiper.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    var swiper;
+    var openId=$('#openId').val();
+    var count='';
+    var cardId='';
+    var cardName='';
+    var is_share='';
+    var cardId_free='';
+    var pro_name='';
+    var act_price='';
+    $(document).ready(function(){
+        //console.log(swiper);
+        $.ajax({
+            type: 'GET',
+            url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCardList&m=member#wechat',
+            success: function(res){
+//					console.log(res);
+                var resdata=JSON.parse(res);
+                var html = "";
+//                  console.log(resdata);
+                $.each(resdata, function(i, p){
+                    html +='<div cardId="'+p.cardId+'" name="'+p.cardName+'" count="'+p.s_num+'" act_price="'+ p.act_price+
+                            '" pro_name="'+ p.pro_name+'" class="swiper-slide carriage">' +
+                            '<div class="carriage_01"><img src="'+p.train_img+'"/>'+'<div class="wanzi"></div>'+
+                            '<p class="wheelsmall wheelS-1 rot">'+
+                            '<img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                            '<p class="wheelsmall wheelS-2 rot">'+
+                            '<img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                            '</div> </div>';
+                });
+
+
+                var trainHead='<div class="swiper-slide">'+ '<div class="train_head">'+ '<img src="../addons/member/template/mobile/christmas/images/train.png" alt=""/></div>'+'<p class="wheelmiddle wheelM-1 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+ '<p class="wheelmiddle wheelM-2 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+ '<p class="wheelbig wheelB-1 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+ '<p class="wheelbig wheelB-2 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+ '<h1 class="flag"><img src="../addons/member/template/mobile/christmas/images/flag.gif" alt=""/></h1>'+ '<h2 class="cloud"><img src="../addons/member/template/mobile/christmas/images/cloud.png" alt=""/></h2>'+ '</div>';
+
+                html=trainHead+html;
+                $('.swiper-wrapper').html(html);
+
+                swiper=new Swiper('.swiper-container', {
+                    direction: 'vertical',
+                    mousewheelControl:true,
+                    centeredSlides : true,
+                    slidesPerView : 'auto',
+                    speed:1000,
+                    onSliderMove:function(swiper){
+                        $('#robtouch').addClass('hidden');
+                        $('.east').addClass('hidden');
+                    },
+                    onSlideChangeEnd: function(swiper){
+                        if(swiper.activeIndex>0){//当前活动块为第二个时，出现打劫按钮
+                            $('#robtouch').removeClass('hidden');
+                        }
+
+                    }
+                });
+               swiper.disableTouchControl();
+            }
+
+        });
+
+        /*功能二：页面开始请求领卡次数*/
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetTodayTimes&m=member#wechat',//{"status":"1","times":"2"}
+            data:{'openId':openId},
+            success:function(res){
+                var resdata=JSON.parse(res);
+                console.log(resdata);
+                count=resdata.times;
+                console.log(count);
+                is_share=resdata.is_share;
+                var blood='';
+                for(var i=0;i<count;i++) {
+                    blood+='<li><img src="../addons/member/template/mobile/christmas/images/blood.png" alt=""/></li>';
+                }
+                $('#blood').html(blood);
+            }
+        });
+        //页面加载完成，出现打劫按钮*/
+        $('.start').css('display','block').next('.loadpic').addClass('hidden');
+        /*点击打劫按钮 隐藏当前层 及火车动画的启动*/
+        $('.start').click(function(){
+            $('#loading').addClass('hidden');
+            $('.slidertip').removeClass('hidden');
+//            $('.ads').addClass('ads_ani');
+//            var html='<img src="../addons/member/template/mobile/christmas/images/wenzi2.png" alt=""/>';
+//            var j=0;
+//            var timer=setInterval(function(){
+//                j++;
+//                if(j==5){
+//                    $('.ads').css('display','none');
+//                    $('#jump').removeClass('hidden');
+//                    $('.swiper-wrapper').addClass('in');
+//                    $('#falls').addClass('falls');
+//                    $('body').addClass('mountain1');
+//                }
+//                if(j==7){
+//                    $('.ads').removeClass('ads_ani');
+//                }
+//                if(j==8){
+//                    $('.east').removeClass('hidden');
+//                }
+//
+//                if(j==15){
+//                    $('.ads').html(html).css('display','block').addClass('ads_ani');
+//                    $('#jump').addClass('hidden');
+//                    $('body').css('background','url("../addons/member/template/mobile/christmas/images/bgshop.png") no-repeat').removeClass('mountain1');
+//                }
+//                if(j==19){
+//                    $('.ads').css('display','none');
+//
+//                    $('.slidertip').removeClass('hidden');
+//                }
+//                if(j==21){
+//                    $('.slidertip').addClass('hidden');
+//                    $('#thief').addClass('thief');
+//                    $('body').addClass('mountain2');
+//                    swiper.enableTouchControl();
+//                    $('#user').removeClass('hidden');
+//                }
+//            },1000);
+//            if(j===28){
+//                clearInterval(timer);
+//            }
+            //跳过动画
+//            $('#jump').click(function(){
+//                clearInterval(timer);
+//                $(this).addClass('hidden');
+//                $('#falls').addClass('hidden').removeClass('falls');
+//                $('.ads').addClass('hidden');
+//                $('.slidertip').removeClass('hidden');
+//                $('body').removeClass('mountain1').css('background','url("../addons/member/template/mobile/christmas/images/bgshop.png") no-repeat');
+//
+//            });
+        });
+        //点击滑动提示，隐藏本层
+        $('.slidertip').click(function(){
+            $(this).addClass('hidden');
+            $('#thief').addClass('thief');
+            swiper.enableTouchControl();
+            $('#user').removeClass('hidden');
+            $('.swiper-wrapper').addClass('in');
+//            $('body').addClass('mountain2');
+        });
+    });
+
+    //document ready end
+
+    /*功能三：抽奖事件*/
+    $('#robtouch').click(function(){
+        /*当打劫次数小于0时，点击弹出分享提示*/
+        $('#details').addClass('hidden');
+        var blood='';
+        if(count<=0){
+            if(is_share==1){
+                $('#share').html('精力耗尽？<br>分享至朋友圈或微信好友可增加打劫次数，让你满血回来！');
+            }else{
+                $('#share').html('知道你是个吃货<br>但今天的打劫机会已用完<br>明天再来吧！');
+            }
+            $('#share').removeClass('hidden');
+            $('#share').click(function () {
+                $(this).addClass('hidden')
+            });
+        }else {
+            /*获取当前车厢的索引 获得cardId 与cardName  异步提交获得抽奖结果*/
+            var index = swiper.activeIndex;
+            cardId = swiper.slides.eq(index).attr('cardId');
+            console.log(cardId);
+            cardName=swiper.slides.eq(index).attr('name');
+            console.log(cardId);
+            pro_name=swiper.slides.eq(index).attr('pro_name');
+            act_price=swiper.slides.eq(index).attr('act_price');
+            /*打劫次数大于0时，点击弹出动画 血条减1*/
+            count--;
+            $('#at').css('display', 'block').removeClass('at');
+            for(var i=0;i<count;i++) {
+                blood+='<li><img src="../addons/member/template/mobile/christmas/images/blood.png" alt=""/></li>';
+            }
+            $('#blood').html(blood);
+            $('#at>h3').addClass('hidden');
+            $.ajax({
+                type: 'POST',
+                url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WhetherGetCard&m=member#wechat',
+                data: {'openId': openId, 'cardId': cardId,'cardName':cardName},
+                success: function (res) {
+                    /*根据返回状态 拼接页面内容*/
+                    var resdata = JSON.parse(res);
+                    cardId_free=resdata.cardId_free;
+                    console.log(cardId_free);
+                    if (resdata.status == 0) {
+                        $('.no_reward').removeClass('hidden');
+                        cardId='';
+                        $('#take').css('display','none');
+                    } else if (resdata.status == 1) {
+                        $('.reward>#tCard').html('<li>￥<span>'+act_price+'</span></li><li class="ellipsis">'+cardName+'</li><li class="ellipsis">'+pro_name+'</li>');
+                        $('.reward').removeClass('hidden');
+                        $('#take').css('display','block');
+                    } else if (resdata.status == 2) {
+                        $('.reward>.chef').html('<img src="../addons/member/template/mobile/christmas/images/ice.png" alt=""/>');
+                        $('.reward>#tCard').html('<li>￥<span>5</span></li><li>冰工厂</li><li>笑脸系列 冰品</li>');
+                        $('.reward').removeClass('hidden');
+                        $('#take').css('display','block');
+                        cardId='冰棍';
+                        cardName='冰棍';
+                    }
+                    //$('#tCard th').html(html);
+                }
+            });
+        }
+
+    });
+    //点击车厢显示店家活动详情
+    $('.swiper-wrapper').on('click','.carriage',function(){
+        var price=$(this).attr('act_price');
+        var actDetails=$(this).attr('pro_name');
+        var shop=$(this).attr('name');
+        $('#details').html('<h2>'+shop+'</h2><h4>活动详情：'+actDetails+'</h4><h5>活动价：￥'+price+'</h5><h6>点击下方按钮打劫优惠券</h6>')
+        $('#details').removeClass('hidden');
+    });
+    //点击details 隐藏自己
+    $('#details').click(function(){
+        $(this).addClass('hidden');
+    });
+    /*功能四：分享按钮异步提交openId*/
+    function share(){
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=EditGetTimes&m=member#wechat',
+            data:{'openId':openId},
+            success:function(res){
+                var resdata=JSON.parse(res);
+                if(resdata.status==1){
+                    count++;
+                }
+            }
+        });
+    }
+    /*功能五：领券按钮异步提交openId cardId cardName*/
+    $('#take').click(function(e){
+        e.preventDefault();
+        $('#at').css('display','none').removeClass('at');
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCardLog&m=member#wechat',
+            data:{'openId':openId,'cardId':cardId,'cardName':cardName },
+            success:function(res){
+                var resdata=JSON.parse(res);
+                alert(resdata);
+                //var html='';
+                if(resdata.status===1){
+                    console.log('领取成功');
+                }
+            }
+        });
+
+    });
+</script>
+<script>
+    $('.swiper-wrapper').css('margin-top','500px');
+    (function(){
+        /* 横屏检测*/
+        var init = function(){
+            var updateOrientation = function(){
+                var orientation = window.orientation;
+                var line=document.querySelector('#line');
+                switch(orientation){
+                    case 90:
+                    case -90:line.style.display='block';//这里是横屏
+                        break;
+                    default:line.style.display='none';//这里是竖屏
+                        break;
+                }
+            };
+            // 每次旋转，调用这个事件。
+            window.addEventListener('orientationchange',updateOrientation,false);
+            // 事件的初始化
+            updateOrientation();
+        };
+        window.addEventListener('DOMContentLoaded',init,false);
+        /*解决部分ios微信无法自动播放音频*/
+        function autoPlayAudio1() {
+            wx.config({
+                // 配置信息, 即使不正确也能使用 wx.ready
+                debug: false,
+                appId: '',
+                timestamp: 1,
+                nonceStr: '',
+                signature: '',
+                jsApiList: []
+            });
+            wx.ready(function() {
+                document.getElementById('bgSound').play();
+            });
+        }
+        autoPlayAudio1();
+    })();
+    /*音乐暂停播放及图标更换*/
+    function music(){
+        var pIcon=$('#pIcon');
+        var bgSound= document.getElementById('bgSound');
+        bgSound.innerHTML='<source src="../addons/member/template/mobile/christmas/jingle-bells.mp3" type="audio/mpeg">';
+        if(pIcon.hasClass('play')){
+            pIcon.attr("src","../addons/member/template/mobile/christmas/images/pause.png");
+            pIcon.addClass('pause');
+            pIcon.removeClass('play');
+            bgSound.pause();
+        }else  if(!pIcon.hasClass('play')){
+            pIcon.attr("src","../addons/member/template/mobile/christmas/images/play.png");
+            pIcon.addClass('play');
+            pIcon.removeClass('pause');
+            bgSound.play();
+        }
+    }
+    //gif切换
+    function back(){
+        $('#back').click(function(e){
+            e.preventDefault();
+            $('#at').css('display','none').removeClass('at');
+        });
+    }
+    back();
+</script>
+<script type="text/javascript">
+  var urls=location.href;
+  wx.config({
+       debug: false,
+       appId: "{$_W['account']['jssdkconfig']['appId']}",
+       timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+       nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+       signature: "{$_W['account']['jssdkconfig']['signature']}",
+       jsApiList: [
+           'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+           'onMenuShareTimeline',      // 分享到朋友圈
+           'onMenuShareAppMessage',    // 分享给朋友
+           'onMenuShareQQ',            // 分享到QQ
+           'onMenuShareWeibo',         // 分享到腾讯微博
+           'hideMenuItems',            // 批量隐藏功能按钮接口
+           'showMenuItems',            // 批量显示功能按钮接口
+           'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+           'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+           'getNetworkType',           // 获取网络状态接口
+           'openLocation',             // 使用微信内置地图查看位置接口
+           'getLocation',              // 获取地理位置接口
+           'hideOptionMenu',           // 批量隐藏功能按钮接口
+           'showOptionMenu',           // 批量显示功能按钮接口
+           'closeWindow',              // 关闭当前网页窗口接口
+           'addCard',                  // 批量添加卡券接口
+           'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+           'openCard',                 // 查看微信卡包中的卡券接口
+     		'chooseImage',
+           'previewImage',
+           'uploadImage',
+           'downloadImage'
+       ]
+   });
+
+   wx.ready(function(){
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+           title: "赛格专列发车了，老司机带你吃赛格", // 分享标题
+           link: urls, // 分享链接
+           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/christmas/images/share.png', // 分享图标
+           success: function (res) {
+				share();
+				location.reload();
+           }
+       });
+       
+       
+		// 分享给朋友
+       wx.onMenuShareAppMessage({
+           title: "赛格专列发车了，老司机带你吃赛格", // 分享标题
+           desc:  "你的吃货兄弟现在正在打劫赛格美食专列，急需支援，愁啥，赶紧去帮忙啊", // 分享描述
+           link: urls, // 分享链接
+           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/christmas/images/share.png', // 分享图标
+           success: function (res) {
+				share();
+				location.reload();
+           }
+       });
+       document.querySelector('#take').onclick = function () {
+           wx.addCard({
+               cardList: [
+                   {
+
+                       cardId: 'pY_1bxNtVPzpMqZhwlN2WIbIbFPk',
+                       cardExt: '{"code": "", "openid": "'+openId+'", "timestamp": "{$_W['account']['jssdkconfig']['timestamp']}", "nonce_str":"{$_W['account']['jssdkconfig']['nonceStr']}","signature":"{$_W['account']['jssdkconfig']['signature']}"}'
+
+                   },
+               ],
+               success: function (res) {
+                   console.log("你成功领取了奖品！");
+               },
+               cancel: function (res) {
+ 				   console.log("你取消了！");
+               },
+               fail: function (res) {
+                   console.log("失败")
+
+               }
+           });
+       };
+
+ 
+   });
+ </script>
+</body>
+</html>

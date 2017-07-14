@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content=" initial-scale=1, minimum-scale=1,maximum-scale=1, width=device-width,user-scalable=0">
+<meta content="telephone=no" name="format-detection">
+<title>儿童节制作相册</title>
+<style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+body{font-size:18px;}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, form, fieldset, legend, button, input, textarea,th, td{margin: 0; padding: 0;}
+ul, ol { list-style: none; }
+i,em{font-style:normal}
+a{ text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+}
+body{ background:#ffffe4; color:#828282;}
+header img{ width:100%;}
+.content{ background:#fff; border-bottom:solid 1px #ffc3b9; border-top:solid 1px #ffc3b9;
+width:90%; padding:5%;}
+.title{ font-size:1.4em; text-align:center; width:100%; color:#fb8573;} 
+.phb{ width:100%; position:relative;}
+.phb li{ border-bottom: solid 1px #e9e9e3;  float:left; width:95%; padding:10px 0px; margin-left:2.5%;}
+.phb li img{ float:left; border:solid 2px #c1c16e;  width:20%; margin-left:10px;}
+.list_txt{ float:left; margin-left:20px;}
+.phb li span{ float:right;  margin-right:10px; margin-top:35px ;color:#fff; background:#fb8573; border-radius:5px; padding:2px 5px;}
+.list_txt h4{margin-top:15px; color:#fb8573;}
+.list_txt p{ line-height:30px; margin-top:5px; color:#a1a1a1;}
+.hg{ position:absolute; left:2.5%; top:-8px; left:5px;width:10%;}
+	.description{
+		width:92%;
+		float:left;
+		margin-top:30px;
+		font-size:.7em;
+		padding:.5em 1.2em .6em 1.3em;
+		line-height:1.7em;
+		color:#A1A3A4;
+	}
+	.description strong{color:#FA9383;font-size:1.2em;}
+</style>
+</head>
+
+<body>
+<header><img src="../addons/member/template/mobile/static/activity/20160601/top2.jpg"></header>
+
+<ul class="phb">
+<img src="../addons/member/template/mobile/static/activity/20160601/hg.png" class="hg">
+{loop $topInfo $top}
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$top['id']}&act_id={$act_id}">
+<li>
+<img src="{$top['filename1']}">
+<div class="list_txt"><h4>{$top['name']}</h4>
+<p>当前票数：<em>{$top['vote']}</em></p>
+</div>
+<span>NO.{$top['order']}</span>
+</li>
+</a>
+
+{/loop}
+</ul>
+<div class="description">
+			<strong>活动说明</strong>
+			<p>* 上传照片，写下寄语，就能生成有趣的六一电子相册！<br/>
+            * 相册生成后可参与投票，活动结束后按照票数进行奖励，票数前三名可获得糖猫智能手表（价值600元），第四至第十名可获16G卡通U盘（价值59元），另选出最具创意照片3-5名，可获博朗欧乐B儿童电动牙刷（价值150元）；
+<br>
+            * 本活动每人仅限参与一次，为保公平禁止刷票，一经发现立即取消参与资格；<br>
+* 获奖顾客将在活动结束后2天内收到电话通知，获奖名单随后将于公众号公示。<br>
+* 活动时间：2016.5.28-2016.6.1<br>
+            
+            </p>
+		</div>
+</body>
+</html>

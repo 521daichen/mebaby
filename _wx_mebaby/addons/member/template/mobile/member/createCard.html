@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>分享给好友</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/share.css" />
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/animate.css" />
+</head>
+<body>
+<div id="share" onclick="this.style.display='none'"><img src="../../addons/member/template/mobile/static/gCard/img/share.png" /></div>
+<section>
+    <dl class="bounceInUp animated">
+        <dt><img src="../../addons/member/template/mobile/static/gCard/img/top2.png" /></dt>
+        <dd id="photo" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p{$info['template_id']}.gif" /></dd>
+        <dd>
+            <img src="../../addons/member/template/mobile/static/gCard/img/tips3.png" />
+            <div class="text">{$info['remark']}</div>
+            <button onclick="document.getElementById('share').style.display='block';">请将此页发送给好友</button>
+        </dd>
+    </dl>
+</section>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    var opic = document.getElementById('photo');
+    opic.style.background = "url("+opic.getAttribute("data-img")+")";
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+
+        wx.showOptionMenu();
+
+        wx.showMenuItems({
+            menuList: ['menuItem:share:appMessage','menuItem:share:timeline'] // 要显示的菜单项，所有menu项见附录3
+        });
+
+        wx.hideMenuItems({
+            menuList: ['menuItem:openWithSafari','menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:readMode','menuItem:originPage'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });
+
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: '这一“页”我把自己送给你', // 分享标题
+            link: "http://wx.cnsaga.com/index.php?i=4&c=entry&id={$info['id']}&do=getGreetCard&m=member", // 分享链接
+            imgUrl: "{$_W['fans']['tag']['avatar']}", // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '这一“页”我把自己送给你', // 分享标题
+            desc: '陪你把沿路感想活出了答案，陪你把独自孤单变成了勇敢，一次次失去又重来，我没离开，陪伴是最长情的告白。特别的你，圣诞快乐！', // 分享描述
+            link: "http://wx.cnsaga.com/index.php?i=4&c=entry&id={$info['id']}&do=getGreetCard&m=member", // 分享链接
+            imgUrl: "{$_W['fans']['tag']['avatar']}", // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+
+    });
+</script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256831702'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1256831702' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

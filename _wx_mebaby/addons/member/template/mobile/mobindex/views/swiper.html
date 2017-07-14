@@ -1,0 +1,29 @@
+<!-- Ö÷Ò³ÂÖ²¥-->
+<div class="swiper">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img ng-src="../addons/member/template/mobile/mobindex/images/banner.png" alt=""/>
+            </div>
+            <div class="swiper-slide">
+                <img ng-src="../addons/member/template/mobile/mobindex/images/banner.png" alt=""/>
+            </div>
+            <div class="swiper-slide">
+                <img ng-src="../addons/member/template/mobile/mobindex/images/banner.png" alt=""/>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 'auto',
+        centeredSlides : true,
+        paginationClickable: true,
+        observer:true,
+        observeParents:true,
+        initialSlide :1
+    });
+</script>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+    <title></title>
+    <link rel="stylesheet" href="../addons/member/template/mobile/member/survey/weui.min.css"/>
+    <link rel="stylesheet" href="../addons/member/template/mobile/member/survey/style.css" />
+</head>
+<body>
+
+<div class="page msg_success js_hide">
+    <div class="weui-msg">
+        <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+        <div class="weui-msg__text-area">
+            <h2 class="weui-msg__title">感谢您的建议，祝您生活愉快</h2>
+            <p class="weui-msg__desc"></p>
+        </div>
+        <div class="weui-msg__opr-area">
+            <p class="weui-btn-area">
+                <!--<a href="javascript:history.back();" class="weui-btn weui-btn_default">确定</a>-->
+            </p>
+        </div>
+        <div class="weui-msg__extra-area">
+            <div class="weui-footer">
+                <p class="weui-footer__links">
+                    <a href="javascript:void(0);" class="weui-footer__link"></a>
+                </p>
+                <p class="weui-footer__text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="mian">
+    <!--<img src="../addons/member/template/mobile/member/survey/top.png" class="top" />-->
+    <form action="" method="post">
+	<div style="display:none">
+	<div class="weui-cells__title">Q1.本次停车是否收到停车入库通知？</div>
+	<div class="weui-cells weui-cells_radio">
+            <label class="weui-cell weui-check__label" for="isReceive1">
+                <div class="weui-cell__bd">
+                    <p>正常收到</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isReceive" id="isReceive1" checked="checked" value="1">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="isReceive2">
+                <div class="weui-cell__bd">
+                    <p>从未收到</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isReceive" id="isReceive2" value="-1">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="isReceive3">
+                <div class="weui-cell__bd">
+                    <p>偶尔收不到</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isReceive" id="isReceive3" value="0">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+        </div>
+	</div>
+    <div id="wei-hidden">
+    <div class="weui-cells__title" id="Q2div">停车信息是否正确</div>
+    <div class="weui-cells weui-cells_radio" id="Q2Content">
+	    	<label class="weui-cell weui-check__label" for="isCorrect3">
+                <div class="weui-cell__bd">
+                    <p>正确</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isCorrect" id="isCorrect3" checked="checked" value="1">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+	    	<label class="weui-cell weui-check__label" for="isCorrect2" style="display:none">
+                <div class="weui-cell__bd">
+                    <p>部分错误</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isCorrect" id="isCorrect2" value="0">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+        	<label class="weui-cell weui-check__label" for="isCorrect1">
+                <div class="weui-cell__bd">
+                    <p>错误</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isCorrect" id="isCorrect1" value="-1">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+    </div>
+	</div>
+	<div style="display:none">
+    <div class="weui-cells__title" id="Q3div">Q3.对于赛格国际停车场推送功能你认为？</div>
+    <div class="weui-cells weui-cells_radio" id="Q3Content">
+            <label class="weui-cell weui-check__label" for="isSufficient1">
+                <div class="weui-cell__bd">
+                    <p>好</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isSufficient" id="isSufficient1" checked="checked" value="1">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="isSufficient2">
+
+                <div class="weui-cell__bd">
+                    <p>说不清</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" class="weui-check" name="isSufficient" id="isSufficient2" value="0">
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+    </div>
+	</div>
+
+    <div class="weui-cells__title">意见建议</div>
+   <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="对于赛格国际停车场反向寻车功能的意见，及其他方面的建议" rows="3" name="Advice"></textarea>
+                    <!--<div class="weui-textarea-counter"><span>0</span>/200</div>-->
+                </div>
+            </div>
+    </div>
+    <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">提交信息</a>
+    </div>
+    <br/>
+    </form>
+</section>
+</body>
+<script type="text/javascript" src="../addons/member/template/mobile/member/survey/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //如果Q1 问题为 从未收到的话直接隐藏（淡出Q2,Q3）
+        $("input[name=isReceive]").click(function(){
+            var status = $("input[type='radio'][name='isReceive']:checked").val();
+            //console.log(status);
+            var stg = $("#wei-hidden");
+
+            if(status < 0){
+                $("#wei-hidden").css('display','none');
+            }else{
+                $('#wei-hidden').css('display','block');
+            }
+        });
+
+
+        $("#showTooltips").click(function(){
+
+            var datas = {};
+
+            debugger;
+
+            if($('#wei-hidden').css('display') == 'none'){
+                var isReceive = $("input[type='radio'][name='isReceive']:checked").val();
+                var Advice = $(".weui-textarea").val();
+
+                var datas =  {
+                    "isReceive": isReceive,
+                    "Advice":Advice
+                };
+
+                debugger;
+
+            }else{
+                //如果没有全部选择不能提交
+                if( $("input[type='radio']:checked").length == 3){
+
+
+                    var isReceive = $("input[type='radio'][name='isReceive']:checked").val();
+                    var isCorrect = $("input[type='radio'][name='isCorrect']:checked").val();
+                    var isSufficient = $("input[type='radio'][name='isSufficient']:checked").val();
+
+                    var Advice = $(".weui-textarea").val();
+
+                    var datas =  {
+                        "isReceive": isReceive,
+                        "isCorrect": isCorrect,
+                        "isSufficient": isSufficient,
+                        "Advice":Advice
+                    };
+                }else{
+                    alert("您的选项尚未完成！");
+                }
+            }
+
+            debugger;
+            console.log(datas);
+
+            $.post("{php echo  $this->createMobileUrl('Survey')}&token={$token}", datas , function(data){
+
+                console.log(data);
+                debugger;
+                var data = JSON.parse(data);
+                if(data.status){
+                     $("#mian").addClass("js_hide");
+                     $(".msg_success").addClass("js_show");
+                }else{
+                    alert(data.desc);
+                }
+            });
+
+        });
+        // 过滤Q4 问题
+    })
+</script>
+</html>
+
+
+
+		

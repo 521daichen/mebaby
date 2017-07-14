@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>积分换电影券</title>
+    <link rel="stylesheet" href="static/img/style.css">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+</head>
+<style>
+    *{padding:0;margin:0}
+    html,body{width:100%;height:100%}
+    body{background:#F14E2F}
+    img{width:100%;display:block}
+    .ts1{font-size:1.6em;color:#fff;text-align:center;}
+    .text{font-size:1em;color:#fff;width:84%;margin:0.3em auto 0;line-height:1.8em;text-align:center}
+    .sm{color:#fff;width:80%;margin: 0 auto;line-height:1.6em;background:#EF7B4A;padding:12px;border-radius:10px;font-size:.8em}
+    .ts1 span{display:inline-block;width:20%;position: relative;top:10px;}
+    .ts1 button{background:#F79A57;border-radius:8px;height:1.8em;height:1.8em;font-size:0.8em;color:#fff;text-align:center;border:0;display:block;margin:0 auto;padding:0 1em}
+    .submit button{background:#006DD9;border-radius:10px;line-height:2.4em;height:2.4em;text-align:center;font-size:1.2em;color:#fff;border:0;width:84%;margin:0 auto;display:block;}
+    .clear{height:1em;display:block;width:100%;clear: both;}
+    .clearline{height:0.4em;display:block;width:80%;margin:0 auto 0.4em;clear: both;border-bottom:1px dotted #F9A99B}
+    .ticketsNumber{width:84%;margin:0 auto;height:4em;background:url(../addons/member/template/mobile/static/dianpin/ticketsbg.png) no-repeat;background-size:100% 100%;text-align:center}
+    .ticketsNumber span{display: block;width:100%;font-size:0.8em;padding:.8em 0 .2em}
+    .ticketsNumber strong{display: block;width:100%;font-size:1.2em;}
+    .ticketsNumber u{font-size:0.9em;padding-left:.4em}
+    .godianping{display: block;border:0;width:82%;margin:0 auto;}
+    input{background:none;border:0;width:auto;display:inline;}
+    #copydiv{width:100%;color:#fff;height:100%;background:rgba(0,0,0,0.9);left:0;top:0;text-align:center;font-size:1em;position: fixed;}
+    #copydiv span{background:rgba(255,255,255,0.1);display:block;border:1px dotted #eee;height:3em;line-height:3em;padding:0 1em;width:60%;margin:30% auto 1em;font-size:1.4em}
+</style>
+<body>
+
+
+<img src="../addons/member/template/mobile/static/dianpin/top2.png" />
+<div class="clear"></div>
+<div class="ticketsNumber">
+	<span>抵价券序列号</span>
+	<strong>{$data['code']}<u onclick="copy()">复制</u></strong>
+</div>
+
+<div class="clear"></div>
+<a href="http://m.dianping.com/movie/cinema/18516992?cityId=17" class="godianping"><img src="../addons/member/template/mobile/static/dianpin/hdyc1.png" /></a>
+<div class="clearline"></div>
+<a href="http://m.dianping.com/movie/cinema/22677705?cityId=17" class="godianping"><img src="../addons/member/template/mobile/static/dianpin/hdyc2.png" /></a>
+<div class="clear"></div>
+<div class="text">
+	<img src="../addons/member/template/mobile/static/dianpin/hint.png" />
+</div>
+<div class="clear"></div>
+<div class="sm">
+    <strong>使用须知：</strong><br>
+    1.	打开大众点评APP进入电影频道；<br>
+    2.	选择对应影院、影片场次和座位；<br>
+    3.	在支付页面抵用券/优惠码栏输入换电影抵价券码即可立减；<br>
+    4.	本活动兑换电影抵价券为大众点评APP专享，每位用户限使用一张，同一账号、手机号、移动设备、银行卡、支付账号、会员账户不能重复参加此活动;<br>
+    5.  本活动所兑换电影抵价券有效期至8月31日。
+    <br>
+</div>
+<br><br>
+	<div id="copydiv" onclick="this.style.display='none'">
+		<span>{$data['code']}</span>
+		长按上方序列号复制
+	</div>
+	<script>
+		document.getElementById("copydiv").style.display="none";
+		function copy(){
+			document.getElementById("copydiv").style.display="block";
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+@charset "utf-8";
+body{background:#093361 url(/addons/member/template/mobile/static/activity/20160624/bg_pattern.png);background-size:100% auto;}
+*{padding:0;margin:0}
+/*//加载中……*/
+.parallax-loading i{margin:40% auto 0;}
+/*//音乐播放*/
+@-webkit-keyframes myfirst
+{
+from {-webkit-transform: rotate(0deg);}
+to {-webkit-transform: rotate(360deg);}
+}
+@-webkit-keyframes scales
+{
+0% {-webkit-transform:scale(1)}
+50% {-webkit-transform:scale(1.2)}
+100% {-webkit-transform:scale(1)}
+}
+@-webkit-keyframes swings
+{
+0% {-webkit-transform:rotate(7deg)}
+50% {-webkit-transform:rotate(13deg)}
+100% {-webkit-transform:rotate(7deg)}
+}
+@-webkit-keyframes swings2
+{
+0% {-webkit-transform:rotate(353deg)}
+50% {-webkit-transform:rotate(358deg)}
+100% {-webkit-transform:rotate(353deg)}
+}
+img{width:100%;display:block;}
+.replay{display:block;width:3em;height:3em;background: url(music.png) no-repeat;background-size:100% 100%;opacity: .7;position:fixed;right:1em;bottom:1em;z-index: 999;
+-webkit-animation: myfirst 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.share{width:100%;height:100%;position:fixed;background:rgba(0,0,0,.9);z-index:999;display:none;}
+/*个体动画定义*/
+.roll{-webkit-animation: myfirst 6s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.fangda{-webkit-animation: scales 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.qingxie{-webkit-animation: swings 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.qingxie2{-webkit-animation: swings2 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+
+.stop{-webkit-animation-play-state:paused;}
+.play{-webkit-animation-play-state:running;}
+
+/*//页内元素定义区*/
+.support{width:100%;text-align:center;color:#00BFFF;font-size:.8em;height:3em;line-height:3em}
+/*按钮区域*/
+.buttonArea{width:90%;text-align: center;margin-left:5%}
+.buttonArea button{width:32%;margin:0 !important;background:#00BFFF;border-radius:10px;padding:0.5em 0;color:#fff;border:0;}
+.p1{width:70%;margin-left:15%;margin-top:2%;-webkit-transform:rotate(350deg);}
+.p1 img{border:4px solid #FFF;box-sizing:border-box;}
+.text{background:#093361;border:1px dotted #87B8D8;width:90%;margin-left:5%;margin-top:5%;padding:.5em;box-sizing:border-box;color:#B5D2E6;border-radius:5px;margin-bottom:3%;}

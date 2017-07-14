@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+       <!-- 通过模板消息进入个人展示页面 -->
+      <img src="{$showInfo['desc_img']}"  >
+      (昵称) : {$showInfo['nickname']}
+      (星座)： {$showInfo['symboldesc']}
+
+       (职业):  {$descrption['professional']}
+        (爱好): {$descrption['hobby']}
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+ wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            desc:  "七夕不愿做单身汪？狗粮太多无处可躲？什么时候才能遇见我的TA？七夕遇见你的另一半，就从这里开始……", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+	});
+</script>
+</body>
+</html>

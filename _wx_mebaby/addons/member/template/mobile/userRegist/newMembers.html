@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8"> 
+<title>新会员注册</title>
+<meta name="keywords" content=""> 
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/frozen.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/register.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/base.css" />
+
+	<!--<link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/license.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/newuser.css" rel="stylesheet" type="text/css">-->
+</head>
+<body>
+
+<header>
+	<img src="../addons/member/template/mobile/static/skin2016/img/top.png" class="ui-width-90" />
+</header> 
+<section>
+        <p class="ui-font-purple ui-font-form-t">输入个人资料</p>
+            <div class="ui-form ui-border-t">
+                <form action="#" id="form">
+	                <div class="ui-form-item ui-border-b">
+                        <label class="ui-width-95">
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-name.png" class="ui-icon-img" />姓名
+                        </label>
+                        <input type="text" name="name" value="" oninput="hint()" placeholder="请输入真实姓名"  class="ui-paddingleft-100">
+                        <a href="#" class="ui-icon-close"></a>
+                    </div>
+                    <div class="hint"></div>
+                    <div class="ui-form-item ui-border-b">
+                        <label class="ui-width-95">
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-mob.png" class="ui-icon-img" />手机
+                        </label>
+                        <input type="text" oninput="hint()" name="remobile" value="" placeholder="请重复输入手机号" class="ui-paddingleft-100">
+                        <a href="#" class="ui-icon-close"></a>
+                    </div>
+                    <div class="hint"></div>
+                    <div class="ui-form-item ui-border-b">
+                        <label class="ui-width-95">
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-sex.png" class="ui-icon-img" />性别
+                        </label>
+		               <label class="ui-radio ui-float-right ui-margintop-8" for="radio">
+                            <input type="radio" name="gender" id="gender" value="2" checked>女&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="1">男
+                        </label>
+                    </div>
+	                <input type="hidden" name="mobile" value="{$_GPC['mobile']}"/>
+	                <input type="hidden" name="idNum" value="{$_GPC['idNum']}"/>
+	                <input name="source" type="hidden" value="{$_GPC['source']}"/>
+                    <!--<div class="ui-form-item ui-border-b ">
+                        <label class="ui-width-auto">
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-star.png" class="ui-icon-img" />是否申请高级会员
+                        </label>
+                         <label class="ui-checkbox-s ui-float-right">
+		                    <input type="checkbox" class="ui-margin-right-0" name="isValued" value="1" id="valued"> 
+		                </label>
+                    </div>-->
+                    <div class="ui-btn-wrap">
+		                <button class="ui-btn-lg ui-btn-primary ui-bgcolor-purple" type="button" id="but" onclick="return checkfrom()" >
+		                   注册
+		                </button>
+		            </div>
+                </form>
+            </div>
+</section>
+<script src="../addons/member/template/mobile/static/js/jquery.min.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script src="../addons/member/template/mobile/static/js/ac.js?v=20150504"></script>
+<script>
+    //表单步进验证
+     function hint(){
+        var name = $('input[name="name"]').val();
+        var remobile = $('input[name="remobile"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var mobileReg = /^0?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+        if (name == '') {
+             $('.hint:eq(0)').html('姓名不能为空');
+             $('.hint:eq(0)').css('display','block');
+             return false;
+        }else{
+            $('.hint:eq(0)').css('display','none');
+        }
+        if(mobileReg.test(remobile) == false){
+             $('.hint:eq(1)').html('手机号格式不正确');
+             $('.hint:eq(1)').css('display','block');
+             return false;
+        }else{
+            $('.hint:eq(1)').css('display','none');
+        }
+        if (remobile == '') {
+            $('.hint:eq(1)').html('手机号码不能为空');
+            $('.hint:eq(1)').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(1)').css('display','none');
+        }
+        if (remobile != mobile) {
+            $('.hint:eq(1)').html('输入的手机号不一致');
+            $('.hint:eq(1)').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(1)').css('display','none');
+        }
+    
+     }
+    //表单验证
+    function checkfrom() {
+	    
+        var name = $('input[name="name"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var remobile = $('input[name="remobile"]').val();
+        if(name == ''){
+            layer.open({
+            content: '姓名不能为空',
+            btn: ['确定']
+            });
+            return false;
+        }
+
+        if (remobile == ''){
+            layer.open({
+            content: '手机号不能为空',
+            btn: ['确定']
+            });
+            return false;
+        }
+
+        if (remobile != mobile) {
+            layer.open({
+            content: '两次输入的手机号不相同',
+            btn: ['确定']
+            });
+            return false;
+        }
+        $.post("{php echo $this->createMobileUrl('newMembers','',true)}",$('#form').serialize(),function(msg){
+            layer.closeAll();
+            $(".ui-loading-block").addClass("ui-loading-block hidden");
+            if(msg.status){
+	            $('#but').attr('disabled','disabled');
+                var uniacid = "{$_W['uniacid']}";
+                var score = msg.score;
+                layer.open({
+                type: 1, 
+                //content: '<div class=\'regok\'><span>赠送'+score+'分停车专用积分已到账<i>绑定车牌立即使用积分抵扣停车费</i></span><a href=\'{$_W["siteroot"]}app/index.php?i='+uniacid+'&c=entry&do=plateNumber&m=member\'></a><a href=\'{$_W["siteroot"]}app/index.php?i='+uniacid+'&c=entry&eid=1\'></a></div>',
+                content: '<div class="tips"><dl><dt><h1>您已注册成功</h1>赠送'+score+'停车专用积分已到账</dt><dd class="ui-have"><h2>您现在可享受</h2><ul><li><span>停车信息<br>查询</span></li><li><span>购物记录</span></li><li><span>积分转赠</span></li></ul><div class="ui-clear"></div></dd><dd class="ui-sure"><h2>绑定车牌后可享</h2><ul><li><span>积分抵扣</span></li><li><span>寻车导航</span></li><li><span>微信支付<br>停车费</span></li><li><span>会员ETC<br>快速通道</span></li></ul><div class="ui-clear"></div></dd></dl><div class="ui-button-box"><button class="ui-btn-lg ui-btn-danger" onclick="location.href=\'{$_W["siteroot"]}app/index.php?i='+uniacid+'&c=entry&do=plateNumber&m=member\';">绑定车牌号享以上服务</button><div class="ui-clear"></div><button class="ui-btn-lg ui-btn-primary" onclick="location.href=\'{$_W["siteroot"]}app/index.php?i='+uniacid+'&c=entry&eid=1\';">进入会员中心</button></div></div>',
+                style: 'width:320px;height:auto;background:none',
+                shadeClose:false
+                });
+//                setTimeout("location.href='http://wx.cnsaga.com/app/index.php?i="+uniacid+"&c=entry&eid=1';",2000);
+            }else{
+                layer.open({
+                content: msg.msg,
+                btn: ['确定']
+                });
+            }
+        },'json');
+
+    }
+</script>
+</body>
+</html>

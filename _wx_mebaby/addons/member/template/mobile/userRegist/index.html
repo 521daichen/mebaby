@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8"> 
+<title>会员注册</title>
+<meta name="keywords" content=""> 
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/frozen.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/register.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/base.css" />
+</head>
+<body>
+<header>
+	<img src="../addons/member/template/mobile/static/skin2016/img/top.png" />
+</header> 
+<section>
+        <p class="ui-font-purple ui-font-form-t">验证身份信息</p>
+            <div class="ui-form ui-border-t">
+                <form action="" method="post" id="form" >
+	                <div class="ui-form-item ui-border-b">
+                        <label>
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-mob.png" class="ui-icon-img" />手机号
+                        </label>
+                        <input type="text" name="mobile" value="" oninput="hint()"  placeholder="请输入手机号" >
+                        <a href="#" class="ui-icon-close" onclick="cleanup(1)"></a>
+                    </div><div class="hint"></div>
+                    <div class="ui-form-item ui-border-b">
+                        <label>
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-ren.png" class="ui-icon-img" />证件号
+                        </label>
+                        <input type="text"  name="idNumber" value="" oninput="hint()"  placeholder="请输入证件号码" >
+                        <a href="#" class="ui-icon-close" onclick="cleanup(2)"></a>
+                    </div><div class="hint"></div>
+                    <div class="ui-form-item ui-border-b">
+                        <label>
+                            <img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-ren.png" class="ui-icon-img" />重复证件号
+                        </label>
+                        <input type="text"  name="reidNumber" value="" oninput="hint()"  placeholder="请重复输入证件号码" >
+                        <a href="#" class="ui-icon-close" onclick="cleanup(3)"></a>
+                        <input type="hidden" name="ibeacon" value="{$_GPC['source']}"/>
+                    </div><div class="hint"></div>
+                    <div class="ui-btn-wrap">
+		                <button type="button" id="but" onclick="return checkfrom()" class="ui-btn-lg ui-btn-primary ui-bgcolor-purple">
+		                    下一步
+		                </button>
+		            </div>
+                </form>
+            </div>
+</section>
+<!--<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/lib/zepto.min.js"></script>
+<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/js/frozen.js"></script>-->
+<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script>
+    function loading(){
+        layer.open({
+            type: 2,
+            content: '加载中...',
+            shadeClose:false
+        });
+    }
+    function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#09C1FF; color:#fff; border:none;text-align:center',
+            time: 2
+        });
+    }
+    //清除input内容
+    function cleanup(a){
+		switch(a){
+			case 1:
+			$('input[name="mobile"]').val('');
+			break;
+			case 2:
+			$('input[name="idNumber"]').val('');
+			break;
+			case 3:
+			$('input[name="reidNumber"]').val('');
+			break;
+			default:
+		}
+    }
+    //表单步进验证
+     function hint() {
+        var idNumber = $('input[name="idNumber"]').val();
+        var reidNumber = $('input[name="reidNumber"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var mobileReg = /^0?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+        if (mobile == '') {
+             $('.hint:eq(0)').html('手机号码不能为空');
+             $('.hint:eq(0)').css('display','block');
+             $('.ui-icon-close').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(0)').css('display','none');
+        }
+        if(mobileReg.test(mobile) == false){
+             $('.hint:eq(0)').html('手机号格式不正确');
+             $('.hint:eq(0)').css('display','block');
+             $('.ui-icon-close').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(0)').css('display','none');
+        }
+        if (idNumber == '') {
+            $('.hint:eq(1)').html('证件号码不能为空');
+            $('.hint:eq(1)').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(1)').css('display','none');
+        }
+        if (idNumber != reidNumber) {
+            $('.hint:eq(2)').html('两次证件号码不一致');
+            $('.hint:eq(2)').css('display','block');
+            return false;
+        }else{
+            $('.hint:eq(2)').css('display','none');
+        }
+    
+     }
+    
+    //表单验证
+    function checkfrom() {
+        var idNumber   = $('input[name="idNumber"]').val();
+        var reidNumber = $('input[name="reidNumber"]').val();
+        var mobile     = $('input[name="mobile"]').val();
+        var mobileReg  = /^0?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/;
+        var ibeacon    = $('input[name="ibeacon"]').val();
+        var tag = 0;
+        if (ibeacon == 'ibeacon') {
+            tag = 1;
+        }
+        if (mobile == '') {
+            layer.open({
+            content: '手机号码不能为空',
+            btn: ['确定']
+            });
+            return false;
+        }
+        if(mobileReg.test(mobile) == false){
+            layer.open({
+            content: '手机号码格式不正确',
+            btn: ['确定']
+            });
+            return false;
+        }
+
+        if (idNumber == '' || (idNumber != reidNumber)) {
+            layer.open({
+            content: '有效证件号码不能为空或两次证件号码不一样',
+            btn: ['确定']
+            });
+            return false;
+        }
+
+        loading();
+        $.post("{php echo $this->createMobileUrl('userRegist','',true)}",{"mobile":mobile,"idNumber":idNumber},function(msg){
+            layer.closeAll();
+	    alert(msg.idNum);
+            var status = msg.status;
+            var url = './index.php?i={$_W["uniacid"]}&j={$_W["acid"]}&c=entry&m=member&source='+tag+'&';
+            switch (status) {
+                case 1: // 新会员注册
+                    window.location.href = url+'do=newmembers&mobile='+msg.mobile+'&idNum='+msg.idNum;
+                    break;
+                case 2: // 实体会员绑定
+                    layer.open({
+                    content: '系统检测到您是实体卡会员，只需绑定资料即可',
+                    shadeClose:false,
+                    btn: ['绑定资料'],
+                    yes: function(index){
+                    window.location.href = "{php echo $this->createMobileUrl('oldmembers','',true)}"+"&mobile="+msg.mobile+"&idNum="+msg.idNum+"&source="+tag;
+                    layer.close(index)
+                    }    
+                    });
+//                    window.location.href = "{php echo $this->createMobileUrl('oldmembers','',true)}"+"&userinfo="+msg.userinfo;
+                   
+                    break;
+                case 0:
+                    layer.open({
+                    content: msg.msg,
+                    btn: ['确定']
+            });
+                    break;
+            }
+           /* if(msg.status){
+                var uniacid = "{$_W['uniacid']}";
+                layer.msg(msg.msg, 2, -1);
+                setTimeout("location.href='http://wx.cnsaga.com/app/index.php?i="+uniacid+"&c=entry&eid=1&wxref=mp.weixin.qq.com#wechat_redirect';",2000);
+            }else{
+                layer.msg(msg.msg, 2, -1);
+            }*/
+        },'json');
+//            $('#form').submit();
+
+    }
+</script>
+</body>
+</html>

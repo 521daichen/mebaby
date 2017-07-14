@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+section[data-id="1"] {
+    background:#000 url(0.jpg) center bottom no-repeat;background-size:100% 100%;
+    /*#DC0080粉*/
+}
+section[data-id="2"] {
+    background:#000 url(1.jpg) center bottom no-repeat;background-size:100% 100%;
+    /*#DC0080粉*/
+}
+
+section[data-id="3"] {
+    background:#000 url(2.jpg) center bottom no-repeat;background-size:100% 100%;
+}
+
+section[data-id="4"] {
+    background:#000 url(3.jpg) center bottom no-repeat;background-size:100% 100%;
+}
+section[data-id="5"] {
+    background:#000 url(4.jpg) center bottom no-repeat;background-size:100% 100%;
+}
+section[data-id="6"] {
+    background:#000 url(5.jpg) center bottom no-repeat;background-size:100% 100%;
+}
+section[data-id="7"] {
+    background:#000 url(6.jpg) center top no-repeat;background-size:100% 100%;
+}
+
+
+@-webkit-keyframes myfirst
+{
+from {-webkit-transform: rotate(0deg);}
+to {-webkit-transform: rotate(360deg);}
+}
+img{width:100%}
+.replay{
+display:block;
+width:3em;height:3em;background: url(music.png) no-repeat;background-size:100% 100%;opacity: .7;position:fixed;right:1em;bottom:1em;z-index: 999;
+-webkit-animation: myfirst 3s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-timing-function: linear;
+}
+.stop{-webkit-animation-play-state:paused;}
+.play{-webkit-animation-play-state:running;}
+
+
+
+.text1{position:absolute;width:76%;left:12%;top:15%;}
+.text1-2{position:absolute;width:74%;left:13%;bottom:10%}
+.textt{position:absolute;width:100%;left:0;top:0;z-index: 99;}
+.textf{position:absolute;width:94%;left:3%;bottom:3%;z-index: 99;}
+.textb1{position:absolute;z-index:10;width:94%;left:3%;top:10%;}
+.textb2{position:absolute;z-index:10;width:96%;left:2%;top:25%;}
+.textb3{position:absolute;z-index:10;width:96%;left:2%;top:25%;}
+.textb4{position:absolute;z-index:10;width:88%;left:6%;top:17%;}
+.textb5{position:absolute;z-index:10;width:96%;left:2%;top:25%;}
+.shadow{box-shadow:0px 0px 10px #000}

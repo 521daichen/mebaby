@@ -1,0 +1,134 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="format-detection" content="telephone=no"/> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>积分停车</title>
+<style>
+*{margin:0;padding:0;font-family:"华文细黑","黑体"}
+body{ width:100%; height:100%;margin:0 auto; background:url(../addons/member/template/mobile/static/img/park/Content3_Bg.png) no-repeat; background-position:left bottom; background-size:100% auto}
+img{display:block;}
+.topImg,.title1,.contentBg,.title2,.content2,.content3{width:100%}
+.text1{ width:28.1%; height:11.1%;position:absolute; left:15%; top:2.5%}
+.text2{ width:22.7%; height:18.2%;position:absolute; left:4.5%; top:58.6%}
+.text3{ width:43.8%; height:11.1%;position:absolute; left:47%; top:80.8%}
+.button1{ position:absolute; left:54%;top:5%; width:37.5%;height:24.2%}
+.button2{position:absolute; left:9%;top:31.3%;width:37.5%;height:24.2%}
+.button3{position:absolute; left:54%;top:55%;width:37.5%;height:24.2%}
+.num1{position:absolute; left:46.9%;top:4%; width:9.5%;height:5.5%}
+.num2{position:absolute; left:6.2%;top:51.5%;width:9.5%;height:5.5%}
+.num3{position:absolute; left:79%;top:78.8%;width:9.5%;height:5.5%}
+.content{ position:relative}
+.text1 h1,.text2 h1,.text3 h1{ font-size:0.8em; color:#FFF; padding-bottom:3px;}
+.text1 p,.text2 p,.text3 p{font-size:0.7em; color:#1f1f1f; border-top:2px solid #FFF;padding-top:3px;}
+.content2{ background:url(../addons/member/template/mobile/static/img/park/Content2_Bg.png) no-repeat;margin:0 auto;padding-top:20px; background-size:100% 100%; padding-bottom:30px;}
+.textBox1{width:88%; background:#f6e3a9; border:#fff0d0 1px solid; border-radius:10px; margin:0 auto;padding:10px 0; background-size:100%;overflow:auto}
+.textBox2{width:88%; background:url(../addons/member/template/mobile/static/img/park/textBox1.png) no-repeat ;margin:0 auto;margin-top:20px; padding:10px 0;background-size:100%; background:#f6e3a9; border:#fff0d0 1px solid; border-radius:10px;overflow:auto}
+.textBox3{ width:88%; background:url(../addons/member/template/mobile/static/img/park/textBox3.png) no-repeat ;margin:0 auto;margin-top:20px;padding:10px 0; background-size:100%; background:#f6e3a9; border:#fff0d0 1px solid; border-radius:10px;overflow:auto}
+.textBox4{ width:88%; background:url(../addons/member/template/mobile/static/img/park/textBox4.png) no-repeat ;margin:0 auto;margin-top:20px; padding:10px 0;background-size:100%; background:#f6e3a9; border:#fff0d0 1px solid; border-radius:10px;overflow:auto}
+.Q{ width:1em; height:1em; float:left; margin-right:5px} 
+.A{ width:1em; height:1em; float:left; margin-right:5px }
+.tit{ color:#b1270e; font-size:1em; width:91%;float:left;}
+.txt{ color:#303030; font-size:0.8em; width:90%; float:left; line-height:1.3em; letter-spacing:0.1em}
+.topBox{ margin:0 auto;padding:0 10px 0 10px; overflow:hidden}
+.bottomBox{ margin:0 auto;padding:0 10px 0 10px;overflow:hidden }
+.content3{ position:relative;}
+.bottomImg{width:100%; height:100%}
+.textBox5{width:48%; background:url(../addons/member/template/mobile/static/img/park/textBox5.png) no-repeat; position:absolute; left:45%; top:25%; color:#FFF; font-size:1.0em; text-align:center;background-size:100% 100%; padding:0.5%}
+.textBox6{ width:48%; background:url(../addons/member/template/mobile/static/img/park/textBox6.png) no-repeat; position:absolute; left:45%; top:40%; color:red; font-size:0.9em; text-align:center;background-size:100% 100%;padding:1%}
+.textBox7{width:48%; background:url(../addons/member/template/mobile/static/img/park/textBox7.png) no-repeat; position:absolute; left:45%; top:53%; color:#FFF; font-size:0.8em; text-align:center;background-size:100% 100%;padding:1%}
+.guidance{ position:absolute; left:44.5%; top:65%; color:#FFF; font-size:0.7em; line-height:1.2em; margin-right:2%}
+span{ font-size:1.4em;}
+.hint{font-size:.8em;color:#b1270e;padding:0 .8em;}
+</style>
+</head>
+
+<body> 	
+<img class="topImg" src="../addons/member/template/mobile/static/img/park/Top.png">
+<img class="title1" src="../addons/member/template/mobile/static/img/park/Title_1.png">
+<div class="content">
+	 <img  class="contentBg"src="../addons/member/template/mobile/static/img/park/Content1_Bg.png" />
+     <div class="text1">
+    	<h1>关注赛格</h1>
+        <p>关注赛格国际购物中心微信。</p>
+     </div>
+     <div class="text2">
+     	<h1>微会员激活</h1>
+        <p>新用户直接注册成为微会员；或绑定会员卡，升级为微会员。</p>
+     </div>
+      <div class="text3">
+     	<h1>绑定车牌号</h1>
+        <p>点击“绑定车牌号” 输入车牌号即可享受积分停车。</p>
+     </div>
+      <img class="button1" src="../addons/member/template/mobile/static/img/park/button1.png" />
+      <a href="{$_W['siteroot']}app/index.php?i=4&c=entry&eid=1&wxref=mp.weixin.qq.com#wechat_redirect"><img class="button2" src="../addons/member/template/mobile/static/img/park/button2.png" /></a>
+      <a href="{$_W['siteroot']}app/index.php?i=4&c=entry&eid=1"><img class="button3" src="../addons/member/template/mobile/static/img/park/button3.png" /></a>
+      <img class="num1" src="../addons/member/template/mobile/static/img/park/num1.png" />
+      <img class="num2" src="../addons/member/template/mobile/static/img/park/num2.png" />
+      <img class="num3" src="../addons/member/template/mobile/static/img/park/num3.png" />
+</div>
+<img class="title2" src="../addons/member/template/mobile/static/img/park/Title_2_1.png" />
+<div class="content2">
+<div class="textBox1">
+        <div class="hint">
+            亲爱的会员，由于我购物中心会员系统升级，现每卡仅限绑定一个车牌，请您将会员卡名下所绑定车辆信息更换为您常用车辆信息，每车牌只能被绑定一次，绑定信息一年可自行操作更改一次，更改机会不予累计到第二年使用，如需更换两次及两次以上绑定信息，需本人持有效证件前往购物中心会员中心办理变更手续。请您于2016年3月1日完成信息更新。给您带来的不便敬请谅解！ 
+        </div>
+</div>
+</div>
+<img class="title2" src="../addons/member/template/mobile/static/img/park/Title_2.png" />
+<div class="content2">
+    <div class="textBox1">
+        <div class="topBox">
+            <img  class="Q" src="../addons/member/template/mobile/static/img/park/Q.png" />
+            <h1 class="tit">积分抵扣停车费有何便利之处？</h1>
+        </div>
+        <div class="bottomBox">
+            <img  class="A" src="../addons/member/template/mobile/static/img/park/A.png" />
+            <p class="txt">使用商场购物积分抵扣停车费。停车不花钱，三秒出场无须排队缴费，让您有“ETC”般感受。进出停车场微信通知，停车花费一目了然。</p>
+        </div>
+    </div>
+    <div class="textBox2">
+    	 <div class="topBox">
+         	 <img  class="Q" src="../addons/member/template/mobile/static/img/park/Q.png" />
+        	<h1 class="tit">如果积分不够了，我该怎么办？</h1>
+       	 </div>
+         <div class="bottomBox">
+        	 <img  class="A" src="../addons/member/template/mobile/static/img/park/A.png" />
+            <p class="txt">如果您的积分不足以支付本次停车费的话，可以在停车场缴费处补足现金缴纳停车费。目前我们的积分兑标准为300积分兑换1小时。</p>
+        </div>
+    </div>
+    <div class="textBox3">
+   		 <div class="topBox">
+        	 <img  class="Q" src="../addons/member/template/mobile/static/img/park/Q.png" />
+            <h1 class="tit">如何使用积分抵扣停车费？</h1>
+        </div>
+        <div class="bottomBox">
+        	 <img  class="A" src="../addons/member/template/mobile/static/img/park/A.png" />
+            <p  class="txt">在赛格国际购物中心微信界面，点击“我的”-“停车服务”页面输入绑定车牌号。当您再次光临赛格时即可自动抵扣停车费，首次离场需要到缴费处进行人工抵扣。</p>
+        </div>
+    </div>
+    <div class="textBox4">
+   		 <div class="topBox">
+        	 <img  class="Q" src="../addons/member/template/mobile/static/img/park/Q.png" />
+        	<h1 class="tit">我在注册微会员时碰到问题怎么办？</h1>
+        </div>
+        <div class="bottomBox">
+        	 <img  class="A" src="../addons/member/template/mobile/static/img/park/A.png" />
+            <p  class="txt">请您垂询就近的各楼层服务台，或致电客服电话:029-86300000，我们将竭诚为您服务。</p>
+        </div>
+    </div>
+</div>
+<div class="content3">
+	<img class="bottomImg"src="../addons/member/template/mobile/static/img/park/Content3_Bg.png" />
+	<div class="textBox5"><span>300</span>分/时</div>
+	<div class="textBox6">畅享积分抵扣停车费</div>
+	<div class="textBox7">客服电话:029-86300000</div>
+	<p class="guidance">使用须知：<br />
+	1.如需使用则需要打开积分抵扣停车费功能<br />
+	2.每300积分抵扣1小时停车费用<br />
+	3.停车时间不足1小时按1小时算<br />
+	4.请在交费时提前出示会员卡</p>
+</div>
+</body>
+</html>

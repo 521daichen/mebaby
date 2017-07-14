@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+body,html{padding:0;margin:0}
+body{ background:#f4ae1b;}
+img{ width:100%;}
+.list{ width:95%; margin:0px auto; padding-top:20px;}
+span{ font-size:1.2em; font-weight:bold; color:#e83a17;}
+li{ color:#fff; color:1em;}
+.bg{ width:100%;}
+.bg .bgleft{ width:8.115%; float:left;}
+.bg .bgmd{ width:32.393%; float:left;}
+.bg .bgright{ width:59.48%; float:left;}
+.ewm{ position:relative; width:100%;}
+.ewm .bg03{ width:100%}
+.ewm .ewm01{ width:36%; position:absolute; top:2%; left:5%;}

@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+header{height:50px; position: relative;}
+.tooth{width:100%;position: absolute;left:0;bottom:0;}
+header .logo{height:2em;margin:0 1em}
+header span{font-size:1.2em;color:#fff;position:absolute;right:1em;top:1.1em;text-shadow: 0px 0px 1px #333}
+.radbox{border-radius: 10px;border: 1px solid #D8D8D8;margin:0 auto;background:#fff;padding:0.2em;width:92%;margin:0 auto}
+.radbox h1{font-size: 1em;height:2.6em;line-height: 2.6em; border-bottom: 1px solid #d8d8d8;color:#333;width:90%;margin: 0 auto;padding:0 4%}
+.forms {padding:1em;font-size:0.8em;color:#333;}
+.forms input{width: 98%;margin:0.4em auto 1em;border-radius: 6px;border:1px solid #D8D8D8;height:2.2em;line-height:normal;display: block;box-shadow: 1px 1px 3px #ddd;font-size: 1em;padding-left: 2%;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#ffffff));}
+.forms .mobver{position:relative;}
+.forms .mobver input{width:98%;}
+#but{width:100%;background: -webkit-gradient(linear, 0 0, 0 100%, from(#613988), to(#4B1E78));border-radius: 6px;border:0;color:#fff;height:2.8em;margin-top:0.5em}
+.forms input#mobcode{background: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#c7c7c7));border-radius: 6px;border-top-left-radius:0;border-bottom-left-radius:0;width:40%;padding:0;right: 2%;position: absolute;top:0;height: 37px;font-size: 0.8em;box-shadow: none}
+#code{width:30%;float:left;margin-right:0.5em;font-size: 1.2em;}
+.form_tips{background:#fff;font-size:0.8em;line-height:3em;color:#999;display:block;width: 94%;padding-right:2%;text-align:left;margin:0 auto}
+
+.step{width:94%;margin:0 auto 0.8em;height:auto;overflow:auto}
+.step img{width:33.3%;float:left;}
+@media all and (min-width:414px) {
+ .step{width:80%;margin:0 auto 0.8em;height:auto;overflow:auto}
+ .step img{width:33.3%;float:left;}
+}

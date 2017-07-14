@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>绑定车牌</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/park/css/bindCardNum.css" />
+    <link href="../addons/member/template/mobile/static/park/css/bindLicense.css" rel="stylesheet" type="text/css">
+    <script src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+    <script src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+    <script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+</head>
+<body>
+
+<!-- 秋裤里草木生 -->
+<div class="LicensePlate"></div>
+
+{if $isSeniorCustomer == '0'}
+<div class="edit">解绑</div>
+{/if}
+
+
+<header>
+    <div class="LicensePlate-box">点此绑定车牌</div>
+    <div class="hint">&nbsp;</div>
+    
+    {if $isSeniorCustomer == '0'}
+    <div class="switch off"></div>    
+    {/if}
+</header>
+<section class="pocket">
+    <img src="../addons/member/template/mobile/static/park/img/pocket-mouth.png" />
+</section>
+<footer>
+{if $isSeniorCustomer == '0'}
+提示：所绑定车牌一年内只能修改一次<br>如有疑问请咨询：029-86300000
+{else}
+尊贵的高级会员您好，如您需要解绑车牌，<br>请联系您的专属客服经理进行解绑操作。<br>
+{/if}
+</footer>
+<div class="d_n" id="cp" >
+    <div class="proys ahy">
+        <div class="clr"></div>
+        <input id="cpvalue" onclick="this.value='';$('#sheng').css('display','block');$('#zimu').css('display','none');$('#num').css('display','none')" value="" readonly>
+        <ul id="sheng">
+            <li onclick="cpadd('陕')">陕</li>
+            <li onclick="cpadd('京')">京</li>
+            <li onclick="cpadd('津')">津</li>
+            <li onclick="cpadd('冀')">冀</li>
+            <li onclick="cpadd('晋')">晋</li>
+            <li onclick="cpadd('蒙')">蒙</li>
+            <li onclick="cpadd('辽')">辽</li>
+            <li onclick="cpadd('吉')">吉</li>
+            <li onclick="cpadd('黑')">黑</li>
+            <li onclick="cpadd('沪')">沪</li>
+            <li onclick="cpadd('苏')">苏</li>
+            <li onclick="cpadd('浙')">浙</li>
+            <li onclick="cpadd('皖')">皖</li>
+            <li onclick="cpadd('闽')">闽</li>
+            <li onclick="cpadd('赣')">赣</li>
+            <li onclick="cpadd('鲁')">鲁</li>
+            <li onclick="cpadd('豫')">豫</li>
+            <li onclick="cpadd('鄂')">鄂</li>
+            <li onclick="cpadd('湘')">湘</li>
+            <li onclick="cpadd('粤')">粤</li>
+            <li onclick="cpadd('桂')">桂</li>
+            <li onclick="cpadd('琼')">琼</li>
+            <li onclick="cpadd('渝')">渝</li>
+            <li onclick="cpadd('川')">川</li>
+            <li onclick="cpadd('贵')">贵</li>
+            <li onclick="cpadd('云')">云</li>
+            <li onclick="cpadd('藏')">藏</li>
+            <li onclick="cpadd('甘')">甘</li>
+            <li onclick="cpadd('青')">青</li>
+            <li onclick="cpadd('宁')">宁</li>
+            <li onclick="cpadd('新')">新</li>
+        </ul>
+        <ul id="zimu" style="display:none">
+            <li onclick="cpadd('A')">A</li>
+            <li onclick="cpadd('B')">B</li>
+            <li onclick="cpadd('C')">C</li>
+            <li onclick="cpadd('D')">D</li>
+            <li onclick="cpadd('E')">E</li>
+            <li onclick="cpadd('F')">F</li>
+            <li onclick="cpadd('G')">G</li>
+            <li onclick="cpadd('H')">H</li>
+            <li onclick="cpadd('I')">I</li>
+            <li onclick="cpadd('J')">J</li>
+            <li onclick="cpadd('K')">K</li>
+            <li onclick="cpadd('L')">L</li>
+            <li onclick="cpadd('M')">M</li>
+            <li onclick="cpadd('N')">N</li>
+            <li onclick="cpadd('O')">O</li>
+            <li onclick="cpadd('P')">P</li>
+            <li onclick="cpadd('Q')">Q</li>
+            <li onclick="cpadd('R')">R</li>
+            <li onclick="cpadd('S')">S</li>
+            <li onclick="cpadd('T')">T</li>
+            <li onclick="cpadd('U')">U</li>
+            <li onclick="cpadd('V')">V</li>
+            <li onclick="cpadd('W')">W</li>
+            <li onclick="cpadd('X')">X</li>
+            <li onclick="cpadd('Y')">Y</li>
+            <li onclick="cpadd('Z')">Z</li>
+        </ul>
+        <input type="text" id="num" onChange="toupper()" placeholder="输入车牌后五位" class="num"  />
+        <div class="clr"></div>
+        <input type="button" class="but2" value="取 消" onclick="cp_noreg()" />
+        <input type="button" class="but2" value="确 定" onclick="cp_n()" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    //状态配置
+    var LicensePlateConfig = {
+        state : "{$status}", //状态
+        LicensePlate : '{$platenumber}' //车牌
+    }
+    var bindStatus = '{$bindStatus}';
+    function stateSetting(a,b){
+        /*设置不同状态的界面。参数a为传入当前状态（0：未绑定，1：已绑定并开启：2：已绑定但关闭）。参数b为传入车牌号（可省略）*/
+        var state = a;
+        var pocketLeft =	$('.pocket').offset().left + 30;
+        var pocketTop =	$('.pocket').offset().top + 70;
+        var boxLeft =	$('.LicensePlate-box').offset().left;
+        var boxTop =	$('.LicensePlate-box').offset().top;
+        if(state==0){
+            $('.LicensePlate').css({'left':pocketLeft,'top':pocketTop,'-webkit-transform':'rotate(330deg)'});
+            $('.LicensePlate').html('?????????');
+            $('.edit').css({'display':'none'});
+            $('.hint').html('未绑定车牌');
+            $('.LicensePlate-box').html('点此绑定车牌');
+            setTimeout(function(){ $('header').removeClass('shine'); },1000)
+        }
+        if(state==1){
+            $('.LicensePlate').css({'left':boxLeft,'top':boxTop,'-webkit-transform':'rotate(360deg)'});
+            $('.LicensePlate').html(b);
+            $('.edit').css({'top':pocketTop-50,'display':'block'});
+            $('.switch').removeClass('off');
+            $('.hint').html('自动交费已开启');
+            $('.LicensePlate-box').html('');
+            $('header').addClass('shine');
+        }
+        if(state==2){
+            $('.LicensePlate').css({'left':pocketLeft,'top':pocketTop,'-webkit-transform':'rotate(330deg)'});
+            $('.LicensePlate').html(b);
+            $('.switch').addClass('off');
+            $('.edit').css({'top':pocketTop-50,'display':'block'});
+            $('.LicensePlate-box').html('自动交费已关闭');
+            $('.hint').html('&nbsp;');
+            $('header').removeClass('shine');
+        }
+    }
+    // 以下绑车牌部分
+    function loading(){
+        layer.open({
+            type: 2,
+            content: '加载中...',
+            shadeClose:false
+        });
+    }
+    function cpselect(){
+//车牌输入流程
+        $('#cp').addClass('prompt');
+        $('#inputnum').val('');
+    }
+    function cpadd(a){
+        //省份及字母点击事件
+        Cts = $("#cpvalue").val();
+        if(Cts.indexOf(a) > 0 )
+        {
+        }else{
+            if(Cts.length > 0){
+                $("#cpvalue").val(Cts + a);
+                $("#zimu").css("display","none");
+                $("#num").css("display","block");
+                $('#num').focus();
+            }else{
+                $("#cpvalue").val(a);
+                $("#sheng").css("display","none");
+                $("#zimu").css("display","block");
+            }
+        }
+    }
+    function cp_noreg(){
+        // 取消输入点击事件
+        $("#cp").addClass('opxs');
+        $(".proys").addClass('onexit');
+        setTimeout(function(){
+            $("#cp").removeClass('prompt');
+            $("#cp").addClass('d_n');
+            $("#cp").removeClass('opxs');
+            $(".proys").removeClass("onexit");
+        },350);
+        $('#cpvalue').val('');
+        $('#num').val('');
+        $('#sheng').css('display','block');
+        $('#zimu').css('display','none');
+        $('#num').css('display','none')
+    }
+    function toupper(){
+        var num=$('#num').val();
+        $('#num').val(num.toUpperCase()); //转换大小写
+    }
+    function cp_n() {
+        // 确定绑定
+        var zhi = $("#inputnum").val();    // 车牌编号
+        var numlength = $("#num").val();
+        var reg = /^([A-Z0-9]{5})|([A-Z0-9]{4}[\u4e00-\u9fa5]{1}$)/;
+        if (reg.test(numlength) && numlength.length == 5) {
+            var platenumber = $("#cpvalue").val() + '·' + numlength;
+            var isOn = $('input[name="isOn"]').val();
+            loading();
+            //绑定成功后执行
+            layer.closeAll();
+            LicensePlateConfig.state = 1; //改变绑定状态 0：未绑定，1：已绑定并开启：2：已绑定但关闭
+            LicensePlateConfig.LicensePlate = platenumber;  //把输入的车牌号写入配置
+            stateSetting(LicensePlateConfig.state, LicensePlateConfig.LicensePlate); //改变界面
+            cp_noreg(); //关闭输入车牌流程
+
+
+
+            $.post("{php echo  $this->createMobileUrl('bindPlateNumberOnlyOne')}", {"platenumber": platenumber, "isOn": 1}, function (msg) {
+                bindStatus = msg.bindStatus;
+                if(msg.status == 0){
+	                layer.open({
+	                    content: msg.msg,
+	                    style: 'background-color:#09C1FF; color:#fff; border:none;',
+	                    time: 4
+	               });
+	               LicensePlateConfig.state = 0; //状态改为未绑定
+	               stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate); //更新界面
+            	}
+            }, 'json');
+
+        } else {
+            alert("车牌号须为字母或数字(5位)");
+        }
+
+    }
+    // 以上绑车牌部分
+
+    ;(function($){
+        //打开时初始化界面
+        stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate);
+        //绑车牌事件
+        touch.on('.LicensePlate-box', 'tap', function(ev){
+
+            if(LicensePlateConfig.state == 0){
+                 setTimeout(function(){ cpselect(); },300)
+            }
+        });
+        //开关事件
+        touch.on('.switch', 'tap', function(ev){
+            if(LicensePlateConfig.state == 1){
+                //开关OFF
+                LicensePlateConfig.state = 2;
+                stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate);
+                $.post("{php echo $this->createMobileUrl('setIson')}",{"isOn":0},function(msg){
+                    layer.closeAll();
+
+                },'json');
+            }else if(LicensePlateConfig.state == 2){
+                //开关ON
+                LicensePlateConfig.state = 1;
+                stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate);
+                $.post("{php echo $this->createMobileUrl('setIson')}",{"isOn":1},function(msg){
+                    layer.closeAll();
+                },'json');
+            }
+        });
+        //解绑事件
+        $('.edit').on('click',function(){
+            var msg = '';
+            if (bindStatus == 1) {
+                msg =  '您确认解绑'+LicensePlateConfig.LicensePlate+' ？';
+                layer.open({
+                    content: msg,
+                    btn: ['确定解绑', '返回'],
+                    shadeClose: false,
+                    style:'text-align:center;width:98%;heigth:60%',
+                    yes: function(){
+                        //点了确定解绑后要执行的代码
+                        LicensePlateConfig.state = 0; //状态改为未绑定
+                        stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate); //更新界面
+                        layer.closeAll();
+                        $.post("{php echo $this->createMobileUrl('delPlateNumberOnlyOne')}",{"platenumber":LicensePlateConfig.LicensePlate,"uid":"{$uid}"},function(msg){
+                            bindStatus = msg.bindStatus;
+                        })
+                    }
+                });
+            } else {
+               msg = '距离您上次绑定车牌时间不足一年，解绑后无法再次绑定！<br>确定解绑'+LicensePlateConfig.LicensePlate+' ？';
+                layer.open({
+                    content: '距离您上次绑定车牌时间不足一年，无法解除绑定，请联系客服人员！',
+                    style: 'background-color:#09C1FF; color:#fff; border:none;',
+                    time: 2
+               });
+            }
+
+        });
+        /*touch.on('.edit', 'tap', function(ev){
+            var bindStatus = '{$bindStatus}';
+            var msg = '';
+//            if (bindStatus == 1) {
+                msg =  '所绑定车牌一年内只能修改一次！<br>确定解绑'+LicensePlateConfig.LicensePlate+' ？';
+//            } else {
+//                msg = '距离您上次绑定车牌时间不足一年，解绑后无法再次绑定！<br>确定解绑'+LicensePlateConfig.LicensePlate+' ？';
+//            }
+            layer.open({
+                content: msg,
+                btn: ['确定解绑', '返回'],
+                shadeClose: false,
+                style:'text-align:center;width:98%;heigth:60%',
+                yes: function(){
+                    //点了确定解绑后要执行的代码
+                    LicensePlateConfig.state = 0; //状态改为未绑定
+                    stateSetting(LicensePlateConfig.state,LicensePlateConfig.LicensePlate); //更新界面
+                    layer.closeAll();
+                    $.post("{php echo $this->createMobileUrl('delPlateNumberOnlyOne')}",{"platenumber":LicensePlateConfig.LicensePlate},function(msg){
+                            bindStatus = msg.bindStatus;
+                    },'json')
+                }
+            });
+
+        });*/
+
+    })(Zepto)
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<div class="header">
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/swiper.html'"></div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="main">
+    <h3>精彩活动</h3>
+    <ul>
+        <li ng-repeat="newact in mainList">
+            <a href="#/com-details/{{newact.id}}">
+                <img ng-src="'http://www.sagabuy.com{{newact.titlepic}}'" alt=""/>
+            </a>
+            <p class="elli-two">{{newact.title}}</p>
+        </li>
+        <!--<li>-->
+            <!--<img ng-src="../addons/member/template/mobile/mobindex/images/hot-2.png" alt=""/>-->
+            <!--<p class="elli-two">关晓彤与钻石世家的「自在」默契</p>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<img ng-src="../addons/member/template/mobile/mobindex/images/hot-2.png" alt=""/>-->
+            <!--<p class="elli-two">关晓彤与钻石世家的「自在」默契</p>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<img ng-src="../addons/member/template/mobile/mobindex/images/hot-1.png" alt=""/>-->
+            <!--<p class="elli-two">本季潮品 get穿衣一周不重复的秘诀</p>-->
+
+        <!--</li>-->
+    </ul>
+</div>

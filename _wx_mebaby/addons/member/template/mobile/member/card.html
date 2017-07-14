@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>会员中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/card.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+{if !empty($uid) }
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth"/>
+    <img src="{php echo tomedia($coupons['thumb']) }" class="card"/><!--优惠券主图-->
+    <img src="../addons/member/template/mobile/static/img/shadw.png" class="shadw"/>
+</header>
+<section>
+    <div class="zt"></div>
+    <dl>
+        <dt><span id="x1"></span>优惠码： <b class="text_style_2">{$uid}</b> <img src="../addons/member/template/mobile/static/img/qrcode.png" class="qrcode" onclick="QRCODEdisplay()"/></dt>
+        <dd id="qrcode_box" style="display:none">
+			<img src="http://qr.liantu.com/api.php?text={$uid}" />
+        </dd>
+    </dl>
+    <div class="clr"></div>
+    <dl>
+        <dt onclick="clickof('info','x2')"><span id="x2"></span>优惠券说明</dt>
+        <dd id="info">{php echo html_entity_decode($coupons['description'])}</dd>
+    </dl>
+    <div class="clr"></div>
+    <dl>
+        <dt>有效期：{php echo date('Y.m.d',$coupons['starttime'])} - {php echo date('Y.m.d',$coupons['endtime'])}</dt>
+    </dl>
+</section>
+{else}
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth"/>
+    <img src="{php echo tomedia($coupons['thumb']) }" class="card"/><!--优惠券主图-->
+    <img src="../addons/member/template/mobile/static/img/shadw.png" class="shadw"/>
+</header>
+<section>
+    <div class="zt"></div>
+    <dl>
+        <dt onclick="clickof('info','x2')"><span id="x2"></span>优惠券说明</dt>
+        <dd id="info">{php echo html_entity_decode($coupons['description'])}</dd>
+    </dl>
+    <div class="clr"></div>
+    <dl>
+        <dt>有效期：{php echo date('Y.m.d',$coupons['starttime'])} - {php echo date('Y.m.d',$coupons['endtime'])}</dt>
+    </dl>
+</section>
+{/if}
+<div class="clr"></div>
+<footer>
+    <br><br>
+</footer>
+
+<script src="../addons/member/template/mobile/static/js/ac.js"></script>
+</body>
+</html>

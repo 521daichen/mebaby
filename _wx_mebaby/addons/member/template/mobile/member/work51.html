@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta content="telephone=no" name="format-detection">
+		<link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
+		<title>赛格叫你来过节</title>
+		<style>
+			html,body{
+				padding:0;margin:0;
+			}
+			input[type="button"], input[type="submit"], input[type="reset"]{
+				-webkit-appearance: none;
+			}
+			textarea { 
+				-webkit-appearance: none;
+			} 
+			.inputarea {
+			    width: 100%;
+			    height: 35px;
+			    line-height: 35px;
+			    border-radius: 5px;
+			    box-sizing: border-box;
+			    border: 1px solid #ddd;
+		        border-top: 1px solid #ddd;
+			    color: #333;
+			    font-size: 12px;
+			    font-family: "microsoft sans serif";
+			    box-shadow: none;
+			    background: #FFF;
+			    outline:none; 
+			    -webkit-appearance: none;
+			    padding-left: 2%;
+			}
+			form{
+				width: 86%;
+   				margin-left: 7%;
+			}
+			.vipcheck{
+				width: 100%;
+			    margin: 0;
+			    padding: 0;
+			    font-size: 12px;
+			    line-height: 20px;
+			    font-family: "microsoft sans serif";
+			    display: none;
+			}
+			#agree,#disagree{
+				vertical-align: middle;
+			}
+			p{
+				width: 100%;
+			    margin: 2% 1%;
+			    padding: 0;
+			    font-size: 14px;
+			    font-family: "microsoft sans serif";
+			}
+			h5{
+				padding: 0;
+			    margin: 2% 0 0 0;
+			    font-weight: normal;
+			    
+			}
+			.yzcode{
+				padding-top: 3px;
+			}
+			.yzcode input{
+				width: 48%;
+			}
+			#sendCode{
+			    display: inline-block;
+			    width: 50%;
+			    height: 35px;
+			   /* margin-left: 2%;*/
+			    line-height: 31px;
+			    font-size: 14px;
+			    text-align: center;
+			    background: #ff9999;
+			    border-radius: 5px;
+			    box-sizing: border-box;
+			    padding: 1px;
+			    vertical-align: top;
+			    color:#fff;
+			    float: right;
+			}
+			#btn{
+				box-sizing: border-box;
+				width: 86%;
+			    height: 35px;
+			    line-height: 35px;
+			    background: #ff4764;
+			    color: #FFF;
+			    text-align: center;
+			    margin: 4% 7% 3% 7%;
+			    border-radius: 5px;
+			}
+			#userCar{
+				cursor:default;
+			}
+			
+			.hidden{
+				display: none;
+			}
+			.ctips{
+				font-size:.7em;
+				padding-left:1em;
+				color:#f60;
+			}
+			
+			body{
+				background:#c2e5f9;
+			}
+			.imgtop{
+				width:100%;
+			}
+			h1{
+				width:160px;
+				height:2em;
+				line-height:2em;
+				margin:0 auto;
+				text-align:center;
+				color:#000;
+				font-size:1em;	
+				font-weight: normal;
+			}
+			#sendCode{
+			    display: inline-block;
+			    width: 50%;
+			    height: 35px;
+			   /* margin-left: 2%;*/
+			    line-height: 31px;
+			    font-size: 14px;
+			    text-align: center;
+			    background: #ff9999;
+			    border-radius: 5px;
+			    box-sizing: border-box;
+			    padding: 1px;
+			    vertical-align: top;
+			    color:#fff;
+			    float: right;
+			}
+			.carId{
+			    width: 86%;
+			    height: 50%;
+			    margin-right: 7%;
+			    margin-left: 7%;
+			    box-sizing: border-box;
+			    padding: 3% 0%;
+			    background: rgba(255,255,255,0.3);
+			    border-radius: 10px;
+				
+			}
+			
+			.activity{
+				width: 86%;
+			    margin-right: 7%;
+			    margin-left: 7%;
+			    box-sizing: border-box;
+			    padding: 3% 0%;
+			}
+			.det{
+				width: 30%;
+    			margin: 1% 0%;
+			}
+			.activity>div{
+				font-size: 12px;
+				color: #545454;
+				text-align: justify;
+			}
+			.activity>div span{
+				color:#f60;
+				float:right;
+				text-decoration: underline;
+			}
+			.activity>div>p{
+				margin:0;
+				padding: 0;
+				margin-top: 2%;
+				font-size: 12px;
+			}
+			.weui_dialog_confirm{
+				display: none;
+			}
+			#ruledet .det{
+				width: 65%;
+    			margin: 1% 0%;
+			}
+			#ruledet h4{
+				margin: 2% 0%;
+    			font-size: 14px;
+			}
+			#ruledet p{
+				margin:1% 0%;
+				font-size: 12px;
+			}
+			#ruledet{
+				position: absolute;
+				width: 100%;
+				height: 190%;
+				background:rgba(0,0,0,0.8);	
+			    top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				/*height: 850px;*/
+			}
+			#ruledet>div{
+				width: 86%;
+			    margin-top: 15%;
+			    margin-left: 7%;
+			    position: relative;
+			    background: #d1ecfa;
+			    border-radius: 5px;
+			    padding: 4% 6%;
+			    box-sizing: border-box;
+			}
+			#ruledet>div>span{
+			    position: absolute;
+			    right: -3%;
+			    top: -2%;
+			    background: url(../addons/member/template/mobile/road38/images/close.png) no-repeat;
+			    background-size:100% ;
+			    width: 10%;
+			    height: 6%;
+			}
+			#ruledet>div>div{
+				font-size: 12px;
+				text-align: justify;
+			}
+			.hidden{
+				display: none;
+			}
+			#wetips{
+				display: none;
+			}
+			@media screen and (max-width:320px) {
+			 	#ruledet{
+					height: 250%;
+			 	}
+			}
+		</style>
+	</head>
+	<body>
+		<input type="hidden" id="openid" name="openid" value="{$openid}" />
+		<input type="hidden" id="typea" name="typea" value="{$typea}" />
+		<input type="hidden" id="userip" name="userip" value="{$userip}" />
+		<input type="hidden" id="ustatus" name="userip" value="{$ustatus}" />
+		<img src="../addons/member/template/mobile/road38/images/51top.png" class="imgtop" />
+		<div id="wetips">
+			<div class="weui_dialog_alert">
+			    <div class="weui_mask"></div>
+			    <div class="weui_dialog">
+			        <div class="weui_dialog_hd"><strong class="weui_dialog_title">西安赛格国际购物中心</strong></div>
+			        <div class="weui_dialog_bd"></div>
+			        <div class="weui_dialog_ft">
+			            <a href="#" class="weui_btn_dialog primary">确定</a>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div id="loadingToast" class="weui_loading_toast" style="display:none;">
+		    <div class="weui_mask_transparent"></div>
+		    <div class="weui_toast">
+		        <div class="weui_loading">
+		            <!-- :) -->
+		            <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+		            <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+		        </div>
+		        <p class="weui_toast_content">排队抢卡ing...</p>
+		    </div>
+		</div>
+		<div id='userPrt' class='carId'>
+			<h1>请输入领卡信息</h1>
+			<form action="">
+				<p>姓名</p><input id='userName' class='inputarea' type="text"  placeholder="请正确填写，信息提交后不可更改" />
+				<p>电话</p><input id='userPhone' class='inputarea' type="number" placeholder="请正确填写，信息提交后不可更改"/>
+				<div class='yzcode'>
+					<input id='valicode' class='inputarea' type="number" placeholder="请输入验证码" />
+					<input type='button' class='inputarea' id='sendCode' onclick="send(this)" value='发送验证码'/>
+				</div>
+				<p>身份证</p><input id="IDcard" class='inputarea' type="text" name="idNum" placeholder="请正确输入身份证号，须与用卡人一致"/>
+				<p>车牌号</p><input id='userCar' class='inputarea' type="text" readonly="readonly" placeholder="车牌号须真实有效且与行驶证一致"/>
+				<h5>* 信息提交后不可修改。<br>* 如信息有误，电子购物卡无效。</h5>
+				<p class="vipcheck" id='vipcheck'>* 提交信息，并成为赛格国际购物中心微信会员</p>
+				
+			</form>
+			
+			<div id='btn' onclick="issubmit()">提交信息 领购物卡</div>
+			
+		</div>
+		
+		<div class='activity'>
+			<img src="../addons/member/template/mobile/road38/images/det.png" alt="" class='det'/>
+			<div>
+				赛格叫你来过节，陕A以外“非营运”性质车辆的个人车主，登记车牌号等信息，即可领取300元赛格国际购物中心电子购物卡，领完即止。 <br />
+				* 4月21日-5月31日，凭本人手机上显示的电子购物卡、本人身份证原件及车辆行驶证原件来赛格赛格国际购物中心，即可使用电子购物卡在赛格国际购物中心B1-5F公示的562个品牌专柜购物，且可与商场其它活动同享。活动详细规则请点击右下角“查看活动规则”。 <br />
+				* 身份证、行驶证均须真实有效，且与填写信息一致。
+				
+				<p>
+					地址：陕西省·西安市·长安路123号 小寨十字东北角 赛格国际购物中心<br />
+					客服电话：029-86300000 
+					<span onclick="seendet()">查看活动规则</span>
+				</p>
+				
+			</div>
+		</div>
+		<div id='ruledet' class='hidden' onclick='hiddendet()'>
+			<div onclick='hiddendet()'>
+				<img src="../addons/member/template/mobile/road38/images/det2.png" alt="" class='det'/>
+				<span onclick='hiddendet()'></span>
+				<div>
+					<h4>活动对象：</h4>
+					咸阳、宝鸡、铜川、渭南、延安、榆林、安康、汉中、商洛、杨凌等地市及外省、市个人车主；<br />
+					
+					<h4>领卡要求：</h4>
+					* “陕A车牌以外”非营运车辆用途的个人车主可领取（营运车辆、公务用车、货运等特殊用途车辆除外，以行驶证上“所有人”、“使用性质”及车辆照片为判断依据）；<br />
+					* 每人/每车牌号/每手机号/每微信号/每身份证号（同时满足）限领1张300元赛格电子购物卡；
+					
+					<h4>用卡说明：</h4>
+					<p>* 使用本电子购物卡（后简称“卡”）结算时，须注册成为赛格国际购物中心微信会员。现场拍照验证以下信息及证件：1、用卡人身份证原件（须与领卡时填写的身份证信息一致）；2、手机上显示的卡；3、卡捆绑的同车号车辆行驶证正、副本原件。所有证件、信息均须真实，且在有效期内。卡转发、截屏等均无效。</p>
+					<p>* 本卡可于4月21日—5月31日，在赛格国际购物中心B1-5F公示的562个品牌专柜购物使用（本卡须到收银台结算，超市、餐饮、游乐、数码及购买赛格储值卡等不可用），逾期失效。可与赛格国际其他活动同享。
+					<p>* 同一用户限领、用一张300元卡，凡满足同一人、同一身份证号、同一微信号、同一车牌、同一手机号，同一手机设备上任何一个条件，即视为同一用户。</p>
+					<p>* 本卡单笔须消费一次性使用完，不可多张累积结算。卡值部分不提供发票，不积分，不兑现、不找零。卡遗失不补。</p>
+					<p>* 使用本卡购买商品，如遇退货，仅退还实际支付金额，卡不予补发；如遇换货，金额高于原单商品，须补齐差价。</p>
+				</div>	
+			</div>
+		</div>
+		
+		<div class="d_n" id="cp" >
+		    <div class="proys ahy">
+		        <div class="clr"></div>
+		        <input id="cpvalue" onclick="this.value='';$('#sheng').css('display','block');$('#zimu').css('display','none');$('#num').css('display','none')" placeholder="请点选车牌所在省及地区字母"   value="" readonly >
+		        
+		        <div class="ctips">* 车牌前两位点选，后五位需输入</div>
+		        <div class="ctips">* 陕A车主不参加此次活动</div>
+		        <ul id="sheng">   
+		            <li onclick="cpadd('陕')">陕</li>
+		            <li onclick="cpadd('京')">京</li>
+		            <li onclick="cpadd('津')">津</li>
+		            <li onclick="cpadd('冀')">冀</li>
+		            <li onclick="cpadd('晋')">晋</li>
+		            <li onclick="cpadd('蒙')">蒙</li>
+		            <li onclick="cpadd('辽')">辽</li>
+		            <li onclick="cpadd('吉')">吉</li>
+		            <li onclick="cpadd('黑')">黑</li>
+		            <li onclick="cpadd('沪')">沪</li>
+		            <li onclick="cpadd('苏')">苏</li>
+		            <li onclick="cpadd('浙')">浙</li>
+		            <li onclick="cpadd('皖')">皖</li>
+		            <li onclick="cpadd('闽')">闽</li>
+		            <li onclick="cpadd('赣')">赣</li>
+		            <li onclick="cpadd('鲁')">鲁</li>
+		            <li onclick="cpadd('豫')">豫</li>
+		            <li onclick="cpadd('鄂')">鄂</li>
+		            <li onclick="cpadd('湘')">湘</li>
+		            <li onclick="cpadd('粤')">粤</li>
+		            <li onclick="cpadd('桂')">桂</li>
+		            <li onclick="cpadd('琼')">琼</li>
+		            <li onclick="cpadd('渝')">渝</li>
+		            <li onclick="cpadd('川')">川</li>
+		            <li onclick="cpadd('贵')">贵</li>
+		            <li onclick="cpadd('云')">云</li>
+		            <li onclick="cpadd('藏')">藏</li>
+		            <li onclick="cpadd('甘')">甘</li>
+		            <li onclick="cpadd('青')">青</li>
+		            <li onclick="cpadd('宁')">宁</li>
+		            <li onclick="cpadd('新')">新</li>
+		        </ul>
+		        <ul id="zimu" style="display:none">
+		        	<li class='zimuA' onclick="cpadd('A')">A</li>
+		            <li onclick="cpadd('B')">B</li>
+		            <li onclick="cpadd('C')">C</li>
+		            <li onclick="cpadd('D')">D</li>
+		            <li onclick="cpadd('E')">E</li>
+		            <li onclick="cpadd('F')">F</li>
+		            <li onclick="cpadd('G')">G</li>
+		            <li onclick="cpadd('H')">H</li>
+		            <li onclick="cpadd('I')">I</li>
+		            <li onclick="cpadd('J')">J</li>
+		            <li onclick="cpadd('K')">K</li>
+		            <li onclick="cpadd('L')">L</li>
+		            <li onclick="cpadd('M')">M</li>
+		            <li onclick="cpadd('N')">N</li>
+		            <li onclick="cpadd('O')">O</li>
+		            <li onclick="cpadd('P')">P</li>
+		            <li onclick="cpadd('Q')">Q</li>
+		            <li onclick="cpadd('R')">R</li>
+		            <li onclick="cpadd('S')">S</li>
+		            <li onclick="cpadd('T')">T</li>
+		            <li onclick="cpadd('U')">U</li>
+		            <li onclick="cpadd('V')">V</li>
+		            <li onclick="cpadd('W')">W</li>
+		            <li onclick="cpadd('X')">X</li>
+		            <li onclick="cpadd('Y')">Y</li>
+		            <li onclick="cpadd('Z')">Z</li>
+		        </ul>
+		        <input type="text" id="num" onChange="toupper()" placeholder="输入车牌后五位" class="num"  />
+		        <div class="clr"></div>
+		        <input type="button" class="but2" value="取 消" onclick="cp_noreg()" />
+		        <input type="button" class="but2" value="确 定" onclick="cp_n()" />
+		    </div>
+		</div>
+		
+		<script src='../addons/member/template/mobile/dxr/jquery-1.11.3.js'></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			var openid=$('#openid').val();
+            var typea=$('#typea').val();
+            var userip=$('#userip').val();
+            var ustatus=$('#ustatus').val();
+			var namecorrect=0;
+			var phonecorrect=0;
+			var IDcorrect=0;
+			var cardplate=0;
+			var takecard=0;
+			var yzmvali=0;
+			var wait = 60;
+			var justTake=0;
+			var isAgree=0;
+			var userhref='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Workday&m=member&wxref=mp.weixin.qq.com';
+			$('.weui_btn_dialog').click(function(){
+				$('#wetips').css('display','none');
+			});
+		    function time(o) {	
+		        if (wait == 0) {
+		            o.removeAttribute("disabled");
+		            o.value = "发送验证码";
+		            $('#sendCode').css({"background":"#ff9999","color":"#fff"});
+		            wait = 60;
+		        } else {
+		            o.setAttribute("disabled", true);
+		            o.value = wait+"s后重新发送";
+		            $('#sendCode').css({"background":"#ddd","color":"#666"});
+		            wait--;
+		            setTimeout(function () {
+		                time(o)
+		            }, 1000)
+		        }
+		    }
+		    //发送验证码
+		    function send(obj) {
+		        var phone = $('#userPhone').val();
+		        var resphone = phone.replace(/\s+/g,"");
+		        var mobileReg = /^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+		        
+		        if (phone == '') {
+		        	$('#loadingToast').css('display','none');
+		        	$('.weui_dialog_bd').html('手机号码不能为空');
+		            $('#wetips').css('display','block');
+		            return false;
+		        } else if(mobileReg.test(resphone) === false) {
+		        	$('#loadingToast').css('display','none');
+		            $('.weui_dialog_bd').html('手机号码格式不正确');
+		            $('#wetips').css('display','block');
+		            return false;
+		        }else{
+		        	$.ajax({
+		        		type:"post",
+		        		url:"http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=SendPhone&m=member",
+		        		data:{'phone':resphone},
+		        		success:function(res){
+		        			var resdata=JSON.parse(res);
+		        			if(resdata.status==1){
+		        				time(obj);
+		        			}else if(resdata.status==2){
+		        				$('#loadingToast').css('display','none');
+		        				$('.weui_dialog_bd').html('验证码有效期为1分钟，请输入现有验证码');
+		           				$('#wetips').css('display','block');
+		        			}
+		        		}
+		        	});
+		        }
+		   
+		    }
+		    //验证码验证
+		    function codevali(){
+		    	var code=$('#valicode').val();
+		    	var rescode = code.replace(/\s+/g,"");
+		    	var phone=$('#userPhone').val();
+		    	var resphone = phone.replace(/\s+/g,"");
+		    	if(code==""){
+		    		$('#loadingToast').css('display','none');
+		    		$('.weui_dialog_bd').html('请输入验证码');
+		           	$('#wetips').css('display','block');
+		    	}else{
+			    	$.ajax({
+			    		type:'POST',
+			    		data:{'userPhone':resphone,'yzm':rescode},
+			    		url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=PhoneJudge&m=member',
+			    		success:function(res){
+			    			var msgdata=JSON.parse(res);
+			    			if(msgdata.status==0){
+			    				console.log('succ');
+			    				
+			    				yzmvali=1;
+			    				if(justTake==0){
+			    					submituser();
+			    				}else if(justTake==1){
+			    					sendCard();
+			    				}
+			    			}else if(msgdata.status==1){
+			    				$('#loadingToast').css('display','none');
+			    				$('.weui_dialog_bd').html('系统繁忙，请稍后再试');
+		           				$('#wetips').css('display','block');
+			    				yzmvali=0;
+			    			}else{
+			    				$('#loadingToast').css('display','none');
+			    				$('.weui_dialog_bd').html('验证码输入有误');
+		           				$('#wetips').css('display','block');
+			    				yzmvali=0;
+			    			}
+			    		}
+			    	});
+		    	}
+		    }
+		    
+			//姓名判断
+		    function  namevali(){
+		    	var userstr = $('#userName').val();       
+		        if(userstr==""){
+		        	$('#loadingToast').css('display','none');
+		        	$('.weui_dialog_bd').html('请输入姓名');
+       				$('#wetips').css('display','block');
+		        }else{
+			    	namecorrect=1;
+			    }
+		    }
+		    //身份证判断
+		    function  IDcardvali(){
+				var userstr= $('#IDcard').val(); 
+				var resuser = userstr.replace(/\s+/g,"");
+		    	var reg = /(^\d{15}$)|(^\d{17}(\d|X|x)$)/; //(^\d{18}$)
+		    	var years=Number(resuser.slice(6,10));
+//		    	console.log(years);
+		    	if(userstr==""){
+		        	$('#loadingToast').css('display','none');
+		        	$('.weui_dialog_bd').html('请输入身份证号');
+		           	$('#wetips').css('display','block');
+		       }else if(reg.test(resuser) == false || years<=1915){ 
+		       		$('#loadingToast').css('display','none');
+					$('.weui_dialog_bd').html("身份证输入格式有误，请核对后重新输入");
+       				$('#wetips').css('display','block');
+					return  false;  
+				}else{
+			    	IDcorrect=1;
+			    }
+		    }
+			//车牌输入框
+		    function cpadd(a){
+		        //省份及字母点击事件
+		        if(a=='陕'){
+		        	$('.zimuA').css('display','none');
+		        }
+		        Cts = $("#cpvalue").val();
+		        if(Cts.indexOf(a) > 0 )
+		        {
+		        }else{
+		            if(Cts.length > 0){
+		                $("#cpvalue").val(Cts + a);
+		                $("#zimu").css("display","none");
+		                $("#num").css("display","block");
+		                $('#num').focus();
+		                
+		            }else{
+		                $("#cpvalue").val(a);
+		                $("#sheng").css("display","none");
+		                $("#zimu").css("display","block");
+		            }
+		        }
+		    }
+		    function cp_noreg(){
+		        // 取消输入点击事件
+		        $("#cp").addClass('opxs');
+		        $(".proys").addClass('onexit');
+		        setTimeout(function(){
+		            $("#cp").removeClass('prompt');
+		            $("#cp").addClass('d_n');
+		            $("#cp").removeClass('opxs');
+		            $(".proys").removeClass("onexit");
+		        },350);
+		        $('#cpvalue').val('');
+		        $('#num').val('');
+		        $('#sheng').css('display','block');
+		        $('.zimuA').css('display','block');
+		        $('#zimu').css('display','none'); 
+		        $('#num').css('display','none')
+		    }
+		    function toupper(){
+		        var num=$('#num').val();
+		        $('#num').val(num.toUpperCase()); //转换大小写
+		    }
+		    function cp_n() {
+		        // 确定绑定
+		        var numlength = $("#num").val();
+		        var reg = /^([A-Z0-9]{5})|([A-Z0-9]{4}[\u4e00-\u9fa5]{1}$)/;
+		        if (reg.test(numlength) && numlength.length == 5) {
+		            var platenumber = $("#cpvalue").val() +" "+ numlength;
+		            $('#userCar').val(platenumber);
+		            $('#cp').removeClass('prompt');
+		            cardplate=1;
+		        } else {
+		        	$('#loadingToast').css('display','none');
+		            $('.weui_dialog_bd').html("车牌号须为字母或数字(5位)");
+       				$('#wetips').css('display','block');
+		            
+		        }
+		
+		    }
+		    //车牌输入框结束
+		    
+		    function submituser(){
+		    	if(yzmvali==1){
+		    		if(confirm('请确认身份证、行驶证等信息真实、且在有效期内，所有信息提交后，均不可再修改')){
+		    			$('#loadingToast').css('display','block');
+						var userName=$('#userName').val();
+						var userPhone=$('#userPhone').val();
+						var userCar=$('#userCar').val();
+						var userIDcard=$('#IDcard').val();
+						$.ajax({
+							type:'POST',
+							data:{'openid':openid,'userName':userName,'userPhone':userPhone,'idNum':userIDcard,'userCar':userCar,'typea':typea,'isAgree':isAgree},
+							url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetOwnerinfo&m=member',
+							success:function(res){
+								var resdata=JSON.parse(res);
+								$('#loadingToast').css('display','none');
+	//							console.log(resdata);
+								if(resdata.status==0){
+									sendCard();
+								}else if(resdata.status==1){
+								
+									$('.weui_dialog_bd').html('此手机号已领卡');
+	       							$('#wetips').css('display','block');
+								}else if(resdata.status==2){
+									
+									$('.weui_dialog_bd').html('此车牌已绑定');
+	       							$('#wetips').css('display','block');
+								}else if(resdata.status==3){
+									
+									$('.weui_dialog_bd').html('此身份证已领卡');
+	       							$('#wetips').css('display','block');
+								}else if(resdata.status==7){
+									
+									$('.weui_dialog_bd').html('当前领卡人数过多，请稍后再试');
+	       							$('#wetips').css('display','block');
+								}else{
+									sendCard();
+									userhref="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Becomevip&m=member&typea=1&wxref=mp.weixin.qq.com";
+	//								 console.log('1已修改地址为注册页'+userhref);
+									
+								}
+							}
+						});
+					}
+				}
+		    }
+		    //提交事件
+		    function issubmit(){
+    			if(takecard==0){
+    				namevali();
+    				if(namecorrect==1){
+    					IDcardvali();
+    					if(IDcorrect==1){
+    						if(cardplate==1){
+    							codevali();	
+    						}else{
+    							$('#loadingToast').css('display','none');
+								$('.weui_dialog_bd').html('请输入车牌号');
+	   							$('#wetips').css('display','block');
+							}	
+    					}
+    				}
+				}else if(takecard==1){
+					codevali();
+				}else if(takecard==2){
+					$('#btn').css('background','#ccc');
+					
+				}	
+			}
+	        function sendCard() {
+                $.post('http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WomenCardSignInfo&m=member',
+                    function(data){
+                        var resdata = JSON.parse(data);
+                        wx.addCard({
+                            cardList: [
+                                {
+                                    cardId:"pUdGzjkDma4wqg8jcmQrct3023qU", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                                    cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                                }
+                            ], // 需要添加的卡券列表
+                            success: function (res) {
+                                var cardList = res.cardList;
+                                window.location.href=userhref;
+                                location.href=userhref;//666
+//                              console.log('2已修改地址为注册页'+userhref);
+                               
+                            },
+                            cancel:function(res){
+                            	window.location.reload();
+                                location.reload();
+                            	console.log("执行cancel");
+                            	
+                            },
+                            fail:function(res){
+                            	window.location.reload();
+                                location.reload();
+                            	console.log("执行fail");
+                            }
+                    	});
+                    }
+                );
+	        }
+	        //规则显示隐藏
+	        function seendet(){
+	        	$('body').scrollTop(0);
+	        	$('#ruledet').removeClass('hidden');
+	        }
+	        function hiddendet(){
+	        	$('#ruledet').addClass('hidden');
+	        }
+		    wx.config({
+		        debug: false,
+		        appId: "{$_W['account']['jssdkconfig']['appId']}",
+		        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+		        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+		        signature: "{$_W['account']['jssdkconfig']['signature']}",
+		        jsApiList: [
+		            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+		            'onMenuShareTimeline',      // 分享到朋友圈
+		            'onMenuShareAppMessage',    // 分享给朋友
+		            'onMenuShareQQ',            // 分享到QQ
+		            'onMenuShareWeibo',         // 分享到腾讯微博
+		            'hideMenuItems',            // 批量隐藏功能按钮接口
+		            'showMenuItems',            // 批量显示功能按钮接口
+		            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+		            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+		            'getNetworkType',           // 获取网络状态接口
+		            'openLocation',             // 使用微信内置地图查看位置接口
+		            'getLocation',              // 获取地理位置接口
+		            'hideOptionMenu',           // 批量隐藏功能按钮接口
+		            'showOptionMenu',           // 批量显示功能按钮接口
+		            'closeWindow',              // 关闭当前网页窗口接口
+		            'addCard',                  // 批量添加卡券接口
+		            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+		            'openCard',                 // 查看微信卡包中的卡券接口
+		            'chooseImage',
+		            'previewImage',
+		            'uploadImage',
+		            'downloadImage'
+		        ]
+		    });
+		
+		    wx.ready(function() {
+//		        var openid = '{$openid}';
+				var sendLoc;
+				var sharetitle="赛格国际再送300元购物卡，你懂的！";
+				var sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+				
+		        function sendLoc() {
+		            wx.getLocation({
+		                type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入’gcj02’
+		                success: function (res) {
+		
+		                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -
+		
+		                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+		
+		                    var speed = res.speed; // 速度，以米/每秒计
+		
+		                    var accuracy = res.accuracy; // 位置精度
+		
+		                    $.ajax({
+		                        type:'POST',
+		                        url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getLocation&m=member',
+		                        data:{'openid':openid,'latitude':latitude,'longitude':longitude,'userip':userip,'typea':typea},
+		                        success:function(res){
+		                            var resdata=JSON.parse(res);
+//		                            console.log(resdata);
+		                            var city=resdata.city;
+//		                            switch (city){
+//										case '西安市':
+//											sharetitle="赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '咸阳市':
+//											sharetitle="陕D陕C的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '宝鸡市':
+//											sharetitle="陕D陕C的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '渭南市':
+//											sharetitle="陕E陕B的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '铜川市':
+//											sharetitle="陕E陕B的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '榆林市':
+//											sharetitle="陕J陕K的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '延安市':
+//											sharetitle="陕J陕K的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '汉中市':
+//											sharetitle="陕F陕H陕G的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '安康市':
+//											sharetitle="陕F陕H陕G的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										case '商洛市':
+//											sharetitle="陕F陕H陕G的车主注意了，赛格国际再送300元购物卡，你懂的！";
+//											sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+//											break;
+//										
+//									}
+		                            share();
+
+		                        }
+		                    });
+		                },
+		                cancel: function (res) {
+		                    
+		                    share();
+		                },
+		            })
+		        }
+				function share(){
+					//分享到朋友圈
+			        wx.onMenuShareTimeline({
+			           title: sharetitle, // 分享标题
+			           link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Workday&m=member&wxref=mp.weixin.qq.com', // 分享链接
+			           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/road38/images/share.png', // 分享图标
+			           success: function (res) {
+//			               MtaH5.clickShare('wechat_moments');
+			               $.ajax({
+			                   type:'POST',
+			                   url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=quanShare&m=member',
+			                   data:{'openid':openid,'typea':typea},
+			                   success:function(res){
+			                       console.log('recorded');
+			                   }
+			               });
+			           }
+			       });
+					// 分享给朋友
+			       wx.onMenuShareAppMessage({
+			           title: sharetitle, // 分享标题
+			           desc:  sharedec, // 分享描述
+			           link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Workday&m=member&wxref=mp.weixin.qq.com', // 分享链接
+			           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/road38/images/share.png', // 分享图标
+			           success: function (res) {
+//			               MtaH5.clickShare('wechat_friend');
+			               $.ajax({
+			                   type:'POST',
+			                   url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=FriendShare&m=member',
+			                   data:{'openid':openid,'typea':typea},
+			                   success:function(){
+			                       console.log('recorded');
+			                   }
+			               });
+			           }
+			       });
+				}
+				sendLoc();
+				
+		    });
+		    //wx.ready end
+		window.onload=function(){
+			$.ajax({
+				type:'POST',
+				data:{'openid':openid},
+				url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=JudgStatus&m=member',
+				success:function(res){
+					var resdata=JSON.parse(res);
+//					console.log(resdata);
+					if(resdata.status==0){
+						console.log('没有信息 没领卡');
+						$('#userCar').on('click',function (){
+							$(this).blur();
+			        		$('#cp').addClass('prompt');
+			        		$('#inputnum').val('');
+		  				});
+		  				if(ustatus==2){
+							$('#vipcheck').css('display','block');
+							isAgree=1;
+						}
+		  				takecard=0;
+		  				justTake=0;
+					}else if(resdata.status==1){
+						console.log('有信息 没领卡');
+						$('#userName').val(resdata.name);
+						$('#userPhone').val(resdata.tel);
+						$('#userCar').val(resdata.platenumber);
+						$('#IDcard').val(resdata.idNum);
+						$('#userCar').off('click');
+						$('#userName').prop('disabled',true);
+						$('#userPhone').prop('disabled',true);
+						$('#IDcard').prop('disabled',true);
+						$('#userCar').prop('disabled',true);
+						takecard=1;
+						justTake=1;
+						
+					}else if(resdata.status==2){
+						console.log('有信息 领卡');
+						$('#userName').val(resdata.name);
+						$('#userPhone').val(resdata.tel);
+						$('#userCar').val(resdata.platenumber);
+						$('#userName').prop('disabled',true);
+						$('#userPhone').prop('disabled',true);
+						$('#IDcard').prop('disabled',true);
+						$('#userCar').prop('disabled',true);
+						$('#userCar').off('click');
+						takecard=2;
+						
+//						window.location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=womenopencard&m=member';
+					}
+				}
+				
+			});
+			
+		}
+</script>
+	</body>
+</html>

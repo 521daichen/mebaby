@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8"> 
+<title>赛格国际店庆 满3000送3000</title>
+<meta name="keywords" content=""> 
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+	<style type="text/css" media="screen" id="test">
+		*{padding:0;margin:0;background:#333;}
+		img{margin:0 auto;display:block;width:100%}
+		body{ background:#dd000a;}
+	    .bg2 img{ width:100%;}
+		.bg{ display:none}	   
+		 .bg2{ display:block}
+		@media screen and (min-width:800px){
+	    .bg{ display:block}
+        .bg img{ width:1000px; margin:0px auto;}
+		.bg2{ display:none}	
+		}
+	
+		
+	</style>
+</head>
+<body>
+<div class="bg"><img src="../addons/member/template/mobile/static/img/descinfo1.png"></div>
+<div class="bg2"><img src="../addons/member/template/mobile/static/img/bgdescinfo2.png"></div>
+</body>
+
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+
+	wx.config({
+		debug: false,
+		appId: "{$_W['account']['jssdkconfig']['appId']}",
+		timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+		nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+		signature: "{$_W['account']['jssdkconfig']['signature']}",
+		jsApiList: [
+			'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+			'onMenuShareTimeline',      // 分享到朋友圈
+			'onMenuShareAppMessage',    // 分享给朋友
+			'onMenuShareQQ',            // 分享到QQ
+			'onMenuShareWeibo',         // 分享到腾讯微博
+			'hideMenuItems',            // 批量隐藏功能按钮接口
+			'showMenuItems',            // 批量显示功能按钮接口
+			'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+			'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+			'getNetworkType',           // 获取网络状态接口
+			'openLocation',             // 使用微信内置地图查看位置接口
+			'getLocation',              // 获取地理位置接口
+			'hideOptionMenu',           // 批量隐藏功能按钮接口
+			'showOptionMenu',           // 批量显示功能按钮接口
+			'closeWindow',              // 关闭当前网页窗口接口
+			'addCard',                  // 批量添加卡券接口
+			'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+			'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+			'previewImage',
+			'uploadImage',
+			'downloadImage'
+		]
+	});
+
+	wx.ready(function(){
+		// 分享到朋友券
+		wx.onMenuShareTimeline({
+			title: "赛格国际店庆 满3000送3000！ ", // 分享标题
+			link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Celebrate&m=member", // 分享链接
+			imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+			success: function (res) {
+
+			}
+		});
+
+		// 分享给朋友
+		wx.onMenuShareAppMessage({
+			title: "赛格国际店庆 满3000送3000！ ", // 分享标题
+			desc:  "全场品牌折后参与满减 更有满3000送3000现金券 多档活动可叠加累计 国庆最疯狂的折扣力度就在赛格国际", // 分享描述
+			link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Celebrate&m=member", // 分享链接
+			imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+			success: function (res) {
+
+			}
+		});
+	});
+</script>
+<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500317076" ></script>
+</html>

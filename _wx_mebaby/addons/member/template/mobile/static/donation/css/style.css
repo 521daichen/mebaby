@@ -1,0 +1,54 @@
+html,body,header,section,ul,li,p,h1,h2{padding:0;margin:0}
+body{background:#E9E9E9;font-size:12px}
+img{width:100%}
+header{width:330px;height:350px;margin:2em auto 0;position: relative;}
+.cloud{background:url(../img/cloud.png);background-size:100% auto;background-repeat: no-repeat;width:100%;padding-top:62%;z-index: 4;position:relative;}
+.roll{background:url(../img/roll.png);background-size:100% 100%;width:80px;height:80px;position:absolute;z-index:5;display:bold;top:80px;left:120px}
+.leg-left{width:165px;height:134px;background:url(../img/lbg.png) no-repeat;background-size:100% auto;position: absolute;left:0px;margin-top:-20px;}
+.leg-right{width:165px;height:134px;background:url(../img/rbg.png) no-repeat;background-size:100% auto;position: absolute;right:8px;margin-top:-20px;}
+.myPhoto{width:90px;height:90px;position: absolute;margin-top:48px;margin-left:24px;overflow: hidden;border-radius: 50%;box-shadow:0 0 6px #aaa;}
+.friendPhoto{width:90px;height:90px;position: absolute;margin-top:48px;margin-left:220px;overflow: hidden;border-radius: 50%;box-shadow:0 0 6px #aaa;}
+section{padding-top:2.5em}
+section input{height:2.8em;line-height:2.8em;width:310px;border:1px solid #E4E4E4;background:#fff;border-radius:6px;font-size:1.4em;text-align: center;margin:0 auto;display:block;box-sizing:border-box;}
+section button{height:2.8em;line-height:2.8em;width:310px;border:1px solid #E4E4E4;background:#fff;border-radius:6px;font-size:1.4em;text-align: center;margin:.6em auto 1em;background-image:-webkit-linear-gradient(top,#FD9663,#F26E41);color:#fff;border:1px solid #FD9663;display:block;box-sizing:border-box;}
+section span.tips{display:block;width:80px;margin:0 auto;/*background:url(../img/tips.png) no-repeat;padding-left:16px;*/background-size:auto 1.05em;color:#333;}
+.share{background:rgba(0,0,0,.95);width:100%;height:100%;position: fixed;z-index: 999;top:0;left:0;display:none}
+.share img{width:70%;margin-left:20%}
+.Arrival{font-size: 1em;color:#f60;}
+.Arrival p{font-size:1em;text-align: center;}
+.Arrival p strong{font-size:5em;}
+.Arrival a{display: block;background-image:-webkit-linear-gradient(top,#FD9663,#F26E41);color:#fff;border:1px solid #FD9663;height:2.4em;width:60%;margin-left:20%;line-height:2.4em;color:#fff;text-decoration:none;border-radius: 8px;margin-top:1em;}
+.Arrival span.tips{display:block;width:80px;/*padding-left:16px;*/margin:0 auto;/*background:url(../img/tips.png) no-repeat;*/background-size:auto 1.05em;font-size:1.1em;color:#333}
+.hint{position:absolute;font-size:1.2em;line-height: 1.8em;padding:1em;z-index: 99;background: rgba(0,0,0,.85);min-height:100%;height:auto;color:#fff;left:0;top:0;display: none;}
+.hint strong{font-size:1.2em;background:#F26E41;color:#fff;display:block;min-height:1.2em;line-height:1.6em;margin:.5em 0;padding-left:2%;border-radius: 6px;height:auto;padding-top:.5em;padding-bottom:.5em;}
+.default{background:url(../img/r0.png) no-repeat !important;background-size: 100% auto !important;}
+.hintText{border:1px solid #ff7f00;border-radius: 4px;background:#FFDC73;width:auto;color:#FF7F00;width:110px;text-align: center;height:1.5em;line-height: 1.6em;position: absolute;margin-top:16px;left:10px}
+.text{font-size:1.6em !important;}
+@media screen and (max-width:400px){
+	header{width:280px;height:320px;margin:1em auto 0;position: relative;}
+	.cloud{background:url(../img/cloud.png);background-size:100% auto;background-repeat: no-repeat;width:100%;padding-top:62%;z-index: 4;position:relative;}
+	.roll{background:url(../img/roll.png);background-size:100% 100%;width:80px;height:80px;position:absolute;z-index:5;display:bold;top:63px;left:90px}
+	.leg-left{width:165px;height:134px;background:url(../img/lbg.png) no-repeat;background-size:100% auto;position: absolute;left:-40px;margin-top:-30px;}
+	.leg-right{width:165px;height:134px;background:url(../img/rbg.png) no-repeat;background-size:100% auto;position: absolute;right:-10px;margin-top:-30px;}
+	.myPhoto{width:80px;height:80px;position: absolute;margin-top:42px;margin-left:10px;overflow: hidden;border-radius: 50%;box-shadow:0 0 6px #aaa;}
+	.friendPhoto{width:80px;height:80px;position: absolute;margin-top:42px;margin-left:194px;overflow: hidden;border-radius: 50%;box-shadow:0 0 6px #aaa;}
+	.hintText{border:1px solid #ff7f00;border-radius: 4px;background:#FFDC73;width:auto;color:#FF7F00;width:110px;text-align: center;height:1.5em;line-height: 1.6em;position: absolute;margin-top:16px;left:-8px}
+	}
+
+	@-webkit-keyframes roll {
+	from{-webkit-transform:rotate(0deg);}
+	to{-webkit-transform:rotate(360deg);}
+	}
+	.rollNow /*匀速循环执行*/
+	{
+	-webkit-animation: roll 2s  linear infinite;	/* Safari 和 Chrome */
+	}
+	@-webkit-keyframes kFrame {
+	0%{background-position: left 2px;}
+	/*50%{background-position: left -134px;}*/
+	100%{background-position: left -402px;}
+	}
+  .kFrame{
+		-webkit-animation: kFrame 1s steps(3) infinite;
+		/*-webkit-animation-timing-function:steps(3,start);*/
+	}

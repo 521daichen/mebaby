@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>赛格国际会员卡升级</title>
+	<style type="text/css">
+		*{padding:0;margin:0;}
+		html{height:100%;}
+		body{background:#FBF9FE;background-size:100% 100%;}
+		.Pic{margin:10% 25% 0;width:50%;}
+		.text{text-align:center;line-height:1.6em;font-size:1em;color:#666;display:block;margin:30px 0;background:#FFFFFF;border:1px solid #ECECEC;border-right:0;border-left:0;padding:.8em 0;}
+		#go{width:80%;margin:0 auto;background:#04BE02;border:0;color:#fff;line-height:2.4em;height:2.4em;display:block;font-size:1.3em;border-radius:5px;}
+	</style>
+</head>
+<body>
+<img src="../addons/member/template/mobile/static/img/getCardPic.png" class="Pic" />
+<div class="text">赛格国际会员卡<br/>已升级为微信会员卡<br/>无需携带、更安全、便捷积分、畅享折扣</div>
+<button id="go">一键升级</button>
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function() {
+        var openid = '{$openid}';
+        document.querySelector('#go').onclick = function () {
+            $.ajax({
+                type:'POST',
+                url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WeakCard&m=member#',
+                data:{'openid':openid},
+                success:function(res){
+                    var resd=JSON.parse(res);
+                    if(resd.status==0)
+                    {
+                        $.post('http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCustomerCardSignInfo&m=member',
+                            function(data){
+
+                                //var cardListStr = JSON.stringify(resdata);
+
+                            var resdata = JSON.parse(data);
+                            //console.log(resdata);
+                                //console.log(typeof resdata);
+                            //debugger;
+                            wx.addCard({
+                                cardList: [
+                                    {
+                                        cardId:"{$card_id}", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                                        cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                                    }
+                                ], // 需要添加的卡券列表
+                                success: function (res) {
+                                    var cardList = res.cardList;
+                                    console.info(res);
+                                    //alert(cardList);
+                                }
+                            },'json');
+                        });
+                    }
+                    else if(resd.status==1)
+                    {
+                        alert('您已领取，请前往卡包激活您的会员卡');
+                    }
+                    else
+                    {
+                        alert('您的会员卡已成功激活，请前往卡包查看');
+                    }
+                }
+            });
+
+        }
+    });
+
+</script>
+</body>
+</html>

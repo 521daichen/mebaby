@@ -1,0 +1,76 @@
+body,html,ul,li,dl,dd,dt,h1,h2{padding:0;margin:0;list-style:none;}
+input[type="button"], input[type="submit"], input[type="reset"],input{-webkit-appearance: none;}textarea {  -webkit-appearance: none;}
+input::-webkit-inner-spin-button {-webkit-appearance: none;}
+input::-webkit-outer-spin-button {-webkit-appearance: none;}
+em{font-style:normal;}
+body{background:#E9E9E9;}
+header{width:100%;height:56px;background:#EEEEEE;}
+header .license{background:url(../img/plate.png);height:1.6em;width:5.8em;background-size:100% 100%;display:block;color:#fff;text-align:center;line-height:1.6em;font-weight:bold;font-size:1.6em;text-shadow:0px 0px 2px #001A66;margin:7px 0 0 .3em;position:absolute;overflow:hidden;}
+header .carPhoto{height:40px;width:40px;margin:8px 10px 0 0;overflow: hidden;float:right;box-sizing:border-box;border:1px solid #ccc;}
+header .carPhoto img{width:34px;height:34px;margin:2px 0 0 2px;}
+.parkMap{padding:0px 0 20px;background:#fff;text-align:center;position: relative;}
+.parkMap img{width:84%;}
+.parkMap a{position: absolute;bottom:10px;right:4%;background:#FF7B7B;border-radius:100px;width:40px;height:33px;font-size:12px;text-decoration:none;color:#fff;line-height:13px;margin-left:-50px;padding-top:7px}
+.infoList{background:#fff;overflow: auto;margin-bottom:10px;}
+.infoList li{width:92%;height:60px;clear: both;line-height:62px;margin-left:4%;font-size:16px;position:relative;display: block;overflow:hidden}
+.infoList li i{border-top:1px solid #ddd;position: absolute;top:0;left:0;width:100%;display: block;height:2px;}
+.infoList img{width:30px;float:left;margin:15px 0 0 10px;margin-right:10px;}
+.infoList span{float:left;color:#333;font-size:16px;}
+.infoList div{float:right;color:#545454;padding-right:10px;}
+.font-s-1{color:#f60 !important;font-weight:bold;}
+.infoList li u{background:#FFFAE3;border-radius:10px;height:16px;line-height:16px;width:100px;text-decoration:none;font-size:10px;color:#FF9224;display:block;text-align:center;margin:22px 10px 0 0;position: absolute;right:16%;}
+footer{background:#fff;height:auto;background:#fff;position: relative;padding-bottom:10px}
+footer .title{font-size:.8em;text-align: center;height:55px;line-height:50px;color:#333;position: relative;}
+footer .title span{display:block;background:#ccc;width:25%;height:1px;}
+footer .title span:nth-child(2){position: absolute;left:8%;top:24px;background: linear-gradient(to right,#fff, #C3C3C3);}
+footer .title span:nth-child(1){position: absolute;right:8%;top:24px;background: linear-gradient(to right,#C3C3C3,#fff);}
+footer .step1 {text-align: center;}
+footer .step1 span{padding-top:15px;display:inline-block;width:80px;height:65px;text-align:center;line-height:16px;font-size:12px;color:#fff;overflow: hidden;}
+footer .step1 span:nth-child(1){border-radius:100px;background:#FF9999}
+footer .step1 span:nth-child(2){border-radius:100px;background:#99CCFF;margin:0 5%;}
+footer .step1 span:nth-child(3){border-radius:100px;background:#CF9FFF}
+footer .operation{clear: both;background:#FF4D4D;height:50px;color:#fff;width:86%;margin:20px 7%;border-radius:8px;line-height:50px;}
+footer .operation u{text-decoration:none;border:1px solid #fff;border-radius:100px;width:16px;height:16px;line-height:16px !important;display:inline-block;font-size:13px;position: relative;top:-2px;margin:0 5px;}
+footer .operation button{height:36px;margin-top:5px;border:0;border-radius:5px;background:#FF6666;font-size:14px;color:#fff;}
+/*step2*/
+footer .step2 {text-align: center;}
+footer .step2 span{padding-top:15px;display:inline-block;width:80px;height:65px;text-align:center;line-height:16px;font-size:12px;color:#fff;overflow: hidden;}
+footer .step2 span:nth-child(1){border-radius:100px;background:#99CCFF}
+footer .step2 span:nth-child(2){border-radius:100px;background:#CF9FFF;margin:0 5%;}
+footer .step2 span:nth-child(3){border-radius:100px;background:#99CC00}
+footer .step3 img{width:50%;margin-left:25%}
+footer .step3 button{height:38px;margin:15px 15% 20px;border:0;border-radius:5px;background:#FF6666;font-size:16px;color:#fff;width:70%}
+footer .step4 img{width:50%;margin-left:25%}
+footer .step4 p{text-align: center;font-size:14px;line-height:24px;color:#666;}
+
+
+/*兼容部分*/
+@media screen and (max-width:330px){
+	footer .operation{clear: both;background:#FF4D4D;height:50px;color:#fff;width:98%;margin:20px 1%;border-radius:8px;line-height:50px;font-size:12px;}
+	footer .operation u{text-decoration:none;border:1px solid #fff;border-radius:100px;width:14px;height:14px;line-height:14px !important;display:inline-block;font-size:11px;position: relative;top:-1px;margin:0 5px;}
+}
+
+
+/* Retina 适配 */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2.0),
+only screen and (min--moz-device-pixel-ratio: 2.0),
+only screen and (-o-min-device-pixel-ratio: 200/100),
+only screen and (min-device-pixel-ratio: 2.0) {
+    .infoList li i{
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+}
+
+/* 三倍屏 适配 */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2.5),
+only screen and (min--moz-device-pixel-ratio: 2.5),
+only screen and (-o-min-device-pixel-ratio: 250/100),
+only screen and (min-device-pixel-ratio: 2.5) {
+    .infoList li i{
+        -webkit-transform: scaleY(0.33333334);
+        transform: scaleY(0.33333334);
+    }
+}

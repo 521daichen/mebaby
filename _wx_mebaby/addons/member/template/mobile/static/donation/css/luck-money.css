@@ -1,0 +1,15 @@
+*{padding:0;margin:0}
+html,body{}
+.luck-money{background:rgba(0,0,0,.8) url(../img/light.png) center center no-repeat;background-size: 100% auto;width:100%;height:100%;position:fixed;left:0;top:0;display:none;z-index:999}
+.luck-money .luck-packet{background:url(../img/packet.png) no-repeat;background-size:100% auto;width:70%;padding-top:112%;margin-left:15%;margin-top:10%}
+.luck-money .packet-state1{background-position:center 21.54%;}
+.luck-money .packet-state2{background-position:center 43.05%;}
+.luck-money .packet-state3{background-position:center 64.55%;}
+.luck-money .packet-state4{background-position:center 86.08%;}
+.luck-money .packet-state5{background-position:center 107.6%;}
+.luck-money .packet-state5{background:none}
+.luck-money .coupon-show{background:url(../img/coupon.png) no-repeat;background-size:100% auto;width:80%;padding-top:83%;position: absolute;left:10%;top:20%;z-index: 999;display: block}
+.smallpacket{display:none;width:16%;height:14%;background:url(../img/packet.png) no-repeat;background-position:center 4%;background-size:100% auto;position: fixed;right:2em;bottom:16%;-webkit-transform:rotate(10deg);}
+.close{background:#C22311;width:20%;height:40px;position: absolute;top:0;right:0;color:#fff;font-size:1em;line-height:42px;text-align: center;z-index:999}
+.luck-money .luck-packet p{text-align: center;color:#D72A17;position: absolute;top:0;font-size:1.5em;width:100%;display:block;line-height:3.5em;}
+.luck-money .luck-packet p strong{font-size: 4em;display: block;}

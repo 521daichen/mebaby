@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>上传成功</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+		background: #ffffff;
+	}
+	img{
+		width:100%;
+		display: block;
+		height:100%;
+	}
+	h1{
+		font-weight: normal;
+		color: #fb9e8f;
+		font-size: 20px;
+	}
+	p{
+		color: #969696;
+		margin-top: -10px;
+		margin-right: 10px;
+		font-size:14px;
+	}
+	textarea {
+  		-webkit-appearance: none;
+	}
+	.customTitle{
+		width: 47%;
+		margin: 10px 10px 5px 0;
+		height: 20px;
+		padding:2%;
+		border: 1px #ffc3b9 solid;
+		border-radius: 5px;
+		font-size: 20px;
+		color:#ffc3b9;
+	}
+	.customPara{
+		width: 47%;
+		margin: 0 10px 0 0;
+		height: auto;
+		padding:2%;
+		border: 1px #ffc3b9 solid;
+		border-radius: 5px;
+		font-size: 16px;
+		color: #ababab;
+	}
+	.list{
+		width: 94%;
+		margin: 20px auto;
+		padding:2%;
+		background: #fef3eb;
+		overflow: hidden;
+	}
+	.list2{
+		padding:2%;
+		width: 94%;
+		margin: 20px auto;
+		background: #fef3eb;
+		overflow: hidden;
+	}
+	.list2 img{
+		width:80%;
+		margin-left:10%;
+		}	
+	.listPic{&nbsp;
+		width:100%;
+		height:150px;
+	}
+	.buttonDiv{
+		width:90%;
+		margin:20px auto;
+	}
+	a{
+		text-decoration: none;
+	}
+	.shuoming{
+		width: 100%;
+		background: #fff4ee;
+	}
+	.shuoming h1{
+		color: #fb9e8f;
+		font-size: 1.2em;
+		padding:10px 0 10px 20px;	
+		margin: 0
+	}
+	.shuoming p{
+		font-size:.7em;
+		color: #afafaf;	
+		padding:0 20px 20px 20px;
+		margin: 0	
+	}
+	</style>
+</head>
+<body>
+	<img class="top" src="../addons/member/template/mobile/static/activity/2016520/top.png">
+	<img src="../addons/member/template/mobile/static/activity/2016520/uploadTitle.png">
+    <a href="{$_W['root']}/app/index.php?i=4&c=entry&do=520DayStep2&m=member&tempId=1">
+	<div class="list">
+		<img class="listPic" src="../addons/member/template/mobile/static/activity/2016520/listPic1.png">
+		<h1>和美食的浪漫邂逅之旅</h1>
+		<p>周末诚挚邀请美丽大方的你，同帅气绅士的我一起来场浪漫的烛光晚餐，乘着亚洲第一梯去赛格国际7F的西堤厚牛排一起感受美食萦绕舌尖的滋味，品尝红酒挂杯入喉的优雅；</p>
+	</div>
+    </a>
+    <a href="{$_W['root']}/app/index.php?i=4&c=entry&do=520DayStep2&m=member&tempId=2">
+	<div class="list">
+		<img class="listPic" src="../addons/member/template/mobile/static/activity/2016520/listPic2.png">
+		<h1>快乐相伴的甜蜜玩乐之旅</h1>
+		<p>穿过赛格国际B2层人潮的我会紧紧拉住你的手，陪你去吃你最爱的许留山，看着你吃芒果西米捞时心的像个孩子，虽然你一边吃一边抱怨自己又胖了，但你在我眼中永远是最美；</p>
+	</div>
+    </a>
+	<a href="{$_W['root']}/app/index.php?i=4&c=entry&do=520DayStep2&m=member&tempId=3">
+    <div class="list2">
+		<img src="../addons/member/template/mobile/static/activity/2016520/plus.png" />
+	</div>
+    </a>
+	<div class="shuoming">
+		<h1>活动说明</h1>
+		<p>1、参与本活动，上传你与TA的合影，并写出你对TA的表白语，发给你要表白的对象，得到回应（消息被点开）就有机会获得赛格集团100元心意金（购物卡）。（赛格国际购物中心、赛格电脑商城两店通用）<br/>2、获奖名单将于下次微信推送时公布，敬请关注。</p>
+	</div>
+	<!-- <div class="buttonDiv"><img src="images/button4.png"></div> -->
+
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$sharData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520Day&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/20160520/share2.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$sharData['title']}", // 分享标题
+            desc:  "{$sharData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520Day&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/20160520/share2.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+   });
+
+</script>
+
+</body>
+
+</html>

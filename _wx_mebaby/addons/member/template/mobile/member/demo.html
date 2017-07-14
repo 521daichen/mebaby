@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>领券</title>
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+</head>
+<style>
+    body,html,p,ul,li{outline: none; padding:0;margin:0}
+    body{background: #EE175A;padding-bottom: 15em !important;}
+    header img{width:100%}
+    section li {padding:0.6em 0 0}
+    section li img{width:90%;margin-left:5%;}
+    footer{display: block;width:90%;margin-left: 5%;margin-top:0.8em;}
+    .hdsm{background:#FDDDE7;width:92%;color: #ED1759;float: left;border-radius: 10px;padding:4%;line-height:1.6em;font-size:1em;}
+    footer a{display: block;background:#FDDDE7;width: 92%;float: left;border-radius: 10px;padding:4%;text-align: center;margin-top:0.5em}
+    .q1,.q2,.q3,.q4{display: none}
+    footer a img{width:60%;}
+    @-webkit-keyframes myfirst
+    {
+        from {-webkit-transform: scale(1.4,1.4);opacity: 0.1}
+        to {-webkit-transform: scale(1,1);opacity: 1}
+    }
+    .action
+    {
+        -webkit-animation: myfirst 0.8s;
+    }
+</style>
+<body>
+
+<header><img src="/static/img/duanwu/top.png" /></header>
+
+<footer>
+    <div class="hdsm">活动说明：<br>
+        优惠券领取后，可点击微信“我”—“卡包”查看并了解优惠券详情；<br>
+        使用优惠券须持赛格双重质保小票至赛格统一收银台付全款；</div>
+    <!--    <a href=""><img src="/static/img/duanwu/more.png" /></a>-->
+</footer>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+    wx.config({
+        debug: true,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+
+
+
+
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: '赛格年中庆 礼物全都在这里', // 分享标题
+            link: 'http://weixin.cnsaga.com/duanwu', // 分享链接
+            imgUrl: 'http://weixin.cnsaga.com/static/img/duanwu/duanwu.png', // 分享图标
+            success: function (res) {
+                $.post('/shareCount',{ "openid": "{{ openid }}","tag":"26" })
+//				alert(JSON.stringify(res.cardList));
+                // 用户确认分享后执行的回调函数
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '赛格年中庆 礼物全都在这里', // 分享标题
+            desc: '听说你要来赛格买东西，这里有优惠券，请笑纳。', // 分享描述
+            link: 'http://weixin.cnsaga.com/duanwu', // 分享链接
+            imgUrl: 'http://weixin.cnsaga.com/static/img/duanwu/duanwu.png', // 分享图标
+            success: function (res) {
+                $.post('/shareCount',{ "openid": "{{ openid }}","tag":"25" })
+//				alert(JSON.stringify(res.cardList));
+                // 用户确认分享后执行的回调函数
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
+

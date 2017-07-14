@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$_W['page']['title']}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/coupon.css" rel="stylesheet" type="text/css">
+</head>
+<style type="text/css">
+    .piao{width:310px;margin:1em auto;}
+    .logo{width:200px !important;margin:1em auto 1em;display:block;}
+    table{padding:0;margin:0;border-spacing:0;font-size:1em;color:#555}
+    td{background:#fff;line-height:2em;}
+    td:nth-child(1) img{width:100%;}
+    .t1{background:none;line-height:0}
+    .t1 img{position: relative;top:3px;}
+    .t2{background:none;line-height:0}
+    .t2 img{position: relative;bottom:3px;}
+    .line{line-height:2em;background:url(../addons/member/template/mobile/static/img/dotted.png) repeat-x center center;}
+    .line span{background:#fff;padding:0 .5em}
+    .main{padding:0 1.8em;font-size:.8em;}
+</style>
+<body>
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <span>电子小票</span>
+</header>
+<div class="clr"></div>
+<section>
+
+    <table border="0" cellpadding="0" cellspacing="0" class="piao">
+        <tr>
+            <td colspan="4" class="t1" valign="bottom"><img src="../addons/member/template/mobile/static/img/toothtop.png" /></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="main">
+                <table border="0" cellpadding="0" cellspacing="0" >
+                    <tr>
+                        <td colspan="4"><img src="../addons/member/template/mobile/static/img/sagabuyLogo.png" class="logo"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center" class="line"><span>顾客联</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >收银员：{$billInfo['UserId']}</td>
+                        <td colspan="2" >收款台：{$billInfo['PosId']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">交易时间：{$billInfo['PayDateTime']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center" class="line" >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center">名称</td>
+                        <td align="center">单价</td>
+                        <td align="center">折扣</td>
+                        <td align="center">金额</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center" class="line" >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">订单号：{$billInfo['MisRetail']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >门店号：01</td>
+                        <td colspan="2" >金额：{$billInfo['PayMoney']}</td>
+                    </tr>
+                    {loop $billInfo['PluList'] $vo}
+                    <tr>
+                        <td colspan="4">{$vo['PluName']}（{$vo['PluId']}）* {$vo['Num']}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>{$vo['Price']} 元</td>
+                        <td>{if empty($vo['Disaccount'])}0.00{else}{$vo['Disaccount']}{/if}</td>
+                        <td>{$vo['Money']} 元</td>
+                    </tr>
+                    {/loop}
+                    <tr>
+                        <td colspan="4" align="center" class="line" >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >折扣合计：</td>
+                        <td colspan="2" align="right">{$billInfo['Disaccount']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >本票小结：</td>
+                        <td colspan="2" align="right">{$billInfo['PayMoney']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="center" class="line" >&nbsp;</td>
+                    </tr>
+                    {loop $billInfo['BankList'] $bank}
+                    <tr>
+                        <td colspan="2">银联卡：{$bank['CardNo']}</td>
+                        <td colspan="2"  align="right">{$band['Amount']}</td>
+                    </tr>
+                    {/loop}
+                    <tr>
+                        <td colspan="4">会员卡：{$billInfo['CardId']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" >本次积分：{$billInfo['Total']}</td>
+                        <td colspan="2" align="right">累计积分：{$_GPC['score']}</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">赛格客户服务中心：029-86300000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">此联备退换商品时使用 ，如需开票，请您在购物自然月内换开！</td>
+                    </tr>
+
+                    <!--<tr>
+                        <td colspan="4" align="center" class="line"><span>条码栏</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><img src="../addons/member/template/mobile/static/img/ashcode.png" class="logo" /></td>
+                    </tr>-->
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="t2" valign="top"><img src="../addons/member/template/mobile/static/img/toothfoot.png" /></td>
+        </tr>
+    </table>
+
+</section>
+<div class="clr"></div>
+<footer><br><br></footer>
+</body>
+</html>

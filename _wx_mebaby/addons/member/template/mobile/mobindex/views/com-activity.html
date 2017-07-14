@@ -1,0 +1,24 @@
+<div class="header">
+    <div class="banner">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/banner-2.png" alt=""/>
+    </div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="com">
+    <h3 class="com-title">品牌活动</h3>
+    <ul>
+        <li ng-repeat="acts in actList">
+            <div class="news-pic">
+                <img ng-src='http://www.sagabuy.com{{acts.titlepic}}' alt=""/>
+            </div>
+            <div class="news-det">
+                <h5>{{acts.title}}</h5>
+                <div><span class="time-icon"></span><i class="time">{{acts.newspath}}</i></div>
+            </div>
+
+            <a href="#/com-details/{{acts.id}}">
+                <img class="news-right" ng-src="../addons/member/template/mobile/mobindex/images/clickright.png" alt=""/>
+            </a>
+        </li>
+    </ul>
+</div>

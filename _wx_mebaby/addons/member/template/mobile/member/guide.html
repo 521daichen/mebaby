@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>赛格国际购物中心</title>
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/> 
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/guide/sheets/parallax.css">
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/guide/sheets/parallax-animation.css">
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/guide/sheets/style.css">
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/guide/sheets/animate.css">
+</head>
+<body>
+<!--场景翻页-->
+<div class="wrapper">
+    <div class="pages">
+	     <!-- 第1屏 -->
+        <section class="page1 page"></section>
+        <!-- 第2屏 -->
+
+
+        {if $identifier == 0}
+        <section class="page2 page">
+		    <!--寻车↓-->
+            <!--<div class="gain1">已获取</div> -->
+            <div class="ungain1">未获取</div>
+
+            <!--微信支付↓-->
+            <!-- <div class="gain2">已获取</div> -->
+            <div class="ungain2">未获取</div>
+        
+		    <!--积分抵扣↓-->
+            <!--<div class="gain3">已获取</div> -->
+            <div class="ungain3">未获取</div>
+        
+		    <!--自动交费↓-->
+            <!--<div class="gain4">已获取</div> -->
+            <div class="ungain4">未获取</div>
+
+           <!--黄色按钮↓-->
+           <div class="state"><a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&eid=1"><img src="../../addons/member/template/mobile/static/guide/images/state1.png" /></a></div> <!--状态1：未注册-->
+           <!--<div class="state"><img src="static/img/state2.png" /></div> 状态2：已注册未绑定车牌-->
+           <!--<div class="state"><img src="static/img/state3.png" /></div> 状态3：已注册已绑定未签约-->
+           <!--<div class="state"><img src="static/img/state4.png" /></div> 状态4：已注册并绑定并签约全齐活-->
+           <div class="more" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Benefit&m=member';">了解全部会员权益</div>
+        </section>
+        {/if}
+
+
+
+        {if $identifier == 1}
+        <section class="page2 page">
+            <!--寻车↓-->
+            <div class="gain1">已获取</div>
+            <!--<div class="ungain1">未获取</div> -->
+
+            <!--微信支付↓-->
+            <!-- <div class="gain2">已获取</div> -->
+            <div class="ungain2">未获取</div>
+
+            <!--积分抵扣↓-->
+            <!--<div class="gain3">已获取</div> -->
+            <div class="ungain3">未获取</div>
+
+            <!--自动交费↓-->
+            <!--<div class="gain4">已获取</div> -->
+            <div class="ungain4">未获取</div>
+
+            <!--黄色按钮↓-->
+            <!--<div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state1.png" /></div> -->
+            <!--状态1：未注册-->
+            <div class="state"><a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=bindPlateNumberOnlyOne&m=member"><img src="../../addons/member/template/mobile/static/guide/images/state2.png" /></a></div> <!-- 状态2：已注册未绑定车牌-->
+            <!--<div class="state"><img src="static/img/state3.png" /></div> 状态3：已注册已绑定未签约-->
+            <!--<div class="state"><img src="static/img/state4.png" /></div> 状态4：已注册并绑定并签约全齐活-->
+            <div class="more" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Benefit&m=member';">了解全部会员权益</div>
+        </section>
+        {/if}
+
+
+        {if $identifier == 2}
+        <section class="page2 page">
+            <!--寻车↓-->
+            <div class="gain1">已获取</div>
+            <!--<div class="ungain1">未获取</div> -->
+
+            <!--微信支付↓-->
+            <div class="gain2">已获取</div>
+            <!--<div class="ungain2">未获取</div> -->
+
+            <!--积分抵扣↓-->
+            <div class="gain3">已获取</div>
+            <!--<div class="ungain3">未获取</div> -->
+
+            <!--自动交费↓-->
+            <!--<div class="gain4">已获取</div> -->
+            <div class="ungain4">未获取</div>
+
+            <!--黄色按钮↓-->
+            <!--<div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state1.png" /></div> -->
+            <!--状态1：未注册-->
+            <!--<div class="state"><img src="static/img/state2.png" /></div> <!-- 状态2：已注册未绑定车牌-->
+            <div class="state"><a href="{$linkSerial}"><img src="../../addons/member/template/mobile/static/guide/images/state3.png" /></a></div>
+            <!--  状态3：已注册已绑定未签约 -->
+            <!--<div class="state"><img src="static/img/state4.png" /></div> 状态4：已注册并绑定并签约全齐活-->
+            <div class="more" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Benefit&m=member';">了解全部会员权益</div>
+        </section>
+        {/if}
+
+
+
+        {if $identifier == 3}
+        <section class="page2 page">
+            <!--寻车↓-->
+            <div class="gain1">已获取</div>
+            <!--<div class="ungain1">未获取</div> -->
+
+            <!--微信支付↓-->
+            <div class="gain2">已获取</div>
+            <!--<div class="ungain2">未获取</div> -->
+
+            <!--积分抵扣↓-->
+            <div class="gain3">已获取</div>
+            <!--<div class="ungain3">未获取</div> -->
+
+            <!--自动交费↓-->
+            <div class="gain4">已获取</div>
+            <!--<div class="ungain4">未获取</div> -->
+
+            <!--黄色按钮↓-->
+            <!--<div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state1.png" /></div> -->
+            <!--状态1：未注册-->
+            <!--<div class="state"><img src="static/img/state2.png" /></div> <!-- 状态2：已注册未绑定车牌-->
+            <!-- <div class="state"><img src="static/img/state3.png" /></div> -->
+            <!--  状态3：已注册已绑定未签约 -->
+            <div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state4.png" /></div> <!-- 状态4：已注册并绑定并签约全齐活-->
+            <div class="more" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Benefit&m=member';">了解全部会员权益</div>
+        </section>
+        {/if}
+
+
+        {if $identifier == 10}
+        <section class="page2 page">
+            <!--寻车↓-->
+            <div class="gain1">已获取</div>
+            <!--<div class="ungain1">未获取</div> -->
+            <!--微信支付↓-->
+            <div class="gain2">已获取</div>
+            <!--<div class="ungain2">未获取</div> -->
+            <!--积分抵扣↓-->
+            <!-- <div class="gain3">已获取</div> -->
+            <div class="ungain3">未获取</div>
+
+            <!--自动交费↓-->
+            <div class="gain4">已获取</div>
+            <!--<div class="ungain4">未获取</div> -->
+
+            <!--黄色按钮↓-->
+            <!--<div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state1.png" /></div> -->
+            <!--状态1：未注册-->
+            <div class="state"><img src="../../addons/member/template/mobile/static/guide/images/state2.png" /></div> <!-- 状态2：已注册未绑定车牌-->
+            <!-- <div class="state"><img src="static/img/state3.png" /></div> -->
+            <!--  状态3：已注册已绑定未签约 -->
+            <!-- <div class="state"><img src="static/img/state4.png" /></div> <!-- 状态4：已注册并绑定并签约全齐活-->
+            <div class="more" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Benefit&m=member';">了解全部会员权益</div>
+        </section>
+        {/if}
+
+
+
+    </div>
+</div>
+
+<script src="../../addons/member/template/mobile/static/guide/js/zepto.min.js"></script>
+<script src="../../addons/member/template/mobile/static/guide/js/parallax.js"></script>
+<script>
+$('.pages').parallax({
+    direction: 'vertical',   
+    swipeAnim: 'default',     
+    drag:      true,         
+    loading:   true,       
+    indicator: false,     
+    arrow:     true,     
+ 
+    onchange: function(index, element, direction) {
+ 
+    },
+ 
+    orientationchange: function(orientation) {
+    } 
+});
+ 
+ 
+
+</script>
+</body>
+</html>

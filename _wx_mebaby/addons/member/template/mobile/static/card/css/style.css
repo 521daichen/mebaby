@@ -1,0 +1,108 @@
+charset "utf-8";
+/* CSS Document */
+/*初始化样式*/
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,header,hgroup,nav,section,article,aside,footer,figure,figcaption,menu,button{margin:0; padding:0;}
+html{min-height:100%;}
+body{color:#fff100; min-height:100%; font-family:'Myriad Set Pro','Myriad Pro','Microsoft Yahei',SimSun,Arial; font-size:0.7rem; padding:0px; margin:0px;}
+ul,li{list-style-type:none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal;}
+img{border:0; width:100%;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+} 
+em{font-style:normal;}
+table{border-collapse:collapse;}
+input{border:none;}
+input:focus{outline:none;}
+textarea{-webkit-appearance:none;}
+textarea:focus{outline:none;}
+a{text-decoration:none;}
+.leftF{float:left;}
+.rightF{float:right;}
+.bg{ background:#e60119;}
+section{padding-top:0.4em}
+ul,li{list-style-type:none;}
+iframe{margin:0 auto;width:320px;height:320px;display:block;}
+#page1 video{width:320px;display:block;margin:0 auto}
+#page1 img{width:90%;display:block;margin:0 auto}
+.sys{background:#238C00;border-radius:10px;color:#fff;width:80%;margin:0 auto;font-size:1em;border:0;height:2.8em;line-height:2.8em;display:block;}
+p{background:#F7F7F7;border-radius:10px;width:74%;margin-left:10%;padding:3%;line-height:1.6em;margin:1em auto;font-size:.8em}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+} 
+#page2{display:none}
+#page2 h1{width:80%;text-align:center;margin-left:10%;padding-top:20%;color:#DA054D;text-align:center}
+#page2 img{display:block;width:60%;margin:5% auto}
+#page2 button{background:#238C00;border-radius:10px;color:#fff;width:80%;margin:0 auto;font-size:1em;border:0;height:3em;line-height:3em;display:block;}
+
+.shopInfo{font-size:1.2em;}
+.shopInfo ul{padding:0 .6em .6em}
+.shopInfo li:nth-child(1){text-align: center;font-size:1.2em;background:#efefef;display:block;position:relative;top:-10px;left:-20px;width:290px;}
+.shopInfo li{line-height:2em;list-style:none}
+.shopInfo li input{height:2em;font-size:1em;width:99%;border:1px solid #ccc;background:#efefef;border-radius:10px;}
+.shopInfo li button{border:1px solid #238C00;background:#238C00;border-radius:10px;color:#fff;width:100%;margin:0 auto;font-size:1em;border:0;height:2.4em;margin-top:0.6em;line-height:2.4em;display:block;}
+/*首页*/
+
+.head{
+	padding:1rem 0;
+	width:100%;
+	}	
+.scan{
+	margin-left:35%;
+	width:30%;
+	}
+.btn{
+	padding-top:0.5rem;
+	width:100%;
+	}
+#btn{ background:#e6001a;}	
+.btn .sys{
+	text-align:center;
+	display:block;
+	margin-left:15%;
+	width:70%;
+	color:#282816;
+	background:#ffff43;
+	height:1.8rem;
+	line-height:1.8rem;
+	border-radius:0.2rem;
+	}	
+.rule{
+	margin-top:1.5rem;
+	width:100%;
+	}
+.rule_title{
+	text-align:center;
+	background:url(../video/lin.gif) repeat-x center left;
+	background-size:1.5%;
+	}
+.rule_title h4{
+	background:#e60119;
+	padding:0 1%;
+	width:50%;
+	margin-left:24%;
+	}		
+.rule_title span{
+	background:#7a338f;
+	border-radius:10rem;
+	line-height:1.5rem;
+	width:100%;
+	display:block;
+	}	
+.rule ul{
+	padding:0px;
+	font-size:.5rem;
+	margin-top:0.5rem;
+	width:88%;
+	margin-left:6%;
+	}
+.rule ul li{
+	margin-bottom:0.1rem;
+	line-height:.8rem;}	
+.rule ul strong{
+	padding-right:0.3rem;
+	}	
+.tip{
+	text-align:center;
+	font-size:2rem;	
+	}	

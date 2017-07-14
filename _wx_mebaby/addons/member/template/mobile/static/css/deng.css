@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;list-style-type:none}
+body{font-size:16px;background:#E9E9E9;}
+a{text-decoration: none;color:#000}
+.clr{height:0.8em;width:100%;clear:both;}
+
+.deng{width:280px;margin:6em auto;text-align:center}
+.deng img{width:100%;display: block;}
+.deng .box{background:#fff;border-radius:65px;padding:1.3em 1.5em 1.5em}
+.deng .box span{height:auto;line-height:1.4em;font-size:1em;display: block;width:100%;padding:0.4em 0 0.6em}
+.deng .box a{padding:0.2em 1.2em;font-size:1.2em;border-radius:8px;text-align:center;color:#fff;background:#FBAA31}

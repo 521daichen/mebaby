@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>积分换电影券</title>
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+</head>
+<style>
+    *{padding:0;margin:0}
+    body{background:#F14E2F}
+    img{width:100%;display:block}
+    .ts1{font-size:1.6em;color:#fff;text-align:center;padding:0.5em 0 1em;}
+    .text{font-size:1em;color:#fff;width:80%;margin:0 auto;line-height:1.8em;padding:0 0 2em;text-align:center}
+    .sm{color:#fff;width:80%;margin: 0 auto;line-height:1.6em;background:#EF7B4A;padding:12px;border-radius:10px;font-size:.8em}
+    .ts1 span{display:inline-block;width:20%;position: relative;top:10px;}
+    .ts1 u{font-size:.6em;text-decoration:none}
+    .text strong{padding:3px 5px;background:#FFEEB6;border-radius:4px;color:#ff0000}
+</style>
+<body>
+<img src="../addons/member/template/mobile/static/img/top.png" />
+{if $_GPC['source'] == 'offline'}
+
+<div class="ts1">
+    {if empty($isSub)}
+           对不起，你没有关注微信
+    {else}
+
+        {if empty($bind)}
+            你没有绑定微会员
+        {else}
+
+            {if !empty($score)}
+
+                {if !empty($status)}
+                   <span><img src="../addons/member/template/mobile/static/img/moviev.png" /></span>恭喜！成功兑换<br>20元电影抵价券
+                {else}
+                   <span><img src="../addons/member/template/mobile/static/img/moviex.png" /></span>抱歉，您已领取过<br><u>领取时间：{$time}</u>
+                {/if}
+
+            {else}
+                <span><img src="../addons/member/template/mobile/static/img/moviex.png" /></span>您的积分不足！<br>
+            {/if}
+
+        {/if}
+
+    {/if}
+</div>
+{/if}
+
+
+
+<div class="text"><strong>注意：请不要关闭此页面</strong><br>出示给工作人员后领取电影抵价券</div>
+<div class="sm">
+    <strong>使用须知：</strong><br>
+    1.	打开大众点评APP进入电影频道；<br>
+    2.	选择对应影院、影片场次和座位；<br>
+    3.	在支付页面抵用券/优惠码栏输入换电影抵价券码即可立减；<br>
+    4.	本活动兑换电影抵价券为大众点评APP专享，每位用户限使用一张，同一账号、手机号、移动设备、银行卡、支付账号、会员账户不能重复参加此活动。<br>
+</div>
+<br><br>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@charset "utf-8";
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+body{background:#fff;-webkit-text-size-adjust:100%;}
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal} li{list-style:none}
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+
+
+header{line-height:80px;padding-top:47%;width:100%;display:block;clear:both;background:url(/addons/member/template/mobile/static/skin2016/img/infoTop.png);background-size:100% auto;color:#fff;font-size:1.2em;text-align:right;padding-right:1em;box-sizing:border-box;text-shadow:0 0 1px #000;}
+section{padding:1em;line-height:1.8em;}
+h1{font-size:1em;color:#A28362;border-bottom:1px dotted #E4DCD4;margin-bottom:.5em;padding:.6em 0;}
+h2{font-size:1em;color:#A28362;padding-left:1.2em;}
+h3{font-size:0.8em;color:#A28362;padding-left:2.2em;}
+p{word-wrap:break-word;font-size:.8em;color:#666;padding-bottom:1em;padding-left:2.4em;}

@@ -1,0 +1,371 @@
+<!DOCTYPE html><head>
+<meta charset="utf-8"> 
+<title>{$_W['page']['title']}</title>
+<meta name="keywords" content=""> 
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/frozen.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/base.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/center.css" />
+</head>
+
+<style type="text/css">
+.ui-text1{
+	position:absolute;
+	top:15px;
+	right:10px;
+	font-size:12px;	
+	}
+</style>
+<body>
+<header>
+	<div class="ui-topBox">
+        <div class="ui-couponBox">
+	        {if $fans['cardid'] == 0}
+	        <a href="{$_W['siteroot']}app/index.php?i=4&c=entry&do=userRegist&m=member">
+            <img src="../addons/member/template/mobile/static/img/nocard.png" /></a>
+	        {else}
+            <img src="../addons/member/template/mobile/static/img/coupon.png" />
+			{/if}
+			{if $fans['cardid'] != 0}
+            <div class="ui-text">
+                <P class="ui-p1">卡号：{$fans['cardid']}</P>
+                <P class="ui-p2">等级：{$fans['cardType']}</P>
+                <P class="ui-p3">积分：{$fans['score']}</P>
+            </div>
+            {/if}
+            <div class="ui-text1" > {$fanInfo['fanid']} </div>
+       </div>
+    </div>
+</header> 
+<section>
+<!-- 积分相关 -->
+     <ul class="ui-list ui-list-link ui-list-text border-list ui-boxlist">
+        <li class="ui-widthLi ui-widthLi-borderRight ui-widthLi-borderBottom">
+            <div class="ui-avatar">
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-shopPoint.png')"></span>
+            </div>
+            {if $fans['cardid'] == 0}
+            <div class="ui-list-info">
+                <h4 class="ui-nowrap">会员积分</h4>
+                <p class="ui-nowrap">激活会员显示积分</p>
+            </div>
+            {else}
+            <div class="ui-list-info">
+                <h4 class="ui-nowrap">会员积分</h4>
+                <p class="ui-nowrap">{$fans['erpScore']}分</p>
+            </div>
+            {/if}
+        </li>
+        <li class="ui-widthLi ui-widthLi-borderBottom">
+            <div class="ui-avatar">
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-parkPoint.png')"></span>
+            </div>
+            {if $fans['cardid'] == 0}
+            <div class="ui-list-info ">
+                <h4 class="ui-nowrap">停车专用积分</h4>
+                <p class="ui-nowrap">激活会员送积分</p>
+            </div>
+            {else}
+            <div class="ui-list-info ">
+                <h4 class="ui-nowrap">停车专用积分</h4>
+                <p class="ui-nowrap">{$fans['parkScore']}分</p>
+            </div>
+            {/if}
+        </li>
+        <li class="ui-widthLi  ui-widthLi-borderRight"> <!--  onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=donationScore&m=member';">
+            -->  <div class="ui-avatar">
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-presentPoint.png')"></span>
+            </div>
+            <div class="ui-list-info">
+                <h4 class="ui-nowrap">积分转赠</h4>
+                <p class="ui-nowrap">可将积分转赠给好友</p>
+            </div>
+        </li>
+        
+<!-- <li class="ui-widthLi" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=donationList&m=member'">
+--> 
+<li class="ui-widthLi" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=donationList&m=member'">
+
+
+            <div class="ui-avatar">
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-pointRecord.png')"></span>
+            </div>
+            <div class="ui-list-info">
+                <h4 class="ui-nowrap">转赠记录</h4>
+                <p class="ui-nowrap">查看积分转赠明细</p>
+            </div>
+        </li>
+        <div class="ui-divide"></div>
+    </ul>
+<!-- 停车服务 -->
+     <div class="ui-parkService">停车服务</div>
+     <ul class="ui-bg-fff">
+	    {if $fans['cardid'] == 0}
+        <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="alert('请激活您的会员卡后完成车牌号的绑定');">
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-plateBound.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap">绑定车牌号</h4>
+            </div>
+        </li>
+        {else}
+		<li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=plateNumber&m=member';">
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-plateBound.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap">绑定车牌号</h4>
+            </div>
+        </li>
+        {/if}
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=parkpay&m=member';">
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-parkInfo.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >停车信息查询</h4>
+            </div>
+        </li>
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{php echo $fans['serial']}';" >
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-autoPay.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >自动交费</h4>
+            </div>
+        </li>
+         <li class="ui-widthLi2" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=Papinfo&m=member';" >
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-payment.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >停车交费记录</h4>
+            </div>
+        </li>
+        <div class="ui-divide"></div>
+     </ul>
+<!-- 会员服务 -->
+     <div class="ui-parkService">会员服务</div>
+     <ul class="ui-bg-fff">
+
+      <!--
+	    {if $fans['cardType'] != 'VVVIP' }
+	    {if $fans['isValued'] == 0}
+	    <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="registValuedMember({$fans['uid']})">
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-vvvip.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" id="applytext">申请高级会员</h4>
+            </div>
+        </li>
+         {/if}
+
+         {if $fans['isValued'] == 1}
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="applying()">
+             <div class="ui-avatar ui-icon-s2" >
+                 <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-vvvip.png')"></span>
+             </div>
+             <div class="ui-panel-info" >
+                 <h4 class="ui-nowrap" >申请中...</h4>
+             </div>
+         </li>
+         {/if}
+
+
+         {if $fans['isValued'] == 3}
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="reapplying({$fans['uid']})">
+             <div class="ui-avatar ui-icon-s2" >
+                 <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-vvvip.png')"></span>
+             </div>
+             <div class="ui-panel-info" >
+                 <h4 class="ui-nowrap" >二次申请</h4>
+             </div>
+         </li>
+         {/if}
+
+         {if $fans['isValued'] == 10}
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="applying()">
+             <div class="ui-avatar ui-icon-s2" >
+                 <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-vvvip.png')"></span>
+             </div>
+             <div class="ui-panel-info" >
+                 <h4 class="ui-nowrap" >二次申请中</h4>
+             </div>
+         </li>
+         {/if}
+
+         -->
+        {/if}
+        <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{$_W['siteroot']}app/index.php?i=4&c=entry&do=showRights&m=member';">
+            <div class="ui-avatar ui-icon-s2" >                                                 
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-vvvip.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >高级会员介绍</h4>
+            </div>
+        </li>
+        <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{$_W['siteroot']}/app/index.php?i=4&c=entry&do=PersonalInfo&m=member';" >
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-memberInfo.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >会员信息</h4>
+            </div>
+        </li>
+         <li class="ui-widthLi2 ui-widthLi-borderRight" onclick="location.href='{php echo $this->createMobileUrl('coupons')}';" >
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-memberCoupon.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >我的电子券</h4>
+            </div>
+        </li>
+         <li class="ui-widthLi2" onclick="location.href='{php echo $this->createMobileUrl('goods')}';">
+            <div class="ui-avatar ui-icon-s2" >
+                <span style="background-image:url('../addons/member/template/mobile/static/skin2016/img/icon/icon-pointRecord.png')"></span>
+            </div>
+            <div class="ui-panel-info" >
+                <h4 class="ui-nowrap" >购物记录</h4>
+            </div>
+        </li>
+        <div class="ui-divide"></div>
+     </ul>
+</section>
+<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/lib/zepto.min.js"></script>
+<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/js/frozen.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+
+
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+     wx.ready(function(){
+         /**wx.hideMenuItems({
+                menuList: [
+                    "menuItem:share:appMessage",
+                    "menuItem:share:timeline",
+                    "menuItem:favorite"
+                ]
+                // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });**/
+        wx.hideOptionMenu();
+    });
+
+
+   
+
+	function applying(){
+		layer.open({
+		    content: '<div style=\'text-align:center\'>尊敬的顾客，您的高级会员身份正在申请中<br><a href=\'{$_W["siteroot"]}app/index.php?i=4&c=entry&do=showRights&m=member\' style=\'color:#fff;text-decoration:underline !important;\'>点击提前查看高级会员特权</a></div>',
+		    style: 'background-color:#52277D; color:#fff;',
+		    time: 4
+		});
+	}
+    function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+            time: 2
+        });
+    }
+    function registValuedMember(uid) {
+        layer.open({
+            content: '您确认申请高级会员吗？申请成功后会有客服专员联系您',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            yes: function(){
+                $.post("{php echo $this->createMobileUrl('registValuedMember','',true)}",{"uid":uid},function(msg){
+                    if (msg.status){
+                        layer.open({
+                            content: msg.msg,
+                            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+                            time: 3
+                        });
+                        $('#applytext').html('申请中...');
+                        $('#applytext').css({'color':'#999'});
+//                        window.location.reload();
+                    } else {
+                        layer.open({
+                            content: msg.msg,
+                            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+                            time: 3
+                        });
+                    }
+                },'json')
+            }, no: function(){
+            }
+        });
+
+    }
+
+
+    function reapplying(uid) {
+        layer.open({
+            content: '您确认二次申请高级会员吗？此次申请将扣除您40000积分，审核成功后会有客服专员联系您',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            yes: function(){
+                $.post("{php echo $this->createMobileUrl('ReApplyinfo','',true)}",{"uid":uid},function(msg){
+                    if (msg.status){
+                        layer.open({
+                            content: msg.msg,
+                            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+                            time: 3
+                        });
+                        $('#applytext').html('申请中...');
+                        $('#applytext').css({'color':'#999'});
+//                        window.location.reload();
+                    } else {
+                        layer.open({
+                            content: msg.msg,
+                            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+                            time: 3
+                        });
+                    }
+                },'json')
+            }, no: function(){
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

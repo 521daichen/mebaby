@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>学霸，你的录取通知书到啦！</title>
+	<style type="text/css">
+	body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+	input[type="button"], input[type="submit"], input[type="reset"],select {-webkit-appearance: none;}
+	input {  -webkit-appearance: none;} 
+	body{
+		margin: 0;
+		padding: 0;
+		background:url('../addons/member/template/mobile/activity/20160715/template1/static/img/bg.png') repeat-y;
+	}
+	h1, h2{
+		font-weight: normal;
+	}
+	img{
+		width:100%;
+		height:100%;
+	}
+	.top,.photo{
+		display: block;
+	}
+	.picBox{
+		width: 94%;
+		height:15rem;
+		margin: 20px 3% 0 3%;
+		background: url('../addons/member/template/mobile/activity/20160715/template1/static/img/luqu.png') no-repeat;
+		background-size: 100%;
+		margin-bottom: 20px;
+		/*border:1px solid #fff;*/
+	}
+	.contentBox{
+		padding:0% 13% 0% 13%;
+		line-height:1.3rem;
+	}
+	.p1{
+		font-size: 0.8em;
+		padding-top:35px;
+	}
+	.p2{
+		width: ;
+		color: #d2891c;
+		font-size:1.2em;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.p3{
+		font-size: 0.8em;
+	}
+	.p4{
+		font-size: 0.8em;
+		text-indent: 2em;
+	}
+	.p5,.p6{
+		font-size: 0.8em;
+		text-align: right;
+	}
+	.p7{
+		width: 100%;
+		background: yellow;
+		padding: 15px;
+	}
+	label{
+		color: #fff;
+		width: 92%;
+		margin: 0 auto;
+		padding-left:4%;
+	}
+	select{
+		display: block;
+		width: 92%;
+		margin: 0.5rem auto 0.5rem;
+		padding:3%;
+		border: 2px #32705d solid;
+		border-radius: 5px;
+		color: #ababab;
+		background:#fff url(../addons/member/template/mobile/activity/20160715/template1/static/img/arrow.png) 97% center no-repeat;
+		background-size:20px 20px;
+	}
+	form{padding-top:1rem;}
+	.yourName{
+		background:#fff;
+		border:2px solid  #32705d;
+		width:87.5%;
+		margin-left:3%;
+		border-radius:5px;
+		padding:2%;
+		font-size:.8em;
+		line-height:1.6em;
+		margin-top:.5em;
+		margin-bottom:.5em;
+		color:#888
+	}
+	.quan{
+		width: 94%;
+		margin: 1.2rem 3% 0 3%;
+	}
+	.description{
+		width: 88%;
+		margin-left:3%;
+		margin-top:0.5rem;
+		margin-bottom: 50px;
+		background:#fff;
+		padding: 3%;
+		border-top:2px solid #EEE;
+		font-size:0.9rem;
+		border-radius: 8px;
+		line-height:1.6rem;
+		color:#224c3f;
+	}
+	.description strong{color:#224c3f;font-size:1.2em;}
+	.buttonDiv{
+		display:block;
+		width:92%;
+		margin:1rem auto 1.2rem;
+		font-size:1em;
+		height:34px;
+		border:0;
+		border-radius:5px;
+		color:#224c3f;
+		font-weight: bold
+	}
+	.Color1{background:#ffea02;}
+	.Color2{background:#74DDD3;}
+	/*遮罩层*/
+	.container{
+		position:fixed;
+		top:0;
+		left: 0;
+		width: 100%;
+		height:100%;
+		z-index: 100;
+		background: rgba(0, 0, 0,0.8);
+	}
+	.popupBox{
+		position: fixed;
+		left:5%;
+		top:20px;
+		z-index:1000;
+		width:90%;
+		margin: 0 auto;
+		background: #fef3eb;
+		padding-bottom:1em;
+	}
+	.popupBox input[type='radio']{border:1px solid #fb9e8f;height:14px;width:14px;-webkit-transform:translate(0,-1px);position: relative;}
+	.popupBox input:checked{background:#fb9e8f}
+	.popupBox h1{
+		color: #fb9e8f;
+		font-size: 16px;
+		text-align: center;
+		padding:18px 0 0;
+	}
+	.popupBox h2{
+		text-align: center;
+		font-size: 14px;
+		padding:10px 0 15px;
+	}
+	.sex{
+		overflow: hidden;
+	}
+	.typeChoose{float: left; margin-top:20px; margin-left: 10%;margin-right: 5px;}
+	.buttonDiv2{
+		width:30%;
+		margin-top:10px;	
+		float: left;
+		font-size:1em;
+		height:34px;
+		border:0;
+		border-radius:5px;
+		color:#fff;
+	}
+	.sex img{
+		float: left;
+		margin-left:13.3%;
+		width: 30%;
+	}
+	.popupBox p{
+		width: 90%;
+		margin: 0 0 0 8%;
+		overflow: hidden;
+		font-size:14px;
+	} 
+	.popupBox p label{padding-right:.6em;}
+	.popupBox p img{
+		width: 18px;
+		height: 18px;
+	}
+	.closeBtn{
+		float: right;
+		width:22px;
+		height: 18px; 
+	}
+	
+	.checked{border:2px solid  #ffc3b9;}
+	#mask{display:none;background:rgba(0,0,0,.9);width:100%;height:100%;position: fixed;color:#fff;}
+	#mask img{height:auto;}
+	.textbox{display:none;}
+	.product-list{
+				width:98%;
+				margin-left:2%;
+				padding-bottom:1rem;
+				
+			}
+			.product-list li{
+				background:#fff;
+				padding:.8rem;
+				float:left;
+				box-sizing:border-box;
+				margin:1% 1% 3% 1%;
+				width:47%;
+				line-height:1.6rem;
+				list-style: none;
+			}
+			.product-list li span{display:block;height:2.8rem;overflow:hidden;width:100%;font-size:.8rem;line-height:1.4rem;}
+			.product-list li img{
+				width:100%;
+			}
+			.product-list li a{
+				text-decoration:none;
+				color:#666;
+			}
+			.product-list a.button{background:#FF5277;border-radius:5px;text-align:center;display:block;width:96%;line-height:3rem;clear: both;text-decoration:none;color:#fff;margin-left:1%;}
+			.product-list li strong{color:#CC0033;font-size:1.2rem;}
+	</style>
+</head>
+<body>
+	<div id="mask" onclick="this.style.display='none'"><img src="../addons/member/template/mobile/activity/20160715/template1/static/img/tips.png" /></div>
+	<!--主界面-->
+		<img class="top" src="../addons/member/template/mobile/activity/20160715/template1/static/img/top.png">
+		<div class="picBox">
+			<div class="contentBox">
+				<p class="p1">xxxxxx大学</p>
+				<p class="p2">录取通知书</p>
+				<p class="p3">xxxxxx同学</p>
+				<p class="p4">兹录取你入我校ｘｘｘｘｘ专业学习，请凭
+本通知书前来我校报道，具体时间、地点见《新生入学通知》。</p>
+				<p class="p5">xxxxxx大学</p>
+				<p class="p6">2016年7月12日</p>
+			</div>
+		</div>
+		<button type="button" class="buttonDiv Color1" onclick="document.querySelector('.textbox').style.display='block';this.style.display='none'">制作录取通知书</button>
+		<div class="textbox">
+			<img src="../addons/member/template/mobile/activity/20160715/template1/static/img/shuoming.png">
+			<form action="" method="post">
+				<label>选择学校:</label>
+				<select id="title">
+					<option value="清华大学">清华大学</option>
+					<option value="背景大学">北京大学</option>
+					<option value="复旦大学">复旦大学</option>
+					<option value="交通大学">交通大学</option>
+					<option value="哈佛大学">哈佛大学</option>
+					<option value="剑桥大学">剑桥大学</option>
+					<option value="中央戏曲学院">中央戏曲学院</option>
+					<option value="蓝翔技校">蓝翔技校</option>
+					<option value="新东方烹饪学校">新东方烹饪学校</option>
+					<option value="白富美学院">白富美学院</option>
+					<option value="泡妞学院">泡妞学院</option>
+					<option value="中国女子大学">中国女子大学</option>
+					<option value="赛格IT大学">赛格IT大学</option>
+					<option value="哈尔滨佛学院">哈尔滨佛学院</option>
+					<option value="陕西吃饭学院">陕西吃饭学院</option>
+				</select>
+				<label>输入专业:</label>
+				<input type="text" name="desc" id="desc" class="yourName">
+				<label>填写姓名:</label>
+				<input type="text" name="name" id="name" class="yourName">
+				<button type="button" class="buttonDiv Color1" id="btn2" >生成录取通知书</button>
+			</form>
+		</div>
+		<img src="../addons/member/template/mobile/activity/20160715/template1/static/img/shuoming2.png">
+		<a href="http://mp.weixin.qq.com/bizmall/cardshelf?shelf_id=1&showwxpaytitle=1&biz=MjM5MjE1MzgyMQ==&t=cardticket/shelf_list&scene=1000007#wechat_redirect" ><img class="quan" src="../addons/member/template/mobile/activity/20160715/template1/static/img/quan.png"></a>
+		<div class="description" style="display:none">
+			<strong>助学金活动说明</strong>
+			<p>*使用平台：赛格微信爆款商城;<br/>*使用方法：请至赛格收银台付余款时出示本券。每件单品限用一张券，本券不记名、不挂失，不兑现、不找零;<br/>*券有效期至：2016.7.31</p>
+		</div>
+		<div class="product-list">
+			<!--<img src="" />-->
+			<ul>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/shoujishuma/iPad/dingjinshangpin/2016-05-26/4591.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/shoujishuma/iPad/dingjinshangpin/2016-05-26/354253eaaa76e739d951b6e704cc9347.jpg" />
+			<span>Apple iPad Air 2 平板电脑 16G 金色</span>
+			<strong>￥2480</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-06-28/6881.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-06-28/c5fcd205ae09ab5f8af3c49f80761598.png" />
+			<span>Apple iPhone 6s 16GB 金色 移动联通电信4G手机</span>
+			<strong>￥4650</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-03/7071.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-03/2d8119265f3b88b6706e73909f143c46.jpg" />
+			<span>oppo R9 玫瑰金/金色全网通4G手机（送话费或儿童手机、大礼包6件套）</span>
+			<strong>￥2499</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-08/7371.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-08/cc28be96c27e8c460de36a3e60c20170.png" />
+			<span>华为 P9 全网通 3GB+32GB版 流光金 移动联通电信4G手机</span>
+			<strong>￥2850</strong>
+		</a>
+	</li>
+	
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-12/7721.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/shoujishuma/shouji/dingjinshangpin/2016-07-12/12c822ed568b94c703870ada5b3fa9d6.png" />
+			<span>美图M6 手机 月光白 樱花粉 全网通4G(3G RAM+64G ROM)标配</span>
+			<strong>￥2840</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/pinpaidiannao/bijiben/dingjinshangpin/2016-07-11/7631.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/pinpaidiannao/bijiben/dingjinshangpin/2016-07-15/c9b85c523a6d4e45e6cf0cd324aba126.jpg" />
+			<span>宏碁（acer）K4000 14英寸笔记本电脑（i5-6200U 4G 500G 920M 2G独显 关机充电 蓝牙 全高清 Win10）</span>
+			<strong>￥2999</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/pinpaidiannao/bijiben/dingjinshangpin/2016-07-06/7151.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/pinpaidiannao/bijiben/dingjinshangpin/2016-07-06/9c4de3d663c5c01ea7db888b163d3c79.jpg" />
+			<span>戴尔 Ins15MR-7528S 灵越15.6英寸 (i5-6200U 4G 500G GT930M 2G独显 WIN10) 银</span>
+			<strong>￥3500</strong>
+		</a>
+	</li>
+	<li>
+		<a href="http://gou.cnsaga.com/baokuanpingtai/yingxiangjiadian/xiangji/dingjinshangpin/2016-07-08/7491.html">
+			<img src="http://gou.cnsaga.com/d/file/baokuanpingtai/yingxiangjiadian/xiangji/dingjinshangpin/2016-07-08/76540330f747cbf1d71f707167499587.jpg" />
+			<span>卡西欧(CASIO) EX-ZR2000(银) 数码相机（银色 蓝色 橙色）</span>
+			<strong>￥1399</strong>
+		</a>
+	</li>
+</ul>
+<a href="http://weixin.cnsaga.com/double" class="button">更多爆款商品</a>
+		</div>
+		<script type="text/javascript">
+			!(function(doc, win) {
+			    var timer,
+			        docEle = doc.documentElement,
+			        evt = "onorientationchange" in window ? "orientationchange" : "resize",
+			        setFontSize = function() {
+			            var width = docEle.getBoundingClientRect().width;
+			            width && (docEle.style.fontSize = 14 * (width / 320) + "px");
+			        };
+
+			    win.addEventListener(evt, function() {
+			        clearTimeout(timer);
+			        timer = setTimeout(setFontSize, 1000);
+			    }, false);
+			    doc.addEventListener("DOMContentLoaded", setFontSize, false);
+			}(document, window));
+		</script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function changeDesc(){		
+		var status = $("#attribute:checked").val();
+		var xz = $("#xz").val();
+		$.post("{php echo $this->createMobileUrl('520DayDesc','',true)}",{"status":status,"xz":xz},function(msg){
+			if(msg.status){
+				$("#demoDesc").val(msg.desc);
+				$("#showDemo").html(msg.desc);
+				$("#desc").val(msg.desc);
+			}
+		},'json');
+	}
+	function setDesc(){	
+		document.querySelector('#mask').style.display = 'none';
+	}
+      
+	   $('#btn2').click(function(){	
+	   		var act_id = {$act_id};	   
+			var title = $("#title").val();
+            var desc = $('#desc').val();
+			var name = $("#name").val();
+			var mobile = $("#mobile").val();
+			var filename1 = $("#filename1").val();
+			var filename2 = $("#filename2").val();
+			var filename3 = $("#filename3").val();
+			var filename4 = $("#filename4").val();
+			var filename5 = $("#filename5").val();
+			var filename6 = $("#filename6").val();
+			var filename7 = $("#filename7").val();
+			var filename8 = $("#filename8").val();
+			var filename9 = $("#filename9").val();
+            if(desc && act_id && name && title ){
+				
+                /*验证通过保存数据，跳转*/
+                $.post("{php echo $this->createMobileUrl('ActivitySave','',true)}",{"desc":desc,"title":title,"name":name,"mobile":mobile,"filename1":filename1,"filename2":filename2,"filename3":filename3,"filename4":filename4,"filename5":filename5,"filename6":filename6,"filename7":filename7,"filename8":filename8,"filename9":filename9,"openid":"{$_W['openid']}","act_id":act_id},function(msg){
+					if(msg.status){
+                		location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id='+msg.id+"&act_id="+msg.act_id;
+					}else{
+						layer.open({
+               				content: '发送失败请稍后再试！',
+               				btn: ['OK']
+               			});	
+					}
+                },'json');
+
+            }else{
+               layer.open({
+               	content: '请将内容填写完整！',
+               	btn: ['OK']
+               });
+            }
+        });
+
+
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+		
+		//上传照片
+		$('#uploadphoto').click(function(){
+			wx.chooseImage({
+    			count: 1, // 默认9
+    			success: function (res) {
+        			// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					var num = 1;
+					//$("#sfilename1").html("<img src='"+res.localIds+"'/>");
+					$("#uploadphoto").attr('src',res.localIds);
+					//$("#sfilename1").css('height','93px');
+					uploadPhoto(res.localIds,num);
+    			}
+			});
+		});
+		$('#uploadphoto2').click(function(){
+			wx.chooseImage({
+    			count: 1, // 默认9
+    			success: function (res) {
+        			// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					var num = 2;
+					//$("#sfilename2").html("<img src='"+res.localIds+"'/>");
+					$("#uploadphoto2").attr('src',res.localIds);
+					//$("#sfilename2").css('height','93px');
+					uploadPhoto(res.localIds,num);
+    			}
+			});
+		});
+		
+		 function uploadPhoto(localId,num){
+			var act_id = {$act_id};
+            wx.uploadImage({
+                localId:localId.toString(),
+                isShowProcess: 1,
+                success:function(res){
+                    var serverId = res.serverId;
+                    $.post("{php echo $this->createMobileUrl('uploadimg','',true)}",{"serverId":serverId,"act_id":act_id},function(msg){
+						
+                        if (msg.status) {							
+                            $("#filename"+num).val(msg.filename);
+                        } else {
+                            layer.open({
+               				 content: '上传图片失败！',
+               			 	 btn: ['OK']
+               				});
+                        }
+                    },'json');
+                },
+                fail:function(res){
+                    alert('上传失败，请稍后再试');
+                }
+            })
+        }	
+    });
+
+</script>
+</body>
+</html>

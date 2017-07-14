@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="telephone=no" name="format-detection">
+<title>赛格国际购物中心七夕相亲活动</title>
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/chasing/images/style.css?201685001" />
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/chasing/css/parallax.css" />
+<link rel="stylesheet" href="../../addons/member/template/mobile/static/chasing/css/style.css" />
+<script type="text/javascript" src="../../addons/member/template/mobile/static/chasing/js/autoScale.js" ></script>
+</head>
+<!--撩人页-->
+<body>
+<div class="pop" onclick="$(this).css('display','none');">
+<img src="../../addons/member/template/mobile/static/chasing/images/pop.png" /></div>
+
+<div class="wrapper">
+<div class="pages">
+
+	{loop $matchItems $order}
+	<section class="page">
+		<div class="all">
+		<div class="pic">
+			<img src="{$order['desc_img']}">
+			<span>脱单宣言:{$order['脱单宣言']}</span>
+		</div>
+		<ul class="photo_list">
+		<li class="ellipsis"><strong>{$order['nickname']}</strong>&nbsp;&nbsp;&nbsp;&nbsp;{$order['symboldesc']}座 {$order['age']}岁</li>
+		<li class="ellipsis">职业：{$order['职业']}</li>
+		<li class="ellipsis">爱好：{$order['爱好']}</li>
+		<li class="ellipsis">标签：{$order['标签']}</li>
+		</ul>
+		<div style="clear: both;height:0.5rem;width:100%;"></div>
+		<div class="bottom_btn_x-x">
+		<!--<a href="javascript:void(0);" ><img src="../../addons/member/template/mobile/static/chasing/images/btn1.png" class="dj" data-son="2"></a>-->
+		<a href="javascript:void(0)" onclick="order({$order['uid']})"><img src="../../addons/member/template/mobile/static/chasing/images/btn2.png" ></a> 
+		<!--<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Reactive&m=member&uid={$order['uid']}" ><img src="../../addons/member/template/mobile/static/chasing/images/btn2.png" ></a> -->
+		</div>
+		</div>
+	</section>
+	{/loop}
+
+</div>
+</div>
+<!--<div class="horn" onclick="$('.pop').css('display','block');">-->
+<!--<img src="../../addons/member/template/mobile/static/chasing/images/horn.png" /> 如何查看谁撩了你并收到速配通知？</div>-->
+<script src="../../addons/member/template/mobile/static/chasing/js/zepto.min.js"></script>
+<script src="../../addons/member/template/mobile/static/chasing/js/parallax.js"></script>
+<script>
+	function order(a){
+		$.get("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Reactive&m=member",{uid:a},function(data,status){
+			if( parseInt(data) == 0){
+				alert("你已经撩过TA了！");
+			}else{
+				alert("你已成功撩了对方，请等待TA回应~你还可以继续撩其他人哦");
+			}
+		});
+	}
+
+	
+$('.pages').parallax({
+    direction: 'horizontal',   
+    swipeAnim: 'default',     
+    drag:      true,         
+    loading:   true,       
+    indicator: false,     
+    arrow:     true,     
+    onchange: function(index, element, direction) {
+       if(index==10){}
+    },
+    orientationchange: function(orientation) {
+
+	}
+});
+</script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+ wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            desc:  "七夕不愿做单身汪？狗粮太多无处可躲？什么时候才能遇见我的TA？七夕遇见你的另一半，就从这里开始……", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+	});
+	window.onload = function(){
+		
+		for(var i=0;i<$("section").length;i++){
+		if($(".pic img").eq(i).width()>$(".pic img").eq(i).height()){
+		   $(".pic img").eq(i).css({'height':'340px !important','margin':'0px 0px 0px '+-($(".pic img").eq(i).width()*(340/$(".pic img").eq(i).height())-$("body").width())/2+'px !important','width':$(".pic img").eq(i).width()*(340/$(".pic img").eq(i).height())+'px !important',});
+			}
+		}
+	}
+</script>
+
+</body>
+</html>

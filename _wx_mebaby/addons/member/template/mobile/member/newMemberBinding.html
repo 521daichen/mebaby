@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新会员注册</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+		<link href="../addons/member/template/mobile/static/css/newuser.css" rel="stylesheet" type="text/css">
+		<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="../addons/member/template/mobile/static/js/layer/layer.min.js"></script>
+	</head>
+	<script>
+		var wait = 60;
+		    function time(o) {
+		        if (wait == 0) {
+		            o.removeAttribute("disabled");
+		            o.value = "获取验证码";
+		            wait = 60;
+		        } else {
+		            o.setAttribute("disabled", true);
+		            o.value = "重新发送(" + wait + ")";
+		            wait--;
+		            setTimeout(function () {
+		                time(o)
+		            }, 1000)
+		        }
+		    }
+		
+		    //发送验证码
+		    function send(obj) {
+		        var phone = $('input[name="mobile"]').val();
+		        var mobileReg = /^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+		        if (phone == '') {
+		            layer.msg('手机号码不能为空', 2, -1);
+		            return false;
+		        } else if(mobileReg.test(phone) == false) {
+		            layer.msg('手机号码格式不正确', 2, -1);
+		            return false;
+		        }else{ $.post("{php echo $this->createMobileUrl('send','',true)}", {"phone": phone}, function (msg) {
+		                if (msg.status == 1) {
+		                    time(obj);
+		                    layer.msg(msg.text, 2, -1);
+		                    return false;
+		                } else {
+		                    layer.msg(msg.text, 2, -1);
+		                    return false;
+		                }
+		            }, 'json');
+		        }
+		    }
+		    //表单验证
+		    function checkfrom() {
+		        var idNumber = $('input[name="idNumber"]').val();
+		        var mobile = $('input[name="mobile"]').val();
+		        var code = $('input[name="code"]').val();
+		        var name = $('input[name="name"]').val();
+		        var mobileReg = /^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+		        var credentials = $('#credentials').val();
+		        if (mobile == '') {
+		            layer.msg('手机号码不能为空', 2, -1);
+		            return false;
+		        }
+		        if(mobileReg.test(mobile) == false){
+		            layer.msg('手机号码格式不正确', 2, -1);
+		            return false;
+		        }
+		        if (code == '') {
+		            layer.msg('验证码不能为空', 2, -1);
+		            return false;
+		        }
+		        if(name == ''){
+		            layer.msg('姓名不能为空', 2, -1);
+		            return false;
+		        }
+		        if(credentials == ''){
+		            layer.msg('请选择证件类型', 2, -1);
+		            return false;
+		        }
+		        if (idNumber == '') {
+		            layer.msg('有效证件号码不能为空', 2, -1);
+		            return false;
+		        }
+		
+		        $.post("{php echo $this->createMobileUrl('newMemberBinding','',true)}",$('form').serialize(),function(msg){
+		            if(msg.status){
+		                var uniacid = "{$_W['uniacid']}";
+		                layer.msg(msg.msg, 2, -1);
+		                setTimeout("location.href='{$_W['siteroot']}app/index.php?i="+uniacid+"&c=entry&eid=1&wxref=mp.weixin.qq.com#wechat_redirect';",2000);
+		            }else{
+		                layer.msg(msg.msg, 2, -1);
+		            }
+		        },'json');
+		//            $('#form').submit();
+		
+		    }
+	</script>
+	<body>
+		<header>
+			<img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" /> <span>新会员注册</span>
+		</header>
+		<div class="clr"></div>
+		<section>
+			<div class="radbox">
+				<!--<h1>注册</h1>-->
+				<div class="forms">
+					<form id="form">
+						<div class="mobver">
+							<input type="text" name="mobile" value="" placeholder="手机号" />
+							<input type="button" value="获取验证码" id="mobcode" onclick="send(this)" />
+						</div>	<span class="form_tips"><input type="text" value="" name="code"  placeholder="输入验证码" id="code" /> 验证码有效时间为30分钟</span>
+						<input type="text" name="name" value="" placeholder="姓名" />
+						<div class="gender">
+							<input type="hidden" name="gender" value="1" id="gender" /><span class="pitch">男</span><span>女</span>
+						</div>
+						<div class="mobver">
+							<input type="text" value="" placeholder="证件类型" id="credentials" disabled="disabled" />
+							<input type="button" value="点此选择证件类型" id="zjlx" />
+						</div>
+						<input type="hidden" name="idType" value="" />
+						<input type="hidden" name="tag" value="{$tag}" />
+						<div id="sf" class="d_n"><a href="javascript:void(0);" onclick="addzj('身份证','A')">身份证</a><a href="javascript:void(0);" onclick="addzj('军人证','C')">军人证</a><a href="javascript:void(0);" onclick="addzj('其他','H')">其他</a>
+						</div>
+						<input type="text" value="" name="idNumber" placeholder="证件号码" id="zjma" /> <span class="form_tips">是否申请高级会员？</span>
+						<div class="valued">
+							<input type="hidden" name="valued" value="1" id="valued" /> <span class="pitch">否</span><span>是</span>
+						</div>
+						<input type="button" value="注 册" id="but" onclick="return checkfrom()" />
+					</form>
+				</div>
+			</div>
+			<div class="explain_s1">
+				<p>新会员注册提示：
+					<br/>1、为了您能及时接收到验证码，快速完成注册，请正确填写手机号码；
+					<br/>2、证件号码是您会员身份的重要凭证，为保证您的会员权益，请您正确填写;
+					<br/>3、如长时间未收到验证码，可在服务台进行查询，或拨打客服电话（029-86300000）进行查询。</p>
+			</div>
+		</section>
+		<div class="clr"></div>
+		<footer>
+			<br>
+			<br>
+		</footer>
+		<script src="../addons/member/template/mobile/static/js/ac.js"></script>
+	</body>
+
+</html>

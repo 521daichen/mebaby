@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/card/css/style.css" />
+</head>
+<body>
+<div id="page1">
+    <header>
+        <img src="../addons/member/template/mobile/static/card/video/1.gif" alt="">
+    </header>
+    <section>
+        <button class="sys">扫一扫领券</button>
+        <textarea id="card" name="cardInfo" type="text" ></textarea>
+    </section>
+</div>
+<!--<div id="page2">
+    <h1>恭喜您获得一张优惠券</h1>
+    <img src="../addons/member/template/mobile/static/card/img/coupon.png" />
+    <button>收入囊中</button>
+</div>-->
+<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script>
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'scanQRCode',
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+         $('.sys').click(function(){
+             wx.scanQRCode({
+                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                 scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                 success: function (res) {
+                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                     var code = result.split(',');
+
+                     loading();
+                     $.post("{php echo $this->createMobileUrl('sendCard','',true)}",{"retailId":code[1]},function(msg){
+                         layer.closeAll();
+                         if (msg.status) {
+                             $('#card').val(JSON.stringify(msg));
+                             layer.open({
+                                 type: 1,
+                                 content: '<div class="shopInfo"><ul><li>购物信息</li><li>专柜名:'+msg.brand+'</li><li>电子券金额:'+msg.price+'元</li><li>手机号：</li><li><input id="mobile" type="text" placeholder=" 请输入手机号" name="phoneNumber" value="'+msg.tel+'"></li><li><button id="btn"  onclick="sendMsg()">确定</button></li></ul></div>',
+                                 style: 'width:268px; height:238px; padding:10px; background-color:#fff; color:#333; border:6px solid #efefef;border-radius:10px'
+                             });
+                         } else {
+                            alert(msg.msg);
+                         }
+                     },'json')
+                 }
+
+             });
+         });
+    });
+    function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#09C1FF; color:#fff; border:none;text-align:center',
+            time: 2
+        });
+    }
+
+    function loading(){
+        layer.open({
+            type: 2,
+            content: '领取中...',
+            shadeClose:false,
+            time:3
+        });
+    }
+
+    function sendMsg(){
+        var msg = JSON.parse($('#card').val());
+        var tel = $('#mobile').val();
+        var mobileReg = /^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+        if (tel == '' || mobileReg.test(tel) == false) {
+            alert('您的手机号码不正确');
+            return false;
+        }
+
+        msg.tel = tel;
+        $("#btn").attr("disabled","disabled")
+        $.post("{php echo $this->createMobileUrl('addCard','',true)}",msg,function(message){
+            $("#btn").removeAttr("disabled");
+            if (message.status) {
+                window.location.href = "{php echo $this->createMobileUrl('coupons')}"
+            } else {
+                alert(message.msg);
+            }
+        },'json');
+    }
+</script>
+</body>
+</html>

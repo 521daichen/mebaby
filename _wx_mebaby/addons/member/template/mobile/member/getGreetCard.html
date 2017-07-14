@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>圣诞快乐</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/friend.css?v1234" />
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/animate.css" />
+</head>
+<body>
+
+<header></header>
+<article>
+    <img src="../../addons/member/template/mobile/static/gCard/img/box.png" class="box"/>
+</article>
+
+<section id="frame" >
+    <dl>
+        <dt><img src="../../addons/member/template/mobile/static/gCard/img/top2.png" /></dt>
+        <dd id="photo" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p{$info['template_id']}.gif" /></dd>
+        <dd>
+            <div id="egg"><img src="../../addons/member/template/mobile/static/gCard/img/egg.gif"/></div>
+            <img src="../../addons/member/template/mobile/static/gCard/img/tips3.png" />
+            <div class="text">{$info['remark']}</div>
+            <button id='goUrl'>我也要制作</button>
+        </dd>
+    </dl>
+    <footer><a href="http://zt.sagabuy.com/">赛格史上最大折扣来袭，满四千减一千满六百减一百</a></footer>
+</section>
+
+<script type="text/javascript">
+    window.onload=function(){
+        document.getElementsByTagName('article')[0].onclick=function(){
+            document.getElementById('frame').style.display='block';
+            document.getElementsByTagName('dl')[0].className="zoomInDown animated";
+        }
+        document.getElementsByClassName('box')[0].className="bounceInUp animated";
+        var opic = document.getElementById('photo');
+        opic.style.background = "url("+opic.getAttribute("data-img")+")";
+        document.getElementById('goUrl').onclick=function(){
+	        location.href = '{$_W["siteroot"]}app/index.php?i=4&c=entry&do=greetingsCard&m=member';
+        }
+        document.getElementById('egg').onclick=function(){
+	        location.href = 'http://zt.sagabuy.com/';
+        }
+    }
+</script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256831702'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1256831702' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

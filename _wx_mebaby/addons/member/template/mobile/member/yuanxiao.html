@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>灯谜猜猜乐</title>
+		<meta name="keywords" content=""> 
+		<meta name="description" content="" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+		<meta content="telephone=no" name="format-detection">
+		<link rel="stylesheet" href="../addons/member/template/mobile/yuanxiao/yuanxiaoJS/swiper.min.css">
+		
+		
+		<style>
+			ul,ol,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
+	            margin:0;
+	            padding:0;
+	            list-style:none;
+	            font-weight:normal;
+	        }
+	        i,b{
+	        	text-decoration: none;
+	        	font-style: normal;
+	        	font-weight: normal;
+	        	display: block;
+	        	float: right;
+	        }
+	        .ellipsis {
+	            text-overflow:ellipsis;
+	            overflow:hidden;
+	            white-space:nowrap;
+	            -webkit-text-overflow:ellipsis
+        	}
+			html, body {
+		        position: relative;
+		        height: 100%;
+		        overflow: hidden;
+	    	}
+	    	img{
+				width: 100%;
+				vertical-align: bottom;
+			}
+	    	body {
+		        background: #eee;
+		        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		        font-size: 14px;
+		        color:#000;
+		        margin: 0;
+		        padding: 0;
+		        background: url('../addons/member/template/mobile/yuanxiao/yuanxiao/bg.png') no-repeat;
+		        background-size: 100% 100% ;
+	    	}
+	    	footer{
+	    		position: absolute;
+	    		bottom: 0;
+	    		width: 100%;
+	    		left: 0;
+	    		z-index: 2;
+	    	}
+	    	.footbtn{
+	    		width: 70%;
+			    position: absolute;
+			    bottom: 10%;
+			    left: 15%;
+	    	}
+	    	.footbtn img{
+	    		float: left;
+	    		width: 44%;
+	    		margin-left: 4%;
+	    	}
+	    	.talk{
+	    		position: absolute;
+			    right: 12%;
+			    top: -27%;
+			    width: 37%;
+	    	}
+	    	.slide{
+    		    width: 30%;
+			    position: absolute;
+			    top: 45%;
+			    left: 35%;
+			    z-index: 20;
+	    	}
+	    	.up{
+			    width: 100%;
+	    	}
+		    .swiper-container {
+		        width: 100%;
+		        height: 80%;
+		    }
+		    .swiper-slide {
+		        text-align: center;
+		        font-size: 18px;
+		
+		        /* Center slide text vertically */
+		        display: -webkit-box;
+		        display: -ms-flexbox;
+		        display: -webkit-flex;
+		        display: flex;
+		        -webkit-box-pack: center;
+		        -ms-flex-pack: center;
+		        -webkit-justify-content: center;
+		        justify-content: center;
+		        -webkit-box-align: center;
+		        -ms-flex-align: center;
+		        -webkit-align-items: center;
+		        align-items: center;
+		    }
+			.swiper-pagination-bullet {
+			    width: 8px;
+			    height: 8px;
+			    display: inline-block;
+			    border-radius: 100%;
+			    background: #ffd57b;
+			    opacity: .8;
+			}
+			.swiper-pagination-bullet-active {
+			    opacity: 1;
+			    background: #e52e1e;
+			}
+			#container{
+				width: 100%;
+			}
+			#user{
+				margin: 0;
+			    padding: 0;
+			    width: 82%;
+			    height: 7%;
+			    top: 2%;
+			    margin-bottom: 2%;
+			    margin-left: 9%;
+			    background: url(../addons/member/template/mobile/yuanxiao/yuanxiao/user.png) no-repeat;
+			    background-size: 100% 100%;
+			    z-index: 20;
+			    position: relative;
+			}
+			#user>li{
+				float: left;
+				color: #FFFFFF;
+			}
+	        #user>:first-child {
+	            width: 13%;
+			    margin-top: 0.6%;
+			    margin-left: 1.2%;
+	        }
+	        #user>:first-child>img{
+	           border-radius: 50%;
+	        }
+	        #user>:nth-child(2) {
+	            width: 35%;
+			    height: 40px;
+			    line-height: 40px;
+			    margin-top: 1%;
+			    margin-left: 4%;
+			    font-size: 10px;
+			    text-align: center;
+	        }
+	        #user>:last-child {
+	            width: 35%;
+			    height: 40px;
+			    line-height: 40px;
+			    margin-top: 1%;
+			    margin-left: 5%;
+			    font-size: 10px;
+			    text-align: center;
+	        }
+			.DL{
+				position: absolute;
+				box-sizing: border-box;
+			}
+			.DL>img{
+				width: 60%;
+				padding: 20% 5%;
+			}
+			.DLbg{
+				background: url('../addons/member/template/mobile/yuanxiao/yuanxiao/aim.png') no-repeat;
+				background-size: 100% 100%;
+			}
+			.deng0{
+				width: 21.85%;
+				left: 26%;
+				top: 0%;
+			}
+			.deng1{
+				width: 26.7%;
+				left: 57.9%;
+				top: 2%;
+				
+			}
+			.deng2{
+				width: 24%;
+				left: 33.3%;
+				top: 19%;
+			}
+			.deng3{
+				width: 27.78%;
+				left: 13.9%;
+				top: 29.6%;
+			}
+			.deng4{
+				width: 27.78%;
+				left: 66.29%;
+				top: 27%;
+			}
+			.deng5{
+				width: 35.2%;
+				left: 38%;
+				top: 39.2%;
+			}
+			.deng6{
+				width: 32%;
+				left: 3%;
+				top: 55%;
+			}
+			.deng7{
+				width: 28.92%;
+				left: 71.29%;
+				top: 54.2%;
+			}
+			.deng8{
+				width: 24%;
+				left: 29.62%;
+				top: 68%;
+			}
+			.deng9{
+				width: 25%;
+				left: 60%;
+				top: 70%;
+			}
+			.grey{
+				-webkit-filter: grayscale(100%); 
+				filter: grayscale(100%); 
+				filter: gray; 
+			}
+			#question{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				font-family: "microsoft yahei";
+				background: url('../addons/member/template/mobile/yuanxiao/yuanxiao/question.png') no-repeat;
+				background-size: 100% 100%;
+			}
+			.other{
+				width: 60%;
+			    margin-left: 20%;
+			    margin-top: 10%;
+			}
+			#question>div{
+				width: 84%;
+			    margin-left: 8.5%;
+			    margin-top: 45%;
+			    box-sizing: border-box;
+			}
+			#question li img{
+				width: 20%;
+				vertical-align: middle;
+				margin-right: 1%;
+			}
+			#question h1{
+				width: 90%;
+			    font-size: 14px;
+			    color: #d44543;
+			    margin-left: 5%;
+			}
+			#question ul{
+				margin-top: 1%;
+			}
+			#question li{
+				width: 100%;
+			    height: 36px;
+			    line-height: 36px;
+			    margin-bottom: 1%;
+			    box-sizing: border-box;
+			    padding: 0% 10%;
+			}
+			#question li span{
+				font-size: 14px;
+    			color: #d44543;
+			}
+			#question i{
+				width: 20px;
+			    height: 20px;
+			    margin-top: 8px;
+			    background: #FFFFFF;
+			    border-radius: 10px;	
+			}
+			#question b{
+				width: 10px;
+				height: 10px;
+				background: #FFFFFF;
+				margin:5px 5px;
+				border-radius: 5px;
+			}
+			#question s{
+				float: right;
+			    height: 36px;
+			    font-size: 20px;
+			    line-height: 36px;
+			    text-decoration: none;
+			    color: #199700;
+			}
+			.correct,.wrong,.timeout{
+				width: 80%;
+				margin-top: 1%;
+				margin-left: 10%;
+				margin-right: 10%;
+			}
+			.counttime{
+				width: 90%;
+				margin-top: 1%;
+				margin-left: 5%;
+				margin-right: 5%;
+			}
+			.counttime span{
+				display: block;
+			    font-family: "microsoft yahei";
+			    font-weight: bold;
+			    font-size: 36px;
+			    width: 50px;
+			    height: 50px;
+			    line-height: 50px;
+			    border-radius: 50%;
+			    color: #f6dfbe;
+			    background: #ff7827;
+			    box-sizing: border-box;
+			    text-align: center;
+			    margin-left: 116.75px;
+			    margin-right: 116.75px;
+			    margin-bottom: 1%;
+				
+			}
+			.btn{
+				margin-top: 2%;
+			    width: 60%;
+			    margin-left: 20%;
+    			margin-right: 20%;
+			}
+			.btn p{
+				float: left;
+				width: 44%;
+    			margin-left: 4%;
+			}
+			.btn:after{
+				content: '';
+				display: block;
+				clear: both;
+			}
+			
+			.hidden{
+				display: none;
+			}
+			.start{
+				width: 50%;
+			    margin-left: 25%;
+			    margin-right: 25%;
+			}
+			.begin{
+				width: 70%;
+			    margin-left: 15%;
+			    margin-top:3%;
+			}
+			#rulebox{
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				z-index: 999;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.8);
+			}
+			#rulebox>img{
+				width: 90%;
+				margin-left: 5%;
+				margin-top: 20%;
+			}
+			/*动画*/
+			.animate {
+			  	-webkit-animation-duration: 1s;
+			  	animation-duration: 1s;
+			  	-webkit-animation-fill-mode: both;
+			  	animation-fill-mode: both;
+		  	}
+		  	.pulse{
+  				-webkit-animation-iteration-count: 3;
+			 	animation-iteration-count: 3;
+			 	-webkit-animation-name: pulse;
+			  	animation-name: pulse;
+		  	}
+		  	.upPulse{
+  				-webkit-animation-iteration-count: infinite;
+			 	animation-iteration-count: infinite;
+			 	-webkit-animation-name: pulse;
+			  	animation-name: pulse;
+		  	}
+		  	.slideInUp {
+			  -webkit-animation-name: slideInUp;
+			  animation-name: slideInUp;
+			  -webkit-animation-iteration-count: 1;
+			 	animation-iteration-count: 1;
+			}
+			@-webkit-keyframes pulse {
+			  from {
+			    -webkit-transform: scale3d(1, 1, 1);
+			    transform: scale3d(1, 1, 1);
+			  }
+			
+			  50% {
+			    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+			    transform: scale3d(1.05, 1.05, 1.05);
+			  }
+			
+			  to {
+			    -webkit-transform: scale3d(1, 1, 1);
+			    transform: scale3d(1, 1, 1);
+			  }
+			}
+			@-webkit-keyframes slideInUp {
+			  from {
+			    -webkit-transform: translate3d(0, 100%, 0);
+			    transform: translate3d(0, 100%, 0);
+			    visibility: visible;
+			  }
+			
+			  to {
+			    -webkit-transform: translate3d(0, 0, 0);
+			    transform: translate3d(0, 0, 0);
+			  }
+			}
+			@media screen and (max-width:414px){
+				.counttime span {
+				    display: block;
+				    font-family: "microsoft yahei";
+				    font-weight: bold;
+				    font-size: 30px;
+				    width: 60px;
+				    height: 60px;
+				    line-height: 60px;
+				    border-radius: 50%;
+				    color: #f6dfbe;
+				    background: #ff7827;
+				    box-sizing: border-box;
+				    text-align: center;
+				    margin-left: 126.5px;
+    				margin-right: 126.5px;
+				    margin-bottom: 1%;
+				}	 
+			}
+			@media screen and (max-width:375px){
+				.counttime{
+					width: 90%;
+					margin-top: 1%;
+					margin-left: 5%;
+					margin-right: 5%;
+				}
+				.counttime span{
+				    display: block;
+				    font-family: "microsoft yahei";
+				    font-weight: bold;
+				    font-size: 30px;
+				    width: 60px;
+				    height: 60px;
+				    line-height: 60px;
+				    border-radius: 50%;
+				    color: #f6dfbe;
+				    background: #ff7827;
+				    box-sizing: border-box;
+				    text-align: center;
+				    margin-left: 111.75px;
+    				margin-right: 111.75px;
+				    margin-bottom: 1%;
+				}
+			}
+			@media screen and (max-width:360px){
+				.counttime {
+				    width: 100%;
+				    margin-top: 1%;
+				    margin-left: 0%;
+					margin-right: 0%;
+				}
+				.counttime span {
+				    display: block;
+				    font-family: "microsoft yahei";
+				    font-weight: bold;
+				    font-size: 30px;
+				    width: 60px;
+				    height: 60px;
+				    line-height: 60px;
+				    border-radius: 50%;
+				    color: #f6dfbe;
+				    background: #ff7827;
+				    box-sizing: border-box;
+				    text-align: center;
+				    margin-left: 121px;
+    				margin-right: 121px;
+				    margin-bottom: 1%;
+				}
+			}
+			@media screen and (max-width:320px){ 
+				.counttime {
+				    width: 100%;
+				    margin-top: 1%;
+				    margin-left:0%;
+					margin-right: 0%;
+				}
+				.counttime span {
+				    display: block;
+				    font-family: "microsoft yahei";
+				    font-weight: bold;
+				    font-size: 20px;
+				    width: 35px;
+				    height: 35px;
+				    line-height: 35px;
+				    border-radius: 50%;
+				    color: #f6dfbe;
+				    background: #ff7827;
+				    box-sizing: border-box;
+				    text-align: center;
+				    margin-left: 116.9px;
+				    margin-right: 116.9px;
+				    margin-bottom: 1%;
+				}
+				#user>:nth-child(2) {
+				    width: 35%;
+				    height: 32px;
+				    line-height: 32px;
+				    margin-top: 1%;
+				    margin-left: 4%;
+				    font-size: 10px;
+				    text-align: center;
+				}
+				#user>:last-child {
+				    width: 35%;
+				    height: 32px;
+				    line-height: 32px;
+				    margin-top: 1%;
+				    margin-left: 5%;
+				    font-size: 10px;
+				    text-align: center;
+				}
+				#question ul {
+				    margin-top: 1%;
+				}
+				#question li {
+				    width: 100%;
+				    height: 32px;
+				    line-height: 32px;
+				    margin-bottom: 2%;
+				    box-sizing: border-box;
+				    padding: 0% 10%;
+				}
+				#question i {
+				    width: 20px;
+				    height: 20px;
+				    margin-top: 6px;
+				    background: #FFFFFF;
+				    border-radius: 10px;
+				}
+				#question s{
+					float: right;
+				    height: 24px;
+				    font-size: 20px;
+				    line-height: 24px;
+				    text-decoration: none;
+				    color: #199700;
+				}
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<input type="hidden" id="openId" name="openId" value="{$openId}" />
+		<header>
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/start.png" alt="" class="start" />
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/begin.png" alt="" class="begin animate pulse"  id='begin'/>
+		</header>
+		<div id='rulebox' class='hidden'>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/ruledet.png" alt="" class='ruledet'/>
+		</div>
+		<ul id="user" class='hidden'>
+			<li><img src="{$headimgurl}" alt=""/></li>
+	        <li class="ellipsis">{$nickname}</li>
+	        <li id='score'>分数:0</li>
+		</ul>
+		
+		<div id="container" class="swiper-container hidden">
+        	<div class="swiper-wrapper"></div>
+        	<div class="swiper-pagination"></div>
+	    </div>
+		<div id="question" class='hidden'>
+			<div>
+				<div class='quesDet'>
+					<!--<h1>赛格国际以下哪家是西餐厅？</h1>
+					<ul>
+						<li lop='A'>
+							<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/option.png" alt="" /><span>蛙哥虾妹</span><i><b></b></i>
+						</li>
+						<li lop='B'>
+							<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/option.png" alt="" /><span>九锅一堂</span><i><b></b></i>
+						</li>
+						<li lop='C'>
+							<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/option.png" alt="" /><span>西堤厚</span><i><b></b></i>
+						</li>
+						<li lop='D'>
+							<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/option.png" alt="" /><span>外婆家</span><i><b></b></i>
+						</li>
+					</ul>-->
+				</div>
+				<div class='correct hidden'><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/correct.png" alt="" /></div>
+				<div class='wrong hidden'><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/wrong.png" alt="" /></div>
+				<div class='timeout hidden'><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/timeout.png" alt="" /></div>
+				<div class='counttime '><span>19</span><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/time.png" alt="" /></div>
+				<div class='btn hidden'>
+					<p id='back'><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/back.png" alt="" /></p>
+					<p id='rank'><a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=RankList&m=member#"><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/rank.png" alt="" /></a></p>
+					<!--<p id='continue'><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/continue.png" alt="" /></p>-->
+				</div>
+			</div>
+		</div>
+		<div class='slide hidden'>
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/up.png" alt="" class='up' />
+		</div>
+		<footer>
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/tangyuan.png" alt="" class="foot" />
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/talk.png" alt="" class='talk hidden' />
+			<div class='footbtn'>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/rule.png" alt="" class="rule" />
+				<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=RankList&m=member#"><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/rankbtn.png" alt="" class="rankbtn" /></a>
+			</div>
+			
+		</footer>
+		<script src='../addons/member/template/mobile/yuanxiao/yuanxiaoJS/jquery-1.11.3.js'></script>
+		<script src='../addons/member/template/mobile/yuanxiao/yuanxiaoJS/swiper.min.js'></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			var swiper;
+			var quesN;
+			var openId=$('#openId').val();
+			console.log('openId='+openId);
+			var timer;
+			function checkAnd(){
+				var u = navigator.userAgent;
+				var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+				var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+				if(isAndroid==true){
+					$('footer .foot').addClass('hidden');
+					$('footer .talk').addClass('hidden');
+					
+				}
+			}
+			window.onload=function(){
+				//判断设备
+				checkAnd();	
+		        /*功能一：页面开始请求内容*/
+		        $.ajax({
+		            type: 'POST',
+		            url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=RealLightList&m=member#',
+		            data:{'openId':openId},
+		            success: function(res){
+							console.log(res);
+		                var resdata=JSON.parse(res);
+		                
+		                var resHtml="";
+		           		quesN=resdata.answerNumber-1;
+		           		console.log('yuanxiao.Q='+quesN);
+		           		for(var j=0;j<resdata.lightList.length/10;j++){
+		           			var html = "";
+		                	 for(var k=0;k<10;k++){
+			                	 html +='<div class="DL deng'+k+' DL'+(10*j+k)+'" ltId="'+(10*j+k+1)+'">'+
+		            			'<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/denglong.png" alt="" />'+
+		            			'</div>';
+		            			 
+		               		 }
+							resHtml='<div class="swiper-slide">'+html+'</div>';
+		                	 $('.swiper-wrapper').append(resHtml);
+		              }
+		           	swiper = new Swiper('.swiper-container', {
+	                 	pagination: '.swiper-pagination',
+						paginationClickable: true,
+				        direction: 'vertical',
+						mousewheelControl:true,
+						observer: true,//修改swiper自己或子元素时，自动初始化swiper
+	    				observeParents: true,//修改swiper的父元素时，自动初始化swiper
+	    				onTransitionEnd: function(swiper){
+	    					var yapp=$('.swiper-slide-active .grey');
+	    					console.dir(yapp);
+	    					var prevslide=$('.swiper-slide-prev .grey');
+	    					console.dir(prevslide);
+	    					if(yapp.length==0&&prevslide.length==10){
+	    						$('.swiper-slide-active>:first-child').addClass('DLbg');
+	    					}else if(swiper.activeIndex==0&&yapp.length==0){
+	    						$('.swiper-slide-active>:first-child').addClass('DLbg');
+	    					}
+	//          					$('.slide').addClass('hidden');
+					    }
+					});
+					$('#score').html('分数：'+resdata.user_score);
+				    yuanxiao.getGrey();
+		           	}
+		            
+				});
+                
+       		}
+			var yuanxiao={
+				Q:quesN,
+				ltId:null,
+				userAnswer:null,
+				getGrey:function (){
+					this.Q=quesN;
+					for(var i=0;i<=this.Q;i++){
+						$('.DL'+i).addClass('grey');
+					}
+					$('#container .DL'+this.Q).next().addClass('DLbg');
+					this.answer();
+					console.log('this.Q='+this.Q);
+					if($('.DL0').hasClass('grey')){
+						$('.DL0').removeClass('DLbg');
+					}
+				},
+				answer:function(){
+					$('.swiper-wrapper').on('click','.DL'+(this.Q+1),function(){
+						if(!$(this).hasClass('grey')){
+							$(this).addClass('grey').removeClass('DLbg');
+							$(this).prev().removeClass('DLbg');
+							$('#question').removeClass('hidden');
+							$('#question ul li').css('background','transparent').find('b').css('background','#fff');
+							$('#question ul li').find('i').removeClass('hidden');
+							$('#question ul li').find('s').addClass('hidden');
+							yuanxiao.ltId=$(this).attr('ltid');
+							console.log('ltId='+yuanxiao.ltId);
+							yuanxiao.getQues();
+							chooseAns();
+						}else{
+							$('#question').addClass('hidden');
+						}
+					});
+				},	
+				updateView:function(){
+					this.Q++;
+					$('.correct').addClass('hidden');
+					$('.wrong').addClass('hidden');
+					$('.timeout').addClass('hidden');
+					$('.counttime').addClass('hidden');
+					$('.btn').addClass('hidden');
+				},
+				timeC:function(){
+					var counttime=19;
+					timer=setInterval(function(){
+						counttime--;
+						$('.counttime span').html(counttime);
+						if(counttime==-1){
+							$('.counttime').addClass('hidden');
+							$('.timeout').removeClass('hidden');
+							$('.btn').removeClass('hidden');
+							$('#question .quesDet').off('click','li');
+							var Dltid=yuanxiao.ltId;
+							var Dopenid=openId;
+							$.ajax({
+								type:'POST',
+								url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=LightTimeOut&m=member#',
+								data:{'openId':Dopenid,'ltid':Dltid},
+								success:function(res){
+									resdata=JSON.parse(res);
+									console.log(res);
+									if(resdata.status==9){
+										$('#score').html('分数：'+resdata.user_score);
+									}
+									
+								}
+							})
+						}
+						if(counttime==-2){
+							clearInterval(timer);
+							$('.counttime span').html('19');
+						}
+					},1000)
+				},
+				getQues:function(){
+					$('#question div.quesDet').html('');
+					$.ajax({
+						type:'POST',
+						url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=AnswerInfo&m=member#',
+						data:{'ltid':this.ltId,'openId':openId},
+						success:function(res){
+							resdata=JSON.parse(res);
+//							console.log('问题:'+resdata);
+							var yuanbao='<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/yuanbao.png"  class="other"/>';
+							var boom='<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/boom.png" class="other"/>';
+					
+							if(resdata.status==1){
+								var question='<h1>'+resdata.answerInfo.title+'</h1>';
+								var options='';
+								$.each(resdata.answerOption, function(i,p) {
+									options+='<li lop='+p.loptions+' xuanzhong="no">'+
+												'<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/option.png" alt="" /><span>'+p.options_content+'</span><i><b></b></i><s class="hidden">&#10004</s>'+
+											'</li>';
+								});
+								var quesHtml=question+'<ul>'+options+'</ul>';
+								$('#question div.quesDet').html(quesHtml);
+								$('.counttime').removeClass('hidden');
+								yuanxiao.timeC();
+							}else if(resdata.status==4){
+								$('#question div.quesDet').html(yuanbao);
+								clearInterval(timer);
+								$('.counttime').addClass('hidden');
+								$('.btn').removeClass('hidden');
+								$('#score').html('分数：'+resdata.user_score);
+							}else if(resdata.status==3){
+								$('#question div.quesDet').html(boom);
+								clearInterval(timer);
+								$('.counttime').addClass('hidden');
+								$('.btn').removeClass('hidden');
+								$('#score').html('分数：'+resdata.user_score);
+							}	
+						}
+						
+					})
+				},
+				valiAns:function(){
+					var Dltid=yuanxiao.ltId;
+					console.log('Dltid='+Dltid);
+					var Dopenid=openId;
+					var DuserAns=yuanxiao.userAnswer;
+					$.ajax({
+						type:'POST',
+						url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=LightAnswerResult&m=member#',
+						data:{'openId':Dopenid,'ltid':Dltid,'user_answer':DuserAns},
+						success:function(res){
+							resdata=JSON.parse(res);
+							console.log(res);
+							if(resdata.status==0){
+								$('.wrong').removeClass('hidden');
+								$('#score').html('分数：'+resdata.user_score);
+							}else if(resdata.status==1){
+								$('.correct').removeClass('hidden');
+								$('#score').html('分数：'+resdata.user_score);
+							}
+							var crtAns=resdata.answer_option;
+							$('[lop='+crtAns+']>i').addClass('hidden');
+							$('[lop='+crtAns+']>s').removeClass('hidden');
+							
+						}
+					})
+				},
+				checkgrey:function(){
+					var allgrey=$('.swiper-slide-active .grey');
+//					console.dir(yapp);
+					if(allgrey.length==10){
+						$('.slide').fadeIn('slow').fadeOut('slow');
+            		}
+				}
+				
+			}
+			$('#begin').click(function(){
+			 	$('header').addClass('hidden');
+			 	$('#user').fadeIn('fast');
+			 	$('#container').removeClass('hidden').addClass('animate slideInUp');
+			 	$('.talk').removeClass('hidden').addClass('animate pulse');
+			 	checkAnd();
+			 	 yuanxiao.checkgrey();
+			});
+			$('.rule').click(function(){
+			 	$('#rulebox').fadeIn('slow');
+			});
+			$('#rulebox').click(function(){
+			 	$(this).fadeOut('slow');
+			});
+			$('#back').click(function(){
+				$('#question').addClass('hidden');
+				$('.DL'+(yuanxiao.Q+1)).next().addClass('animate pulse DLbg');
+				$('.counttime span').html('19');
+				yuanxiao.updateView();
+				yuanxiao.answer();
+				yuanxiao.checkgrey();
+			});
+			$('.slide').click(function(){
+				$(this).addClass('hidden');
+			});
+			var chooseAns=function(){
+				$('#question .quesDet').on('click','li',function(){
+					$(this).attr('xuanzhong','yap');
+					$(this).css('background','#f6d5a7');
+					$(this).find('b').css('background','#ff7827');
+					$(this).siblings().css('background','transparent').find('b').css('background','#fff');
+					$('#question .quesDet').off('click','li');
+					$('.counttime').addClass('hidden');
+					clearInterval(timer);
+					$('.btn').removeClass('hidden');
+//					console.log('yuanxiao.ltId='+yuanxiao.ltId);
+					yuanxiao.userAnswer=$(this).attr('lop');
+//					console.log('yuanxiao.userAnswer='+yuanxiao.userAnswer);
+					yuanxiao.valiAns();
+				});
+			}
+			
+		</script>
+		<script type="text/javascript">
+ 		 var urls=location.href;
+		  wx.config({
+		       debug: false,
+		       appId: "{$_W['account']['jssdkconfig']['appId']}",
+		       timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+		       nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+		       signature: "{$_W['account']['jssdkconfig']['signature']}",
+		       jsApiList: [
+		           'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+		           'onMenuShareTimeline',      // 分享到朋友圈
+		           'onMenuShareAppMessage',    // 分享给朋友
+		           'onMenuShareQQ',            // 分享到QQ
+		           'onMenuShareWeibo',         // 分享到腾讯微博
+		           'hideMenuItems',            // 批量隐藏功能按钮接口
+		           'showMenuItems',            // 批量显示功能按钮接口
+		           'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+		           'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+		           'getNetworkType',           // 获取网络状态接口
+		           'openLocation',             // 使用微信内置地图查看位置接口
+		           'getLocation',              // 获取地理位置接口
+		           'hideOptionMenu',           // 批量隐藏功能按钮接口
+		           'showOptionMenu',           // 批量显示功能按钮接口
+		           'closeWindow',              // 关闭当前网页窗口接口
+		           'addCard',                  // 批量添加卡券接口
+		           'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+		           'openCard',                 // 查看微信卡包中的卡券接口
+		     		'chooseImage',
+		           'previewImage',
+		           'uploadImage',
+		           'downloadImage'
+		       ]
+		   });
+		
+		   wx.ready(function(){
+		        // 分享到朋友圈
+		        wx.onMenuShareTimeline({
+		           title: "赛格国际灯谜猜猜乐 200元储值卡送你喜过元宵", // 分享标题
+		           link: urls, // 分享链接
+		           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/yuanxiao/yuanxiao/share.png', // 分享图标
+		           success: function (res) {
+		              
+		           }
+		       });
+				// 分享给朋友
+		       wx.onMenuShareAppMessage({
+		           title: "赛格国际灯谜猜猜乐 200元储值卡送你喜过元宵", // 分享标题
+		           desc:  "据说智商150以上的人才能上榜，各种陷阱、冷笑话、高智商集合的题你能过几关？", // 分享描述
+		           link: urls, // 分享链接
+		           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/yuanxiao/yuanxiao/share.png', // 分享图标
+		           success: function (res) {
+		           }
+		       });
+		
+		       
+		   });
+		 </script>
+	</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content=" initial-scale=1, minimum-scale=1,maximum-scale=1, width=device-width,user-scalable=0">
+<meta content="telephone=no" name="format-detection">
+<title>儿童节制作相册</title>
+<style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+body{font-size:18px;}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, form, fieldset, legend, button, input, textarea,th, td{margin: 0; padding: 0;}
+ul, ol { list-style: none; }
+i,em{font-style:normal}
+a{ text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+}
+body{ background:#ffffe4; color:#828282;}
+header img{ width:100%;}
+.content{ background:#fff; border-bottom:solid 1px #ffc3b9; border-top:solid 1px #ffc3b9;
+width:90%; padding:5%;}
+.title{ font-size:1.4em; text-align:center; width:100%; color:#fb8573;} 
+.piclist{ width: 95%; margin-left:2.5%; margin-bottom:30px;}
+.piclist li{ float:left; width:49%; background:#fff; margin-left:1%; margin-top:20px;}
+.piclist li span{ margin-left:20px; color:#6c6c6c; line-height:30px;}
+.piclist li img{ width:100%;}
+</style>
+</head>
+
+<body>
+<header><img src="../addons/member/template/mobile/static/activity/20160601/top.png"></header>
+<h4 class="title">选择你喜欢的模板</h4>
+<ul class="piclist">
+<li><a href="javascript:;" onClick="setTemplate('template1');"><img src="../addons/member/template/mobile/static/activity/20160601/01.jpg"><span>我是小吃货</span></a></li>
+<li><a href="javascript:setTemplate('template2');"><img src="../addons/member/template/mobile/static/activity/20160601/02.jpg"><span>我很呆萌哦</span></a></li>
+<li><a href="javascript:setTemplate('template3');"><img src="../addons/member/template/mobile/static/activity/20160601/03.jpg"><span>我是淘气包</span></a></li>
+<li><a href="javascript:setTemplate('template4');"><img src="../addons/member/template/mobile/static/activity/20160601/04.jpg"><span>我要当艺术家</span></a></li>
+<div style="clear:both"></div>
+</ul>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function setTemplate(template){
+		$.post("{php echo $this->createMobileUrl('setTemplate','',true)}",{"id":"{$id}","template":template,"act_id":"{$act_id}"},function(msg){
+			if(msg.status){
+				location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id='+msg.id+"&act_id={$act_id}";
+			}else{	
+				alert(msg.msg);
+			}
+		},'json');	
+	}
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+        // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+	});
+		
+</script>
+</body>
+</html>

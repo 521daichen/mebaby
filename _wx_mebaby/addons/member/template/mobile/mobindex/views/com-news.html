@@ -1,0 +1,37 @@
+<div class="header">
+    <div class="banner">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/banner-2.png" alt=""/>
+    </div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="com">
+    <h3 class="com-title">企业资讯</h3>
+    <ul>
+        <li ng-repeat="news in newsList">
+            <div class="news-pic">
+                <img ng-src='http://www.sagabuy.com{{news.titlepic}}' alt=""/>
+            </div>
+            <div class="news-det">
+                <h5>{{news.title}}</h5>
+                <div><span class="time-icon"></span><i class="time">{{news.newspath}}</i></div>
+                <p class="elli-two">{{news.smalltext}}</p>
+            </div>
+
+            <a href="#/com-details/{{news.id}}">
+                <img class="news-right" ng-src="../addons/member/template/mobile/mobindex/images/clickright.png" alt=""/>
+            </a>
+        </li>
+        <!--<li>-->
+            <!--<div class="news-pic">-->
+                <!--<img ng-src="../addons/member/template/mobile/mobindex/images/hot-1.png" alt=""/>-->
+            <!--</div>-->
+            <!--<div class="news-det">-->
+                <!--<h5>金花到访赛格参观学习</h5>-->
+                <!--<div><span class="time-icon"></span><i class="time">2017-04-18</i></div>-->
+                <!--<p class="elli-two">3月6日下午,西安金花投资集团高层管理团队来到赛格国际购物中心进行参观交流。西安赛格集团董事局主席刘耀文</p>-->
+            <!--</div>-->
+
+            <!--<a href="#"><img class="news-right" ng-src="../addons/member/template/mobile/mobindex/images/clickright.png" alt=""/></a>-->
+        <!--</li>-->
+    </ul>
+</div>

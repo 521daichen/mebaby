@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>{$shareData['title']}</title>
+<meta name="keywords" content="">
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<style type="text/css">
+*{margin:0;padding:0}
+img{width:100%;display:block;}
+a{display:block;width:50%;height:100px;position: absolute;top:110%;}
+</style>
+</head>
+<body>
+<a href="http://www.ffan.com/app?promotion_from=42-1"></a>
+<img src="../addons/member/template/mobile/activity/20160618/images/1.png"  />
+<img src="../addons/member/template/mobile/activity/20160618/images/2.png" />
+<img src="../addons/member/template/mobile/activity/20160618/images/3.png" />
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="application/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+    wx.ready(function () {
+ 
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+           link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityH5&m=member&act_id=20160618", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/activity/20160618/images/share.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityH5&m=member&act_id=20160618", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/activity/20160618/images/share.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+     
+    });
+ 
+</script>
+ <input type="hidden" value="" id="classId" />
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256720807'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1256720807' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

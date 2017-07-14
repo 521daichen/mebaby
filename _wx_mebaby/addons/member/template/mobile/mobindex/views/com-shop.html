@@ -1,0 +1,90 @@
+<div class="header">
+    <div class="banner">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/banner-2.png" alt=""/>
+    </div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="shop">
+    <h3 class="com-title">楼层导视</h3>
+    <ul class="shop-nav">
+        <li>
+            <div class="floor floor-focus">B2</div>
+            <div class="trigon"><span class="caret"></span></div>
+        </li>
+        <li>
+            <div class="floor">B1</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">1F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">2F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">3F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">4F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">5F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li>
+            <div class="floor">6F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+        <li class="shop-nav-last">
+            <div class="floor">7F</div>
+            <div class="trigon"><span></span></div>
+        </li>
+    </ul>
+    <div class="map">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/map-b2.png" alt=""/>
+    </div>
+</div>
+<script>
+    // 切换楼层导视图
+    $('.shop-nav li').click(function(){
+        $(this).find('.floor').addClass('floor-focus');
+        $(this).find('span').addClass('caret');
+        $(this).siblings().find('.floor').removeClass('floor-focus');
+        $(this).siblings().find('span').removeClass('caret');
+        var map_index = $(this).index();
+        console.log(map_index);
+        switch (map_index){
+            case(0):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-b2.png','src':'../addons/member/template/mobile/mobindex/images/map-b2.png'});
+                break;
+            case(1):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-b1.png','src':'../addons/member/template/mobile/mobindex/images/map-b1.png'});
+                break;
+            case(2):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-1f.png','src':'../addons/member/template/mobile/mobindex/images/map-1f.png'});
+                break;
+            case(3):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-2f.png','src':'../addons/member/template/mobile/mobindex/images/map-2f.png'});
+                break;
+            case(4):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-3f.png','src':'../addons/member/template/mobile/mobindex/images/map-3f.png'});
+                break;
+            case(5):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-4f.png','src':'../addons/member/template/mobile/mobindex/images/map-4f.png'});
+                break;
+            case(6):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-5f.png','src':'../addons/member/template/mobile/mobindex/images/map-5f.png'});
+                break;
+            case(7):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-6f.png','src':'../addons/member/template/mobile/mobindex/images/map-6f.png'});
+                break;
+            case(8):
+                $('.map img').attr({'ng-src':'../addons/member/template/mobile/mobindex/images/map-7f.png','src':'../addons/member/template/mobile/mobindex/images/map-7f.png'});
+                break;
+        }
+    })
+</script>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title></title>
+	<style type="text/css">
+	body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}input[type="button"], input[type="submit"], input[type="reset"],select{-webkit-appearance: none;}textarea{-webkit-appearance: none;}
+	body{margin: 0;padding: 0;background:#1f2944;color:#fff;}
+	h1, h2{font-weight: normal;}
+	img{width:100%;height:100%;}.top,.photo{display: block;}
+	.photoBox{width:100%;position: relative;}
+	.photoBox span{display:block;width:93px;max-height:93px;margin-right:2px;margin-bottom:2px;overflow:hidden;float:left;}
+	.photoBox span img{border:solid 1px #e5e5e5;box-sizing:border-box;display:block;}
+	.camera{margin:5px auto; clear: both;}
+	#cancelImg{width:93px;height:93px;float:left;}
+	#cancelImg img{width:73px;height:63px;margin:10px 0 0 10px;}
+	textarea{width: 90%; margin-left: 2.5%; border: none; color: #828282; font-size: 16px; border: 1px solid #00b0ec; border-radius: 5px; padding: 2%; background: #fff;float:left;display:block;}
+	.buttonDiv{background:#64d9ce; color:#fff; font-size:16px; text-align:center; border-radius:5px; width:95%; border:none; padding:10px 0px; margin-left:2.5%; margin-top:10px;}
+	.Color1{background:#FB9E8F;}
+	.Color2{background:#62a8e8;}
+	.Color3{background:#c91822;}
+	.description{margin-top:30px;font-size:.8em;padding:1em 1.2em 1em 1.3em;line-height:1.8em;color:#fff;background:#3a5b81}
+	.description strong{color:#FFF;font-size:1.2em;}
+	/*遮罩层*/
+	.container{position:fixed;top:0;left: 0;width: 100%;height:100%;z-index: 100;background: rgba(0, 0, 0,0.8);}
+	.popupBox{position: fixed;left:5%;top:20px;z-index:1000;width:90%;margin: 0 auto;background: #C8F3FA;padding-bottom:1em;}
+	.popupBox select{display: block;width: 92%;margin: 20px auto;padding:3%;border: 2px #ffc3b9 solid;border-radius: 5px;color: #ababab;background:#fff url(../addons/member/template/mobile/static/activity/20160901/arrow.png) 97% center no-repeat;background-size:20px 20px;}
+	.popupBox input[type='radio']{border:1px solid #fb9e8f;height:14px;width:14px;-webkit-transform:translate(0,-1px);position: relative;}
+	.popupBox input:checked{background:#fb9e8f}
+	.popupBox h1{color: #fb9e8f;font-size: 16px;text-align: center;padding:18px 0 0;}
+	.popupBox h2{text-align: center;font-size: 14px;padding:10px 0 15px;}
+	.sex{overflow: hidden;}
+	.typeChoose{float: left; margin-top:20px; margin-left: 10%;margin-right: 5px;}
+	.buttonDiv2{text-align:center;line-height:34px;width:30%;margin-top:10px;float: left;font-size:1em;height:34px;border:0;border-radius:5px;color:#fff;}
+	.sex img{float: left;margin-left:13.3%;width: 30%;}.popupBox p{width: 90%;margin: 0 0 0 8%;overflow: hidden;font-size:14px;}
+	.popupBox p label{padding-right:.6em;}
+	.popupBox p img{width: 18px;height: 18px;}
+	.closeBtn{float: right;width:22px;height: 18px;}
+	.selected{background:#fff;border:2px solid #efefef;width:86%;margin-left:5%;border-radius:5px;padding:2%;font-size:.8em;line-height:1.6em;margin-top:.5em;color:#888}
+	.txt{float:left;display:block;width: 90%;font-size: 16px; margin-left: 2.5%; border: none; color: #828282; font-size: 16px; border: 1px solid #00b0ec; border-radius: 5px; padding: 3% 2%; background: #fff;margin-top:10px;}
+	.txt input{font-size:16px; color: #ababab; border:none; width:64%;}
+	em{font-style:normal; font-size:0.7em; color: #ababab; margin-left:5%; width:84%;}.checked{border:2px solid #ffc3b9;}
+	#mask{display:none;}
+	#photoBox .camera img{border:none}
+	#photoBox img{}
+	.tips{font-size:.8em;display:block;text-align:center;padding:.3em 0;clear:both;height:3em;}
+	.title{font-size:1.2em; text-align:center; width:100%; color:#F8F1B3; }
+	.title1{position: relative;top:-47px;z-index:9;}
+	.title2{background:url(../addons/member/template/mobile/static/activity/20160901/titlebg.png) no-repeat;background-size:100%;margin-top:10px; height:80px; line-height:80px;}
+	.picleft{position: absolute;left:0;top:-18px;width:30%;z-index:8;}
+	.Photoframe{width:40%;margin-left:29%;position: relative;z-index: 99;float:left;}
+	.Photoframe #uploadphoto{width:80%;box-sizing:border-box; margin-left:10%;}
+	.Photoframe #uploadphoto2{width:100%;border:4px solid #F96CBA !important;box-sizing:border-box;}
+	.Photoframe .past{position: absolute;left:-10px;top:-30px;width:80px;height:auto}
+	.Photoframe .new{position: absolute;left:-10px;top:-30px;width:80px;height:auto}
+	.camera{}
+	</style>
+</head>
+<body>
+	<!--主界面-->
+		<img class="top" src="../addons/member/template/mobile/static/activity/20160901/top.png">
+<h4 class="title title1">上传照片</h4>
+
+		<div class="photoBox" id="photoBox">
+        	<span id="sfilename1">
+            	
+            </span>	
+            <span id="sfilename2">
+            	
+            </span>	
+            <span id="sfilename3">
+            	
+            </span>	
+            <span id="sfilename4">
+            	
+            </span>	
+            <span id="sfilename5">
+            	
+            </span>	
+            <span id="sfilename6">
+            	
+            </span>	
+            <span id="sfilename7">
+            	
+            </span>	
+            <span id="sfilename8">
+            	
+            </span>	
+            <span id="sfilename9">
+            	
+            </span>		
+            <div id="cancelImg" style="display:none;">
+            	<img src="../addons/member/template/mobile/static/activity/20160901/cancelphoto.png" id="cancelphoto">
+            </div>
+            <div style="clear:both"></div>
+			<div class="camera" id="addImg">
+				<div class="Photoframe">
+					<!--<img src="../addons/member/template/mobile/static/activity/20160901/past.png" class="past" />-->
+					<img src="../addons/member/template/mobile/static/activity/20160901/camera.png" id="uploadphoto">
+				</div>
+				<div class="Photoframe" style="display:none">
+					<img src="../addons/member/template/mobile/static/activity/20160901/new.png" class="new" />
+                	<img src="../addons/member/template/mobile/static/activity/20160901/newphoto.png" id="uploadphoto2">
+	            </div>
+			</div>
+			<div style="clear:both;height:1em"></div>
+      
+            
+		</div>
+        <h4 class="title title2">搭配宣言</h4>
+        <div style="clear:both;height:1em"></div>
+		<form action="" method="post">
+			<textarea placeholder="这么穿为什么！" rows="3" cols="30"  id="desc" name="desc">{$descArr[$tempId]}</textarea>
+            <div class="txt">姓名：<input type="text" name="name" id="name" placeholder="输入姓名" /> </div></div>
+            <div class="txt">电话：<input type="text" name="mobile" id="mobile" placeholder="正确填写 便于获奖通知" /></div>
+
+            <input type="hidden" id="filename1" name="filename1" value="">
+            <input type="hidden" id="filename2" name="filename2" value="">
+           	<input type="hidden" id="filename3" name="filename3" value="">
+            <input type="hidden" id="filename4" name="filename4" value="">
+            <input type="hidden" id="filename5" name="filename5" value="">
+            <input type="hidden" id="filename6" name="filename6" value="">
+            <input type="hidden" id="filename7" name="filename7" value="">
+            <input type="hidden" id="filename8" name="filename8" value="">
+            <input type="hidden" id="filename9" name="filename9" value="">
+            <input type="hidden" id="num" name="num" value="1">
+			<!--<input type="button" class="buttonDiv Color1" id="btn1" value="点我，帮你写情话" />-->
+			<input type="button" class="buttonDiv Color2" id="btn2" value="上 传" />
+            <a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivitySelected&m=member&tempid=1&act_id=20160901"><button type="button" class="buttonDiv Color3">看看人家都穿啥</button></a>
+		</form>
+		<div class="description">
+			<strong>活动规则</strong>
+			<p>
+			* 上传自己即将去参加演唱会的装备，包含服饰、道具、数码产品等均可，并附上简单描述或说明即可参与活动；<br />
+			* 活动结束后，赛格评审将从中选出“潮装达人”若干，可获得赛格面值200元两店通用现金卡奖励；<br />
+			* 请正确填写联系方式，便于评选后获奖通知；<br />
+			* 参与活动即代表同意本公众号拥有照片使用权，但不做商业用途;<br />
+			* 获奖公布将于活动结束后一周内微信推送；<br />
+			* 赛格公司在中国法律法规允许范围内拥有解释权。
+            </p>
+		</div>
+		
+
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<!--<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>-->
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function changeDesc(){		
+		var status = $("#attribute:checked").val();
+		var xz = $("#xz").val();
+		$.post("{php echo $this->createMobileUrl('520DayDesc','',true)}",{"status":status,"xz":xz},function(msg){
+			if(msg.status){
+				$("#demoDesc").val(msg.desc);
+				$("#showDemo").html(msg.desc);
+				$("#desc").val(msg.desc);
+			}
+		},'json');
+	}
+	function setDesc(){	
+		document.querySelector('#mask').style.display = 'none';
+	}
+      
+	   $('#btn2').click(function(){	
+	   		var act_id = {$act_id};	   
+            var desc = $('#desc').val();
+			var name = $("#name").val();
+			var mobile = $("#mobile").val();
+			var filename1 = $("#filename1").val();
+			var filename2 = $("#filename2").val();
+			var filename3 = $("#filename3").val();
+			var filename4 = $("#filename4").val();
+			var filename5 = $("#filename5").val();
+			var filename6 = $("#filename6").val();
+			var filename7 = $("#filename7").val();
+			var filename8 = $("#filename8").val();
+			var filename9 = $("#filename9").val();
+            if(desc && act_id && name && mobile && filename1){
+				
+                /*验证通过保存数据，跳转*/
+                $.post("{php echo $this->createMobileUrl('ActivitySave','',true)}",{"desc":desc,"name":name,"mobile":mobile,"filename1":filename1,"filename2":filename2,"filename3":filename3,"filename4":filename4,"filename5":filename5,"filename6":filename6,"filename7":filename7,"filename8":filename8,"filename9":filename9,"openid":"{$_W['openid']}","act_id":act_id},function(msg){
+					if(msg.status){
+                		location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id='+msg.id+"&act_id="+msg.act_id;
+					}else{
+						layer.open({
+               				content: '发送失败请稍后再试！',
+               				btn: ['OK']
+               			});	
+					}
+                },'json');
+
+            }else{
+               alert("请填写完整信息！");
+            }
+        });
+
+
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+		
+		//上传照片
+		$('#uploadphoto').click(function(){
+			wx.chooseImage({
+    			count: 1, // 默认9
+    			success: function (res) {
+        			// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					var num = 1;
+					//$("#sfilename1").html("<img src='"+res.localIds+"'/>");
+					$("#uploadphoto").attr('src',res.localIds);
+					//$("#sfilename1").css('height','93px');
+					uploadPhoto(res.localIds,num);
+    			}
+			});
+		});
+
+		function uploadPhoto(localId,num){
+			var act_id = {$act_id};
+            wx.uploadImage({
+                localId:localId.toString(),
+                isShowProcess: 1,
+                success:function(res){
+                    var serverId = res.serverId;
+                    $.post("{php echo $this->createMobileUrl('uploadimg','',true)}",{"serverId":serverId,"act_id":act_id},function(msg){
+						
+                        if (msg.status) {							
+                            $("#filename1").val(msg.filename);
+                        } else {
+                            layer.open({
+               				 content: '上传图片失败！',
+               			 	 btn: ['OK']
+               				});
+                        }
+                    },'json');
+                    
+                },
+                fail:function(res){
+                    alert('上传失败，请稍后再试');
+                }
+            })
+        }	
+    });
+
+</script>
+</body>
+</html>

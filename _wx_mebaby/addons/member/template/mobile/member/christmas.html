@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../addons/member/template/mobile/christmas/css/swiper.min.css">
+    <title>打劫赛格美食专列</title>
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+            overflow: hidden }
+        #loading {
+            background:#2C82D1 url('../addons/member/template/mobile/christmas/images/loading_bg.png');
+            background-size:100% 100%;
+            width:100%;
+            height:100%;
+            position: fixed;
+            z-index: 500;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-wrapper {
+            -webkit-transition-timing-function:linear;
+        }
+        .swiper-slide {
+            width: 100%;
+            height: 445px;
+        }
+        /*通用样式*/
+        body {
+            font:12px "microsoft yahei",Arial,Helvetica,sans-serif;
+            color:#000;
+            margin:0;
+            padding:0;
+        }
+        ul,ol,p,h1,h2,h3,h4,h5,h6,dl,dt,dd {
+            margin:0;
+            padding:0;
+            list-style:none;
+            font-weight:normal;
+        }
+        a {
+            text-decoration:none;
+        }
+        img {
+            max-width:100%;
+        }
+        .ellipsis {
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+            -webkit-text-overflow:ellipsis
+        }
+        .hidden {
+            display: none;
+        }
+        /*
+        *页面整体
+        */
+        body {
+            width: 100%;
+            background: url("../addons/member/template/mobile/christmas/images/bg.png") no-repeat;
+            background-size: 100% auto !important;
+            background-position: 100% 100% ;
+        }
+        body:after {
+              content: "";
+              display: block;
+              clear: both;
+        }
+        /*动画*/
+        @-webkit-keyframes op_ads {
+            0% {
+                opacity: 0.8;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.6;
+            }
+        }
+        .in {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:in 3s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes in {
+            0% {
+                margin-top:500px;
+            }
+            100% {
+                margin-top:0px;
+            }
+        }
+        .mountain {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: mountain 10s linear infinite;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes mountain {
+            from {
+                background-position: 0 100% ;
+            }
+            to {
+                background-position: 0 0;
+            }
+        }
+        .thief {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:thief 2s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes thief {
+            0% {
+                top:110%
+            }
+            100% {
+                top:70%
+            }
+        }
+        /*loading*/
+        @-webkit-keyframes loadroll {
+            0% {
+                -webkit-transform:rotate(360deg);
+            }
+            100% {
+                -webkit-transform:rotate(0deg);
+            }
+        }
+        
+        #loading .earth {
+            position: absolute;
+            z-index: 95;
+            width:280px;
+            top:50%;
+            margin-top:-140px;
+            right:20px
+        }
+        #loading .train_r {
+            position: absolute;
+            z-index: 96;
+            width:260px;
+            top:50%;
+            margin-top:-130px;
+            right:30px;
+            animation: loadroll 10s linear infinite;
+        }
+        #loading .title2 {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:440px;
+            top:50%;
+            margin-top:-220px;
+            right:87px
+        }
+        #loading .start {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:200px;
+            top:50%;
+            margin-top:-100px;
+            right:320px;
+        }
+        #loading .loadpic {
+            position: absolute;
+            z-index: 97;
+            width:auto;
+            height:140px;
+            top:50%;
+            margin-top:-70px;
+            right:320px;
+        }
+        /*
+        ** 用户
+        */
+        #user {
+              position: fixed;
+              top: 75px;
+              right: -65px;
+              width: 200px;
+              height:63px;
+              z-index:100;
+              font-size: 12px;
+              -webkit-transform: rotate(90deg);
+              background: url('../addons/member/template/mobile/christmas/images/user.png') no-repeat;
+              background-size: 70%;
+        }
+        #user>li {
+            float: left;
+        }
+        #user>:first-child {
+            width: 19%;
+            margin-top: 4.75%;
+            margin-left: 4.75%;
+        }
+        #user>:first-child>img{
+           border-radius: 50%;
+        }
+        #user>:nth-child(2) {
+            width: 33%;
+            height: 33px;
+            line-height: 33px;
+            margin-top: 1%;
+            margin-left: 7%;
+            font-size: 14px;
+        }
+        #user>:last-child {
+            width: 130px;
+            margin-top:5%;
+        }
+        /*血条*/
+        .blood {
+            width: 100%;
+            height: 15px;
+            margin-left: 4%;
+            margin-top: -5%;
+        }
+        .blood li {
+            width:21%;
+            height: 15px;
+            float: left;
+        }
+        .blood li>img {
+            width:100%;
+        }
+        /*
+        ** 音乐播放及口袋
+        */
+        .baggage{
+            position:fixed;
+            z-index: 500;
+            right: 3%;
+            bottom:1%;
+            width:10%;
+        }
+        .baggage>li{
+            width:100%;
+            margin-top:20%;
+        }
+        /*
+        ** 滑动提示
+        */
+        .slidertip {
+            width:100%;
+            height:100%;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:190;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .fadein{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:fadein 1s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes fadein {
+            0% {
+               opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .slidertip>img {
+            width: 30%;
+            margin-top: 70%;
+            margin-left: 30%;
+        }
+        /*
+        ** 打劫按钮
+        */
+        #robtouch {
+              position:fixed;
+              top:39%;
+              left:1.5%;
+              z-index: 100;
+              width:17%;
+        }
+        /*
+        ** 吃货
+        */
+        #thief {
+            width: 200px;
+            position: fixed;
+            top: 110%;
+            left: -28px;
+            z-index: 100;
+            -webkit-transform: rotate(90deg);
+        }
+        /* 抽奖遮罩层*/
+        #at {
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            z-index: 1000;
+            background-color: rgba(0,0,0,0.8);
+        }
+        #at h3 {
+            width: 100%;
+            height: 100%;
+        }
+        .chef {
+            width: 50%;
+            -webkit-transform: rotate(90deg);
+            float: right;
+            margin-top: 16%;
+            margin-right: 22%;
+        }
+        .no_reward>.chef {
+            width: 70%;
+            -webkit-transform: rotate(90deg);
+            float: right;
+            margin-top: 60%;
+            margin-right: 15%;
+        }
+        #tCard {
+            width: 75%;
+            height: 20%;
+            color: #fff;
+            position: absolute;
+            top: 57%;
+            left: 15%;
+            -webkit-transform: rotate(90deg);
+            background: url('../addons/member/template/mobile/christmas/images/card.png') no-repeat;
+            background-size: 100% 100%;
+            table-layout: fixed;
+        }
+        .money{
+            font-size: 30px;
+            font-weight: normal;
+            padding-left: 10px;
+            width: 30%;
+        }
+        .money span{
+            font-size: 80px;
+        }
+        .shopname{
+            display: block;
+            font-size: 20px;
+            margin-top: -2%;
+            height: 35px;
+            line-height: 35px;
+        }
+        .shopfood{
+            display: block;
+            background-color: #f9788f;
+            width: 70%;
+            padding: 4px 6px;
+            border-radius: 5px;
+            margin-top: 4%;
+            font-size: 16px;
+        }
+        .btn {
+            -webkit-transform: rotate(90deg);
+            position: absolute;
+            top: 65%;
+            left: 10%;
+        }
+        .no_reward>.btn {
+            -webkit-transform: rotate(90deg);
+            top:42%;
+            left: 6%;
+        }
+        .btn p {
+            float: left;
+            background: #f75472;
+            padding: 5px 20px;
+            border-radius: 6px;
+            font-size: 20px;
+        }
+        .btn p a {
+            color: #ffffff;
+        }
+
+        /************车头*/
+        .train_head {
+            width: 99%;
+        }
+        .east {
+            width: 15%;
+            position: absolute;
+            top: 59%;
+            left: 43%;
+            z-index: 200;
+            -webkit-transform: rotate(90deg);
+        }
+        /***旗子*/
+        .flag {
+            width: 160px;
+            position: relative;
+            top: -540px;
+            right: -175px;
+            z-index: -10;
+        }
+        /***云朵*/
+        .cloud {
+            width: 30px;
+            position: relative;
+            top: -838px;
+            right: -265px;
+            z-index: -20;
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:cloud 2.4s linear infinite ;
+            -webkit-animation-fill-mode: both;
+        }
+        @-webkit-keyframes cloud {
+            0% {
+                width: 30px;
+                top: -838px;
+                right: -265px;
+                opacity: 1;
+            }
+            99% {
+                top: -550px;
+                right: -500px;
+                opacity: 0;
+            }
+            100% {
+                top: -550px;
+                right: -500px;
+                opacity: 0;
+            }
+        }
+        /***轮子*/
+        .rot {
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation:wheel 5s linear infinite ;
+        }
+        @-webkit-keyframes wheel {
+            0% {
+                -webkit-transform: rotate(0deg)
+            }
+            50% {
+                -webkit-transform: rotate(-180deg)
+            }
+            100% {
+                -webkit-transform: rotate(-360deg)
+            }
+        }
+        .wheelmiddle {
+              width: 60px;
+              position: relative;
+        }
+        .wheelM-1 {
+            top: -385px;
+        }
+        .wheelM-2 {
+            top: -382px;
+        }
+        .wheelbig {
+            width: 75px;
+            position: relative;
+        }
+        .wheelB-1 {
+            top: -325px;
+        }
+        .wheelB-2 {
+            top: -320px;
+        }
+        /*****************车厢01*/
+        .carriage>div {
+            width:100%;
+            height: 445px;
+        }
+        .wheelsmall {
+            width: 55px;
+            position: relative;
+        }
+        .wheelS-1 {
+            top: -390px;
+        }
+        .wheelS-2 {
+            top: -170px;
+        }
+        .txtBox{
+            background-color: #ffefbf;
+            -webkit-transform: rotate(90deg);
+            width: 70%;
+            height: 22%;
+            box-sizing: border-box;
+            padding: 5px 20px;
+            position: fixed;
+            top: 38%;
+            left: 5%;
+            z-index: 550;
+            font-size: 16px;
+            border: 4px solid #ffde7b;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 3px #666;
+        }
+        .rule{
+            background-color: #ffefbf;
+            -webkit-transform: rotate(90deg);
+            width: 70%;
+            height: 22%;
+            box-sizing: border-box;
+            padding: 5px 20px;
+            position: fixed;
+            top: 38%;
+            left: 5%;
+            z-index: 550;
+            font-size: 16px;
+            border: 4px solid #ffde7b;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 3px #666;
+        }
+        .rule b{
+            display: block;
+            text-align: center;
+            margin-bottom:1%;
+            font-weight:bold;
+            font-size: 16px;
+        }
+        .rule h5{
+            margin-bottom:1%;
+            font-size:16px;
+        }
+        #share{
+            padding:7% 5%;
+        }
+        #details h2{
+            margin-bottom:1%;
+            font-weight:bold;
+            font-size: 16px;
+        }
+        #details h1{
+            margin:20% 5%;
+            font-size:16px;
+        }
+        #details h4,#details h5{
+            margin-bottom:1%;
+            font-size:16px;
+        }
+        #details>p{
+            text-align: center;
+            margin-top: 4%;
+        }
+        .close{
+            width:12%;
+            position:absolute;
+            top: -8%;
+            right: -4%;
+        }
+        /*
+        ** 打劫动画
+        */
+        #cartoon{
+            position:absolute;
+            top: 0;
+            left: 0;
+            z-index: 200;
+            width: 100%;
+            height:100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+        .enter{
+            width:14%;
+            position:fixed;
+            bottom:4%;
+            left:1%;
+        }
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+        .bounceInDown {
+            -webkit-animation-name: bounceInDown;
+            animation-name: bounceInDown;
+        }
+
+        @-webkit-keyframes bounceInDown {
+            from, 60%, 75%, 90%, to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -3000px, 0);
+                transform: translate3d(0, -3000px, 0);
+            }
+
+            60% {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 25px, 0);
+                transform: translate3d(0, 25px, 0);
+            }
+
+            75% {
+                -webkit-transform: translate3d(0, -10px, 0);
+                transform: translate3d(0, -10px, 0);
+            }
+
+            90% {
+                -webkit-transform: translate3d(0, 5px, 0);
+                transform: translate3d(0, 5px, 0);
+            }
+
+            to {
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        #finger{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left:0;
+            z-index: 200;
+            background-color:rgba(0,0,0,0.85) ;
+        }
+        #finger img{
+            position:absolute;
+        }
+        .jump{
+            -webkit-transform: rotate(90deg);
+            color: #A9ABAB;
+            position: fixed;
+            bottom: 4%;
+            left: -6.5%;
+            padding: 4px 10px;
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.18);
+        }
+        .c1{
+            width: 45%;
+            right: 8%;
+            top: 24%;
+        }
+        .c1_in{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: c1_in 2.5s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes c1_in {
+            0%{
+                top:24%;
+                opacity: 0.6;
+            }
+            50%{
+                top:24%;
+                opacity: 1;
+            }
+            100%{
+                top:16%;
+                opacity: 0;
+            }
+         }
+        .g1{
+            width: 37%;
+            bottom: 12%;
+            left: 0;
+        }
+        .g1_in{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: g1_in 2.5s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes g1_in {
+            0%{
+                bottom:12%;
+                opacity: 0.6;
+            }
+            50%{
+                bottom:12%;
+                opacity: 1;
+            }
+            100%{
+                bottom:4%;
+                opacity: 0;
+            }
+        }
+        .c2{
+            width: 50%;
+            top: 3%;
+            left: 5%;
+            opacity: 0.6;
+        }
+        .g2{
+            width: 50%;
+            bottom: 3%;
+            left: 5%;
+            opacity: 0.6;
+        }
+        .cg2_in{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: cg2_in 1s linear;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes cg2_in {
+            0%{opacity: 0.6;}100%{opacity: 1;}
+         }
+        .c3{
+            width: 50%;
+            top: 3%;
+            left: 5%;
+        }
+        .c3_in{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: c3_in 1s linear 1s;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes c3_in {
+            0% {  top: 3%;  }
+            100% {  top: 20%;  }
+        }
+        .g3{
+            width: 50%;
+            bottom: 3%;
+            left: 5%;
+        }
+        .g3_in{
+            -webkit-transform: translate3d(0,0,0);
+            -webkit-animation: g3_in 1s linear 1s;
+            -webkit-animation-fill-mode:forwards;
+        }
+        @-webkit-keyframes g3_in {
+            0% {  bottom: 3%;  }
+            100% {  bottom: 20%;  }
+        }
+        .c4,.c5{
+            width: 50%;
+            top: 20%;
+            left: 5%;
+        }
+        .g4,.g5{
+            width: 50%;
+            bottom: 20%;
+            left: 5%;
+        }
+        .talk_c{
+            width:15%;
+            position:absolute;
+            top:18%;
+            right:4%;
+        }
+        .talk_g{
+            width:15%;
+            position:absolute;
+            bottom:52%;
+            right:23%;
+        }
+        .c_finger{
+            -webkit-transform: rotate(90deg);
+            top:100px;
+            width:80%;
+        }
+        .g_finger{
+            -webkit-transform: rotate(90deg);
+            top: 15px;
+            width: 80%;
+        }
+        /**屏幕适应**/
+        @media screen and (max-width:376px) {
+            .swiper-slide {
+                height: 405px;
+            }
+            .wheelM-1 {
+                top: -337px;
+            }
+            .wheelM-2 {
+                top: -335px;
+            }
+            .wheelmiddle {
+                width: 50px;
+            }
+            .wheelB-1 {
+                top: -290px;
+            }
+            .wheelB-2 {
+                top: -285px;
+            }
+            .wheelbig {
+                width: 70px;
+            }
+            .wheelS-1 {
+                top: -360px;
+            }
+            .wheelS-2 {
+                top: -160px;
+            }
+            .flag {
+                width: 145px;
+                top: -480px;
+                right: -165px;
+            }
+            .cloud {
+                width: 26px;
+                top: -756px;
+                right: -240px;
+            }
+            .carriage>div {
+                width: 100%;
+                height: 405px;
+            }
+            .txtBox{
+                font-size:14px;
+            }
+            #details>h2{
+                font-size:14px;
+            }
+            .rule>b{
+                font-size:14px;
+            }
+            .rule h5{
+                font-size: 14px;
+            }
+            #details h4,#details h5{
+                font-size: 14px;
+            }
+            @-webkit-keyframes cloud {
+                0% {
+                    width: 26px;
+                    top: -756px;
+                    right: -240px ;
+                    opacity: 1;
+                }
+                99% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+                100% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+            }
+            .chef {
+                margin-top: 12%;
+            }
+            #loading .start {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:160px;
+                top:50%;
+                margin-top:-80px;
+                right:290px
+            }
+            #loading .loadpic {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:140px;
+                top:50%;
+                margin-top:-70px;
+                right:310px
+            }
+            .jump{
+                bottom: 4%;
+                left: -7.5%;
+            }
+            .money span{
+                font-size: 70px;
+            }
+            .shopname{
+                font-size: 18px;
+            }
+            .shopfood{
+                font-size: 14px;
+            }
+            /*
+            ** 打劫动画
+            */
+            .c1{
+                max-width: 45%;
+                position: absolute;
+                right: 8%;
+                top: 16%
+            }
+            .g1{
+                position: absolute;
+                width: 37%;
+                bottom: 5%;
+                left: 0;
+            }
+        }
+        @media screen and (max-width:360px) {
+            .swiper-slide {
+                height: 390px;
+            }
+            .wheelS-1 {
+                top: -345px;
+            }
+            .wheelS-2 {
+                top: -165px;
+            }
+            .flag {
+                top: -493px;
+                right: -150px;
+            }
+            .carriage>div {
+                height: 390px;
+            }
+        }
+        @media screen and (max-width:320px) {
+            .swiper-slide {
+                height: 345px;
+            }
+            .wheelM-1 {
+                top: -310px;
+            }
+            .wheelM-2 {
+                top: -308px;
+            }
+            .wheelmiddle {
+                width: 45px;
+            }
+            .wheelB-1 {
+                top: -262px;
+            }
+            .wheelB-2 {
+                top: -260px;
+            }
+            .wheelbig {
+                width: 65px;
+            }
+            .wheelS-1 {
+                top: -310px;
+            }
+            .wheelS-2 {
+                top: -145px;
+            }
+            .wheelsmall {
+                width: 50px;
+            }
+            .flag {
+                width: 130px;
+                top: -450px;
+                right: -130px;
+            }
+            .cloud {
+                width: 25px;
+                top: -674px;
+                right: -200px;
+            }
+            .carriage>div {
+                width: 100%;
+                height: 345px;
+            }
+            @-webkit-keyframes cloud {
+                0% {
+                    width: 25px;
+                    top: -674px;
+                    right: -200px;
+                    opacity: 1;
+                }
+                99% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+                100% {
+                    top: -550px;
+                    right: -500px;
+                    opacity: 0;
+                }
+            }
+            .btn p {
+                font-size: 16px;
+            }
+            .chef {
+                margin-top: 12%;
+            }
+            .txtBox{
+                font-size:12px;
+            }
+            #details>h2{
+                font-size:12px;
+            }
+            .rule>b{
+                font-size:12px;
+            }
+            .rule h5{
+                font-size: 12px;
+            }
+            #details h4,#details h5{
+                font-size: 12px;
+            }
+            #details h1 {
+                font-size: 12px;
+            }
+            #loading .earth {
+                position: absolute;
+                z-index: 95;
+                width:230px;
+                top:50%;
+                margin-top:-115px;
+                right:10px
+            }
+            #loading .train {
+                position: absolute;
+                z-index: 96;
+                width:210px;
+                top:50%;
+                margin-top:-105px;
+                right:20px;
+                animation: loadroll 20s linear infinite;
+            }
+            #loading .title2 {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:240px;
+                top:50%;
+                margin-top:-120px;
+                right:87px
+            }
+            #loading .start {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:140px;
+                top:50%;
+                margin-top:-80px;
+                right:240px
+            }
+            #loading .loadpic {
+                position: absolute;
+                z-index: 97;
+                width:auto;
+                height:140px;
+                top:50%;
+                margin-top:-70px;
+                right:250px
+            }
+            .jump{
+                bottom: 5%;
+                left: -8%;
+            }
+            .money{
+                font-size:25px;
+            }
+            .money span{
+                font-size: 65px;
+            }
+            .shopname{
+                font-size: 16px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" id="openId" name="openId" value="{$openId}" />
+    <div id="loading">
+        <img src="../addons/member/template/mobile/christmas/images/earth.png" class="earth" />
+        <img src="../addons/member/template/mobile/christmas/images/train_rotate.png" class="train_r" />
+        <img src="../addons/member/template/mobile/christmas/images/title2.png" class="title2" />
+        <img src="../addons/member/template/mobile/christmas/images/start.png" class="start hidden" />
+        <img src="../addons/member/template/mobile/christmas/images/loading.gif" class="loadpic" />
+    </div>
+    <!--<div id="cartoon">-->
+        <!--<img src="../addons/member/template/mobile/christmas/images/cartoon.jpg" alt=""/>-->
+        <!--<img src="../addons/member/template/mobile/christmas/images/enter.png" class="enter hidden">-->
+    <!--</div>-->
+    <ul id="user" class="hidden">
+        <li><img src="{$headimgurl}" alt=""/></li>
+        <li class="ellipsis">{$nickname}</li>
+        <li>
+            <ul id="blood" class="blood"></ul>
+        </li>
+    </ul>
+    <ul class="baggage">
+        <li id="rule">
+            <img src="../addons/member/template/mobile/christmas/images/rule.png" alt=""/>
+        </li>
+        <li id="pocket">
+            <img src="../addons/member/template/mobile/christmas/images/pocket.png" alt=""/>
+        </li>
+        <li id="player">
+            <img id='pIcon' src="../addons/member/template/mobile/christmas/images/play.png" class="play" onclick="music(this);"/>
+            <audio id="bgSound" autoplay loop>
+                <source src="../addons/member/template/mobile/christmas/jingle-bells.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="robSound" loop>
+                <source src="../addons/member/template/mobile/christmas/rob.mp3" type="audio/mpeg">
+            </audio>
+        </li>
+
+    </ul>
+    <div class="slidertip hidden"><img src="../addons/member/template/mobile/christmas/images/slidertip.png" alt=""/></div>
+    <div id="details" class="txtBox hidden"></div>
+    <div class="rule hidden">
+        <span class="close">
+            <img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/>
+        </span>
+        <b>游戏攻略</b>
+        <h5>活动期间每人每天有三次机会打劫小火车，打劫成功可获取对应车厢的美食优惠券，分享可再获得一次机会，叫上小伙伴一起来吧！</h5>
+    </div>
+    <div id="share" class="txtBox hidden"></div>
+    <div id="thief">
+        <a id='rob' href="#"><img src="../addons/member/template/mobile/christmas/images/thief.gif" alt=""/></a>
+    </div>
+    <div id="finger" class="hidden">
+        <img src="../addons/member/template/mobile/christmas/images/start_c1.png" class="c1"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_g1.png" class="g1"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_c2.gif" class="c2 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_g2.gif" class="g2 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_c3.png" class="c3 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_g3.png" class="g3 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_c4.png" class="c4 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_g4.png" class="g4 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_c5.png" class="c5 hidden"/>
+        <img src="../addons/member/template/mobile/christmas/images/start_g5.png" class="g5 hidden"/>
+        <div class="talk_c hidden">
+            <img src="../addons/member/template/mobile/christmas/images/talk_c.png" class="cT"/>
+            <img src="" class="c_finger"/>
+        </div>
+        <div class="talk_g hidden">
+            <img src="../addons/member/template/mobile/christmas/images/talk_g.png" class="gT"/>
+            <img src="" class="g_finger"/>
+        </div>
+        <div class="jump">跳过动画</div>
+
+    </div>
+    <div id="at" class="hidden">
+        <h3 class="reward hidden">
+            <div class="chef"><img src="../addons/member/template/mobile/christmas/images/reward.png" alt=""/></div>
+            <table id="tCard">
+                <tr>
+                    <td class="money" rowspan="2">&yen;<span>5</span></td>
+                </tr>
+                <tr>
+                    <td class="shopname ellipsis">loveice factory   冰工厂</td>
+                    <td class="shopfood ellipsis">笑脸系列 冰品</td>
+                </tr>
+            </table>
+            <div class="btn">
+                <p><a id='take' href="#">去领券</a></p>
+            </div>
+        </h3>
+        <h3 class="no_reward hidden">
+            <div class="chef"><img src="../addons/member/template/mobile/christmas/images/no_reward.png" alt=""/></div>
+            <div class="btn">
+                <p><a id='back' href="#" >返&nbsp;回</a></p>
+            </div>
+        </h3>
+    </div>
+    <div id="robtouch" class="hidden"><img src="../addons/member/template/mobile/christmas/images/robbtn.png"/></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        </div>
+    </div>
+
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script src="../addons/member/template/mobile/christmas/js/swiper.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    var swiper;
+    var openId=$('#openId').val();
+    var count='';
+    var cardId='';
+    var cardName='';
+    var is_share='';
+    var cardId_free='';
+    var cardFree_name='';
+    var proFree_name='';
+    var pro_name='';
+    var act_price='';
+    var cardlists='';
+    var card='';
+    var blood=function(){
+        var blood='';
+        for(var i=0;i<count;i++) {
+            blood+='<li><img src="../addons/member/template/mobile/christmas/images/blood.png" alt=""/></li>';
+        }
+        $('#blood').html(blood);
+    };
+    window.onload=function(){
+        /*功能一：页面开始请求车厢内容*/
+        $.ajax({
+            type: 'GET',
+            url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCardList&m=member#wechat',
+            success: function(res){
+//					console.log(res);
+                var resdata=JSON.parse(res);
+                var html = "";
+//                  console.log(resdata);
+                $.each(resdata, function(i, p){
+                    html +='<div cardId="'+p.cardId+'" name="'+p.cardName+'" count="'+p.s_num+'" act_price="'+ p.act_price+
+                            '" pro_name="'+ p.pro_name+'" class="swiper-slide carriage">' +
+                            '<div class="carriage_01"><img src="'+p.train_img+'"/>'+'<div class="wanzi"></div>'+
+                            '<p class="wheelsmall wheelS-1 rot">'+
+                            '<img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                            '<p class="wheelsmall wheelS-2 rot">'+
+                            '<img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                            '</div> </div>';
+                });
+                var trainHead='<div class="swiper-slide">'+
+                        '<div class="train_head">'+
+                            '<img src="../addons/member/template/mobile/christmas/images/train.png" alt=""/>' +
+                            '<div class="east"><img src="../addons/member/template/mobile/christmas/images/east.gif" alt=""/></div>'+
+                        '</div>'+
+                        '<p class="wheelmiddle wheelM-1 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                        '<p class="wheelmiddle wheelM-2 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                        '<p class="wheelbig wheelB-1 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                        '<p class="wheelbig wheelB-2 rot"><img src="../addons/member/template/mobile/christmas/images/wheel.png" alt=""/></p>'+
+                        '<h1 class="flag"><img src="../addons/member/template/mobile/christmas/images/flag.gif" alt=""/></h1>'+
+                        '<h2 class="cloud"><img src="../addons/member/template/mobile/christmas/images/cloud.png" alt=""/></h2>'+
+                        '</div>';
+
+                html=trainHead+html;
+                $('.swiper-wrapper').html(html);
+
+                swiper=new Swiper('.swiper-container', {
+                    direction: 'vertical',
+                    centeredSlides : true,
+                    slidesPerView : 'auto',
+                    speed:1000,
+                    onSetTransition: function(swiper,transiton){
+                        $('#robtouch').addClass('hidden');
+                    },
+                    onTransitionEnd: function(swiper){
+                        if(swiper.activeIndex>0){//当前活动块为第二个时，出现打劫按钮
+                            $('#robtouch').removeClass('hidden');
+                        }
+                    },
+                    onSliderMove:function(swiper,event){
+                        if(!$('#details').hasClass('hidden')){
+                            $('#details').addClass('hidden');
+                        }
+                    }
+                });
+               swiper.disableTouchControl();
+            }
+        });
+
+        /*功能二：页面开始请求领卡次数*/
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetTodayTimes&m=member#wechat',//{"status":"1","times":"2"}
+            data:{'openId':openId},
+            success:function(res){
+                var resdata=JSON.parse(res);
+                console.log(resdata);
+                count=resdata.times;
+                console.log(count);
+                is_share=resdata.is_share;
+                blood();
+            }
+        });
+    };
+    //onload end
+    /*功能三 加载完成开始动画*/
+    setTimeout(function(){
+        $('#loading .loadpic').addClass('hidden');
+        $('#loading .start').removeClass('hidden');
+    },4000);
+    $('#loading .start').click(function(){
+        $('#loading').addClass('hidden');
+        $('.baggage').css('z-index','20');
+        swiper.enableTouchControl();
+        $('#user').removeClass('hidden');
+        $('body').addClass('mountain');
+        $('.swiper-wrapper').addClass('in');
+        $('#thief').addClass('thief');
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=IsClickedQdj&m=member#',
+            data:{'openId':openId},
+            success:function(){
+                console.log('recorded');
+            }
+        });
+    });
+    //功能四： 判断是否分享
+    var isShare=function(){
+        if(is_share==1){
+            $('#share').html('<span class="close"><img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/></span>'+
+            '精力耗尽？<br>分享至朋友圈或微信好友可增加打劫次数，让你满血回来！');
+        }else{
+            $('#share').html('<span class="close"><img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/></span>'+
+            '知道你是个吃货<br>但今天的打劫机会已用完<br>明天再来吧！');
+        }
+    };
+    //document ready end
+    //功能五： 打劫按钮播放动画
+    function robAct(){
+        $('#finger').removeClass('hidden');
+        $('#finger').children().addClass('hidden');
+        $('.c1').removeClass('hidden').addClass('rob_start c1_in');
+        $('.g1').removeClass('hidden').addClass('rob_start g1_in');
+        $('.jump').removeClass('hidden');
+        if($('#pIcon').hasClass('play')) {
+            document.querySelector('#bgSound').pause();
+            document.querySelector('#robSound').play();
+        }
+        var j=0;
+        var timer=setInterval(function(){
+            j++;
+            switch (j){
+                case 5:
+                    $('.c1').addClass('hidden');
+                    $('.g1').addClass('hidden');
+                    $('.c2').removeClass('hidden').addClass('cg2_in');
+                    $('.g2').removeClass('hidden').addClass('cg2_in');
+                    break;
+                case 8:
+                    $('.c2').addClass('hidden');
+                    $('.g2').addClass('hidden');
+                    $('.c3').removeClass('hidden').addClass('c3_in');
+                    $('.g3').removeClass('hidden').addClass('g3_in');
+                    break;
+                case 12:
+                    $('.c3').addClass('hidden');
+                    $('.g3').addClass('hidden');
+                    $('.c4').removeClass('hidden');
+                    $('.g4').removeClass('hidden');
+                    break;
+                case 14:
+                    $('.c4').addClass('hidden');
+                    $('.g4').addClass('hidden');
+                    $('.c5').removeClass('hidden');
+                    $('.g5').removeClass('hidden');
+                    $('.talk_c').removeClass('hidden');
+                    $('.talk_g').removeClass('hidden');
+                    break;
+                case 20:
+                    $('#at').removeClass('hidden');
+            }
+        },500);
+        if(j==25){clearInterval(timer);}
+        $('.jump').click(function(){
+            clearInterval(timer);
+            $('#at').removeClass('hidden');
+        });
+
+    }
+    /*功能六：抽奖事件*/
+    $('#robtouch').click(function(){
+        /*当打劫次数小于0时，点击弹出分享提示*/
+        $('#details').addClass('hidden');
+        $('#at h3').addClass('hidden');
+        isShare();
+        if(count<=0){
+            $('#share').removeClass('hidden');
+            $('#share').click(function () {
+                $(this).addClass('hidden')
+            });
+            $('#share').on('click','.close',function(){$('#share').addClass('hidden');});
+        }else {
+            /*获取当前车厢的索引 获得cardId 与cardName  异步提交获得抽奖结果*/
+            var index = swiper.activeIndex;
+            cardId = swiper.slides.eq(index).attr('cardId');
+            cardName=swiper.slides.eq(index).attr('name');
+            pro_name=swiper.slides.eq(index).attr('pro_name');
+            act_price=swiper.slides.eq(index).attr('act_price');
+            /*打劫次数大于0时，点击弹出动画 血条减1*/
+            count--;
+            blood();
+            $.ajax({
+                type: 'POST',
+                url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WhetherGetCard&m=member#wechat',
+                data: {'openId': openId, 'cardId': cardId,'cardName':cardName},
+                success: function (res) {
+                    /*根据返回状态 拼接页面内容*/
+                    var resdata = JSON.parse(res);
+                    cardId_free=resdata.cardId_free;
+                    cardFree_name=resdata.cardFree_name;
+                    proFree_name=resdata.proFree_name;
+                    console.log(cardId_free);
+                    if (resdata.status == 0) {
+                        $('.c_finger').attr('src','../addons/member/template/mobile/christmas/images/shi.gif');
+                        $('.g_finger').attr('src','../addons/member/template/mobile/christmas/images/jian.gif');
+                        $('.no_reward').removeClass('hidden');
+                        cardId='';
+                    } else if (resdata.status == 1) {
+                        $('.c_finger').attr('src','../addons/member/template/mobile/christmas/images/bu.gif');
+                        $('.g_finger').attr('src','../addons/member/template/mobile/christmas/images/jian.gif');
+                        if(cardName=='王妃家的火锅'){
+                            $('.reward>#tCard').html('<tr><td class="money" rowspan="2"><span>'+act_price+'</span>折</td></tr>'+
+                            '<tr><td class=" shopname ellipsis">'+cardName+'</li><td class="shopfood ellipsis">'+pro_name+'</li></tr>');
+                        }else {
+                            $('.reward>#tCard').html('<tr><td class="money" rowspan="2">&yen;<span>' + act_price + '</span></td></tr>' +
+                            '<tr><td class=" shopname ellipsis">' + cardName + '</li><td class="shopfood ellipsis">' + pro_name + '</li></tr>');
+                        }
+                        $('.reward').removeClass('hidden');
+                    } else if (resdata.status == 2) {
+                        $('.c_finger').attr('src','../addons/member/template/mobile/christmas/images/bu.gif');
+                        $('.g_finger').attr('src','../addons/member/template/mobile/christmas/images/bu.gif');
+                        $('.reward>.chef').html('<img src="../addons/member/template/mobile/christmas/images/ice.png" alt=""/>');
+                        $('.reward>#tCard').html('<tr> <td class="money" rowspan="2">&yen;<span>5</span></td> </tr>'+
+                        '<tr><td class="shopname ellipsis">'+cardFree_name+'</td><td class="shopfood ellipsis">'+proFree_name+'</td></tr>');
+                        $('.reward').removeClass('hidden');
+                        cardId=cardId_free;
+                        cardName=cardFree_name;
+                    }
+                }
+            });
+            robAct();
+
+        }
+
+    });
+    /*功能七：点击车厢显示当前活动块产品详情*/
+    $('.swiper-wrapper').on('click','.swiper-slide-active',function(){
+        if(swiper.activeIndex==0){
+            $('#details').addClass('hidden');
+        }else {
+            var price = $(this).attr('act_price');
+            var actDetails = $(this).attr('pro_name');
+            var shop = $(this).attr('name');
+            if ($(this).attr('name') == '王妃家的火锅') {
+                $('#details').html('<span class="close"><img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/></span>' +
+                '<h2>' + shop + '</h2><h4>活动详情：' + actDetails + '</h4><p>点击下方按钮打劫</p>');
+            }else{
+                $('#details').html('<span class="close"><img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/></span>' +
+                '<h2>' + shop + '</h2><h4>活动详情：' + actDetails + '</h4><h5>领券仅需：￥' + price + '</h5><p>点击下方按钮打劫</p>');
+                $('#details').removeClass('hidden');
+            }
+            $('#details').removeClass('hidden');
+        }
+
+    });
+    //点击details 隐藏自己
+    $('#details').click(function(){$(this).addClass('hidden');});
+    $('.rule').click(function(){$(this).addClass('hidden');});
+    //点击关闭按钮 隐藏父元素
+    $('#details').on('click','.close',function(){$('#details').addClass('hidden');});
+    $('.rule').on('click','.close',function(){$('.rule').addClass('hidden');});
+    /*功能八：分享按钮异步提交openId*/
+    function share(){
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=EditGetTimes&m=member#wechat',
+            data:{'openId':openId},
+            success:function(res){
+                var resdata=JSON.parse(res);
+                if(resdata.status==1){
+                   count++;
+                    blood();
+                    is_share=0;
+                }
+            }
+        });
+    }
+    /*功能九：领券按钮异步提交openId cardId cardName*/
+    $('#take').click(function(e){
+        e.preventDefault();
+        $('#at').addClass('hidden');
+        $('#finger').addClass('hidden');
+        if($('#pIcon').hasClass('play')){
+            document.querySelector('#bgSound').play();
+            document.querySelector('#robSound').pause();
+        }
+    });
+    /*功能十：横屏检测*/
+    $('.swiper-wrapper').css('margin-top','500px');
+    (function(){
+        /* 横屏检测*/
+        var init = function(){
+            var updateOrientation = function(){
+                var orientation = window.orientation;
+                switch(orientation){
+                    case 90:
+                    case -90:alert('请锁定竖屏播放哦！')//这里是横屏
+                        break;
+                    default://这里是竖屏
+                        break;
+                }
+            };
+            // 每次旋转，调用这个事件。
+            window.addEventListener('orientationchange',updateOrientation,false);
+            // 事件的初始化
+            updateOrientation();
+        };
+        window.addEventListener('DOMContentLoaded',init,false);
+    })();
+    /*功能十一：音乐暂停播放及图标更换*/
+    function music(){
+        var pIcon=$('#pIcon');
+        var bgSound= document.getElementById('bgSound');
+        bgSound.innerHTML='<source src="../addons/member/template/mobile/christmas/jingle-bells.mp3" type="audio/mpeg">';
+        if(pIcon.hasClass('play')){
+            pIcon.attr("src","../addons/member/template/mobile/christmas/images/pause.png");
+            pIcon.addClass('pause');
+            pIcon.removeClass('play');
+            bgSound.pause();
+        }else  if(!pIcon.hasClass('play')){
+            pIcon.attr("src","../addons/member/template/mobile/christmas/images/play.png");
+            pIcon.addClass('play');
+            pIcon.removeClass('pause');
+            bgSound.play();
+        }
+    }
+    //点击返回按钮隐藏当前层
+    $('#back').click(function(e){
+        e.preventDefault();
+        $('#at').addClass('hidden');
+        $('#finger').addClass('hidden');
+        if($('#pIcon').hasClass('play')){
+            document.querySelector('#bgSound').play();
+            document.querySelector('#robSound').pause();
+        }
+    });
+    /*功能十二：异步提交用户id 获取卡券列表*/
+    function cardlist(){
+        $.ajax({
+            type:'POST',
+            url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetReceivedCardList&m=member#',
+            data:{'openId':openId,'cardId':''},
+            success:function(resdata) {
+                cardlists = JSON.parse(resdata);
+            }
+        });
+    }
+    cardlist();
+    /*功能十三：点击小文档 显示活动详情*/
+    $('#rule').click(function(){
+        $('.rule').removeClass('hidden');
+    });
+</script>
+<script type="text/javascript">
+  var urlpyq=location.href+'&sagafrom=pyqshare';
+  var urlpy=location.href+' &sagafrom=friendshare';
+  wx.config({
+       debug: false,
+       appId: "{$_W['account']['jssdkconfig']['appId']}",
+       timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+       nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+       signature: "{$_W['account']['jssdkconfig']['signature']}",
+       jsApiList: [
+           'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+           'onMenuShareTimeline',      // 分享到朋友圈
+           'onMenuShareAppMessage',    // 分享给朋友
+           'onMenuShareQQ',            // 分享到QQ
+           'onMenuShareWeibo',         // 分享到腾讯微博
+           'hideMenuItems',            // 批量隐藏功能按钮接口
+           'showMenuItems',            // 批量显示功能按钮接口
+           'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+           'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+           'getNetworkType',           // 获取网络状态接口
+           'openLocation',             // 使用微信内置地图查看位置接口
+           'getLocation',              // 获取地理位置接口
+           'hideOptionMenu',           // 批量隐藏功能按钮接口
+           'showOptionMenu',           // 批量显示功能按钮接口
+           'closeWindow',              // 关闭当前网页窗口接口
+           'addCard',                  // 批量添加卡券接口
+           'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+           'openCard',                 // 查看微信卡包中的卡券接口
+     		'chooseImage',
+           'previewImage',
+           'uploadImage',
+           'downloadImage'
+       ]
+   });
+
+   wx.ready(function(){
+       /*解决部分ios微信无法自动播放音频*/
+       document.getElementById('bgSound').play();
+        // 分享到朋友圈
+        wx.onMenuShareTimeline({
+           title: "赛格美食专列发车了，老司机带你吃赛格", // 分享标题
+           link: urlpyq, // 分享链接
+           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/christmas/images/share.png', // 分享图标
+           success: function (res) {
+               MtaH5.clickShare('wechat_moments');
+               $.ajax({
+                   type:'POST',
+                   url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ShareByPyq&m=member#',
+                   data:{'openId':openId},
+                   success:function(){
+                       console.log('recorded');
+                   }
+               });
+               share();
+               isShare();
+           }
+       });
+		// 分享给朋友
+       wx.onMenuShareAppMessage({
+           title: "赛格美食专列发车了，老司机带你吃赛格", // 分享标题
+           desc:  "你的吃货兄弟现在正在打劫赛格美食专列，急需支援，瞅啥，赶紧去帮忙啊", // 分享描述
+           link: urlpy, // 分享链接
+           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/christmas/images/share.png', // 分享图标
+           success: function (res) {
+               MtaH5.clickShare('wechat_friend');
+               $.ajax({
+                   type:'POST',
+                   url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ShareByFriend&m=member#',
+                   data:{'openId':openId},
+                   success:function(){
+                       console.log('recorded');
+                   }
+               });
+               share();
+               isShare();
+           }
+       });
+       //领取优惠券
+       document.querySelector('#take').onclick = function () {
+           $.ajax({
+               type:'POST',
+               url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCardSignInfo&m=member#',
+               data:{'cardId':cardId},
+               success:function(res){
+                   var resdata=JSON.parse(res);
+                   wx.addCard({
+                       cardList: [
+                           {
+                               cardId: cardId,
+                               cardExt: '{"code": "","openid":"", "timestamp": "'+resdata.timestamp+'", "nonce_str":"'+resdata.noncestr+'","signature":"'+resdata.signature+'"}'
+                           }
+                       ],
+                       success: function (res) {
+                           $.ajax({
+                               type:'POST',
+                               url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=GetCardLog&m=member#wechat',
+                               data:{'openId':openId,'cardId':cardId,'cardName':cardName },
+                               success:function(){
+                                       console.log('succ');
+                               }
+                           });
+                           location.reload();
+                       },
+                       cancel: function (res) {
+                           console.log("你取消了！");
+                       },
+                       fail: function (res) {
+                           console.log("失败");
+                       }
+                   });
+               }
+           });
+       };
+       //查看优惠券
+       document.querySelector('#pocket').onclick = function() {
+           $.ajax({
+               type:'POST',
+               url:'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=IsClickedPackage&m=member#',
+               data:{'openId':openId},
+               success:function(){
+                   console.log('recorded');
+               }
+           });
+           if(cardlists!=null) {
+               wx.openCard({
+                   cardList: cardlists
+               });
+           }else{
+               $('#details').html('<span class="close"><img src="../addons/member/template/mobile/christmas/images/close.png" alt=""/></span>'+
+               '<h1>您还没有打劫到优惠券哦</h1>').removeClass('hidden');
+           }
+
+       }
+   });
+ </script>
+<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500385667" ></script>
+<script> var _mtac = {}; (function() { var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2"; mta.setAttribute("name", "MTAH5"); mta.setAttribute("sid", "500385667"); var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(mta, s); })(); </script>
+</body>
+</html>

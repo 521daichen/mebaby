@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+header{height:130px; position: relative; text-align:center;color: #fff; line-height:130px;font-size: 30px; margin-bottom:20px;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+} 
+.main{
+	line-height:30px;
+	width: 90%;
+    margin-left: 5%;
+	margin-top:10px;
+	}
+.main .txt{
+	padding-left:5px;
+	font-size:16px;
+	margin-bottom:10px;
+	border:solid 1px #b7b7b7;
+	width:230px;
+	line-height:40px;
+	}	
+.main .btn{
+	border-radius:5px;
+	margin-top:10px;
+	font-size:16px;
+	border:none;
+	width:100%;
+	text-align:center;
+	height:45px;
+	line-height:45px;
+	color:#fff;
+	background:#31acee;
+	}
+.main .btn2{
+	margin-bottom:30px;
+	border-radius:5px;
+	margin-top:20px;
+	font-size:16px;
+	border:none;
+	width:100%;
+	text-align:center;
+	height:45px;
+	line-height:45px;
+	color:#fff;
+	background:#ff7e00;
+	display:block;
+	}	
+.ewm{
+	margin-left:10%;
+	}	
+.tip{
+	padding-top:20px;
+	font-size:14px;
+	line-height:22px;
+	}
+.tip font{
+	color:red;
+	}		
+

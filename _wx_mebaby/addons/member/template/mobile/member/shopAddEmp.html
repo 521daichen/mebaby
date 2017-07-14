@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>员工信息登记表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/card.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/sy.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<header>
+       <h4>员工信息登记表</h4>
+   	
+</header>
+<section class="main">
+   <form action="index.php?i=4&c=entry&do=saveShopEmp&m=member" method="post" name="form1" id="form1" >
+   		{if $rs['c_dept_id'] == ''}
+         	<li>
+            	部组号码：{$deptArr['c_dept_id']}
+            </li>
+            <li>
+            	品牌名称：{$deptArr['c_dept_name']}
+            </li>
+            <li>
+            	姓名：<input id="name" name="name" type="text" value="" class="txt">
+            </li>
+             <li>
+            	电话：<input id="tel" name="tel" type="text" value="" class="txt">
+            </li>
+            <input id="c_dept_id" name="c_dept_id" type="hidden" value="{$c_dept_id}">
+            <input type="button" value="登记" onClick="check();" class="btn">
+               	
+        {else}
+        	<li>
+            	部组号码：{$rs['c_dept_id']}
+            </li>
+            <li>
+            	品牌名称：{$rs['c_dept_name']}
+            </li>
+            <li>
+            	姓名：{$rs['name']}
+            </li>
+            <li>
+            	电话：{$rs['tel']}
+            </li> 
+            
+        {/if}
+    </form>
+    <div class="tip"><font>*</font>为方便商场管理确保信息传达及时准确，信息如果有修改，请告知楼层主管。<br>
+  <font>*</font> 员工需用自己手机填写本页面，不得代为填写。 </div>
+</section>
+
+
+<div class="clr"></div>
+<footer>
+    <br><br>
+</footer>
+<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500021860" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<SCRIPT>
+	wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: "员工信息登记表 {$deptArr['c_dept_name']}员工登记", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=shopAddEmp&m=member&c_dept_id={$c_dept_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/images/20161001/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "员工信息登记表 {$deptArr['c_dept_name']}员工登记", // 分享标题
+            desc: '为方便商场管理确保信息传达及时准确，信息如果有修改，请告知楼层主管。员工需用自己手机填写本页面，不得代为填写。', // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=shopAddEmp&m=member&c_dept_id={$c_dept_id}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/images/20161001/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+    });
+	function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#52277D; color:#fff; border:none;text-align:center',
+            time: 2
+        });
+    }
+	function check(){
+		var c_dept_id = $("#c_dept_id").val();
+		var name = $("#name").val();
+		var tel = $("#tel").val();
+		if(c_dept_id && name && tel ){
+			$("#form1").submit();	
+		}else{
+			alert("请将内容填写完整！");	
+		}	
+	}
+</SCRIPT>
+</body>
+</html>

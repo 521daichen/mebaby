@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="telephone=no" name="format-detection">
+<title>赛格国际购物中心七夕相亲活动</title>
+<script type="text/javascript" src="../../addons/member/template/mobile/static/chasing/js/autoScale.js" ></script>
+<link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/chasing/images/style.css" />
+</head>
+
+<body class="bg">
+<div class="pop" onclick="$(this).css('display','none');">
+<img src="../../addons/member/template/mobile/static/chasing/images/pop.png" /></div>
+
+<div class="top">
+    <img src="../../addons/member/template/mobile/static/chasing/images/logo.png" class="logo">
+<div class="head"><span class="tx"><img src="{$uid['desc_img']}" alt=""></span></div>
+</div>
+
+<div class="information"  style="margin-top:0px;">
+<div class="information_list" style="margin-top:0px;">
+<ul class="love">
+    <li>
+        <img src="../../addons/member/template/mobile/static/chasing/images/x.png" class="x">
+        <b>{$admireCount}</b>人喜欢了你
+        <div id="heiceng" style="width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,.8);z-index:999;display:none;" onclick="this.style.display='none';">
+            <img src="../../addons/member/template/mobile/static/chasing/images/01.png"></div>
+            <div onclick="document.getElementById('heiceng').style.display='block';" >
+            <img src="../../addons/member/template/mobile/static/chasing/images/btn3.png" class="btn3">
+         </div>
+    </li>
+    <li>
+        <dl class="tx3">
+            {loop $admireInfo $order}
+            <dd><img src="{$order['desc_img']}">User</dd>
+            {/loop}
+            <div style="clear:both">
+            </div>
+        </dl>
+    </li>
+    <li>
+        <img src="../../addons/member/template/mobile/static/chasing/images/x.png" class="x">
+        我喜欢了<b>{$chaseCount}</b>人
+    </li>
+    <li>
+            <dl class="tx3">
+                {loop $chaseInfo $order}
+                <dd><img src="{$order['desc_img']}"></dd>
+                {/loop}
+                <div style="clear:both"></div>
+            </dl>
+        </li>
+    </ul>
+    </div>
+
+</div>
+<div class="horn cao" onclick="$('.pop').css('display','block');">
+<img src="../../addons/member/template/mobile/static/chasing/images/horn.png" /> 如何查看谁撩了你并收到速配通知？</div>
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=MatchItemInfo&m=member&uid={$uid['uid']}" class="btn goon" >立即去撩</a>
+<script type="text/javascript" src="../../addons/member/template/mobile/static/chasing/js/zepto.min.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+ wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "拯救单身汪手册 还有免费约会基金！ ", // 分享标题
+            desc:  "七夕不愿做单身汪？狗粮太多无处可躲？什么时候才能遇见我的TA？七夕遇见你的另一半，就从这里开始……", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=UploadProfile&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/chasing/images/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+	});
+</script>
+
+</body>
+</html>

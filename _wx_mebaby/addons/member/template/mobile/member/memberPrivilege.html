@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/myintegral.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <span>会员特权</span>
+</header>
+<div class="clr"></div>
+<section>
+	<div class="explain_s1"><p>
+        尊敬的 <strong>{$_GPC['cardType']}：{$_GPC['name']}</strong> 您好，欢迎您来到会员中心。<br>您的会员权益如下：
+	</p>
+	</div>
+    <dl>
+        <dt><span></span>{$_GPC['cardType']}可享受的会员权益</dt>
+        <dd>
+	    {if $_GPC['cardType']=="VIP" }
+<p> <!--vip的权益-->
+<!--<span class="text_style_1">免费停车：</span>每天可享受1小时免费停车，赛格快速出入场系统，免去您排队烦恼。<br/>-->
+<span class="text_style_1">手机贴膜：</span>带上您的手机到西安赛格电脑城，即可享受免费手机贴膜服务。<br/>
+<span class="text_style_1">电脑清灰：</span>带上您的电脑到赛格电脑城，给您的电脑进行一次专业的清洁。&nbsp;&nbsp;咨询电话：029-85538888<br/>
+</p>
+{/if}
+{if $_GPC['cardType']=="VVIP" }
+<p><!--vvip的权益-->
+<!--<span class="text_style_1">免费停车：</span>每天可享受2小时免费停车，赛格快速出入场系统，免去您排队烦恼。<br>-->
+<span class="text_style_1">手机贴膜：</span>带上您的手机到西安赛格电脑城，即可享受免费手机贴膜服务。<br>
+<span class="text_style_1">电脑清灰：</span>带上您的电脑到赛格电脑城，给您的电脑进行一次专业的清洁。&nbsp;&nbsp;咨询电话：029-85538888<br>
+<span class="text_style_1">礼品包装：</span>百种包装风格，任您挑选。<br>
+<span class="text_style_1">预留车位：</span>只需提前1小时致电客服中心，便可享受预留车位。（客服中心：029-86300000）<br>
+<span class="text_style_1">9折优惠：</span>在赛格指定专柜即可享受9折优惠。<br></P>
+{/if}
+{if $_GPC['cardType']=="VVVIP" }
+<p><!--vvvip的权益-->
+<!--<span class="text_style_1">专属车位：</span>赛格专属停车位，让您享受闹市区中专属的宁静。<br>-->
+<span class="text_style_1">手机贴膜：</span>带上您的手机到西安赛格电脑城，即可享受免费手机贴膜服务。<br>
+<span class="text_style_1">电脑清灰：</span>带上您的电脑到赛格电脑城，给您的电脑进行一次专业的清洁。&nbsp;&nbsp;咨询电话：029-85538888<br>
+<span class="text_style_1">礼品包装：</span>百种包装风格，任您挑选。<br>
+<span class="text_style_1">全程导购：</span>购物全程专业导购陪同，帮您挑选最适合的。<br>
+<span class="text_style_1">购物签单：</span>到场选购即刻提货，您的时间，才是最宝贵的财富。<br>
+</P>
+{/if}
+        </dd>
+    </dl>
+    <dl>
+        <dt><span></span>其他等级会员权益</dt>
+        <dd>
+{if $_GPC['cardType']=="VIP" }
+<p>
+<span class="text_style_1">VVIP：</span>礼品包装、预留车位、购物9折优惠。<br>
+<span class="text_style_1">VVVIP：</span>全程导购、专属车位、购物签单及8.5折优惠。<br>
+</p>
+{/if}
+{if $_GPC['cardType']=="VVIP" }
+<p>
+<span class="text_style_1">VIP：</span>手机贴膜、电脑清灰。<br>
+<span class="text_style_1">VVVIP：</span>全程导购、专属车位、购物签单及8.5折优惠。<br>
+</p>
+{/if}
+{if $_GPC['cardType']=="VVVIP" }
+<p>
+<span class="text_style_1">VIP：</span>手机贴膜、电脑清灰。<br>
+<span class="text_style_1">VVIP：</span>礼品包装、预留车位、购物9折优惠。<br>
+</p>
+{/if}
+        </dd>
+    </dl>
+  
+</section>
+<div class="clr"></div>
+<footer>
+    <br><br>
+</footer>
+</body>
+</html>

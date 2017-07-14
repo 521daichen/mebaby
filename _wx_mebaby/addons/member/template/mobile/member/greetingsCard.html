@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>开始制作</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/start.css" />
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/animate.css" />
+</head>
+<body>
+<header><img src="../../addons/member/template/mobile/static/gCard/img/tips1.png" /></header>
+<button>开始制作</button>
+<footer><img src="../../addons/member/template/mobile/static/gCard/img/step.png" /></footer>
+<div id="frame"><img src="../../addons/member/template/mobile/static/gCard/img/frame.png" id="upImg"/></div>
+<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+        document.getElementsByTagName('button')[0].onclick=function(){
+            document.getElementById('frame').style.display='block';
+            document.getElementById('frame').className="bounceIn animated";
+        }
+    }
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+        // 选择照片
+        $('#upImg').on('click',function(){
+            wx.chooseImage({
+                count:1,
+                success:function(res){
+                    var localId = res.localIds;
+                    uploadPhoto(localId);
+                }
+            });
+        });
+
+        function uploadPhoto(localId){
+            wx.uploadImage({
+                localId:localId.toString(),
+                isShowProcess: 1,
+                success:function(res){
+                    var serverId = res.serverId;
+                    $.post('{php echo $this->createMobileUrl("greetingsCard")}',{"serverId":serverId},function(msg){
+                        if (msg.status) {
+                           window.location.href = '{php echo $this->createMobileUrl("caijianImg")}'+'&id='+msg.id;
+                        } else {
+                            alert('上传失败');
+                        }
+                    },'json');
+                },
+                fail:function(res){
+                    alert('上传失败，请稍后再试');
+                }
+            })
+        }
+
+        wx.hideOptionMenu();
+
+        /*wx.hideMenuItems({
+            menuList: ['menuItem:share:appMessage','menuItem:share:timeline','menuItem:openWithSafari','menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:readMode','menuItem:originPage'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });*/
+
+
+    });
+</script>
+</body>
+</html>

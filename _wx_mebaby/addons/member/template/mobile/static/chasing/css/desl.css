@@ -1,0 +1,9 @@
+html,body{width:100%;height:100%;}
+.desl_box{background:#fff;border:1px solid #ccc;height:100%;width:70%;position: fixed;z-index:98;right:0;top:0;overflow: auto;}
+.desl_box ul{background:#fff;width:90%;margin-left:5%;margin-bottom:3em;}
+.desl_box ul li{background:#fff;list-style: none;border-bottom:1px solid #eee;box-sizing:border-box;height:2.5em;line-height:2.5em;color:#666;}
+.Selected{font-weight:bold;color:#ea7271 !important;background:url(../images/check.png) right center no-repeat !important;background-size:auto 60% !important;}
+.submit{border:1px solid #F4B5B5 !important;color:#fff !important;text-align:center !important;display:inline-block;height:1.8em;line-height:1.8em;border-radius:5px;margin:0 1em 2em;padding:0 1.5em;margin-top:.5em;}
+.desl_mask{background:rgba(0,0,0,0.8);width:100%;height:100%;position: fixed;z-index: 97;left:0;top:0;display:none;}
+.desl_title{background:#ea7271 !important;height:3em;line-height:3em;color:#fff !important;text-align:right;width:70%;position:fixed;bottom:0;right:1px;z-index:99;}
+.desl_add{height:50%;width:auto;margin-right:0.6em;vertical-align: middle;}

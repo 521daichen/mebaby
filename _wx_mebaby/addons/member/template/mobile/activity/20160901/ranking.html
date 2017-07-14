@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content=" initial-scale=1, minimum-scale=1,maximum-scale=1, width=device-width,user-scalable=0">
+<meta content="telephone=no" name="format-detection">
+<title></title>
+<style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+body{font-size:18px;}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, form, fieldset, legend, button, input, textarea,th, td{margin: 0; padding: 0;}
+ul, ol { list-style: none; }
+i,em{font-style:normal}
+a{ text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+}
+body{ background:#1f2944; color:#fff;}
+header img{ width:100%;}
+.content{ background:#fff; border-bottom:solid 1px #ffc3b9; border-top:solid 1px #ffc3b9;
+width:90%; padding:5%;}
+
+.phb{ width:100%; position:relative;}
+.phb li{ border-bottom: solid 1px #e9e9e3;  float:left; width:95%; padding:10px 0px; margin-left:2.5%;}
+.phb li img{ float:left; border:solid 2px #ccc;  width:20%; margin-left:10px;}
+.list_txt{ float:left; margin-left:20px;}
+.phb li span{ float:right;  margin-right:10px; margin-top:35px ;color:#fff; background:#fb8573; border-radius:5px; padding:2px 5px;}
+.list_txt h4{margin-top:15px; color:#fb8573;}
+.list_txt p{ line-height:30px; margin-top:5px; color:#a1a1a1;}
+.hg{ position:absolute; left:2.5%; top:-8px; left:5px;width:10%;}
+.description{margin-top:30px;font-size:.8em;padding:1em 1.2em 1em 1.3em;line-height:1.8em;color:#fff;background:#3a5b81}
+.description strong{color:#FFF;font-size:1.2em;}
+.title{font-size:1.2em; text-align:center; width:100%; color:#F8F1B3; position: relative;margin-top:-5px;}
+.title1{position: relative;top:-47px;z-index:9;}
+
+.pic_list{
+	overflow:hidden;
+	position:relative;
+	}
+.pic_list li{
+	position:relative;
+	margin-bottom:20px;
+	}	
+.pic_list .pic_left{
+	position:absolute;
+	width:20%;	
+	}
+.pic_list li:nth-child(odd) .pic_left{
+	position:absolute;
+	width:20%;
+	left:-22%;	
+	}
+.pic_list li:nth-child(even) .pic_left{
+	position:absolute;
+	width:20%;
+	right:-22%;	
+	}		
+.pic_list li img{
+	width:100%;
+	}			
+.pic_list li:nth-child(odd){
+	width:75%;
+	background:#2d4363;
+	padding:1%;
+	padding-right:0px;
+	border:solid 1px #5c83bd;
+	border-right:0px;
+	float:right;
+}
+.pic_list li:nth-child(even)
+{
+	width:75%;
+	background:#2d4363;
+	padding:5px;
+	padding-left:0px;
+	border:solid 1px #5c83bd;
+	border-left:0px;
+	float:left;
+}
+.pic_list h4{
+	color:#fff;
+	line-height:30px;
+	width:100%;
+	position:absolute;
+	bottom:5px;
+	background:rgba(31,41,68,0.5);
+	text-align:center;
+	}	
+				
+</style>
+</head>
+
+<body>
+<header><img class="top" src="../addons/member/template/mobile/static/activity/20160901/top.png"></header>
+<h4 class="title title1">潮装达人</h4>
+<ul class="pic_list">
+{loop $topInfo $top}
+<li>
+<img src="../addons/member/template/mobile/static/activity/20160901/pic_bg.png" class="pic_left">
+<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$top['id']}&act_id={$act_id}">
+<img src="{$top['filename1']}">
+<h4>{$top['name']}</h4>
+</a>
+</li>
+{/loop}
+</ul>
+ <div style="clear:both"></div>
+<div class="description">
+			<strong>活动说明</strong>
+			<p>
+			* 上传自己即将去参加演唱会的装备，包含服饰、道具、数码产品等均可，并附上简单描述或说明即可参与活动；<br />
+			* 活动结束后，赛格评审将从中选出“潮装达人”若干，可获得赛格面值200元两店通用现金卡奖励；<br />
+			* 请正确填写联系方式，便于评选后获奖通知；<br />
+			* 参与活动即代表同意本公众号拥有照片使用权，但不做商业用途;<br />
+			* 获奖公布将于活动结束后一周内微信推送；<br />
+			* 赛格公司在中国法律法规允许范围内拥有解释权。
+            </p>
+		</div>
+</body>
+</html>

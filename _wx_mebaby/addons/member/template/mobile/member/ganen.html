@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>2015 只是想说声感谢</title>
+<link rel="stylesheet" href="../addons/member/template/mobile/static/ganen/
+img/parallax.css">
+<link rel="stylesheet" href="../addons/member/template/mobile/static/ganen/
+img/parallax-animation.css">
+<link rel="stylesheet" href="../addons/member/template/mobile/static/ganen/
+img/style.css">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/> 
+</head>
+<body>
+<div class="wrapper">
+    <div class="pages">
+	     <!-- 第0屏 -->
+        <section class="page">
+            <div class="text1" data-animation="slideToBottom" data-delay="300" data-duration="500" data-timing-function="linear">
+            	<img src="../addons/member/template/mobile/static/ganen/img/000.png" />
+            </div>
+            <div class="text1-2" data-animation="slideToTop" data-delay="300" data-duration="800" data-timing-function="linear">
+            	<img src="../addons/member/template/mobile/static/ganen/img/001.png" />
+            </div>
+        </section>
+
+        <!-- 第1屏 -->
+        <section class="page">
+            <div class="textt" data-animation="slideToBottom" data-delay="300" data-duration="800" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/112.png" />
+            </div>
+            <div class="textb1" data-animation="slideToLeft" data-delay="300" data-duration="500" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/111.png" class="shadow" />
+            </div>
+            <div class="textf" data-animation="slideToTop" data-delay="300" data-duration="1100" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/113.png" />
+            </div>
+        </section>
+
+        <!-- 第2屏 -->
+
+        <section class="page">
+        	<div class="textt" data-animation="slideToBottom" data-delay="300" data-duration="800" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/222.png" />
+            </div>
+            <div class="textb2" data-animation="slideToLeft" data-delay="300" data-duration="500" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/221.png" class="shadow" />
+            </div>
+            <div class="textf" data-animation="slideToTop" data-delay="300" data-duration="1100" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/223.png" />
+            </div>
+        </section>
+
+
+        <!-- 第3屏 -->
+        <section class="page">
+      		<div class="textt" data-animation="slideToBottom" data-delay="300" data-duration="800" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/332.png" />
+            </div>
+            <div class="textb3" data-animation="slideToLeft" data-delay="300" data-duration="500" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/331.png" class="shadow" />
+            </div>
+            <div class="textf" data-animation="slideToTop" data-delay="300" data-duration="1100" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/333.png" />
+            </div>
+        </section>
+
+        <!-- 第4屏 -->
+        <section class="page">
+            <div class="textt" data-animation="slideToBottom" data-delay="300" data-duration="800" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/442.png" />
+            </div>
+            <div class="textb4" data-animation="slideToLeft" data-delay="300" data-duration="500" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/441.png" class="shadow" />
+            </div>
+            <div class="textf" data-animation="slideToTop" data-delay="300" data-duration="1100" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/443.png" />
+            </div>
+        </section>
+        
+        <!-- 第5屏 -->
+        <section class="page">
+           <div class="textt" data-animation="slideToBottom" data-delay="300" data-duration="800" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/552.png" />
+            </div>
+            <div class="textb5" data-animation="slideToLeft" data-delay="300" data-duration="500" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/551.png" class="shadow" />
+            </div>
+            <div class="textf" data-animation="slideToTop" data-delay="300" data-duration="1100" data-timing-function="linear">
+                <img src="../addons/member/template/mobile/static/ganen/img/553.png" />
+            </div>
+        </section>
+        
+        <!-- 第6屏 -->
+        <section class="page">
+        </section>
+        <section class="page">
+        </section>
+     
+    </div>
+</div>
+<div class="share" onclick="this.style.display='none'"></div>
+
+<script src="../addons/member/template/mobile/static/ganen/js/zepto.min.js"></script>
+<script src="../addons/member/template/mobile/static/ganen/js/parallax.js"></script>
+<script>
+$('.pages').parallax({
+    direction: 'vertical',     // horizontal (水平翻页)
+    swipeAnim: 'default',     // cover (切换效果)
+    drag:      true,        // 是否允许拖拽 (若 false 则只有在 touchend 之后才会翻页)
+    loading:   true,        // 有无加载页
+    indicator: false,        // 有无指示点
+    arrow:     true,        // 有无指示箭头
+    /*
+     * 翻页后立即执行
+     * {int}         index: 第几页
+     * {DOMElement} element: 当前页节点
+     * {String}        directation: forward(前翻)、backward(后翻)、stay(保持原页)
+     */
+     
+    onchange: function(index, element, direction) {
+        // code here...
+       if(index==7){
+        location.href='http://zt.sagabuy.com';
+     }
+//       console.log(index);
+    },
+    /*
+     * 横竖屏检测
+     * {String}        orientation: landscape / protrait
+     */
+    orientationchange: function(orientation) {
+        // code here...    
+    }
+    //hr@sagabuy.com
+    
+
+
+});
+var num=1;
+function roll(){
+    num=num-1;
+    if(num > -3000){
+    $("#pinpai1").css('margin-top', num+'px');
+    setTimeout(roll,50);
+    }else{
+    num=0;
+    setTimeout(roll,50);
+    }
+}
+function roll2(){
+    num=num-1;
+    if(num > -3000){
+    $("#pinpai2").css('margin-top', num+'px');
+    setTimeout(roll2,50);
+    }else{
+    num=0;
+    setTimeout(roll2,50);
+    }
+}
+
+function playSetting(){
+  var audio = document.getElementById('my');
+  if(!audio.paused)  
+	 {
+	  $(".replay").removeClass('play');
+	  $(".replay").addClass('stop');
+	  audio.pause();// 这个就是暂停//audio.play();// 这个就是播放  
+	 }else{
+	   $(".replay").removeClass('stop');
+	  $(".replay").addClass('play');
+	  audio.play();
+	 }
+}
+//横向滑动
+</script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: '2015 只是想说声感谢', // 分享标题
+            desc: '你是不是也会想起心里的那个TA，只是想说声感谢', // 分享描述
+            link: "{$_W['siteroot']}app/index.php?i=4&c=entry&do=ganen&m=member", // 分享链接
+            imgUrl: 'http://zt.sagabuy.com/webapp/gej/static/img/tototo.jpg', // 分享图标
+            success: function (res) {
+//                $.post("{php echo $this->createMobileUrl('aixin','',true)}",{"openid":"{$_W['openid']}","isFollow":"{$_W['fans']['follow']}"},function(msg){
+//                    alert(msg);
+//                });
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '2015 只是想说声感谢', // 分享标题
+            desc: '你是不是也会想起心里的那个TA，只是想说声感谢', // 分享描述
+            link: "{$_W['siteroot']}app/index.php?i=4&c=entry&do=ganen&m=member", // 分享链接
+            imgUrl: 'http://zt.sagabuy.com/webapp/gej/static/img/tototo.jpg', // 分享图标
+            success: function (res) {
+//                $.post("{php echo $this->createMobileUrl('aixin','',true)}",{"openid":"{$_W['openid']}","isFollow":"{$_W['fans']['follow']}"},function(msg){
+//                    alert(msg);
+//                });
+            }
+        });
+
+        wx.hideMenuItems({
+            menuList: ['menuItem:openWithSafari','menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:readMode','menuItem:originPage'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });
+
+    });
+
+</script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256831702'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D1256831702' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

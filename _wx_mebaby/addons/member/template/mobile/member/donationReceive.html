@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>积分转赠</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/donation/css/style.css?v111" />
+    <link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/donation/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/donation/css/luck-money.css" />
+    <script src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+    <script src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+    <script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+</head>
+<body>
+<div class="share"><img src="../addons/member/template/mobile/static/donation/img/share.png" /></div>
+<div class="hint">
+    <strong>积分转赠说明</strong>
+    为了让您能够更好的享受赛格微会员服务，现我商城推出积分转赠服务。您可将您的购物积分转赠给您的家人或朋友，他们在成功注册赛格微会员后，即可使用转赠的购物积分用于赛格ETC会员停车服务。<br />
+    小窍门：为了更好的保障会员的权益，遵循一会员，一手机号，一车牌的安全原则，会员停车服务规则即将更改，届时每位微会员仅可绑定一个车牌号。若您有多辆车，您可以邀请车辆实际驾驶人也成为赛格国际的微会员，并用转赠服务将您账户的积分转赠给他，这样依旧可以享受积分抵扣停车费的功能。<br />
+
+    <strong>应该怎样转赠积分？</strong>
+    填写相应积分后，点击右上角按钮中的“发送给朋友”，选择目标好友进行发送即可。<br />
+    <strong>为什么我的“停车专用积分”不可转赠？</strong>
+    您好，“停车专用积分”是在注册微会员时我们赠送的，仅可在您停车时使用，您可以转赠的积分为“购物积分”。<br />
+    <strong>如果我的好友不是赛格微会员，如何才能领取积分？</strong>
+    您好，如果Ta不是赛格微会员，在Ta领取积分时，我们会引导Ta进行微会员注册，成功注册微会员后即可领取并使用积分了。<br />
+    <strong>如果我给好友赠送了积分，但在好友领取前，我的积分因使用而不够转赠积分数值了，怎么办？</strong>
+    您好，如果在Ta收取积分前，您使用了一部分积分，使得剩余积分数值小于抵扣转赠给Ta的积分数值，我们会在Ta领取积分时，将您的剩余积分实际数值转至Ta的积分账户中。
+</div>
+<header>
+    <div class="cloud">
+        <span class="roll"></span>
+    </div>
+    <div class="leg-left kFrame"></div>
+    <div class="leg-right default"></div>
+    <div class="myPhoto"><img src="../addons/member/template/mobile/static/donation/img/photo.png" /></div>
+    <div class="friendPhoto"><img src="../addons/member/template/mobile/static/donation/img/photo.png" /></div>
+    <div class="hintText"></div>
+</header>
+<section class="Arrival">
+    <p>{$donation['realname']}赠送的积分已到账<br><strong>{$donation['score']}</strong></p>
+    <button class="look">查看积分明细</button>
+    <span class="tips">积分转赠说明</span>
+</section>
+
+<div class="luck-money animated fadeIn">
+	<div class="close">关闭</div>
+	<div class="luck-packet animated tada" id="packet">
+		<span id="coupon" ></span>
+	</div>
+</div>
+<script type="text/javascript">
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    if(arr=document.cookie.match(reg)){
+        return unescape(arr[2]);
+    }else{
+        return null;
+  }
+}
+function setCookie(name,value)
+{
+    var Days = 30;
+    var exp = new Date();
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+window.onload=function(){
+  // var smallpacket = document.getElementsByClassName('smallpacket')[0];
+  var luck_money = document.getElementsByClassName('luck-money')[0];
+  var close = document.getElementsByClassName('close')[0];
+  var luck_packet = document.getElementById('packet');
+  var coupon = document.getElementById('coupon');
+  // smallpacket.onclick=function(){
+  // 	luck_money.style.display = 'block';
+  // 	smallpacket.style.display = 'none';
+  // }
+  close.onclick=function(){
+    luck_money.style.display = 'none';
+
+  }
+  setTimeout(function(){
+    if(getCookie('name')==1){
+
+    }else{
+      luck_money.style.display = 'block';
+    }
+  }, 1000);
+    luck_packet.onclick=function(){
+      var lock;
+      if(lock!==0){
+        lock=0;
+        setTimeout(function(){
+        luck_packet.className="luck-packet packet-state1";
+          setTimeout(function(){
+          luck_packet.className="luck-packet packet-state2";
+            setTimeout(function(){
+            luck_packet.className="luck-packet packet-state3";
+              setTimeout(function(){
+              luck_packet.className="luck-packet packet-state4";
+                setTimeout(function(){
+                coupon.className="coupon-show flipInX animated";
+                  setTimeout(function(){
+                  luck_packet.className="luck-packet packet-state5";
+                  coupon.innerHTML = '<p>收到积分<strong>{$donation['score']}</strong></p>';
+                  setCookie('name',1);
+                  }, 100);
+                }, 600);
+              }, 70);
+            }, 50);
+          }, 30);
+        }, 100);
+      }
+      luck_packet.onclick=function(){
+        luck_money.style.display = 'none';
+      }//关闭
+    }//点击打开
+
+}
+    ;(function($){
+        //初始化界面
+        var state       = 1;                       //0:未领取，1：已领取
+        var myPhoto     = "{php echo substr_replace($founderFansInfo['tag']['avatar'],'132',-1,1);}";   	//自己的头像
+        var friendPhoto = "{php echo substr_replace($receiveFansInfo['tag']['avatar'],'132',-1,1);}";  								      //对方的头像
+        var quota       = 1000;  										//可用积分
+
+        //状态显示
+        if(state==0){
+            $('.hintText').html('可用积分：'+quota);
+        }else{
+            $('.hintText').css('display','none');
+        }
+        if(state==1){
+            $('.roll').addClass('rollNow');
+            $('.leg-right').removeClass('default');
+            $('.leg-right').addClass('kFrame');
+        }
+
+        //显示本人头像
+        $('.myPhoto').css({
+            'background'     :'url("'+myPhoto+'")',
+            'background-size':'100% 100%'
+        });
+
+        //显示对方头像
+        friendPhoto == '' ? $('.friendPhoto').css({'background':'url("static/img/por.png")','background-size':'99% 99%'}):$('.friendPhoto').css({'background':'url("'+friendPhoto+'")','background-size':'100% 100%'});
+
+        //使用说明弹窗
+        touch.on('.tips', 'tap', function(ev){
+            $('.hint').css({'display':'block'});
+        });
+        //关闭使用说明
+        touch.on('.hint', 'tap', function(ev){
+            $('.hint').css({'display':'none'});
+        });
+        //分享关闭
+        touch.on('.share', 'tap', function(ev){
+            $('.share').css({'display':'none'});
+        });
+        //分享弹窗
+        touch.on('.fx', 'tap', function(ev){
+            $('.share').css({'display':'block'});
+        });
+        //查看
+        touch.on('.look', 'tap', function(ev){
+            location.href = '{$_W["siteroot"]}app/index.php?i=4&c=entry&do=donationList&m=member';
+        });
+    })(Zepto)
+</script>
+</body>
+</html>

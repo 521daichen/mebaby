@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+header{height:50px; position: relative;}
+.tooth{width:100%;position: absolute;left:0;bottom:0;}
+header .logo{height:2em;margin:0 1em}
+header span{font-size:1.2em;color:#fff;position:absolute;right:1em;top:1.1em;text-shadow: 0px 0px 1px #333}
+section dl{display: block;width:94%;height:auto;margin: 1em auto}
+section dl dt{display: block;border-radius: 10px 10px 0 0;border: 1px solid #d8d8d8;display: block;background: #efefef;font-weight:bold;height:2.6em;line-height: 2.6em;z-index: 1;text-indent: 1em}
+section dl dd{background: #fcfcfc;border:1px solid #d8d8d8;display: block;border-radius:0 0 10px 10px;padding:0.5em 1em 1em;line-height: 1.6em;font-size: 0.9em;border-top:none}
+section dl dt span{display: block;height:24px;width:24px;background: url(arr.png) no-repeat;float: right;margin-top: 0.7em;margin-right: 0.6em; background-size:100% 100%;-webkit-transform:rotate(90deg);}

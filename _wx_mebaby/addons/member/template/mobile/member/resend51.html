@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+	<meta content="telephone=no" name="format-detection">
+    <title>赛格叫你来过节</title>
+	<style>
+		body{
+			margin:0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			/*background: url('../addons/member/template/mobile/road38/images/bg.png') no-repeat;*/
+			background-size: 100%;
+			background-color: #c2e5f9;
+		}
+		header{
+			width: 100%;
+			height: 40%;
+		}
+		img{
+			width: 100%;
+			height:auto;
+		}
+		.card{
+		    width: 74%;
+		    margin:2% 13%;	
+		}
+		.card img{height: auto !important;}
+		.activity{
+			width: 86%;
+		    margin-right: 7%;
+		    margin-left: 7%;
+		    box-sizing: border-box;
+		    padding: 3% 0%;
+		}
+		.det{
+			width: 30%;
+			margin: 1% 0%;
+		}
+		.activity>div{
+			font-size: 12px;
+			color: #545454;
+			text-align: justify;
+		}
+		.activity>div>p{
+			margin: 0;
+			padding: 0;
+			margin-top: 2%;
+			font-size: 12px;
+		}
+		.activity>div span{
+			color:#f60;
+			float:right;
+			text-decoration: underline;
+		}
+		.carId{
+		    width: 86%;
+		    height: 50%;
+		    margin-right: 7%;
+		    margin-left: 7%;
+		    box-sizing: border-box;
+		    padding: 3% 0%;
+		    background: rgba(255,255,255,0.3);
+		    border-radius: 10px;
+			
+		}
+		.carId p{
+			font-size: 14px;	
+		}
+		.carId b{
+			width: 22%;
+			text-align: right;
+			font-weight: normal;
+			display: inline-block;	
+		}
+		.carId span{
+			width: 70%;
+			padding-left: 5px;
+			display: inline-block;	
+		}
+		.carId h3{
+			font-size: 16px;
+			font-weight: normal;
+			text-align: center;	
+		}
+		.input {
+		    width: 100%;
+		    height: 35px;
+		    line-height: 35px;
+		    border-radius: 5px;
+		    box-sizing: border-box;
+		    border: 1px solid #ddd;
+	        border-top: 1px solid #ddd;
+		    color: #999;
+		    font-size: 12px;
+		    font-family: "microsoft sans serif";
+		    box-shadow: none;
+		    background: #FFF;
+		    outline:none; 
+		    -webkit-appearance: none;
+		    padding-left: 2%;
+		}
+		.userinfo{
+			width: 86%;
+			margin-left: 7%;
+		}
+		p{
+			width: 100%;
+		    margin: 2% 1%;
+		    padding: 0;
+		    font-size: 14px;
+		    font-family: "microsoft sans serif";
+		}
+		h5{
+			padding: 0;
+		    margin: 2% 6%;
+		    font-weight: normal;
+		    width: 88%;
+		}
+		#btn{
+			box-sizing: border-box;
+			width: 86%;
+		    height: 35px;
+		    line-height: 35px;
+		    background: #ff4764;
+		    color: #FFF;
+		    text-align: center;
+			margin: 3% 7% 3% 7%;
+		    border-radius: 5px;
+		}
+		#ruledet .det{
+			width: 55%;
+			margin: 1% 0%;
+		}
+		#ruledet h4{
+			margin: 2% 0%;
+			font-size: 14px;
+		}
+		#ruledet p{
+			margin:1% 0%;
+			font-size: 12px;
+		}
+		#ruledet{
+			position: absolute;
+			width: 100%;
+			height: 190%;
+			background:rgba(0,0,0,0.8);	
+		    top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 555;
+			/*height: 850px;*/
+		}
+		#ruledet>div{
+			width: 86%;
+		    margin-top: 15%;
+		    margin-left: 7%;
+		    position: relative;
+		    background: #d1ecfa;
+		    border-radius: 5px;
+		    padding: 4% 6%;
+		    box-sizing: border-box;
+		}
+		#ruledet>div>span{
+		    position: absolute;
+		    right: -3%;
+		    top: -2%;
+		    background: url(../addons/member/template/mobile/road38/images/close.png) no-repeat;
+		    background-size:100% ;
+		    width: 10%;
+		    height: 6%;
+		}
+		#ruledet>div>div{
+			font-size: 12px;
+			text-align: justify;
+		}
+		.hidden{
+			display: none;
+		}
+		.mask{background:rgba(0,0,0,0.8);width:100%;height:100%;position: fixed;left:0;top:0;display: none;z-index: 999;}
+		@media screen and (max-width:320px) {
+		 	#ruledet{
+				height: 250%;
+		 }
+		 body{background:#EAF8FB}
+	</style>
+</head>
+<body>
+	<input type="hidden" id="openid" name="openid" value="{$openid}" />
+	<header>
+		<img src="../addons/member/template/mobile/road38/images/51top.png" />
+	</header>
+	<div class='card'>
+		<img src="../addons/member/template/mobile/road38/images/coupon.png" id='card' />
+	</div>
+	<div id='userPrt' class='carId'>
+		<h3>领卡人信息</h3>
+		<div class="userinfo">
+			<p><b>姓&nbsp;&nbsp;&nbsp;&nbsp;名: </b><span>{$info['name']}</span></p>
+			<p><b>电&nbsp;&nbsp;&nbsp;&nbsp;话: </b><span>{$info['tel']}</span></p>
+			<p><b>身份证: </b><span>{$info['idNum']}</span></p>
+			<p><b>车牌号: </b><span>{$info['platenumber']}</span></p>
+		</div>
+		
+	</div>
+
+	<div class='activity'>
+		<img src="../addons/member/template/mobile/road38/images/det.png" alt="" class='det'/>
+		<div>
+			赛格叫你来过节，陕A以外“非营运”性质车辆的个人车主，登记车牌号等信息，即可领取300元赛格电子购物卡，领完即止。<br />
+			* 4月21日-5月31日，注册成为赛格微会员，凭本人手机上显示的电子购物卡、本人身份证原件及车辆行驶证等原件来赛格，即可用电子购物卡在赛格国际购物中心B1-5F公示的562个品牌专柜购物，且可与商场促销活动同享。<br />
+			* 身份证、行驶证均须真实有效，且与填写信息一致。
+			
+			<p>
+				赛格国际购物中心地址：西安小寨十字东北角<br />
+				客服电话：029-86300000 
+				<span onclick="seendet()">查看活动规则</span>
+			</p>
+			
+		</div>
+	</div>
+	<div id='ruledet' class='hidden' onclick='hiddendet()'>
+		<div onclick='hiddendet()'>
+			<img src="../addons/member/template/mobile/road38/images/det2.png" alt="" class='det'/>
+			<span onclick='hiddendet()'></span>
+			<div>
+				<h4>哪些人能领卡：</h4>
+				咸阳、宝鸡、铜川、渭南、延安、榆林、安康、汉中、商洛、杨凌等地市及外省个人车主；<br />
+				
+				<h4>领卡要求：</h4>
+				* 陕A车牌以外”非营运车辆用途的个人车主可领取 （营运车辆、公务用车、货运等特殊用途车辆除外，以行驶证上“所有人”、“使用性质”及车辆照片为判断依据）；<br />
+				* 每人/每车牌号/每手机号/每微信号/每身份证号（同时满足）限领1张300元赛格电子购物卡。领完即止；
+				
+				<h4>用卡说明：</h4>
+				<p>* 使用本电子购物卡（后简称“卡”）结算时，须注册赛格国际会员。现场拍照验证以下信息/证件：1、用卡人身份证原件（须与领卡时填写的身份证信息一致）；2、手机上显示的卡；3、卡捆绑的同车号车辆行驶证正、副本原件。所有证件/信息均须真实，且在有效期内。卡转发、截屏等均无效。</p>
+				<p>* 本卡可于4月21—5月31日，在赛格国际购物中心B1-5F公示的562个品牌专柜购物使用（本卡须到收银台结算，超市、餐饮、游乐、数码及购买赛格储值卡等不可用），逾期失效。可与赛格国际其他优惠活动同享。</p>
+				<p>* 同一用户限领、用一张300元卡，凡满足同一人、同一身份证号、同一微信号、同一车牌、同一手机号，同一手机设备上任何一个条件，即视为同一用户。</p>
+				<p>* 本卡单笔消费一次性使用完，不可多张累积结算。卡值部分不提供发票，不积分，不兑现、不找零。卡遗失不补。</p>
+				<p>* 使用本卡购买商品，如遇退货，仅退还实际支付金额，卡不予补发；如遇换货，金额高于原单商品，补齐差价。</p>
+			</div>	
+		</div>
+	</div>
+
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	var openid=$('#openid').val();
+	//规则显示隐藏
+    function seendet(){
+    	$('body').scrollTop(0);
+    	$('#ruledet').removeClass('hidden');
+    }
+    function hiddendet(){
+    	$('#ruledet').addClass('hidden');
+    }
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+	
+    wx.ready(function() {
+    	var sharetitle="赛格国际再送300元购物卡，你懂的！";
+		var sharedec="立即领卡，4.21-5.31赛格国际562个品牌专柜通用，手慢无。";
+		var userhref='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Workday&m=member&wxref=mp.weixin.qq.com';
+        document.querySelector('#card').onclick = function () {
+            $.post('http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=WomenCardSignInfo&m=member',
+                function(data){
+                    var resdata = JSON.parse(data);
+                    wx.addCard({
+                        cardList: [
+                            {
+                                cardId:"pUdGzjkDma4wqg8jcmQrct3023qU", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                                cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                            }
+                        ], // 需要添加的卡券列表
+                        success: function (res) {
+                            var cardList = res.cardList;
+                            window.location.href=userhref;
+                            location.href=userhref;//666
+//                              console.log('2已修改地址为注册页'+userhref);
+                           
+                        },
+                        cancel:function(res){
+                        	window.location.reload();
+                            location.reload();
+                        	console.log("执行cancel");
+                        	
+                        },
+                        fail:function(res){
+                        	window.location.reload();
+                            location.reload();
+                        	console.log("执行fail");
+                        }
+                	});
+                }
+            );
+        }
+        wx.hideMenuItems({
+		    menuList: [ 'menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:share:appMessage','menuItem:share:timeline','menuItem:share:qq', 'menuItem:share:weiboApp','menuItem:favorite','menuItem:share:facebook','menuItem:share:QZone']
+		});
+        
+    });
+
+</script>
+</body>
+</html>

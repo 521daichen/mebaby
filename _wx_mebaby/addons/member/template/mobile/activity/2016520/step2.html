@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>520我的表白日</title>
+	<style type="text/css">
+	body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+	input[type="button"], input[type="submit"], input[type="reset"],select {-webkit-appearance: none;}
+	textarea {  -webkit-appearance: none;} 
+	body{
+		margin: 0;
+		padding: 0;
+		background: #ffffff;
+	}
+	h1, h2{
+		font-weight: normal;
+	}
+	img{
+		width:100%;
+		height:100%;
+	}
+	.top,.photo{
+		display: block;
+	}
+	.photo{
+	}
+	.photoBox{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin-bottom: 10px;
+	}
+	.camera{
+		width:25%;
+	    margin: auto;	
+	}
+	textarea{
+		display: block;
+		width: 84%;
+		height: 120px;
+		margin: 20px auto;
+		padding:3%;
+		border: 2px #ffc3b9 solid;
+		border-radius: 5px;
+		font-size: 16px;
+		color: #ababab;
+	}
+	.buttonDiv{
+		display:block;
+		width:90%;
+		margin:10px auto;
+		font-size:1em;
+		height:45px;
+		border:0;
+		border-radius:5px;
+		color:#fff;
+	}
+	.Color1{background:#FB9E8F;}
+	.Color2{background:#74DDD3;}
+	.description{
+		margin-top:20px;
+		background:url(../addons/member/template/mobile/static/activity/2016520/bg.png);
+		border-top:1px solid #EEE;
+		font-size:.7em;
+		padding:.5em 1.2em .6em 1.3em;
+		line-height:1.7em;
+		color:#A1A3A4;
+	}
+	.description strong{color:#FA9383;font-size:1.2em;}
+	/*遮罩层*/
+	.container{
+		position:fixed;
+		top:0;
+		left: 0;
+		width: 100%;
+		height:100%;
+		z-index: 100;
+		background: rgba(0, 0, 0,0.8);
+	}
+	.popupBox{
+		position: fixed;
+		left:5%;
+		top:20px;
+		z-index:1000;
+		width:90%;
+		margin: 0 auto;
+		background: #fef3eb;
+		padding-bottom:1em;
+	}
+	.popupBox select{
+		display: block;
+		width: 92%;
+		margin: 20px auto;
+		padding:3%;
+		border: 2px #ffc3b9 solid;
+		border-radius: 5px;
+		color: #ababab;
+		background:#fff url(../addons/member/template/mobile/static/activity/2016520/arrow.png) 97% center no-repeat;
+		background-size:20px 20px;
+	}
+	.popupBox input[type='radio']{border:1px solid #fb9e8f;height:14px;width:14px;-webkit-transform:translate(0,-1px);position: relative;}
+	.popupBox input:checked{background:#fb9e8f}
+	.popupBox h1{
+		color: #fb9e8f;
+		font-size: 16px;
+		text-align: center;
+		padding:18px 0 0;
+	}
+	.popupBox h2{
+		text-align: center;
+		font-size: 14px;
+		padding:10px 0 15px;
+	}
+	.sex{
+		overflow: hidden;
+	}
+	.typeChoose{float: left; margin-top:20px; margin-left: 10%;margin-right: 5px;}
+	.buttonDiv2{
+		text-align:center;
+		line-height:34px;
+		width:30%;
+		margin-top:10px;	
+		float: left;
+		font-size:1em;
+		height:34px;
+		border:0;
+		border-radius:5px;
+		color:#fff;
+	}
+	.sex img{
+		float: left;
+		margin-left:13.3%;
+		width: 30%;
+	}
+	.popupBox p{
+		width: 90%;
+		margin: 0 0 0 8%;
+		overflow: hidden;
+		font-size:14px;
+	} 
+	.popupBox p label{padding-right:.6em;}
+	.popupBox p img{
+		width: 18px;
+		height: 18px;
+	}
+	.closeBtn{
+		float: right;
+		width:22px;
+		height: 18px; 
+	}
+	.selected{
+		background:#fff;
+		border:2px solid  #efefef;
+		width:86%;
+		margin-left:5%;
+		border-radius:5px;
+		padding:2%;
+		font-size:.8em;
+		line-height:1.6em;
+		margin-top:.5em;
+		color:#888
+	}
+.txt{
+    display: block;
+    width: 85%;
+    margin: 20px auto;
+    padding: 3%;
+    border: 2px #ffc3b9 solid;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #ababab;}
+.txt input{ font-size:15px; color: #ababab; border:none; width:80%;}	
+	em{ font-style:normal; font-size:0.7em; color: #ababab; margin-left:5%; width:84%;}	
+	.checked{border:2px solid  #ffc3b9;}
+	#mask{display:none;}
+	#photoBox .camera img{ border:none}
+	#photoBox img{ border:solid 4px #e5e5e5;}
+	</style>
+</head>
+<body>
+	<div id="mask">
+	<div class="container"></div>
+	<div class="popupBox">
+		<img class="closeBtn" src="../addons/member/template/mobile/static/activity/2016520/close.png">
+		<h1>和我们说说TA 帮你写出最动人的话</h1>
+		<h2>选择你表白的对象</h2>
+		<form class="popupForm" action="" method="post">
+			<div class="sex">
+				<label><input type="radio" class="typeChoose" name="attribute" id="attribute" value="2" onclick="changeDesc();"/><div class="buttonDiv2 Color1">逗逼</div></label>
+				<label><input type="radio" class="typeChoose" name="attribute" id="attribute" value="1" onclick="changeDesc();"/><div class="buttonDiv2 Color2" >正常</div></label>
+			</div>
+			<select placeholder="TA的星座" name="xz" id="xz" onChange="changeDesc();">
+				<option value="1">白羊座</option>
+				<option value="2">金牛座</option>
+                <option value="3">双子座</option>
+				<option value="4">巨蟹座</option>
+                <option value="5">狮子座</option>
+				<option value="6">处女座</option>
+                <option value="7">天枰座</option>
+				<option value="8">天蝎座</option>
+                <option value="9">射手座</option>
+				<option value="10">摩羯座</option>
+                <option value="11">水瓶座</option>
+				<option value="12">双鱼座</option>
+			</select> 
+			
+			<div class="selected checked" id="showDemo"> <!--选中的class里加 checked-->
+				
+			</div>
+			<input type="hidden" id="demoDesc" name="demoDesc" />
+			<input type="button" class="buttonDiv Color1" onClick="setDesc();" value="确定">
+		</form>
+	</div> 
+	</div>
+	<!--主界面-->
+		<img class="top" src="../addons/member/template/mobile/static/activity/2016520/top.png">
+        <img class="photo" src="../addons/member/template/mobile/static/activity/2016520/photoBox.png">
+		<div class="photoBox" id="photoBox">			
+			<div class="camera" >
+				<img src="../addons/member/template/mobile/static/activity/2016520/camera.png" id="uploadphoto">
+			</div>
+		</div>
+		<img src="../addons/member/template/mobile/static/activity/2016520/p.png">
+		<img src="../addons/member/template/mobile/static/activity/2016520/title2.png">
+		<form action="" method="post">
+			<textarea placeholder="写出自己的话吧！" id="desc" name="desc">{$descArr[$tempId]}</textarea>
+            <div class="txt">姓名：<input type="text" name="name" id="name" value="正确填写自己的姓名中奖率更大" onclick="this.value=''" onBlur="if(this.value == ''){this.value='正确填写自己的姓名中奖率更大'; }" value="正确填写自己的姓名中奖率更大" > </div></div>
+            <div class="txt">电话：<input type="text" name="mobile" id="mobile" value="正确填写自己的电话中奖率更大" onclick="this.value=''" onBlur="if(this.value == ''){this.value='正确填写自己的电话中奖率更大'; }" value="正确填写自己的电话中奖率更大"   ></div>
+
+            <input type="hidden" id="filename" name="filename">
+			<input type="button" class="buttonDiv Color1" id="btn1" value="点我，帮你写情话" />
+			<input type="button" class="buttonDiv Color2" id="btn2" value="上传情书" />
+		</form>
+		<div class="description">
+			<strong>活动说明</strong>
+			<p>1、参与本活动，上传照片，并写出你对TA的表白语，发给你要表白的对象，得到回应（消息被点开）就有机会获得赛格集团100元心意金（购物卡）。（赛格国际购物中心、赛格电脑商城两店通用）<br/>2、获奖名单将于下次微信推送时公布，敬请关注。</p>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				document.querySelector('#btn1').onclick = function(){
+					document.querySelector('#mask').style.display = 'block';
+				}
+				document.querySelector('.closeBtn').onclick = function(){
+					document.querySelector('#mask').style.display = 'none';
+				}
+			}
+		</script>
+
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function changeDesc(){		
+		var status = $("#attribute:checked").val();
+		var xz = $("#xz").val();
+		$.post("{php echo $this->createMobileUrl('520DayDesc','',true)}",{"status":status,"xz":xz},function(msg){
+			if(msg.status){
+				$("#demoDesc").val(msg.desc);
+				$("#showDemo").html(msg.desc);
+				$("#desc").val(msg.desc);
+			}
+		},'json');
+	}
+	function setDesc(){	
+		document.querySelector('#mask').style.display = 'none';
+	}
+      
+	   $('#btn2').click(function(){		   
+            var desc = $('#desc').val();
+			var filename = $("#filename").val();
+			var name = $("#name").val();
+			var mobile = $("#mobile").val();
+            if(desc && filename && name && mobile){
+				
+                /*验证通过保存数据，跳转*/
+                $.post("{php echo $this->createMobileUrl('save520','',true)}",{"desc":desc,"name":name,"mobile":mobile,"filename":filename,"openid":"{$_W['openid']}"},function(msg){
+					if(msg.status){
+                		location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayFin&m=member&id='+msg.id;
+					}else{
+						layer.open({
+               				content: '发送失败请稍后再试！',
+               				btn: ['OK']
+               			});	
+					}
+                },'json');
+
+            }else{
+               layer.open({
+               	content: '请将内容填写完整！',
+               	btn: ['OK']
+               });
+            }
+        });
+
+
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+         wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayStep2&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayStep2&m=member", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+
+            }
+        });
+		
+		//上传照片
+		$('#uploadphoto').click(function(){
+			wx.chooseImage({
+    			count: 1, // 默认9
+    			success: function (res) {
+        			// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					$("#photoBox").html("<img src='"+res.localIds+"'/>");
+					var showPhoto = $("#photoBox img");
+					if(showPhoto.width()>showPhoto.height()){
+						$("#photoBox img").css({'width':'60%','margin':'0 0 0 20%'});
+						}else{
+						$("#photoBox img").css({'height':'80%','margin':'1em auto'});	
+						}
+					uploadPhoto(res.localIds);
+    			}
+			});
+		});
+		
+		 function uploadPhoto(localId){
+            wx.uploadImage({
+                localId:localId.toString(),
+                isShowProcess: 1,
+                success:function(res){
+                    var serverId = res.serverId;
+                    $.post("{php echo $this->createMobileUrl('uploadimg','',true)}",{"serverId":serverId},function(msg){
+						
+                        if (msg.status) {							
+                            $("#filename").val(msg.filename);
+                        } else {
+                            layer.open({
+               				 content: '上传图片失败！',
+               			 	 btn: ['OK']
+               				});
+                        }
+                    },'json');
+                },
+                fail:function(res){
+                    alert('上传失败，请稍后再试');
+                }
+            })
+        }
+		
+		
+    });
+
+</script>
+</body>
+</html>

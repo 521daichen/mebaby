@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>您已添加了爱心 现在开始传递 还可享免费停车</title>
+    <link rel="stylesheet" href="../addons/member/template/zhuxue/img/parallax.css">
+    <link rel="stylesheet" href="../addons/member/template/zhuxue/img/parallax-animation.css">
+    <link rel="stylesheet" href="../addons/member/template/zhuxue/img/style.css">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+</head>
+<body>
+<!--<div style="position:fixed;top:0;left:0;background:#fff;z-index: 999;padding:0.6em;" onclick="location.reload();">刷新</div>-->
+<!-- HTML -->
+<!--<audio src="../addons/member/template/zhuxue/img/music.mp3" autoplay="autoplay" id="my"></audio>-->
+<!--<a href="javascript:void(0)" class="replay" onclick="playSetting()"></a>-->
+<div class="wrapper">
+    <div class="pages">
+        <!-- 第1屏 -->
+        <section class="page">
+            <div class="text1" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/1-1.png" />
+            </div>
+        </section>
+
+        <!-- 第2屏 -->
+
+        <section class="page">
+        	<div class="text2" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/2-1.png" />
+            </div>
+        </section>
+        <!-- 第3屏 -->
+        <section class="page">
+      		<div class="text3" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/3-1.png" />
+            </div>
+        </section>
+       
+        <!-- 第4屏 -->
+        <section class="page">
+      		<div class="text4" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/4-1.png?time=1314" />
+            </div>
+        </section>
+        
+        <!-- 第5屏 -->
+        <section class="page">
+            <div class="text5" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+               
+            </div>
+        </section>
+        
+        <!-- 第6屏 -->
+        <section class="page">
+            <div class="text6" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/6-1.png" />
+            </div>
+        </section>
+             
+        
+        <!-- 第7屏 -->
+        <section class="page">
+           <div class="text7" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/7-1.png?time=31456789" />
+            </div>
+        </section>
+        <!-- 第8屏 -->
+        <section class="page">
+            <div class="text8" data-animation="fadeIn" data-delay="600" data-duration="1000" data-timing-function="linear" onclick="roll();$('.namelist1').css('display','block');">
+                {if !empty($diannao)}
+                <div><span>{$diannao}</span></div>
+                {/if}
+            </div>
+            <div class="text8-1" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear" onclick="roll2();$('.namelist2').css('display','block');">
+                {if !empty($gouwu)}
+                <div><span>{$gouwu}</span></div>
+                {/if}
+            </div>
+        </section>
+
+        <!-- 第9屏 -->
+        <section class="page">
+            <div class="text9" data-animation="fadeIn" data-delay="300" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/9-1.png" />
+            </div>
+            <div class="text9-3" data-animation="fadeIn" data-delay="600" data-duration="1000" data-timing-function="linear" onclick="location.replace('http://mp.weixin.qq.com/s?__biz=MjM5NDE0OTIwMQ==&mid=207231582&idx=1&sn=d14ece739c447a0331b089abe9c4c276#rd');">
+                <img src="../addons/member/template/zhuxue/img/hdxc.png" />
+            </div> 
+            <div class="text9-1" data-animation="fadeIn" data-delay="800" data-duration="1000" data-timing-function="linear">
+                <img src="../addons/member/template/zhuxue/img/qrcode.png" />
+                <!--<img src="../addons/member/template/zhuxue/img/but.png" onclick="$('.share').css('display','block')" />-->
+            </div>
+			<div class="text9-2" data-animation="fadeIn" data-delay="1000" data-duration="1000" data-timing-function="linear">
+                累积访问 {$pv} 次
+            </div>
+        </section>
+
+
+    </div>
+</div>
+<div class="share" onclick="this.style.display='none'"></div>
+<div class="namelist1">
+<img src="../addons/member/template/zhuxue/img/name1.png" class="titlepic" />
+<h1>特别鸣谢 {$diannao}</h1>
+<div class="box">
+
+<ul id="pinpai1">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+    {loop $diannaosh $key $value}
+    <li>{$value['title']}</li>
+    {/loop}
+    <li>A1015常亚娟</li>
+    <li>A1019喻知音</li>
+    <li>B1047张保卫</li>
+    <li>B1019马飞龙</li>
+    <li>B1043康江明</li>
+    <li>B1053张华</li>
+    <li>A1011徐苗</li>
+    <li>A1043吴华秀</li>
+    <li>F1-6张朋</li>
+    <li>F1-12问青彬</li>
+    <li>B1049全体员工</li>
+    <li>B1038王卫青</li>
+    <li>B1037吴昌锋</li>
+    <li>B1033殷伟</li>
+    <li>B1026骆攀熊</li>
+    <li>B1035焦浩</li>
+    <li>B1032雷婷</li>
+    <li>A1036陈泽顺</li>
+    <li>B1053陈龙</li>
+    <li>B1068高晓斌</li>
+    <li>A1023李辉</li>
+    <li>B1051全体员工</li>
+    <li>A1037尹红娟</li>
+    <li>C1052孙倩</li>
+    <li>F1-13周涛</li>
+    <li>F1-4王飞</li>
+    <li>F1-4王金林</li>
+    <li>F1-3宋琳路</li>
+    <li>B1014-B1017全体</li>
+    <li>B1013段娟娟</li>
+    <li>B1029张苗</li>
+    <li>B1067闫明</li>
+    <li>1-特7赵颜铭</li>
+    <li>负1-9严飞</li>
+    <li>负1-18李波</li>
+    <li>A1031李元铭</li>
+    <li>负1-7王博</li>
+    <li>F1-11梁金山</li>
+    <li>B3019刘华伟</li>
+    <li>A3010王小龙</li>
+    <li>A3024薛巧珍</li>
+    <li>B3015李秀云</li>
+    <li>B3039王耀东</li>
+    <li>B3041曹盼</li>
+    <li>B3067屈滨渭</li>
+    <li>A3046周兰</li>
+    <li>B3068雷桂勇</li>
+    <li>B3088闫婕</li>
+    <li>A3113刘慧</li>
+    <li>D3085张雪芳</li>
+    <li>D3087孟娟</li>
+    <li>C3003马进</li>
+    <li>C3033陈娟</li>
+    <li>C3005段朵</li>
+    <li>C3016吴西凯</li>
+    <li>C3029王亚芳</li>
+    <li>A3009卢萌</li>
+    <li>A3080陈丽琼</li>
+    <li>A4001刘合忠</li>
+    <li>A4002龚超建</li>
+    <li>A4003李彬</li>
+    <li>A4062黄海涛</li>
+    <li>A4011张瑜</li>
+    <li>A4012王亚绵</li>
+    <li>A4051王浩</li>
+    <li>A4052侯博</li>
+    <li>A4069赵一航</li>
+    <li>B4024崔富军</li>
+    <li>A4056董甲</li>
+    <li>A4054孟凡强</li>
+    <li>B4040李星</li>
+    <li>A4057胡华</li>
+    <li>A3064赵养萍</li>
+    <li>A3114程小勇</li>
+    <li>A3118宋斐</li>
+    <li>B3085龚剑</li>
+    <li>A3067乔二波</li>
+    <li>B2099余东军</li>
+    <li>B2018问妍</li>
+    <li>B2018姚晓龙</li>
+    <li>B2031孟凯</li>
+    <li>B2031赵鹏</li>
+    <li>B2048E崔分地</li>
+    <li>写字间551室</li>
+    <li>B2095董超超</li>
+    <li>A2052张文科</li>
+    <li>A2071何特</li>
+    <li>A2049马思芳</li>
+    <li>A2049肖莉</li>
+    <li>A2070惠岩</li>
+    <li>A2042赵刚</li>
+    <li>A2038郑轩</li>
+    <li>A2031孙磊</li>
+    <li>A2002任佩佩</li>
+    <li>A2002张月丽</li>
+    <li>A2002程龙</li>
+    <li>A2063刘博</li>
+    <li>B2008党红梅</li>
+    <li>B2008李杰</li>
+    <li>A2060庞毓军</li>
+    <li>A2075王龙</li>
+    <li>A2075张奎</li>
+    <li>A2069张磊</li>
+    <li>C2021蔡飞</li>
+    <li>B2032程小江</li>
+    <li>A2047赵柯</li>
+    <li>B3070李智</li>
+    <li>A3061袁亚峰</li>
+    <li>A3086苏翠娥</li>
+    <li>A3010罗亚</li>
+    <li>B3021毋伟伟</li>
+    <li>D3086李小梅</li>
+    <li>C3002周艳芳</li>
+    <li>A3076新思行</li>
+    <li>A3012李正虎</li>
+    <li>D3055翟亚丽</li>
+    <li>A4026丹鹏电子</li>
+    <li>C1029蔡全亮</li>
+    <li>A1032宋志刚</li>
+    <li>A1016杨欣</li>
+    <li>B1025李瑞芳</li>
+    <li>B1041郑颖</li>
+    <li>A1017许江锋</li>
+    <li>F1-6张朋</li>
+    <li>F1-5杨明举</li>
+    <li>B1018荆鑫</li>
+    <li>B1014-B1017陈佑铭</li>
+    <li>A1014王媛</li>
+    <li>B1068高晓斌</li>
+    <li>B1062张磊</li>
+    <li>C1049王乐丹</li>
+    <li>A1008杨帆</li>
+    <li>B2097王广辉</li>
+    <li>A2035-2张鹏</li>
+    <li>A2084王韩</li>
+    <li>B3119何秀萍</li>
+    <li>A3087王英利</li>
+    <li>B3017文思顿</li>
+    <li>B3022蔡依路</li>
+    <li>A4017钱伟平</li>
+    <li>A4018王江涛</li>
+    <li>B4016B4008陈志强</li>
+    <li>B4003-B4023解露</li>
+    <li>宋宝成</li>
+    <li>孙雪琴</li>
+    <li>金勇</li>
+    <li>顾武斌</li>
+    <li>索尼郑玉林</li>
+    <li>海信谢星隆</li>
+    <li>夏普宁志强</li>
+    <li>创维康晋斌</li>
+    <li>美的司立虎</li>
+    <li>海尔刘飞</li>
+    <li>B4030-3王会斌</li>
+    <li>A3007王广亮 </li>
+    <li>A3099张军平 </li>
+    <li>B4017王梅 </li>
+    <li>B4001-1王瑜 </li>
+    <li>长虹王兴涛</li>
+</ul>
+</div>
+<span>排名不分先后</span>
+<img src="../addons/member/template/zhuxue/img/x.png" class="x" onclick="$('.namelist1').css('display','none')"/>
+</div>
+<div class="namelist2">
+<img src="../addons/member/template/zhuxue/img/name2.png" class="titlepic" />
+<h1>特别鸣谢 {$gouwu}</h1>
+<div class="box">
+
+<ul id="pinpai2">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+    {loop $gouwush $keys $values}
+    <li>{$values['title']}</li>
+    {/loop}
+</ul>
+</div>
+<span>排名不分先后</span>
+<img src="../addons/member/template/zhuxue/img/x.png" class="x" onclick="$('.namelist2').css('display','none')"/>
+</div>
+<!--<div id="cross" > 横屏 </div>-->
+<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+<script src="../addons/member/template/zhuxue/js/parallax.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script>
+
+    $('.pages').parallax({
+        direction: 'vertical',     // horizontal (水平翻页)
+        swipeAnim: 'default',     // cover (切换效果)
+        drag:      true,        // 是否允许拖拽 (若 false 则只有在 touchend 之后才会翻页)
+        loading:   true,        // 有无加载页
+        indicator: false,        // 有无指示点
+        arrow:     true,        // 有无指示箭头
+        /*
+         * 翻页后立即执行
+         * {int}         index: 第几页
+         * {DOMElement} element: 当前页节点
+         * {String}        directation: forward(前翻)、backward(后翻)、stay(保持原页)
+         */
+
+        onchange: function(index, element, direction) {
+            // code here...
+//       if(index==7){
+//        location.href='job.html';
+//       }
+//       console.log(index);
+        },
+        /*
+         * 横竖屏检测
+         * {String}        orientation: landscape / protrait
+         */
+        orientationchange: function(orientation) {
+           // $("#cross").css("",)
+        }
+        //hr@sagabuy.com
+
+
+
+    });
+    var num=1;
+    function roll(){
+        num=num-1;
+        if(num > -2000){
+            $("#pinpai1").css('margin-top', num+'px');
+            setTimeout(roll,50);
+        }else{
+            num=0;
+            setTimeout(roll,50);
+        }
+    }
+    function roll2(){
+        num=num-1;
+        if(num > -2800){
+            $("#pinpai2").css('margin-top', num+'px');
+            setTimeout(roll2,50);
+        }else{
+            num=0;
+            setTimeout(roll2,50);
+        }
+    }
+
+    function playSetting(){
+        var audio = document.getElementById('my');
+        if(!audio.paused)
+        {
+            $(".replay").removeClass('play');
+            $(".replay").addClass('stop');
+            audio.pause();// 这个就是暂停//audio.play();// 这个就是播放
+        }else{
+            $(".replay").removeClass('stop');
+            $(".replay").addClass('play');
+            audio.play();
+        }
+    }
+
+    function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#09C1FF; color:#fff; border:none;text-align:center',
+            time: 10
+        });
+    }
+    //横向滑动
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+
+
+
+
+        // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: '{$msg}', // 分享标题
+            link: "{$_W['siteurl']}", // 分享链接
+            imgUrl: './addons/member/template/zhuxue/img/pic12.png', // 分享图标
+            success: function (res) {
+//                $.post("{php echo $this->createMobileUrl('aixin','',true)}",{"openid":"{$_W['openid']}","isFollow":"{$_W['fans']['follow']}"},function(msg){
+//                    alert(msg);
+//                });
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '{$msg}', // 分享标题
+            desc: '为贫困学子呐喊，让梦想插上翅膀，让爱心传递希望。打开后分享感动，即得赛格国际购物中心 1000 停车专用积分。', // 分享描述
+            link: "{$_W['siteurl']}", // 分享链接
+            imgUrl: './addons/member/template/zhuxue/img/pic12.png', // 分享图标
+            success: function (res) {
+//                $.post("{php echo $this->createMobileUrl('aixin','',true)}",{"openid":"{$_W['openid']}","isFollow":"{$_W['fans']['follow']}"},function(msg){
+//                    alert(msg);
+//                });
+            }
+        });
+
+        wx.hideMenuItems({
+            menuList: ['menuItem:openWithSafari','menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:readMode','menuItem:originPage'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });
+
+    });
+
+</script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=47136084" charset="UTF-8"></script>
+</body>
+</html>

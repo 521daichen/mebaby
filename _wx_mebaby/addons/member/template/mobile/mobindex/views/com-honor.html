@@ -1,0 +1,25 @@
+<div class="header">
+    <div class="banner">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/banner-2.png" alt=""/>
+    </div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="com">
+    <h3 class="com-title">企业荣誉</h3>
+    <ul>
+        <li ng-repeat="honors in honorList">
+            <div class="news-pic">
+                <img ng-src='http://www.sagabuy.com{{honors.titlepic}}' alt=""/>
+            </div>
+            <div class="news-det">
+                <h5>{{honors.title}}</h5>
+                <div><span class="time-icon"></span><i class="time">{{honors.newspath}}</i></div>
+                <p class="elli-two">{{honors.smalltext}}</p>
+            </div>
+
+            <a href="#/com-details/{{honors.id}}">
+                <img class="news-right" ng-src="../addons/member/template/mobile/mobindex/images/clickright.png" alt=""/>
+            </a>
+        </li>
+    </ul>
+</div>

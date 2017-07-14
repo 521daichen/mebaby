@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8"> 
+<title></title>
+<meta name="keywords" content=""> 
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/frozen.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/base.css" />
+<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/skin2016/css/memberinfo.css" />
+</head>
+<body>
+<header>
+	<div class="ui-topBox">
+        <span class="ui-title">会员信息</span>
+    </div>
+</header> 
+<section>
+<!-- 积分相关 -->
+    <ul class="ui-list ui-list-text ui-border-tb ">
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>会员卡号：</h4>
+            </div>
+            <div class="ui-list-action">{$cardNum}</div>
+   		</li>
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>会员等级：</h4>
+            </div>
+            <div class="ui-list-action">
+                {if $label == 8}
+                      VVVIP
+                {/if}
+
+                {if $label == 6}
+                      VIP
+                {/if}
+                </div>
+   		</li>
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>会员积分</h4>
+            </div>
+            <div class="ui-list-action ui-fontcolor-red">{$erpScore}</div>
+   		</li>
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>停车专用积分</h4>
+            </div>
+            <div class="ui-list-action ui-fontcolor-red">{$parkScore}</div>
+   		</li>
+		<!--
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>高级会员</h4>
+            </div>
+            <div class="ui-list-action">
+                {if $basicInfo['isValued'] == 0}
+                    未申请
+                {/if}
+                {if $basicInfo['isValued'] == 1}
+                    申请中...
+                {/if}
+
+                {if $basicInfo['isValued'] == 2}
+                    升级成功
+                {/if}
+
+                {if $basicInfo['isValued'] == 3}
+                    申请已退回
+                {/if}
+
+                {if $basicInfo['isValued'] == 10}
+                    二次申请中..
+                {/if}
+            </div>
+   		</li>-->
+<div class="ui-divide"></div>
+   		<li>
+            <div class="ui-list-info">
+                <h4>会员姓名：</h4>
+            </div>
+            <div class="ui-list-action">{$basicInfo['realname']}</div>
+   		</li>
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>手机号：</h4>
+            </div>
+            <div class="ui-list-action">{$basicInfo['mobile']}</div>
+   		</li>
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>身份证号：</h4>
+            </div>
+            <div class="ui-list-action">{$hiddenIdCard}</div>
+   		</li>
+        <!--
+   		<li class="ui-border-t">
+            <div class="ui-list-info">
+                <h4>性别</h4>
+            </div>
+            <div class="ui-list-action">
+                {if $basicInfo['gender'] == 1}
+                    男
+                {/if}
+
+                {if $basicInfo['gender'] == 2}
+                 女
+                {/if}
+            </div>
+   		</li>
+   		-->
+    </ul>
+</section>
+<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/lib/zepto.min.js"></script>
+<script type="text/javascript" src="../addons/member/template/mobile/static/skin2016/js/frozen.js"></script>
+</body>
+</html>

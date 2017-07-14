@@ -1,0 +1,82 @@
+body,html,ul,li,dl,dd,dt,h1,h2{padding:0;margin:0;list-style:none;}
+input[type="button"], input[type="submit"], input[type="reset"],input{-webkit-appearance: none;}textarea {  -webkit-appearance: none;}
+input::-webkit-inner-spin-button {-webkit-appearance: none;}
+input::-webkit-outer-spin-button {-webkit-appearance: none;}
+em{font-style:normal;}
+.line{border-bottom:1px dotted #d8d8d8 !important;}
+body{background:#E9E9E9;}
+header{width:100%;position:relative;background-size: 100% 100% !important;padding-top:52%;}
+.layer{height:220px;width:100%;position: absolute;top:0;height:100%;}
+.license{height:3.5em;width:100%;background:rgba(35,35,35,1);position: relative;overflow: hidden;}
+.license span:nth-child(2){float:right;width:auto;line-height:3.5em;height:3.5em;display:block;color:#fff;padding-right:1em;}
+.license span:nth-child(1){background:url(../img/plate.png);height:1.6em;width:5.8em;background-size:100% 100%;display:block;color:#fff;text-align:center;line-height:1.6em;font-weight:bold;font-size:1.5em;text-shadow:0px 0px 2px #001A66;margin:0 0 0 .3em;position:absolute;margin-top:9px;overflow:hidden;}
+span.viewMap{float:right;width:4.5em;height:4.3em;display:block;text-align:center;line-height:0.6em;position: absolute;right:10px;top:10px;border-radius:5px;background:rgba(0,0,0,.8);padding-top:10px;display:none;}
+span.viewMap a{text-decoration:none;font-size:.6em;color:#fff;}
+span.viewMap img{height:4.3em;width:4.3em;}
+section{line-height:2em;border:1px solid #D8D8D8;border-radius:5px;background:#fff;width:92%;margin-left:4%;margin-top:1em;overflow:hidden;}
+/*.open{height:auto;}*/
+.close{background:url(../img/arrow-rotate.png) no-repeat 98% 1em !important;background-size:0.6em 1.2em !important;border-bottom:none;}
+section ul{width:94%;margin-left:3%}
+section li{height:3.2em;line-height:3.2em;border-bottom:1px dotted #d8d8d8;padding:0 0.3em;overflow:hidden;}
+section li:nth-last-child(1){border:0;padding-bottom:.5em;}
+section li.title{margin-top:0em;font-size:1em;font-weight:bold;color:#333;height:2.8em !important;background-size:1.2em 0.6em} /*background:url(../img/arrow.png) no-repeat 98% 1.4em;*/
+section li.title img{height:1.6em;margin-top:0.7em}
+section li h1{font-size:1em;float:left;border-right:1px solid #efefef;height:2.2em;margin-top:.5em;line-height:2.2em;padding-right:0.6em;font-weight:normal;color:#333;}
+section li span{color:#666;background:#F6F6F6;border-radius:10px;font-size:1em;height:2em;margin-left:0.8em;width:70%;margin-top:0.5em;display:block;line-height:2em;float:left;text-align: center;padding-top:1px}
+section li strong{color:#D80000;padding-left:0.8em;font-size:1.2em}
+section li u{height:1.8em;width:4em;margin-top:0.7em;display:block;float:right;}
+section li.offno{font-size:.8em;color:#666;border-bottom:0;height:4em;line-height:4em;display: block;}
+section li.offno img{height:1.8em;vertical-align: middle;position: relative;top:-3px;margin-right:5px;}
+section li.jifen{font-size:.8em;color:#666;text-align:center;line-height:3.6em}
+section li #mebertotal{}
+footer{height:6em;line-height:3em;text-align:center;font-size:.7em;color:#666}
+section li.integral button{border:1px solid #efefef;border-radius:4px;width:2.6em;height:32px;margin-left:.4em;background:#efefef;float:right;overflow:hidden;font-size:1.2em;margin-top:9px;display:block;}
+section li.integral input#fen{border:0;font-size:1em;height:28px;padding:0 0.5em;margin:0 0.2em;color:#D80000;background: #f6f6f6;}
+section li.integral h1{border:0;}
+.select-coupons{border-radius:15px;background:#59B200;color:#fff;float:right;border:0;padding:4px 10px;margin-top:13px;display:block;}
+.jifen em b{background: #fff;border:0px solid #FBCC00;height:1.8em;line-height: 2em;padding:.5em 1em .4em;color:#f60;box-shadow:0 0 2px #FBCC00;font-size: 1.1em;}
+.jifen span{display: block;clear: both;padding:.2em 0;width:100%;height:auto;background:none;font-size:.9em;margin:0;color:#f60}
+.pay{height:auto;padding-top:.6em;}
+.pay button{width:100%;background:#59B200;border-radius:10px;color:#fff;text-align:center;border:0;font-size:1.4em;line-height:2em;margin-bottom:.3em;}
+.pay button#go img{height:1em;position:relative;top:3px;margin-right:4px}
+.pay button#alipay{width:100%;background:#00AAEE;border-radius:10px;color:#fff;text-align:center;border:0;font-size:1.4em;line-height:2em;}
+.pay button:nth-last-child(1){margin-bottom:.4em;}
+.description{height:auto;padding:20px 0 20px;float:left;line-height:1.6em;text-align: center;font-size:1em;border:0}
+.description a{text-decoration:None;color:#f60}
+nav{display:none;}
+nav.two{position:fixed;bottom:0;background:#eee;height:3.2em;width:100%;border-top:1px solid #ddd;display:block;}
+nav img{height:2em;margin-top:9px;vertical-align: middle;}
+nav a span{padding:0 0 0 10px;position: relative;top:8px;}
+nav.two a{display:block;color:#545454;text-decoration:none;border-right:1px solid #DDD;float:left;height:3.2em;width:49%;text-align:center;}
+nav.two a:nth-child(2){border-right:0}
+nav.one{position:fixed;bottom:0;background:#eee;height:3.2em;width:100%;border-top:1px solid #ddd;display:block;}
+nav.one a{display:block;color:#545454;text-decoration:none;float:left;height:3.2em;width:100%;text-align:center;}
+.setoff{height:auto;padding:0;margin:0;width:100%;}
+.tips{font-size:0.6em;padding:1px 3px 1px 3px;margin-left:4px;background: #fff;border-radius: 4px}
+.clearfix:before,.clearfix:after{ 
+    content:""; 
+    display:table; 
+} 
+.jifen-box{padding:0;margin:0;width: 100%;}
+.jifen-box li{padding:0 0.3em;margin:0;border: 0;}
+.jifen-box li.jifen {background:#FFEBE3;border:0px dotted #FFCEBB;border-radius: 10px;margin-bottom:12px;height:auto;line-height: 1.8em;padding:.5em 0;color:#f60}
+/*<div class="tips"><i></i>每半小时计费一次 <img src="../addons/member/template/mobile/static/carPay/img/close.png" /></div>*/
+.on{background: url(../img/switch.png) no-repeat;background-size: 99% 200%;background-position: left top;}
+.off{background: url(../img/switch.png) no-repeat;background-size: 99% 200%;background-position: left bottom;}
+@media (max-width:320px){
+section li span{color:#666;background:#F6F6F6;border-radius:10px;font-size:0.8em;height:2em;margin-left:0.5em;width:65%;margin-top:1em;display:block;line-height:2em;float:left;text-align: center;}
+.jifen-box li.jifen{font-size: .8em;}
+}
+.menu{height:2.8em;background:#fff;line-height:2.8em;}
+.menu li{height:2.6em;float:left;text-align:center;}
+.menu li.current{border-bottom:2px solid #1C89F6}
+.three li{width:33.333% !important;}
+.two li{width:50% !important;}
+.settlement{height:auto;font-size:.9em;line-height:1.6em;border-bottom:.6em;padding-top:.8em;color:#f60;text-align:center;}
+.Survey{position:absolute;z-index:99;top:0px;margin-top:61%;width:360px;height:149px;left:50%;margin-left:-180px;}
+#layer{background:rgba(0,0,0,0.4);position: fixed;width:100%;height:100%;left:0;top:0;z-index:999}
+#layer .result{width:260px;padding:1em;box-sizing:border-box;margin:30% auto;background:#fff;border-radius:10px;}
+#layer .result img{width:90px;margin:0 auto;display:block;}
+#layer .result span{text-align:center;color:#FF7373;display:block;text-align:center;margin-top:5px;}
+#layer .result button{background:#FF7373;border:0;height:2.2em;font-size:1em;width:80%;color:#fff;text-align:center;margin-left:10%;border-radius:6px;}
+#layer .result p{text-align:center;line-height:22px;font-size:.8em;}

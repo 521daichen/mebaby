@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+body{background:#E9E9E9}
+header{height:50px; position: relative;}
+.tooth{width:100%;position: absolute;left:0;bottom:0;}
+header .logo{height:2em;margin:0 1em}
+header span{font-size:1.2em;color:#fff;position:absolute;right:1em;top:1.1em;text-shadow: 0px 0px 1px #333}
+.radbox{border-radius: 10px;border: 1px solid #fff;margin:0 auto;background:#fff;padding:0.2em;width:92%;margin:0 auto}
+.radbox h1{font-size: 1em;height:2.6em;line-height: 2.6em; border-bottom: 1px solid #d8d8d8;color:#333;width:90%;margin: 0 auto;padding:0 4%}
+.forms {padding:1em;font-size:0.8em;color:#333;}
+.forms input{color:#111;width: 98%;border-radius: 6px;border:1px solid #D8D8D8;height:2.2em;line-height:normal;margin:0.4em auto 1em;display: block;box-shadow: 1px 1px 3px #ddd;font-size: 1em;padding-left: 2%;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#ffffff));}
+.forms .mobver{position:relative;}
+.forms .mobver input{width:55%;margin:0.4em 0 0.5em;float:left}
+.forms .mobver span{font-size:0.9em;margin:0 0 0.7em 0;color:#888;float:left}
+#but{width:100%;background: -webkit-gradient(linear, 0 0, 0 100%, from(#613988), to(#4B1E78));border-radius: 6px;border:0;color:#fff;height:2.4em;margin-top:0.5em;box-shadow:none;}
+.forms input#mobcode{background: -webkit-gradient(linear, 0 0, 0 100%, from(#613988), to(#4B1E78));height:2.4em;border-radius: 6px;width:40%;text-align:center !important;font-size: 1em;float:right;color:#fff;border:0 !important;}
+.forms input#zjlx{background: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#c7c7c7));border-radius: 6px;border-top-left-radius:0;border-bottom-left-radius:0;width:40%;padding:0;right:2%;margin-top:-45px;position: absolute;height: 37px;font-size: 0.8em;box-shadow: none}
+.d_n{display:none !important;}
+.newMemberiCON{display:none;width:78px;height:30px;background:url(../img/newoldreg.png) no-repeat top left;background-size:100% auto;position:absolute;left:15px;top:15px;z-index:999}
+.oldMemberiCON{display:none;width:78px;height:30px;background:url(../img/newoldreg.png) no-repeat bottom left;background-size:100% auto;position:absolute;left:15px;top:15px;z-index:999}
+.step{width:94%;margin:0 auto 0.8em;height:auto;overflow:auto}
+.step img{width:33.3%;float:left;}
+@media all and (min-width:414px) {
+  .step{width:80%;margin:0 auto 0.8em;height:auto;overflow:auto}
+  .step img{width:33.3%;float:left;}
+}
+.remobile{background:#efefef;border-radius:5px;height:16px;line-height:16px;padding:0 0.3em;}
+.remobile u{font-size:0.9em;}
+/*12.15*/
+@-webkit-keyframes myfirst
+{
+0% { opacity:0}
+100% { opacity:1}
+}
+
+.sf{width:83%;background:#fff;height:2.6em;line-height:2.6em;position:absolute;margin-left:3px;margin-top:-45px;border-radius:5px;-webkit-animation:myfirst 0.1s;}
+.sf a{padding-right:0.5em;background:#efefef;border-radius:5px;padding:0.2em 0.7em;margin-left:0.5em;}
+#zjma{display:none}
+
+#code{width:30%;float:left;margin-right:0.5em;font-size: 1.2em;}
+.form_tips{background:#fff;font-size:0.8em;line-height:3em;color:#999;display:block;width: 94%;padding-right:2%;text-align:left;margin:0 auto}
+
+/*注册成功弹窗*/
+.regok{width:100%;height:290px;border-radius:10px;background:#fff url(../img/registered.png) no-repeat;background-size:100% auto;}
+.regok span{display: block;padding:120px 20px 0;font-size: 1.3em;color:#535353;line-height: 1.4}
+.regok span i{font-style:normal;font-size: 0.8em;}
+.regok a{display: block;width:75px;height:75px;float:left;}
+.regok a:nth-child(2){background: url(../img/registeredsuccess.png) no-repeat;background-size: 100% auto;margin:20px 0 0 60px}
+.regok a:nth-child(3){background: url(../img/membercenter.png) no-repeat;background-size: 100% auto;margin:20px 0 0 30px}

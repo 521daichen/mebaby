@@ -1,0 +1,152 @@
+@charset "utf-8";
+.page1 {
+    background:#FDFDDE;
+}
+.page2 {
+    background:#D8EDF9;
+}
+.page3 {
+    background:#CBDE5A;
+}
+.page4 {
+    background:#D87F8C;
+}
+.page5 {
+    background:#E2E1CC;
+}
+.page6 {
+    background:#FCF08E;
+}
+.page7 {
+    background:#A5CF3D;
+}
+.page8 {
+    background:#DBF3FF;
+}
+.page9 {
+    background:#5A93CF;
+}
+.page10 {
+    background:#E2E1CC;
+}
+/*//加载中……*/
+.parallax-loading i{margin:40% auto 0;}
+/*//音乐播放*/
+@-webkit-keyframes myfirst
+{
+from {-webkit-transform: rotate(0deg);}
+to {-webkit-transform: rotate(360deg);}
+}
+@-webkit-keyframes scales
+{
+0% {-webkit-transform:scale(1)}
+50% {-webkit-transform:scale(1.2)}
+100% {-webkit-transform:scale(1)}
+}
+@-webkit-keyframes swings
+{
+0% {-webkit-transform:rotate(7deg)}
+50% {-webkit-transform:rotate(13deg)}
+100% {-webkit-transform:rotate(7deg)}
+}
+@-webkit-keyframes swings2
+{
+0% {-webkit-transform:rotate(350deg)}
+50% {-webkit-transform:rotate(358deg)}
+100% {-webkit-transform:rotate(350deg)}
+}
+@-webkit-keyframes tm
+{
+0% {opacity: 0.5;}
+30% {opacity: 1;}
+100% {opacity: 0.5;}
+}
+/*通用样式*/
+img{width:100%;display:block;}
+.replay{display:block;width:3em;height:3em;background: url(music.png) no-repeat;background-size:100% 100%;opacity: .7;position:fixed;right:1em;bottom:1em;z-index: 999;
+-webkit-animation: myfirst 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.share{width:100%;height:100%;position:fixed;background:rgba(0,0,0,.9);z-index:999;display:none;}
+/*个体动画定义*/
+.roll{-webkit-animation: myfirst 6s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.fangda{-webkit-animation: scales 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.qingxie{-webkit-animation: swings 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;-webkit-transform:rotate(7deg);}
+.qingxie2{-webkit-animation: swings2 3s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+.touming{-webkit-animation: tm 2s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;}
+
+.stop{-webkit-animation-play-state:paused;}
+.play{-webkit-animation-play-state:running;}
+/*//页内元素定义区*/
+.page1 .e1{position: absolute;width:54%;left:8%;bottom:4%;z-index: 99;}
+.page1 .e2 img{position: absolute;width:70%;left:22%;margin-top:27%;z-index: 98;box-sizing:border-box;-webkit-transform:rotate(7deg);}
+.page1 .p1 img{position: absolute;width:70%;left:15%;margin-top:12%;z-index: 98;box-sizing:border-box;border:8px solid #fff;-webkit-transform:rotate(7deg);box-shadow:0 0 15px #999;}
+
+.page2 .e1{position: absolute;width:90%;left:5%;top:5%;z-index: 97;}
+.page2 .e2{position: absolute;width:26%;right:15%;bottom:4%;z-index: 99;}
+.page2 .e3{position: absolute;width:30%;left:8%;bottom:4%;z-index: 99;}
+/*.page2 .p1{position: absolute;width:90%;z-index: 99;top:6%;left:8%;-webkit-transform:rotate(355deg);}*/
+.page2 .p1{position: absolute;width:74%;height:47%;z-index: 98;border-radius:200px;box-sizing:border-box;overflow: hidden;top:10%;left:13%;}
+
+.page3 .e1{position: absolute;width:26%;left:18%;bottom:8%;z-index: 99;}
+.page3 .e2{position: absolute;width:25%;right:10%;bottom:15%;z-index: 99;}
+.page3 .e3{position: absolute;width:35%;right:10%;top:0%;z-index: 99;}
+.page3 .e4{position: absolute;width:35%;left:5%;bottom:3%;z-index: 99;}
+.page3 .e5{position: absolute;width:25%;left:50%;bottom:5%;z-index: 99;}
+.page3 .p1{position: absolute;width:88%;left:6%;top:5%;z-index: 98;background:url(17.png);background-size:100% 100%;height:auto;}
+.page3 .p1 img{width:92%;margin-left:4%;margin-top:4%;z-index: 98;margin-bottom:4%}
+
+.page4 .e1{position: absolute;width:90%;left:5%;top:5%;z-index: 97;}
+.page4 .e2{position: absolute;width:26%;right:10%;bottom:24%;z-index: 99;}
+.page4 .e3{position: absolute;width:40%;left:12%;bottom:4%;z-index: 99;}
+.page4 .p1{position: absolute;width:74%;height:47%;z-index: 98;border-radius:200px;box-sizing:border-box;overflow: hidden;top:10%;left:13%;}
+
+.page5 .e1{position: absolute;width:40%;left:10%;top:2%;z-index: 99;}
+.page5 .e2{position: absolute;width:72%;right:-5%;top:0;z-index: 99;-webkit-transform:rotate(26deg)}
+.page5 .e3{position: absolute;width:34%;right:42%;bottom:12%;z-index: 99;}
+.page5 .e3 img{-webkit-transform:rotate(78deg)}
+.page5 .e4{position: absolute;width:22%;right:15%;top:28%;z-index: 99;}
+.page5 .p1{position: absolute;width:88%;left:6%;top:5%;z-index: 98;background:url(5.png);background-size:100% 100%;height:auto;}
+.page5 .p1 img{width:86%;margin-left:7%;margin-top:8%;z-index: 98;margin-bottom:8%}
+
+.page6 .e1{position: absolute;width:100%;left:0%;top:0%;z-index: 99;}
+.page6 .e2{position: absolute;width:20%;right:12%;bottom:5%;z-index: 99;}
+.page6 .e3{position: absolute;width:20%;right:15%;top:2%;z-index: 99;}
+.page6 .e4{position: absolute;width:22%;left:23%;top:3%;z-index: 99;}
+.page6 .e5{position: absolute;width:24%;left:5%;bottom:14%;z-index: 99;}
+.page6 .p1{position: absolute;width:74%;left:15%;top:15%;z-index: 98;}
+
+
+.page7 .e1{position: absolute;width:100%;left:0;top:0;z-index: 99;}
+.page7 .e2{position: absolute;width:30%;left:5%;bottom:4%;z-index: 99;}
+.page7 .e3{position: absolute;width:30%;left:38%;bottom:4%;z-index: 99;}
+.page7 .p1{position: absolute;width:90%;z-index: 97;top:6%;left:8%;-webkit-transform:rotate(355deg);}
+
+.page8 .e1{position: absolute;width:100%;left:0%;top:0;z-index: 99;}
+.page8 .e2{position: absolute;width:15%;right:10%;top:5%;z-index: 99;}
+.page8 .e3{position: absolute;width:15%;right:70%;top:15%;z-index: 99;}
+.page8 .e4{position: absolute;width:15%;right:75%;top:45%;z-index: 99;}
+.page8 .e5{position: absolute;width:15%;right:30%;top:55%;z-index: 99;}
+.page8 .p1 img{position: absolute;width:70%;left:15%;margin-top:26%;z-index: 98;}
+
+.page9 .e1{position: absolute;width:100%;left:0%;top:0%;z-index: 99;}
+.page9 .e2{position: absolute;width:12%;right:5%;top:15%;z-index: 99;}
+.page9 .e2 img{-webkit-transform:rotate(18deg)}
+.page9 .e3{position: absolute;width:14%;right:42%;top:2%;z-index: 99;}
+.page9 .e3 img{-webkit-transform:rotate(78deg)}
+.page9 .e4{position: absolute;width:12%;right:62%;top:13%;z-index: 99;}
+.page9 .e4 img{-webkit-transform:rotate(30deg)}
+.page9 .e5{position: absolute;width:14%;right:82%;top:10%;z-index: 99;}
+.page9 .e5 img{-webkit-transform:rotate(58deg)}
+.page9 .e6{position: absolute;width:30%;left:5%;bottom:4%;z-index: 99;}
+.page9 .e7{position: absolute;width:30%;left:38%;bottom:4%;z-index: 99;}
+.page9 .p1{position: absolute;width:70%;left:15%;top:20%;z-index: 98;}
+
+.page10 .e1{position: absolute;width:40%;right:6%;bottom:5%;z-index: 99;}
+.page10 .t1{position: absolute;width:80%;left:10%;top:1%;z-index: 99;}
+.page10 .p1 img{position: absolute;width:36%;left:32%;margin-top:7%;border:4px solid #fff;z-index: 98;box-shadow:0 0 15px #333;box-sizing:border-box;-webkit-transform:rotate(353deg);}
+.page10 .text{position:absolute;width:76%;margin-left:8%;background:#fff;border-radius:10px;top:40%;padding:4%;line-height:1.6em;color:#666;border:1px solid #efefef;min-height:150px}
+
+.buttonArea{position:absolute;top:80%;width:84%;left:8%;}
+.buttonArea button{width:32%;margin:0 .5% !important;background:#00BFFF;border-radius:10px;padding:0.5em 0;color:#fff;display:block;float:left}
+.buttonArea button:nth-child(1){background:#f60}
+.support{position:absolute;top:90%;width:100%;text-align:center;color:#f00;}
+.logo img{position: fixed;bottom:0.6em;height:1.6em;width:auto;left:0.6em;z-index:999;}

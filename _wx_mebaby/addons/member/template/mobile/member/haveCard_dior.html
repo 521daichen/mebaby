@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <style type="text/css" media="screen" id="test">
+	/*初始化样式*/
+	html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,header,hgroup,nav,section,article,aside,footer,figure,figcaption,menu,button{margin:0; padding:0;}
+	html{min-height:100%;}
+	body{color:#34282a; min-height:100%;padding:0px;margin:0px;}
+	ul,li{list-style-type:none;}
+	h1,h2,h3,h4,h5,h6{font-weight:normal;}
+	img{border:0; width:100%;}
+	input[type="button"], input[type="submit"], input[type="reset"],select {
+	-webkit-appearance: none;
+	}
+	header img{width:70% !important;margin-left:15% !important;}
+	em{font-style:normal;}
+	table{border-collapse:collapse;}
+	input{border:none;}
+	input:focus{outline:none;}
+	textarea{-webkit-appearance:none;}
+	textarea:focus{outline:none;}
+	a{text-decoration:none;}
+	.leftF{float:left;}
+	.rightF{float:right;}
+	.bg{ background:#f8cbc2;}
+	section{padding-top:0.4em}
+	ul,li{list-style-type:none;}
+	iframe{margin:0 auto;width:320px;height:320px;display:block;}
+	#page1 video{width:320px;display:block;margin:0 auto}
+	#page1 img{width:90%;display:block;margin:0 auto}
+	.sys{background:#e53369; color:#fff;width:80%;margin:0 auto;font-size:1em;border:0;height:2.6em;line-height:2.6em;display:block; text-align:center; margin-left:10%; border-radius:0.5rem;}
+	p{background:#F7F7F7;border-radius:10px;width:74%;margin-left:10%;padding:3%;line-height:1.6em;margin:1em auto;font-size:.8em}
+	input[type="button"], input[type="submit"], input[type="reset"],select {
+	-webkit-appearance: none;
+	} 
+	#page2{display:none}
+	#page2 img{display:block;width:60%;margin:5% auto}
+	#page2 button{background:#238C00;border-radius:10px;color:#fff;width:80%;margin:0 auto;font-size:1em;border:0;height:3em;line-height:3em;display:block;}
+
+	.shopInfo{font-size:1.2em;}
+	.shopInfo ul{padding:0 .6em .6em}
+	.shopInfo li:nth-child(1){text-align: center;font-size:1.2em;background:#efefef;display:block;position:relative;top:-10px;left:-20px;width:290px;}
+	.shopInfo li{line-height:2em;list-style:none}
+	.shopInfo li input{height:2em;font-size:1em;width:99%;border:1px solid #ccc;background:#efefef;border-radius:10px;}
+	.shopInfo li button{border:1px solid #ffff43;background:#ffff43;border-radius:10px;color:#333;width:100%;margin:0 auto;font-size:1em;border:0;height:2.4em;margin-top:0.6em;line-height:2.4em;display:block;}
+
+	.head{width:100%;}
+	.scan{margin-left:35%;width:30%;}
+	.btn{padding-top:0.5em;width:100%;}
+	#btn{background:#e6001a;color:#fff;}
+	
+	.rule{margin-top:1.5em;width:100%;}
+	.rule_title{text-align:center;background:url(../addons/member/template/mobile/static/card/video/lin.gif) repeat-x center left;background-size:auto 50%;}
+	.rule_title h4{background:#e60119;padding:0 1%;width:50%;margin-left:24%;}
+	.rule_title span{background:#7a338f;border-radius:10em;line-height:1.5em;width:100%;display:block;padding:0.4em 0;font-size:1em;}
+	.rule ul{padding:0px;font-size:0.8em;margin-top:1em;width:88%;margin-left:6%;}
+	.rule ul li{margin-bottom:0.1em;line-height:1.6em;}
+	.rule ul strong{padding-right:0.3em;}
+	.tip{text-align:center;font-size:2em;}
+	#num{width:80%;margin:0 auto;display:block;height:2.4em;font-size:1em;border:1px solid #ccc;background:#efefef;border-radius:5px;margin-bottom:.5em;}
+	#money{width:80%;margin:0 auto;display:block;height:2.4em;font-size:1em;border:1px solid #ccc;background:#efefef;border-radius:5px;margin-bottom:.5em;}
+	.manualBtn{margin:1em 10% 1em;color:#34282a;text-align:center;font-size:1em;display: block;}
+	.manual label{width:80%;margin:0 auto;display:block;line-height:2em;}
+	h1{display:block;margin:1em auto 0;padding:0.2em 1em;border-radius:0px;text-align:center;font-size:1.4em;color:#e53369;background:#f29986;}
+	.go{border-bottom:1px dotted #fff;color:#e53369;}
+	.gotxt{text-align:center;padding-top:1em;}
+	header{background:url(../addons/member/template/mobile/static/card/video/bg2.png) no-repeat center; background-size:auto 80%;}
+	/*新增*/
+
+	@media screen and (max-width:370px){
+			.text{font-size:1.3em;}
+			.btn{padding-bottom:0em; padding-top:0px;}
+		}
+    </style>
+    
+</head>
+<body class="bg">
+<div id="toppic" style="margin-bottom:10px;"></div>
+<div id="page1">
+    <header></header>
+    <section class="btn">
+        <button class="sys" id="lq">扫一扫领券</button>
+        <input name="card" id="card" type="hidden" />
+    </section>
+    <h1>扫码失败看这里</h1>
+    <span class="manualBtn">如扫一扫无法领取，请在下方输入小票上的订单号及应付合计，提交即可领取</span>
+    <section class="manual">
+	    <label>订单号：</label><input name="num" id="num" type="number" value="{$snStart}"/>
+		<label>应付合计：</label><input name="money" id="money" type="number" value=""/>
+        <button class="sys" type="button" onclick="subCard();" style="background:#8d1d46">提交</button>
+        <div class="gotxt">
+        	<a href="javascript:void(0);" onclick="$('#billtips').css('display','block');" class="go">订单号在哪里？</a>
+        	<img src="../addons/member/template/mobile/static/card/img/bill.png" id="billtips" style="display:none;width:80%;margin:1em auto;" />
+    	</div>
+    </section>
+</div>
+<div class="rule">
+<h1>电子现金券赠送说明</h1>
+<ul>
+<li ><strong>*</strong>顾客在指定品牌消费，可参与Dior专柜电子现金券赠送活动；</li>
+<li><strong>*</strong>12月23日-2017年1月2日送券活动期间：<br>
+指定品牌专柜消费，单柜单笔实际支付金额（结算水单）满1000元，可领取100元Dior电子现金券；满2000元可领取200元Dior电子现金券，以此类推。每个自然人身份用户，仅可领取1张Dior专柜电子现金券。凡满足同一微信号、同一手机号、同一银行卡号、同一身份证号、同一手机设备中的任意一个条件者，即视为同一用户。</li>
+<li><strong>*</strong>Dior专柜满1000送100元券与500减100活动不可同享；</li>
+<li><strong>*</strong>参与送券活动的结算水单以刷银行卡、现金及电子支付、赛格储值卡的实际发生金额为准，不含赛格国际店庆活动赠送的电子现金券或其他优惠券等结算金额，赠送的Dior电子现金券结算，不再重复参加送券；</li> 
+<li><strong>*</strong>顾客商品结算后，通过扫描结算水单条码即可领取电子现金券；</li>	
+<li><strong>*</strong>如遇网络或设备故障，可至赛格国际一楼总服务台凭票据领取电子现金券；</li>
+<li><strong>*</strong>团购（3件以上相同商品视为团购）不参加；购买专柜提货卡不参加；单件商品不可拆分开具购物小票。</li>
+</ul>
+</div>
+<div class="rule">
+<h1>电子现金券使用说明</h1>
+<ul>
+<li><strong>*</strong>使用电子现金券结算时，必须领券人本人出示领券的手机上赛格官方微信号中所显示的电子现   金券，经现场验证后方可结算（电子现金券转发无效）。</li>
+<li><strong>*</strong>顾客在Dior专柜消费，单笔满300元，可使用100元电子现金券，满600元可使用200元电子现金券，以此类推。现金券以整百进行核销，剩余金额可在有效期内用于下次消费满额时抵扣相应现金。</li>
+<li><strong>*</strong>Dior电子现金券与500减100活动、或赛格店庆活动赠送的电子现金券均不可同享。</li>
+<li><strong>*</strong>电子现金券不提供发票，不积分，不兑现。如顾客将电子现金券丢失，不挂失、遗失不补。</li> 
+<li><strong>*</strong>已参加送券活动的商品，如需退货，仅退还实际支付金额，所赠电子现金券失效，如电子现金券已使用，须补齐所使用电子现金券金额。如遇换货（须在原专柜换货），价值高于原单商品价值的，补齐商品差价，之前赠券继续有效；如遇换货后，指定专柜的单柜单笔结算水单实际支付金额不足赠券金额，所赠电子现金券失效，如电子现金券已使用，须补齐所使用电子现金券金额。</li>
+<li><strong>*</strong>顾客使用电子现金券购买商品，如遇退货，仅退还实际支付金额；如遇换货，商品价值低于电子现金券的使用金额，电子现金券多余金额不找零，不兑现。</li>
+<li><strong>*</strong>电子现金券有效期： 2016年12月23日—2017年1月2 日</li>
+</ul>
+</div>    
+<br><br>
+
+<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script>
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'scanQRCode',
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+		 wx.hideMenuItems({
+     		 menuList: [
+       		 	'menuItem:share:timeline', // 分享到朋友圈
+        		'menuItem:copyUrl',// 复制链接
+				'menuItem:share:appMessage',
+				'menuItem:share:qq' ,
+				'menuItem:share:weiboApp',
+				'menuItem:originPage',
+				'menuItem:readMode',
+				'menuItem:share:QZone'
+     		 ]
+   		 });
+         $('#lq').click(function(){
+             wx.scanQRCode({
+                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                 scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                 success: function (res) {				
+					 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                     var code = result.split(',');
+					 loading();					 
+                    $.post("{php echo $this->createMobileUrl('HaveCard','',true)}",{"retailId":code[1]},function(orderInfo){
+                         layer.closeAll();						
+                         if (orderInfo.status == 1) {
+							 $('#card').val(JSON.stringify(orderInfo));								 				
+                             layer.open({
+                                 type: 1,
+                                 content: '<div class="shopInfo"><ul><li>购物信息</li><li>专柜名:'+orderInfo.brand+'</li><li>实付金额:'+orderInfo.dept_amount+'元</li><li>手机号：</li><li><input id="mobile" type="text" placeholder=" 请输入手机号" name="phoneNumber" value="'+orderInfo.tel+'"></li><li><button id="btn"  onclick="sendMsg()">确定</button></li></ul></div>',
+                                 style: 'width:268px; height:275px; padding:10px; background-color:#fff; color:#333; border:6px solid #efefef;border-radius:10px'
+                             });
+                         } else {
+                            alert(orderInfo.error); 
+							saveError(orderInfo.error);
+                         }
+          			},'json');
+					
+                   
+                 }
+
+             });
+         });
+         $("#toppic").append("<img src='../addons/member/template/mobile/static/card/video/top3.png' class='head'>");
+         $("header").append("<img src='../addons/member/template/mobile/static/card/video/1111.gif' >");
+    });
+
+	function subCard(){
+		var num   =  $("#num").val();
+		var money =  $("#money").val();
+	
+		if(num && num.length == 15){
+					loading();					 
+                    $.post("{php echo $this->createMobileUrl('HaveCard','',true)}",{"retailId":num,"type":999},function(orderInfo){
+                         layer.closeAll();	
+                         				
+                         if (orderInfo.status == 1) {
+	                         var money = $("#money").val();
+							 if( Number(money) != Number(orderInfo.orderPrice) ){
+								alert("对不起，您输入的应付金额与订单实际金额不符！请查证后再试！");
+								return;
+							 }
+							 $('#card').val(JSON.stringify(orderInfo));								 				
+                             layer.open({
+                                 type: 1,
+                                 content: '<div class="shopInfo"><ul><li>购物信息</li><li>专柜名:'+orderInfo.brand+'</li><li>实付金额:'+orderInfo.dept_amount+'元</li><li>手机号：</li><li><input id="mobile" type="text" placeholder=" 请输入手机号" name="phoneNumber" value="'+orderInfo.tel+'"></li><li><button id="btn"  onclick="sendMsg()">确定</button></li></ul></div>',
+                                 style: 'width:268px; height:275px; padding:10px; background-color:#fff; color:#333; border:6px solid #efefef;border-radius:10px'
+                             });
+                         } else {
+							if(orderInfo.error){
+								alert(orderInfo.error); 
+							}else{
+								alert("对不起，您输入的订单号有误！");
+							}
+							saveError(orderInfo.error);
+                         }
+          			},'json');
+		}else{
+			alert("对不起，您输入的订单号长度有误！请再试一次！");
+		}
+		//debugger;
+	}
+	
+	function saveError(errorInfo){
+		$.post("{php echo $this->createMobileUrl('saveError','',true)}",{"error":errorInfo},function(message){
+        	if(message.status){
+				return ;
+			}else{
+				return ;	
+			}   
+        },'json');	
+	}
+	
+    function alert(msg){
+        layer.open({
+            content: msg,
+            style: 'background-color:#09C1FF; color:#fff; border:none;text-align:center',
+            time: 10
+        });
+    }
+	
+
+    function loading(){
+        layer.open({
+            type: 2,
+            content: '领取中...',
+            shadeClose:false,
+            time:3
+        });
+    }
+
+    function sendMsg(){
+        var msg = JSON.parse($('#card').val());
+        var tel = $('#mobile').val();
+        var mobileReg = /^0?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+        if (tel == '' || mobileReg.test(tel) == false) {
+            alert('您的手机号码不正确');
+            return false;
+        }
+
+        msg.tel = tel;
+        $("#btn").attr("disabled","disabled")
+        $.post("{php echo $this->createMobileUrl('pushCard','',true)}",msg,function(message){
+            $("#btn").removeAttr("disabled");
+            if (message.status) {
+                window.location.href = "{php echo $this->createMobileUrl('coupons')}"
+            } else {
+                alert(message.msg);
+            }
+        },'json');
+    }
+</script>
+</body>
+</html>

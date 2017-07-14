@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$mInfo['name']}的电子相册</title>
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/> 
+<link rel="stylesheet" href="../addons/member/template/mobile/activity/20160601/template2/static/img/parallax.css">
+<link rel="stylesheet" href="../addons/member/template/mobile/activity/20160601/template2/static/img/parallax-animation.css">
+<link rel="stylesheet" href="../addons/member/template/mobile/activity/20160601/template2/static/img/style.css">
+<link rel="stylesheet" href="../addons/member/template/mobile/activity/20160601/template2/static/img/animate.css">
+</head>
+<body>
+<!--音乐播放控制-->
+<audio src="../addons/member/template/mobile/activity/20160601/template2/static/img/music.mp3" autoplay="autoplay" id="my"></audio> 
+<a href="javascript:void(0)" class="replay" onclick="playSetting()"></a>
+<div class="share" onclick="this.style.display='none'">
+	<img src="../addons/member/template/mobile/activity/20160601/template2/static/img/share.png" />
+</div>
+<div class="logo">
+	<img src="../addons/member/template/mobile/activity/20160601/template1/static/img/logo.png" />
+</div>
+<!--场景翻页-->
+<div class="wrapper">
+    <div class="pages">
+	     <!-- 第1屏 -->
+        {if $mInfo['filename1'] != ""}
+        <section class="page1 page">
+            <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-1.png"  class="qingxie2" />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-3.png" class="touming" />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-4.png" class="qingxie2" />
+            </div>
+            <div class="e5" data-animation="fadeInToTop" data-delay="500" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-5.png" />
+            </div>
+            <div class="e6" data-animation="fadeInToBottom" data-delay="600" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-6.png" class="touming" />
+            </div>
+            <div class="e7" data-animation="fadeInToTop" data-delay="700" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-7.png" class="touming" />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="1100" data-duration="400" >
+	            <img src="{$mInfo['filename1']}" />  <!--照片1-->
+            </div>
+        </section>
+        {/if}
+        {if $mInfo['filename2'] != ""}
+        <!-- 第2屏 -->
+       <section class="page2 page">
+        	 <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-1.png" />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-3.png"  class="qingxie" />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-4.png"  class="qingxie" />
+            </div>
+            <div class="e5" data-animation="fadeInToTop" data-delay="500" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-5.png" />
+            </div>
+            <div class="e6" data-animation="fadeInToTop" data-delay="500" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-4.png" class="touming" />
+            </div>
+            <div class="p1" data-animation="fadeIn" data-delay="700" data-duration="400" >
+	            <img src="{$mInfo['filename2']}" /><!--照片2-->
+            </div>
+        </section>
+        <!-- 第3屏 -->
+        {/if}
+        {if $mInfo['filename3'] != ""}
+ 		<section class="page3 page">
+             <div class="e1" data-animation="slideToBottom" data-delay="400" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/3-1.png"  />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/3-2.png" class="qingxie" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/3-3.png" class="touming"  />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/3-4.png" class="qingxie2" />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="600" data-duration="400" >
+	            <img src="{$mInfo['filename3']}" /><!--照片3-->
+            </div>
+        </section>
+        <!-- 第4屏 -->
+        {/if}
+        {if $mInfo['filename4'] != ""}
+        <section class="page4 page">
+			<div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/4-1.png" class="touming"  />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/4-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/4-3.png" class="fangda"  />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/4-4.png" class="fangda"/>
+            </div>
+            <div class="e5" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/2-3.png" class="qingxie2"/>
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="500" data-duration="400" >
+	            <img src="{$mInfo['filename4']}" class="qingxie" /><!--照片4-->
+            </div>
+        </section>
+        <!-- 第5屏 -->
+        {/if}
+        {if $mInfo['filename5'] != ""}
+        <section class="page5 page">
+      	    <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/5-1.png" class="qingxie"  />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/5-2.png" class="fangda" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/5-3.png" class="qingxie"  />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/5-4.png" />
+            </div>
+           
+            <div class="p1" data-animation="slideToBottom" data-delay="600" data-duration="400" >
+	            <img src="{$mInfo['filename5']}" /><!--照片5-->
+            </div>
+        </section>
+        
+        <!-- 第6屏 -->
+        {/if}
+        {if $mInfo['filename6'] != ""}
+        <section class="page6 page">
+	        <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-1.png" class="qingxie"  />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-4.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/1-7.png" />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="400" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/5-3.png" />
+            </div>
+            <div class="e5" data-animation="fadeInToTop" data-delay="500" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/7-3.png" class="qingxie"  />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="700" data-duration="400" >
+	            <img src="{$mInfo['filename6']}" /><!--照片6-->
+            </div>
+        </section>
+        <!-- 第7屏 -->
+        {/if}
+        {if $mInfo['filename7'] != ""}
+        <section class="page7 page">
+            <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/7-1.png" />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/7-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/7-3.png"  />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="400" data-duration="400" >
+	            <img src="{$mInfo['filename7']}" class="qingxie2" /><!--照片7-->
+            </div>
+        </section>
+        <!-- 第8屏 -->
+        {/if}
+        {if $mInfo['filename8'] != ""}
+        <section class="page8 page">
+            <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/8-1.png" />
+            </div>
+            <div class="e2" data-animation="fadeInToLeft" data-delay="150" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/8-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/8-3.png" />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="250" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/8-4.png" />
+            </div>
+            <div class="e5" data-animation="fadeInToTop" data-delay="300" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/8-5.png" />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="360" data-duration="400" >
+	            <img src="{$mInfo['filename8']}" class="qingxie" /><!--照片8-->
+            </div>
+        </section>
+        <!-- 第9屏 -->
+        {/if}
+        {if $mInfo['filename9'] != ""}
+        <section class="page9 page">
+            <div class="e1" data-animation="fadeInToBottom" data-delay="100" data-duration="400">
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/9-1.png" />
+            </div>
+             <div class="e2" data-animation="fadeInToLeft" data-delay="150" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/9-2.png" />
+            </div>
+            <div class="e3" data-animation="fadeInToLeft" data-delay="200" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/9-3.png" />
+            </div>
+            <div class="e4" data-animation="fadeInToRight" data-delay="250" data-duration="400" >
+	            <img src="../addons/member/template/mobile/activity/20160601/template2/static/img/9-4.png" />
+            </div>
+            <div class="p1" data-animation="fadeInToTop" data-delay="400" data-duration="400" >
+	            <img src="{$mInfo['filename9']}" class="qingxie" /><!--照片9-->
+            </div>
+           {/if}
+
+        </section>
+        <!-- 第10屏 -->
+        <section class="page10 page">
+			<div class="p1" data-animation="fadeInToTop" data-delay="100" data-duration="400" >
+	            <img src="{$mInfo['filename1']}" class="qingxie" /><!--照片10，随意取一张做结尾-->
+            </div>
+            <div class="text">{$mInfo['desc']}</div>
+            <div class="buttonArea">
+	           {if $openid == $mInfo['openid']} 
+                <button type="button" onClick="setTemplate();">重新选模版</button>  
+                <button type="button" id="sBtn">分享</button>
+                {else}
+                <button type="button" class="fangda" onClick="setVote();">支持一下</button>
+                <a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityIndex&m=member&act_id={$act_id}"><button type="button">我也要作</button></a>
+                {/if}
+                <a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityList&m=member&act_id={$act_id}"><button type="button">排行榜</button></a>
+            </div>
+            <div class="support">支持人数：{$vInfo['total']}</div>
+        </section>
+       
+    </div>
+</div>
+
+<script src="../addons/member/template/mobile/activity/20160601/template2/static/js/zepto.min.js"></script>
+<script src="../addons/member/template/mobile/activity/20160601/template2/static/js/parallax.js"></script>
+<script>
+$('.pages').parallax({
+    direction: 'vertical',   
+    swipeAnim: 'default',     
+    drag:      true,         
+    loading:   true,       
+    indicator: false,     
+    arrow:     true,     
+ 
+    onchange: function(index, element, direction) {
+       var cls = element.className;
+       var cArr= cls.split(' ');
+       if(cArr[0]=='page6'){
+	       //console.log(cArr[0]+'--');
+         setTimeout(function(){
+		      $('.page6 .p1 img').addClass('tada animated');
+		      setTimeout(function(){
+			      $('.page6 .p1 img').removeClass();
+			      setTimeout(function(){
+			      $('.page6 .p1 img').addClass('fangda');
+			      }, 1200);
+		      }, 1100);
+	    }, 1000);
+       }
+       //console.log(cArr[0]);
+       cls = null;
+    },
+ 
+    orientationchange: function(orientation) {
+    } 
+});
+ 
+function playSetting(){
+  var audio = document.getElementById('my');
+  if(!audio.paused)  
+	 {
+	  $(".replay").removeClass('play');
+	  $(".replay").addClass('stop');
+	  audio.pause();  
+	 }else{
+	   $(".replay").removeClass('stop');
+	  $(".replay").addClass('play');
+	  audio.play();
+	 }
+}
+$('#sBtn').on('click',function(){
+	$('.share').css('display','block');
+});
+
+</script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	function setTemplate(){
+		$.post("{php echo $this->createMobileUrl('setTemplate','',true)}",{"id":"{$mInfo['id']}","template":"","act_id":"{$act_id}"},function(msg){
+			if(msg.status){
+				location.href = 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityTemp&m=member&id='+msg.id+"&act_id={$act_id}";
+			}else{	
+				alert(msg.msg);
+			}
+		},'json');	
+	}
+	function setVote(){
+		$.post("{php echo $this->createMobileUrl('ActivityVote','',true)}",{"id":"{$mInfo['id']}","act_id":"{$act_id}"},function(msg){
+			if(msg.status){
+				layer.open({
+               		content: '投票成功',
+               		btn: ['OK']
+               	});
+			}else{	
+				alert(msg.msg);
+			}
+		},'json');	
+	}
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$mInfo['id']}&act_id={$act_id}", // 分享链接
+            imgUrl: "http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png", // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ActivityShow&m=member&id={$mInfo['id']}&act_id={$act_id}", // 分享链接
+            imgUrl: "http://wx.cnsaga.com/addons/member/template/mobile/static/activity/{$act_id}/share2.png", // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+	});
+		
+</script>
+
+</body>
+</html>

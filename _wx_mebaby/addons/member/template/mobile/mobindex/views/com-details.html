@@ -1,0 +1,14 @@
+<div class="header">
+    <div class="banner">
+        <img ng-src="../addons/member/template/mobile/mobindex/images/banner-2.png" alt=""/>
+    </div>
+    <div ng-include="'../addons/member/template/mobile/mobindex/views/nav.html'"></div>
+</div>
+<div class="com">
+    <h5 class="details-title">{{det.title}}</h5>
+    <div class="details-time">
+     <i>赛格国际购物中心 &nbsp;&nbsp;&nbsp;&nbsp;{{det.newspath}}</i>
+    </div>
+
+    <div class="details-news" ng-bind-html="det.newstext|to_trusted"></div>
+</div>

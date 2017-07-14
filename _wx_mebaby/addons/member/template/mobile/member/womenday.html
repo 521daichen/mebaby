@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+
+    <title>3.8来赛格免高速费</title>
+
+</head>
+<script src="../addons/member/template/mobile/christmas/js/jquery-1.11.3.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+   function  change(){
+        var key = $('#key').val();
+        if(key !='') {
+            $.ajax({
+                type: 'POST',
+                data: {'key': key},
+                url: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=womenswitch&m=member',
+                success: function (res) {
+                    alert(res);
+                    console.log(res);
+
+                }
+            });
+        }else{
+            alert('请填写状态值');
+        };
+
+    }
+</script>
+<body>
+        <h1>活动控制中心</h1>
+    <span><input type="text" id='key' class='key' /></span><br/>
+    <button onclick="change()">变更活动状态</button><br/>
+
+        <p style="color: red"> 1=>关闭，2=>繁忙，其他=>正常开启</p>
+
+
+</div>
+</body>
+</html>

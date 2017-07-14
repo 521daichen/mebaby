@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="keywords" content="">
+	<meta name="description" content="" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" type="text/css" href="../addons/member/template/mobile/static/carPay/css/parkinfo20161108.css" />
+</head>
+<body>
+	<header>
+		<div class="license">{$firstCar['carNumFormat']}</div>
+		<div class="carPhoto"><img src="{$firstCar['carPhoto']}" /></div>
+	</header>
+	<section class="parkMap">
+		<img src="../addons/member/template/mobile/static/carPay/img/{$entryInfo['bigMap']}" />
+		{if $entryInfo['ParkingNo'] != ""}
+		<a href="{$_W['siteroot']}app/index.php?i=4&c=entry&do=FindCar&m=member&ParkingNo={$entryInfo['ParkingNo']}&floor={$parkInfo['floor']}">查看<br>大图</a>
+		{/if}
+	</section>
+	<section class="infoList">
+		<ul>{if $entryInfo['ParkingNo'] != ""}
+			<!--<li><i></i><img src="../addons/member/template/mobile/static/carPay/img/icon_parkinfo_1.png">
+			<span>停车位置</span>
+			<div>{$entryInfo['parkName']}</div></li>-->{/if}
+			<li><i></i><img src="../addons/member/template/mobile/static/carPay/img/icon_parkinfo_2.png">
+			<span>入场时间</span>
+			<div>{$firstCar['user']['entryTime']}</div></li>
+			<li><i></i><img src="../addons/member/template/mobile/static/carPay/img/icon_parkinfo_3.png">
+			<span>计费时长</span>
+			<div>{$entryTime}小时</div>
+			<u>每半小时计费一次</u>
+			</li>
+			<li><i></i><img src="../addons/member/template/mobile/static/carPay/img/icon_parkinfo_4.png">
+			<span>停车费用</span>
+			<div class="font-s-1">￥{$firstCar['user']['amount']}</div>
+			<u class="score">积分抵扣需{$firstCar['user']['deductScore']}分</u></li>
+		</ul>
+	</section>
+<!--if $ownerStatus == 1-->
+	<footer>
+		{if $identifier == 0}
+		<div class="title">
+		<span></span>停车福利 两步获取<span></span>	
+		</div>
+		<div class="step1">
+			<span>赠送<br />停车专用积分<br />1000分</span>
+			<span>会员<br />ETC<br />专用通道</span>
+			<span>积分<br />抵扣<br />停车费</span>
+			<div class="operation" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=userregist&m=member'">
+				<u>1</u>申领会员卡 
+				<u>2</u>绑定车牌
+				<button>立即获取福利</button>
+			</div>
+		</div>
+		{/if}
+		{if $identifier == 1}
+		<div class="title">
+		<span></span>停车福利 两步获取<span></span>	
+		</div>
+		<div class="step2">
+			<span>会员<br />ETC<br />专用通道</span>
+			<span>积分<br />抵扣<br />停车费</span>
+			<span>自动交费<br />3秒<br />快速离场</span>
+			<div class="operation" onclick="location.href='http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=bindPlateNumberOnlyOne&m=member'">
+				<u>1</u>绑定车牌
+				<u>2</u>开通自动交费
+				<button >获取福利</button>
+			</div>
+		</div>
+		{/if}
+		{if $identifier == 2}
+		<div class="title">
+		<span></span>自动交费 快速出场<span></span>	
+		</div>
+		<div class="step3">
+			<img src="../addons/member/template/mobile/static/carPay/img/Pic_car.png" />
+			<button onclick="location.href='{$serial}'">开通自动交费</button>
+		</div>
+		{/if}
+		{if $identifier == 3}
+		<div class="title">
+		<span></span>您目前可享受<span></span>	
+		</div>
+		<div class="step4">
+			<img src="../addons/member/template/mobile/static/carPay/img/Pic_car.png" />
+			<p>使用会员ETC通道，优先使用积分抵扣停车费<br>已签约微信自动交费服务<br />自动抬杆，快速出场</p>
+		</div>
+		{/if}
+	</footer>
+<!--/if-->
+<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500021860" ></script>
+<script type="text/javascript" src="../addons/member/template/mobile/static/carPay/js/zepto.min.js"></script>
+<script type="text/javascript" src="../addons/member/template/mobile/static/carPay/js/fx.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	var score = $(".score");
+    var state = 0;
+	setInterval(function(){
+			if(state == 0){
+				score.animate({opacity:0},400,'ease-out');
+				state = 1;
+				setTimeout(function(){
+					score.html("可用积分{$firstCar['user']['score']}分");
+					score.animate({opacity:1},400,'ease-out');
+				},600);
+			}else{
+				score.animate({opacity:0},400,'ease-out');
+				state = 0;
+				setTimeout(function(){
+					score.html("积分抵扣需{$firstCar['user']['deductScore']}分");
+					score.animate({opacity:1},400,'ease-out');
+				},600);
+			}
+    },3000);
+	var imgList = [
+            '{$firstCar["carPhoto"]}',
+            '{$entryInfo["img"]}'
+    ];
+    var Index = 0;
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                  // 查看微信卡包中的卡券接口
+            'previewImage'
+        ]
+    });
+    wx.ready(function(){
+        wx.hideMenuItems({
+            menuList: ['menuItem:openWithSafari','menuItem:share:appMessage','menuItem:share:timeline','menuItem:openWithQQBrowser','menuItem:copyUrl','menuItem:readMode','menuItem:originPage']
+        });
+    });
+
+    $(".carPhoto").on("click", function (){
+        wx.previewImage({
+            current: imgList[Index],
+            urls: imgList
+        });
+    });
+</script>
+</body>
+</html>

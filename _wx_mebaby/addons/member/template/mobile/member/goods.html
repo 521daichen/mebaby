@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的购物记录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/note.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <!--<img src="../addons/member/template/mobile/img/logo.png" class="logo" />-->
+    <span>购物记录</span>
+</header>
+<div class="clr"></div>
+<section>
+	<!--<div class="explain_s1"><p>赛格服务，贴心为您。<br>您的点滴，我们都记在这里。</p></div>-->
+    {if empty($sales)}
+    <div class="radbox noinfo ">
+        <h1>您暂时没有购物记录</h1>
+        <span style="display:block;font-size:0.8em;padding:0 1.5em 1em;color:#707070">小贴士：每次购物付款时，向店员出示会员卡，或告知店员您的手机号码，即可记录当次购物并积分。</span>
+    </div>
+    {else}
+    {loop $sales $order}
+    <div class="radbox">
+        <!--<a href="" class="bill-btn"><img src="../addons/member/template/mobile/static/img/Electronicbill.png" /></a>-->
+        <!--<a href="{php echo $this->createMobileUrl('getBill',array('billId'=>$key,'score'=>$score))}" class="bill-btn"><img src="../addons/member/template/mobile/static/img/Electronicbill.png" /></a>-->
+        <h1>{$order['pluName']}</h1>
+        <div class="text_a">
+            购买日期：{$order['retailTime']}<!--购买金额：{$order['money']} 元--><br>
+        </div>
+        
+    </div>
+    {/loop}
+    {/if}
+
+</section>
+<div class="clr"></div>
+<footer>
+    <br><br>
+</footer>
+
+</body>
+</html>

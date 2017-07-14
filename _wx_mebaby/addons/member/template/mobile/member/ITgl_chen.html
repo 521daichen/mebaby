@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" href="../addons/member/template/mobile/invite_chen/css/invite_chen.css">
+</head>
+<body>
+	<div class="inv">
+		<div class="main inv_main">
+			<div class="inv_top">
+				<img class="inv_yhtop" src="../addons/member/template/mobile/invite_chen/img/inv_top.png" alt="" />
+				<h2><span>PHP程序员</span></h2>
+				<ul>
+					<li>
+						<span><b>人数：</b>6名</span>
+						<span><b>月薪：</b>6000 - 7000</span>
+					</li>
+					<li>
+						<p><b>工作内容：</b><br />
+							面向赛格国际购物中心、赛格电脑商城的软件开发、微信开发等
+						</p>
+					</li>
+					<li>
+						<p><b>任职要求：</b><br />
+							本科及以上学历，精通PHP5、MYSQL，能熟练运用SQL语言，有一定的数据建模经验，精通smarty模板引擎，熟悉JSON、AJAX，了解JS主流框架，会编写者优先
+						</p>	
+					</li>
+				</ul>
+				<img class="inv_yhbot" src="../addons/member/template/mobile/invite_chen/img/inv_bom.png" alt="" />
+			</div>
+			<div class="inv_botm">
+				<img class="inv_yhtop" src="../addons/member/template/mobile/invite_chen/img/inv_top.png" alt="" />
+				<h2><span>服务器管理员</span></h2>
+				<ul>
+					<li>
+						<span><b>人数：</b>2名</span>
+						<span><b>月薪：</b>5000 - 6000</span>
+					</li>
+					<li>
+						<p><b>工作内容：</b><br />
+							管理监控赛格电脑商城机房服务器设备、云服务器的正常运行，部署调试新服务，部分网络设备的调试等
+	
+						</p>
+					</li>
+					<li>
+						<p><b>任职要求：</b><br />
+							本科及以上学历，熟练掌握路由器、防火墙、交换机等网络设备的配置和常见的网络服务如VPN，DNS的搭建；熟练掌握Linux/Windows平台下Web服务的安装、配置、管理，熟悉基础SQL语句及MySQL数据库管理，机房基础设施维护
+						</p>	
+					</li>
+				</ul>
+				<img class="inv_yhbot" src="../addons/member/template/mobile/invite_chen/img/inv_bom.png" alt="" />
+			</div>
+			<div class="inv_botm">
+				<img class="inv_yhtop" src="../addons/member/template/mobile/invite_chen/img/inv_top.png" alt="" />
+				<h2><span>新媒体运营</span></h2>
+				<ul>
+					<li>
+						<span><b>人数：</b>2名</span>
+						<span><b>月薪：</b>5000 - 6000</span>
+					</li>
+					<li>
+						<p><b>工作内容：</b><br />
+							负责企业文章编写、整理，负责自媒体平台内容的搜集、编辑、排版、发布等工作
+	
+						</p>
+					</li>
+					<li>
+						<p><b>任职要求：</b><br />
+							本科及以上学历，专业不限，微信达人、爱好写作、具有优秀的文字功底和写作水平、喜欢奇思妙想、有创意！
+							具有良好的沟通能力、学习能力和执行能力。
+							熟悉网站、微信、微博、论坛、博客等社交媒体营销和推广者优先
+						</p>	
+					</li>
+				</ul>
+				<img class="inv_yhbot" src="../addons/member/template/mobile/invite_chen/img/inv_bom.png" alt="" />
+			</div>
+			<a class="back" href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=InviteOrangeEntry&m=member&wxref=mp.weixin.qq.com#option">返&nbsp;回</a>
+		</div>
+	</div>
+	
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+		
+	    wx.config({
+	        debug: false,
+	        appId: "{$_W['account']['jssdkconfig']['appId']}",
+	        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+	        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+	        signature: "{$_W['account']['jssdkconfig']['signature']}",
+	        jsApiList: [
+	            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+	            'onMenuShareTimeline',      // 分享到朋友圈
+	            'onMenuShareAppMessage',    // 分享给朋友
+	            'onMenuShareQQ',            // 分享到QQ
+	            'onMenuShareWeibo',         // 分享到腾讯微博
+	            'hideMenuItems',            // 批量隐藏功能按钮接口
+	            'showMenuItems',            // 批量显示功能按钮接口
+	            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+	            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+	            'getNetworkType',           // 获取网络状态接口
+	            'openLocation',             // 使用微信内置地图查看位置接口
+	            'getLocation',              // 获取地理位置接口
+	            'hideOptionMenu',           // 批量隐藏功能按钮接口
+	            'showOptionMenu',           // 批量显示功能按钮接口
+	            'closeWindow',              // 关闭当前网页窗口接口
+	            'addCard',                  // 批量添加卡券接口
+	            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+	            'openCard',                 // 查看微信卡包中的卡券接口
+	            'chooseImage',
+	            'previewImage',
+	            'uploadImage',
+	            'downloadImage'
+	        ]
+	    });
+		
+	    wx.ready(function() {
+	    	//分享到朋友圈
+	    	wx.onMenuShareTimeline({
+		       title: "在赛格，我们与你事业的小船永不翻~", // 分享标题
+		       link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=InviteOrangeEntry&m=member', // 分享链接
+		       imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/invite_chen/img/pic.png', // 分享图标
+		       success: function (res) {
+	           console.log("succ");
+	       		}
+		   });
+			// 分享给朋友
+	       wx.onMenuShareAppMessage({
+	           title: "在赛格，我们与你事业的小船永不翻~", // 分享标题
+	           desc:  "赛格国际2017春招的小船已经出发，优秀的同学们排好队前排刷卡上船~", // 分享描述
+	           link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=InviteOrangeEntry&m=member', // 分享链接
+	           imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/invite_chen/img/pic.png', // 分享图标
+	           success: function (res) {
+	           console.log("succ");
+	       		}
+	       });
+	    });
+	
+	</script>
+</body>
+</html>

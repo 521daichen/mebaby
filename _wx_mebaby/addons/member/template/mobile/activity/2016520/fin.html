@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>情书完成</title>
+	<style type="text/css">
+	input[type="button"], input[type="submit"], input[type="reset"],select {-webkit-appearance: none;}
+	textarea {  -webkit-appearance: none;} 
+	body{
+		margin: 0;
+		padding: 0;
+		background:url('../addons/member/template/mobile/static/activity/2016520/bg.png') repeat;
+	}
+	img{
+		display: block;
+		width:100%;
+		height:100%;
+	}
+	.topContainer{
+		width: 100%;
+		height: auto;
+		background: url('../addons/member/template/mobile/static/activity/2016520//topBg.png') no-repeat;
+		background-size: 100%;
+		overflow: auto;
+		padding-bottom:20px;
+	}
+	.photoContainer{
+        width:90%;
+		height:auto;
+		margin:15% auto 0;
+		background: url('images/loveWord.png') no-repeat 80% 98%;
+		background-size: 70%;
+		padding-bottom:1em;
+		box-shadow:0 0 15px #aaa;
+	}
+	.photoContainer img{
+		width:90%;
+		height:auto;
+		margin:0 auto;
+		padding-bottom: 50px;
+		padding-top:20px;
+	}
+	.word{
+		width:80%;
+		height:auto;
+		margin: 20px auto;
+		border:10px solid transparent;
+		-webkit-border-image:url('../addons/member/template/mobile/static/activity/2016520//borderCircle2.png') 16 round;
+	}
+	.sweet{
+		background: #fffaf3 url('../addons/member/template/mobile/static/activity/2016520//lineSpot.png') repeat 20px 100px;
+		color: #fb9e8f;
+		padding: 20px;
+		line-height:38px;
+	}
+	.begin,.end{
+		font-size: 18px;
+	}
+	.end{
+		display: block;
+		text-align: right;
+	}
+	p{
+		width:90%;
+		margin:0 auto;
+		color: #fb9e8f;
+	}
+	p img{
+		float: left;
+		margin-right: 10px;
+		width: 16px;
+		height: 16px;
+	}
+	.buttonDiv{
+		display:block;
+		width:90%;
+		margin:10px auto;
+		font-size:1em;
+		height:54px;
+		border:0;
+		border-radius:5px;
+		color:#fff;
+	}
+	.Color1{background:#FB9E8F;}
+	.Color2{background:#74DDD3;}
+	/*遮罩层*/
+	.container{
+		position: fixed;
+		top:0;
+		left: 0;
+		width: 100%;
+		height:100%;
+		z-index: 100;
+		background: rgba(0, 0, 0,0.7 );
+		display:none;
+	}
+	.share{
+		width: 50%;
+		height: auto;
+		position: absolute;
+		left:25%;
+		top:50px;
+		z-index: 1000;
+	}
+	.shareIcon{
+		width: 50%;
+		height:auto;
+		position: absolute;;
+		left: 25%;
+		bottom:20%;
+		z-index: 1000;
+	}
+    input[type='radio']{border:1px solid #fb9e8f;height:16px;width:16px;-webkit-transform:translate(0,-1px);position: relative;}
+	input:checked{background:#fb9e8f}
+	</style>
+</head>
+<body>
+<!-- 遮罩层 -->
+ 	<div class="container" onclick="this.style.display='none'">
+	<img class="share" src="../addons/member/template/mobile/static/activity/2016520/share.png">
+	<img class="shareIcon" src="../addons/member/template/mobile/static/activity/2016520/shareIcon.png"> 
+	</div>
+	<div class="topContainer">
+		<div class="photoContainer"><img src="{$mInfo['filename']}"></div>
+		<div style="clear: both;"></div>
+	</div>
+
+	<div class="word">
+		<div class="sweet">
+			<span class="begin"></span>{$mInfo['desc']}<br/>
+			<span class="end"></span>
+		</div>
+	</div>
+	
+	<button type="button" class="buttonDiv Color1" id="btn1">现在就发给他</button>
+	<br><br>
+	<script type="text/javascript">
+		document.querySelector('#btn1').onclick = function(){
+			document.querySelector('.container').style.display = 'block';
+		}
+	</script>
+    
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+			'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: "{$shareData['title']}", // 分享标题
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayShow&m=member&id={$mInfo['id']}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: "{$shareData['title']}", // 分享标题
+            desc:  "{$shareData['desc']}", // 分享描述
+            link: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=520DayShow&m=member&id={$mInfo['id']}", // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/activity/2016520/share2.png', // 分享图标
+            success: function (res) {
+				document.querySelector('.container').style.display = 'none';
+            }
+        });
+	});
+		
+</script>
+</body>
+</html>

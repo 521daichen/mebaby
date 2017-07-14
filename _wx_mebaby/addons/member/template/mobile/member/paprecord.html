@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的停车交费记录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/paprecord.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/dropload.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <!--<img src="../addons/member/template/mobile/img/logo.png" class="logo" />-->
+    <span>停车交费记录</span>
+</header>
+<div class="clr"></div>
+<section>
+	<div class="explain_s1"><p>赛格服务，贴心为您。<br>您的点滴，我们都记在这里。</p></div>
+    {if empty($paprecord)}
+    <div class="radbox noinfo ">
+        <h1>您目前没有停车交费记录</h1>
+        <span style="display:block;font-size:0.8em;padding:0 1.5em 1em;color:#707070">小贴士：每次购物付款时，向店员出示会员卡，或告知店员您的手机号码，即可记录当次购物并积分。</span>
+    </div>
+    {else}
+    
+    <div class="content">
+	    <div class="lists">
+		    <ul>
+                {loop $paprecord $order}
+			     <li class="radbox">
+				    <dl>
+					    <dt><strong>{$order['platenumber']}</strong> <span>停车时长：<u>{$order['duration']}</u>小时</span></dt>
+					    <dd>
+						    <span>扣款总额：￥{$order['amount']}</span>
+		                    <span>微信委托代扣：￥{$order['pay']}</span>
+					        <span>抵扣积分：{$order['erpscore']}</span>
+						    <span>抵扣停车专用积分：{$order['parkscore']}</span>
+				            <span>入场时间：{$order['entrytime']}</span>
+					        <span>离场时间：{$order['leavetime']}</span>
+	                    </dd>
+			        </dl>        
+			    </li>
+                {/loop}
+	   		</ul>
+    	</div>
+	</div>
+    
+    {/if}
+
+</section>
+<div class="clr" id="info">
+    
+</div>
+<footer>
+    <br><br>
+</footer>
+
+</body>
+<script type="text/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js"></script>
+ <!-- <script type="text/javascript" src="../addons/member/template/mobile/static/js/async.js"></script> -->
+<script src="../addons/member/template/mobile/static/js/dropload.min.js"></script>
+<script type="text/javascript">
+   $(function(){
+       $('.content').dropload({
+            scrollArea : window,
+            loadDownFn : function(me){
+                var radboxDiv = $(".radbox");
+                var pageStart = (radboxDiv.length / 10) + 1;
+
+                //console.log(pageStart);
+
+                $.ajax({
+                    type: 'GET',
+                    url: "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Async&m=member&page="+pageStart,
+                    dataType: 'html',
+                    success: function(data){
+                        //alert(data);
+                        if(0 != data){
+                            $('ul').append(data);    
+                        }else{
+                            $(".dropload-down").css('display','none');
+                        }
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+
+                    },
+                    error: function(xhr, type){
+                        //alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    },
+                });
+            },
+        })        
+   })
+   
+</script>
+</html>

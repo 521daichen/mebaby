@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>赛格微信寻车</title>
+</head>
+<style type="text/css">
+    html {
+        font-family: Arial;
+        font-size: 1em;
+        height:100%;
+    }
+    body {
+        background:#FFEFFF;
+        padding: 0;
+        margin: 0;
+        height:100%;
+    }
+    #map{position:absolute}
+    .rotationdefault{width:90%;top:0;height:auto;left:50%;margin-left:-50%;position: absolute}
+    .rotation{width:46%;height:auto;top:-80px;left:150px;position: absolute}
+    #tips{position:absolute;left:0;top:0;background:rgba(0,0,0,0.8);z-index:99;width:100%;height:100%;text-align:center}
+    #tips span{display:block;width:200px;height:60px;line-height:60px;border-radius:15px;position:absolute;left:50%;top:50%;background:#fff;margin-left:-100px;margin-top:-30px;}
+    
+            .floor{position: absolute;font-weight: bold;text-align: center;bottom:30%;right:16%;z-index: 999;color:#444;font-size: 3em;-webkit-transform: rotate(90deg);}
+    .floorrotation{position: absolute;font-weight: bold;text-align: center;top:5%;right:30%;z-index: 999;color:#444;font-size: 3em;;}
+</style>
+<script type="text/javascript">
+
+    // 判断屏幕是否旋转 
+    function orientationChange() {
+//        cw = document.body.clientWidth;
+//        ch = document.body.clientHeight;
+//       
+     switch(window.orientation) {
+     case 0:
+            //document.getElementById('tips').style.display="none";
+             document.getElementById("map").style.WebkitTransform = "rotate(0deg)";
+             document.getElementById("map").className="rotationdefault";
+             document.getElementById("floor").className="floor";
+
+            break;
+
+    　case -90:
+            //document.getElementById('tips').style.display="block";
+            document.getElementById("map").style.WebkitTransform = "rotate(270deg)";
+            document.getElementById("map").className="rotation";
+            document.getElementById("floor").className="floorrotation";
+            break;
+
+    　　case 90:
+            //document.getElementById('tips').style.display="block";
+            document.getElementById("map").style.WebkitTransform = "rotate(270deg)";
+            document.getElementById("map").className="rotation";
+            document.getElementById("floor").className="floorrotation";
+            break;
+
+    　　case 180:
+
+        　　//document.getElementById('tips').style.display="none";
+           //document.getElementById("map").style.WebkitTransform = "rotate(180deg)";
+           // document.getElementById("map").style.width="100%";
+        　　break;
+
+        };
+    };
+
+    // 添加事件监听
+
+    addEventListener('load', function(){
+
+        orientationChange();
+
+        window.onorientationchange = orientationChange;
+
+    });
+/*
+
+    var timeout;
+    function orientationHandler(event){
+
+        var heading = event.alpha;
+        if (typeof event.webkitCompassHeading !== "undefined") {
+            heading = event.webkitCompassHeading; //iOS non-standard
+            Angle=258-heading;
+            document.getElementById("map").style.WebkitTransform = "rotate("+Angle+"deg)";
+        }else{
+            timestart=heading;
+            timeout=timestart-timeout;
+            //if(timeout>10){
+            Angle=heading-80;
+            document.getElementById("map").style.WebkitTransform = "rotate("+Angle+"deg)";
+            //}
+            timeout=heading;
+        }
+
+    }
+    if (window.DeviceOrientationEvent){
+        window.addEventListener("deviceorientation",orientationHandler, false);
+    } else {
+        document.body.innerHTML = "What user agent u r using???";
+    };
+    */
+</script>
+<body>
+<!--<div id="tips"><span>请保持手机屏幕垂直</span></div>-->
+<div class="floor" id="floor">{$_GPC['floor']}F</div>
+<img src="../addons/member/template/mobile/static/img/zone{$_GPC['zone']}.gif?v=111" id="map">
+</body>
+</html>
+

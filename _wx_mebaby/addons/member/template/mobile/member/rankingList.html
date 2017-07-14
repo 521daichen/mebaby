@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> 
+	<meta name="keywords" content=""> 
+	<meta name="description" content="" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta content="telephone=no" name="format-detection">
+	<title>灯谜猜猜乐排行榜单</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		img{
+			display: block;;
+			width: 100%;
+		}
+		.bg{
+			height: 100%;
+		}
+		.mask{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			/*background: rgba(0,0,0,0.8);*/
+		}
+		.ellipsis {
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+            -webkit-text-overflow:ellipsis
+    	}
+		ul{
+			color: #fff;
+			position: absolute;
+			top: 30%;
+			left: 15%;
+			z-index: 111;
+			width: 70%;
+		}
+		ul li{
+			border-bottom: #f3c793 2px solid;
+		    overflow: hidden;
+		    width: 100%;
+		    height: 34px;
+		    font-size: 12px;
+		}
+		ul li img{
+			float: left;
+			width: 26px;
+			margin-right:10px 
+		}
+		ul li .user{
+			width: 25px;
+		    height: 25px;
+		    margin-top: 2px;
+		    border: solid 1px #f3c793;
+		    /* border-radius: 28px; */
+		    float: left;
+		}
+		ul li span{
+			float: left;
+			color: #d44543;
+			margin-top: 7px
+		}
+		ul li .score{
+			float: right;
+			padding-left: 10px;
+			border-left: 1px solid #f3c793
+		}
+		ul li b{
+			float: left;
+			width: 26px;
+			margin-right:10px;
+			color: #d44543;
+			font-size: 20px;
+			line-height:26px; 
+			text-align: center;
+		}
+		.button{
+			float: left;
+			width: 60%;
+			margin-left: 20%;
+			margin-top: 12%;
+		}
+		.hidden{
+			display: none;
+		}
+		#takeC{
+			width: 60%;
+		    height: 35%;
+		    position: absolute;
+		    z-index: 200;
+		    top: 40%;
+		    left: 20%;
+		}
+		.rule{position:fixed;z-index:999;background: rgba(0,0,0,0.8);width:100%;height:100%}
+		.rule img{width:320px;left:50%;margin-left:-160px;top:10%;position: absolute;}
+		@media screen and (max-width:414px){
+			.button{
+				float: left;
+				width: 60%;
+				margin-left: 20%;
+				margin-top: 25%;
+			}
+		}
+		@media screen and (max-width:375px){
+			.button{
+				float: left;
+				width: 60%;
+				margin-left: 20%;
+				margin-top: 14%;
+			}
+		}
+		@media screen and (max-width:360px){
+			.button{
+				float: left;
+				width: 60%;
+				margin-left: 20%;
+				margin-top: 14%;
+			}
+		}
+		@media screen and (max-width:320px){
+			ul li {
+			    border-bottom: #f3c793 2px solid;
+			    overflow: hidden;
+			    width: 100%;
+			    height: 27px;
+			    font-size: 12px;
+			}
+			.button{
+				float: left;
+				width: 60%;
+				margin-left: 20%;
+				margin-top: 20%;
+			}
+		}
+		.ruleBtn{position:relative;left:50%;width:100px;margin-left:-50px;top:10px}
+	</style>
+</head>
+<body>
+	
+	{if $WhetherLuck == 1}
+		<div id='takeC'> 
+		<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=LuckInput&m=member#"><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/takecard.png" alt="" /></a>
+		</div>
+	{else}
+		
+	{/if}
+	
+	
+	
+	<div class="mask">
+		
+		<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/rankingList.png">
+		<ul class="rank">
+			
+			{loop $rankList $index $item}
+			
+			  {if $index == '0'}
+		        <li>
+					<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num1.png">
+					<img src="{$item['headimg']}" class="user">
+					<span class="username ellipsis">{$item['nickname']}</span>
+					<span class="score">{$item['score']}</span>
+				</li>
+				
+		   	  {elseif $index == '1'}
+		        <li>
+					<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num2.png">
+					<img src="{$item['headimg']}" class="user">
+					<span class="username ellipsis">{$item['nickname']}</span>
+					<span class="score">{$item['score']}</span>
+				</li>
+		      {elseif $index == '2'}
+		        <li>
+					<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num3.png">
+					<img src="{$item['headimg']}" class="user">
+					<span class="username ellipsis">{$item['nickname']}</span>
+					<span class="score">{$item['score']}</span>
+				</li>
+			  {else}
+				  <li>
+				  	
+					<b>{php echo $index+1;}</b>
+					<img src="{$item['headimg']}" class="user">
+					<span class="username ellipsis">{$item['nickname']}</span>
+					<span class="score">{$item['score']}</span>
+				</li>
+				 
+		      {/if}
+				
+		
+			{/loop}
+			
+			
+			<!--<li>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num1.png">
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num2.png">
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/num3.png">
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>4</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>5</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>6</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>7</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>8</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>9</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>
+			<li>
+				<b>10</b>
+				<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/user.png" class="user">
+				<span class="username">小玲</span>
+				<span class="score">3000分</span>
+			</li>-->
+			<a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=lightentry&m=member&wxref=mp.weixin.qq.com&wxref=mp.weixin.qq.com&sagafrom=gwzs"><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/returnBack.png" class="button"></a>
+			
+			
+			
+			<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/rule.png"    class="ruleBtn" onclick="$('.rule').css('display','block');" />
+		</ul>
+	</div>
+	<div class="rule" style="display:none"><img src="../addons/member/template/mobile/yuanxiao/yuanxiao/ruledet.png" onclick="$('.rule').css('display','none');"  ></div>
+	
+	<img src="../addons/member/template/mobile/yuanxiao/yuanxiao/index.png" class="bg" >
+	<script src='http://wx.cnsaga.com/addons/member/template/mobile/yuanxiao/yuanxiaoJS/jquery-1.11.3.js'></script>
+	<script>
+		$('#takeC').click(function(){
+			$(this).addClass('hidden');
+		});
+	</script>
+</body>
+</html>

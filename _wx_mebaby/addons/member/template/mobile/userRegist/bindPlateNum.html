@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>绑定车牌号</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/license.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/newuser.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+<header>
+    <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" />
+    <span>绑定车牌号</span>
+</header>
+<div class="clr"></div>
+<section>
+    <div class="radbox">
+        <!--<h1>注册</h1>-->
+        <div class="forms">
+            <form id="form">
+                <input onclick="cpselect(1)"  type="text" value="" id="cpselect1" name="platenumber" readonly class="text dp" placeholder="点击选择车牌号" />
+                <input type="button" value="绑 定" id="but" onclick="return checkfrom()" />
+            </form>
+        </div>
+    </div>
+    <div class="explain_s1"><p>绑定提示：<br/>
+        1、车牌号码是您会员身份的重要凭证，为保证您的会员权益，请您正确填写；<br/>
+        2、如车牌号非会员本人绑定，我方在查证后有权取消其车牌号的绑定行为;<br/>
+        3、如需修改或关闭此功能，请进入会员中心--车牌号管理中进行修改 <a href="{$_W['siteroot']}app/index.php?i=4&c=entry&do=plateNumber&m=member">点我查看</a>。</p></div>
+</section>
+<div class="clr"></div>
+<br><br>
+
+<script src="http://libs.useso.com/js/jquery/1.7.2/jquery.min.js"></script>
+<script src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script src="../addons/member/template/mobile/static/js/ac.js?v=20150504"></script>
+
+<div class="d_n" id="cp" >
+    <div class="proys ahy">
+        <div class="clr"></div>
+        <input id="cpvalue" onclick="this.value='';$('#sheng').css('display','block');$('#zimu').css('display','none');$('#num').css('display','none')" value="" readonly>
+        <ul id="sheng">
+            <li onclick="cpadd('陕')">陕</li>
+            <li onclick="cpadd('京')">京</li>
+            <li onclick="cpadd('津')">津</li>
+            <li onclick="cpadd('冀')">冀</li>
+            <li onclick="cpadd('晋')">晋</li>
+            <li onclick="cpadd('蒙')">蒙</li>
+            <li onclick="cpadd('辽')">辽</li>
+            <li onclick="cpadd('吉')">吉</li>
+            <li onclick="cpadd('黑')">黑</li>
+            <li onclick="cpadd('沪')">沪</li>
+            <li onclick="cpadd('苏')">苏</li>
+            <li onclick="cpadd('浙')">浙</li>
+            <li onclick="cpadd('皖')">皖</li>
+            <li onclick="cpadd('闽')">闽</li>
+            <li onclick="cpadd('赣')">赣</li>
+            <li onclick="cpadd('鲁')">鲁</li>
+            <li onclick="cpadd('豫')">豫</li>
+            <li onclick="cpadd('鄂')">鄂</li>
+            <li onclick="cpadd('湘')">湘</li>
+            <li onclick="cpadd('粤')">粤</li>
+            <li onclick="cpadd('桂')">桂</li>
+            <li onclick="cpadd('琼')">琼</li>
+            <li onclick="cpadd('渝')">渝</li>
+            <li onclick="cpadd('川')">川</li>
+            <li onclick="cpadd('贵')">贵</li>
+            <li onclick="cpadd('云')">云</li>
+            <li onclick="cpadd('藏')">藏</li>
+            <li onclick="cpadd('甘')">甘</li>
+            <li onclick="cpadd('青')">青</li>
+            <li onclick="cpadd('宁')">宁</li>
+            <li onclick="cpadd('新')">新</li>
+        </ul>
+        <ul id="zimu" style="display:none">
+            <li onclick="cpadd('A')">A</li>
+            <li onclick="cpadd('B')">B</li>
+            <li onclick="cpadd('C')">C</li>
+            <li onclick="cpadd('D')">D</li>
+            <li onclick="cpadd('E')">E</li>
+            <li onclick="cpadd('F')">F</li>
+            <li onclick="cpadd('G')">G</li>
+            <li onclick="cpadd('H')">H</li>
+            <li onclick="cpadd('I')">I</li>
+            <li onclick="cpadd('J')">J</li>
+            <li onclick="cpadd('K')">K</li>
+            <li onclick="cpadd('L')">L</li>
+            <li onclick="cpadd('M')">M</li>
+            <li onclick="cpadd('N')">N</li>
+            <li onclick="cpadd('O')">O</li>
+            <li onclick="cpadd('P')">P</li>
+            <li onclick="cpadd('Q')">Q</li>
+            <li onclick="cpadd('R')">R</li>
+            <li onclick="cpadd('S')">S</li>
+            <li onclick="cpadd('T')">T</li>
+            <li onclick="cpadd('U')">U</li>
+            <li onclick="cpadd('V')">V</li>
+            <li onclick="cpadd('W')">W</li>
+            <li onclick="cpadd('X')">X</li>
+            <li onclick="cpadd('Y')">Y</li>
+            <li onclick="cpadd('Z')">Z</li>
+        </ul>
+        <input type="text" id="num" onChange="toupper()" placeholder="输入车牌后五位" class="num"  />
+        <div class="clr"></div>
+        <input type="button" class="but2" value="取 消" onclick="cp_noreg()" />
+        <input type="button" class="but2" value="确 定" onclick="cp_n()" />
+        <input type="hidden" id="inputnum" value="" />
+
+    </div>
+
+</div>
+<script>
+
+    function cp_n(){
+        var zhi= $("#inputnum").val();
+        var numlength = $("#num").val();
+        if(isChn(numlength)){
+            if(numlength.length == 5){
+                $("#cpselect"+zhi).val($("#cpvalue").val()+$("#num").val())
+                $("#cpselect"+zhi).removeClass();
+                $("#cpselect"+zhi).addClass("text dp");
+                $("#cp").addClass("opxs");
+                $(".proys").addClass("onexit");
+                setTimeout(function(){
+                    document.getElementById("cp").className="d_n";
+                    $(".proys").removeClass("onexit");
+                },350);
+                $('#cpvalue').val('');
+                $('#num').val('');
+//                $(".press_list").css("display","");
+//
+//                $('#sheng').css('display','block');
+//                $('#zimu').css('display','none');
+//                $('#num').css('display','none')
+            }else{
+                alert("请输入车牌后五位，不含省、地区码");
+
+            }
+        }else{
+            alert("请输入车牌后五位，不含省、地区码哦");
+        }
+    }
+
+
+    //表单验证
+    function checkfrom() {
+        var name = $('input[name="platenumber"]').val();
+
+        if(name == ''){
+            alert('车牌号码不能为空');
+            return false;
+        }
+        loading();
+        $.post("{php echo $this->createMobileUrl('bindPlateNum','',true)}",$('#form').serialize(),function(msg){
+            layer.closeAll();
+//            alert(msg);
+            if(msg.status){
+                var uniacid = "{$_W['uniacid']}";
+                alert(msg.msg);
+                setTimeout("location.href='{$_W['siteroot']}app/index.php?i="+uniacid+"&c=entry&eid=1&wxref=mp.weixin.qq.com#wechat_redirect';",2000);
+            }else{
+                alert(msg.msg);
+            }
+        },'json');
+//            $('#form').submit();
+
+    }
+</script>
+</body>
+</html>

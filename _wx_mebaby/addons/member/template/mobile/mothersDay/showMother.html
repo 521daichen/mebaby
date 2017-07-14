@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"  content=" initial-scale=1, minimum-scale=1,maximum-scale=1, width=device-width,user-scalable=0">
+<meta content="telephone=no" name="format-detection">
+<title>感恩母亲</title>
+<style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+body{font-size:18px;}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, form, fieldset, legend, button, input, textarea,th, td{margin: 0; padding: 0;}
+ul, ol { list-style: none; }
+i,em{font-style:normal}
+a{ text-decoration:none;}
+input[type="button"], input[type="submit"], input[type="reset"],select {
+-webkit-appearance: none;
+}
+body{ background:#fcf8f5; color:#4c3638;}
+.content{ background:url(../addons/member/template/mobile/static/mothersDay/bg.jpg) no-repeat; background-size:100%;}
+.photo{ margin:0px auto;}
+.photo img{ width:100%; float:left;}
+.pic{background:url(../addons/member/template/mobile/static/mothersDay/k3.png) repeat-y; background-size:100%; float:left;}
+.pic img{ width:82%; margin-left:9%;}
+.main{width:82%; margin:0px auto; border:solid 1px #e4dbcf; background:url(../addons/member/template/mobile/static/mothersDay/bg2.jpg) no-repeat left bottom; background-size:50%; padding:4%;}
+.main h4{ text-align:right; margin-bottom:20px; border-bottom:solid 1px  #e4dbcf; font-size:20px; line-height:30px;}
+.main span{ text-align:right; display:block; margin-top:10px;}
+.main p{ line-height:28px;}
+.content a{ color:#4c3638; text-align:center; display:block; line-height:30px;}
+.fx{ position:fixed; display:none;height:100%;background:rgba(0,0,0,.8);}
+.fx img{width:100%;}
+.btn2,.btn3{ color:#fff; font-size:18px; text-align:center;  border-radius:5px; width:90%; border:none; padding:8px 0px; margin-left:5%; margin-top:10px;}
+.btn2{background:#fb9e90; }
+.btn3{background:#60dce8;}
+.btn3 a{ color:#fff;}
+.ad{width:90%; margin:0px auto;}
+.ad img{width:100%; margin-bottom:10px; float:left;}
+</style>
+</style>
+</head>
+
+<body>
+<div class="fx" id="heiceng" onclick="this.style.display='none' ;"><img src="../addons/member/template/mobile/static/mothersDay/01.png"></div>
+<div class="content">
+<div class="photo">
+<img src="../addons/member/template/mobile/static/mothersDay/k1.png">
+<div class="pic"><img src="{$mInfo['filename']}" ></div>
+<img src="../addons/member/template/mobile/static/mothersDay/k2.png">
+<div style="clear:both;"></div>
+</div>
+<div class="main">
+<h4>{$mInfo['title']}</h4>
+<p>{$mInfo['desc']}</p>
+<span>爱您的{$mInfo['name']}</span>
+</div>
+<div onclick="document.getElementById('heiceng').style.display='block';" class="btn2">点我分享</div>
+{if $_GPC['show'] == 1}
+<div class="btn3"><a href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=MothersDay&m=member">我也要制作</a></div>
+{/if}
+</div>
+<div class="ad" style="margin-top:20px;">
+<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDE0OTIwMQ==&mid=502780694&idx=2&sn=52a7207ce3ad776a0667535d27953c6f#rd" ><img src="../addons/member/template/mobile/static/mothersDay/ad1.jpg"></a>
+<a href="http://weixin.cnsaga.com/double"><img src="../addons/member/template/mobile/static/mothersDay/ad2.jpg"></a>
+</div>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/zepto.min.js" ></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/touch-0.2.14.min.js"></script>
+<script type="application/javascript" src="../addons/member/template/mobile/static/js/layer.m/layer.m.js"></script>
+<script type="application/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+
+    wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard'                  // 查看微信卡包中的卡券接口
+        ]
+    });
+
+    wx.ready(function(){
+         // 分享到朋友券
+        wx.onMenuShareTimeline({
+            title: '{$mInfo["title"]}', // 分享标题
+            link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=showMother&m=member&id={$id}&show=1', // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/mothersDay/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '{$mInfo["title"]}', // 分享标题
+            desc: '{$mInfo["desc"]}', // 分享描述
+            link: 'http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=showMother&m=member&id={$id}&show=1', // 分享链接
+            imgUrl: 'http://wx.cnsaga.com/addons/member/template/mobile/static/mothersDay/share.jpg', // 分享图标
+            success: function (res) {
+
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

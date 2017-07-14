@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>选择模板并输入祝福语</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/template.css" />
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/animate.css" />
+</head>
+<body>
+<header><img src="../../addons/member/template/mobile/static/gCard/img/tips2.png"  /></header>
+<section>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p1.gif" /></div>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p2.gif" /></div>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p3.gif" /></div>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p4.gif" /></div>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p5.gif" /></div>
+    <div class="pic" data-img="{$info['thumb_img']}"><img src="../../addons/member/template/mobile/static/gCard/img/p6.gif" /></div>
+    <input type="hidden" id="tempId" value="0" />
+</section>
+<header><img src="../../addons/member/template/mobile/static/gCard/img/tips3.png" /></header>
+<section>
+    <textarea name="textarea" id="textarea" cols="45" rows="3" placeholder="在这里输入祝福语……"></textarea>
+    <span class="f1">摇一摇随机一条祝福语</span>
+</section>
+<button onclick="addCard()">生成贺卡</button>
+<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+<script type="text/javascript">
+    var opic = document.getElementsByClassName('pic');
+    var tempId = document.getElementById('tempId');
+    for( var i=0;i<opic.length;i++ ){
+	    (function(InIndex){
+	    opic[i].addEventListener('click',function(){
+                opt = document.getElementsByClassName('opt');
+		    	for(var a=0;a<opt.length;a++){
+                    if(opt[a] != null){
+                        opt[a].parentNode.removeChild(opt[a]);
+                    }
+                }
+				tempId.value = InIndex+1;
+				var newNode = document.createElement('span');
+				newNode.setAttribute('class','opt');
+                newNode.setAttribute('style','width:'+opic[InIndex].clientWidth+'px;height:'+opic[InIndex].clientHeight+'px;top:0;left:0;line-height:'+opic[InIndex].clientHeight+'px;text-align:center');
+                newNode.innerHTML = '已选中';
+ 				opic[InIndex].appendChild(newNode);
+		    },false);
+	    })(i);
+        opic[i].style.background = '#fff url('+opic[i].getAttribute("data-img")+')';
+    }
+
+    (function(){
+		var benisonText=new Array();
+		benisonText[0] = "距离挡不住我送你的祝福，距离隔不断我对你的想念，远方的你，圣诞快乐哦！";
+	    benisonText[1] = "你难道不知道你的重要性吗？没了你，谁拉着圣诞老公公去给大家送礼物啊？嘻嘻，圣诞快乐！";
+	    benisonText[2] = "圣诞来临，祝你吃土愉快！";
+	    benisonText[3] = "如果在圣诞节没有收到我的任何表示，请不要怀疑我们的友谊，我只是穷而已。";
+	    benisonText[4] = "音乐一响，剩斗士们开始各种吐槽求礼物了。我们的口号的“剩，但快乐”！";
+	    benisonText[5] = "想念你的笑，想念你的外套，想念你白色袜子装满圣诞的礼物!";
+	    benisonText[6] = "圣诞节给你送上一首“好汉歌”！why？听听歌词简直给你量身定做的：嘿呀，你二呀，哎嘿哎嘿，你二呀！";
+        benisonText[7] = "考虑圣诞祝福将会对你的手机疯狂袭击，我决定更换我的祝福方式，美照袭来，给你送上第一声：圣诞快乐 ！";
+        benisonText[8] = "如果一个红衣老头跳进你的窗户把你装进袋子里，请勿担心，因为是我告诉他我要的圣诞礼物是像你这样的朋友。";
+        benisonText[9] = "圣诞节到了给你五千万：千万要快乐！千万要健康！千万要平安！千万要知足！千万不要忘记我！";
+        benisonText[10] = "在这一年一次的圣诞节，请上帝给我勇气和力量吧，我一定要对你说出那字：快—还—钱!";
+        benisonText[11] = "为神马你还没收到圣诞礼物？可能雾霾太大圣诞老人迷路了，也可能是交通太堵……编不下去了，是因为你单身。";
+        benisonText[12] = "男性成长三阶段：相信圣诞老人的存在，不相信圣诞老人的存在，自己是圣诞老人。恩，恭喜你，你长大了！";
+        benisonText[13] = "你说过平安夜会送我苹果的，我不贪心，一个就好，粉色、6s";
+//		$('#textarea').val(benisonText[Math.floor(Math.random()*benisonText.length)]);
+		var SHAKE_THRESHOLD = 3000;
+        var last_update = 0;
+        var x = y = z = last_x = last_y = last_z = 0;
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', deviceMotionHandler, false);
+            } else {
+                alert('not support mobile event');
+            }
+        function deviceMotionHandler(eventData) {
+            var acceleration = eventData.accelerationIncludingGravity;
+            var curTime = new Date().getTime();
+            if ((curTime - last_update) > 100) {
+
+                var diffTime = curTime - last_update;
+                last_update = curTime;
+                x = acceleration.x;
+                y = acceleration.y;
+                z = acceleration.z;
+                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+                if (speed > SHAKE_THRESHOLD) {
+                    $('#textarea').val(benisonText[Math.floor(Math.random()*benisonText.length)]);
+                }
+                last_x = x;
+                last_y = y;
+                last_z = z;
+
+            }
+        }
+	}())
+
+    function addCard(){
+        if (tempId.value == 0) {
+            alert('请选择一个模板');
+            return false;
+
+        }
+        var remark = document.getElementById('textarea').value;
+        if (remark == '') {
+            alert('请输入对你朋友的祝福语噢');
+            return false;
+        }
+
+        $.post('{php echo $this->createMobileUrl("imgTemplate")}',{"tempId":tempId.value,"remark":remark,"id":"{$info['id']}"},function(msg){
+            if (msg.status){
+                window.location.href = '{php echo $this->createMobileUrl("createCard")}'+'&id='+msg.id;
+            } else {
+                alert('生成贺卡失败');
+            }
+        },'json');
+
+    }
+
+</script>
+</body>
+</html>

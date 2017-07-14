@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>裁切头像</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta content="telephone=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="../../addons/member/template/mobile/static/gCard/css/crop.css" />
+    <script type="text/javascript" src="../../addons/member/template/mobile/static/gCard/js/touch-0.2.14.min.js" ></script>
+    <script type="text/javascript" src="../../addons/member/template/mobile/static/gCard/js/zepto.min.js" ></script>
+</head>
+<body>
+<div id="info" style="background:#fff;color:#000;position: absolute;z-index:9999;"></div>
+<button id="confirm">确定</button>
+<button id="jumplink">重拍</a></button>
+<div id="mask"></div>
+<div class="shade"></div>
+<img src="{$info['src_img']}" id="target" />
+<footer>
+    <img src="../../addons/member/template/mobile/static/gCard/img/touchtips.png" />
+</footer>
+<script>
+    var dx=0, dy=0, dw=100, dh=100;
+    var rein=30, offx=30, minx=30;
+    var viewWidth = document.documentElement.clientWidth;
+    var initialScale = 1;
+    var currentScale;
+    
+    $('#mask').width(dw);
+    $('#mask').height(dh);
+    $('.shade').css("-webkit-mask-size",dw);
+    $('.shade').css('background-image','url('+$('#target').attr('src')+')');
+    touch.on('#mask', 'touchstart', function(ev){
+        ev.preventDefault();
+    });
+    touch.on('body', 'touchstart', function(ev){
+        ev.preventDefault();
+    });
+    //touch.on('#mask', 'touchend', function(ev){
+    //     $('#info').html('x:'+dx+' y:'+dy+' offy:'+offy+' offx:'+offx+' scale:'+currentScale+' scaleini:'+initialScale);
+    //});
+    //移动照片
+    touch.on('#mask', 'drag', function(ev){
+        dx = dx || 0;
+        dy = dy || 0;
+        var offx = dx + ev.x + "px";
+        var offy = dy + ev.y + "px";
+        $('#mask').css("-webkit-Transform","translate3d(" + offx + "," + offy + ",0)");
+        $('.shade').css("-webkit-mask-position-x",offx);
+        $('.shade').css("-webkit-mask-position-y",offy);
+        $('.shade').css("-webkit-mask-size",$('#mask').width());
+        $('.shade').css("-webkit-mask-image","url(../../addons/member/template/mobile/static/gCard/img/mask2.png)");
+        $('.shade').css("-webkit-mask-repeat","no-repeat");
+        //$('#info').html('x:'+dx+' y:'+dy+' offy:'+offy+' offx:'+offx+' scale:'+currentScale+' scaleini:'+initialScale);
+    });
+    touch.on('#mask', 'dragend', function(ev){
+        dx += ev.x;
+        dy += ev.y;
+        
+    });
+    //缩放照片
+    touch.on('body', 'pinch', function(ev){
+        currentScale = ev.scale - 1;
+//        currentScale = currentScale.toFixed(5)-0;
+        currentScale = initialScale + currentScale;
+        //currentScale = currentScale > 10 ? 10 : currentScale;
+       // currentScale = currentScale < 1 ? 1 : currentScale;
+        $('#mask').css("width",dw*currentScale);
+        $('#mask').css("height",dh*currentScale);
+        $('.shade').css("-webkit-mask-size",dw*currentScale);
+        $('.shade').css("-webkit-mask-image","url(../../addons/member/template/mobile/static/gCard/img/mask2.png)");
+        $('.shade').css("-webkit-mask-repeat","no-repeat");
+    });
+    touch.on('body','pinchend',function(ev){
+        initialScale = currentScale;
+        //$('#info').html('endx:'+dx+' y:'+dy+' offy:'+offy+' offx:'+offx+' scale:'+currentScale+' scaleini:'+initialScale);
+    });
+
+    //结算 结果
+    touch.on('#confirm','tap',function(ev){
+	    var img = new Image();
+	    img.src = 'http://wx.cnsaga.com'+$('#target').attr('src');
+        img.onload=function(){
+	    var imgWidth = img.width;
+	    var imgHeight = img.height;
+        dw=$('#mask').width();
+        dh=$('#mask').height();
+        dwValue = parseInt((imgWidth/viewWidth)*dw); // 宽
+        dhValue = parseInt((imgWidth/viewWidth)*dh); // 高
+        dxValue = parseInt((imgWidth/viewWidth)*dx); // X 坐标
+        dyValue = parseInt((imgWidth/viewWidth)*dy); // Y 坐标
+        $.post('{php echo $this->createMobileUrl("caijianImg")}',{"id":"{$info['id']}","width":dwValue,"height":dhValue,"x":dxValue,"y":dyValue},function(msg){
+            if (msg.status) {
+                window.location.href = '{php echo $this->createMobileUrl("imgTemplate")}'+'&id='+msg.id;
+            } else {
+                alert('裁剪失败');
+            }
+        },'json');
+        //坐标与尺寸
+//        alert(' 宽：'+dwValue+'高：'+dhValue+' X:'+dxValue+' Y:'+dyValue+' dw:'+dw+' dh:'+dh+' dx:'+dx+' dy:'+dy+' iw'+imgWidth+' ih'+imgHeight+' // '+imgWidth/viewWidth+' {$info['src_img']}');
+        };//imgonload
+        
+    });
+
+    touch.on('#jumplink','tap',function(){
+	    location.href = "http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=greetingsCard&m=member";
+    });
+</script>
+</body>
+</html>

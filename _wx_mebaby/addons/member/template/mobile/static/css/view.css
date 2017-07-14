@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* CSS Document */
+section dl{display: block;width:94%;margin: 0.5em auto}
+section dl dt{position:relative;display: block;border-radius: 10px;border: 1px solid #d8d8d8;display: block;background: #fff;height:2.6em;line-height: 2.6em;z-index: 1;text-indent: 1em}
+section dl dd{position: relative;top:-2em;background: #fcfcfc;border:1px solid #d8d8d8;display: block;border-radius: 10px;padding:2.6em 1em 1em;line-height: 1.6em;font-size: 0.9em}
+section dl dt span{display: block;height:24px;width:24px;background: url(arr.png) no-repeat;float: right;margin-top: 0.7em;margin-right: 0.6em; background-size:100% 100%;-webkit-transform:rotate(90deg);}

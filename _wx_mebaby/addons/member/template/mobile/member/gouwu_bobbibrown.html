@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>会员中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../../addons/member/template/mobile/static/css/style.css?v2016922" rel="stylesheet" type="text/css">
+    <link href="../../addons/member/template/mobile/static/css/card.css?v2016922" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<header>
+    <img src="../../addons/member/template/mobile/static/img/tooth.png" class="tooth"/>
+    <img src="../../addons/member/template/mobile/static/img/coupon5.png" class="card"/><!--优惠券主图-->
+    <img src="../../addons/member/template/mobile/static/img/shadw.png" class="shadw"/>
+</header>
+<section>
+    <div class="zt"></div>
+    <dl>
+        <dt style="text-align:center;"><span id="x1" style="display:none"></span>  <b class="text_style_2" style="text-align:center;margin:0; color:#2e4370"> No.
+            {if intval($_GPC['status']) > 2}已使用{else if $time > $_GPC['end_time']}已过期{else}{$_GPC['password']} &nbsp;&nbsp;{$_GPC['price']}元电子劵{/if}</b>
+          <!--  <img src="../../addons/member/template/mobile/static/img/qrcode.png" class="qrcode" onclick="QRCODEdisplay()"/>-->
+        </dt>
+        <dd id="qrcode_box" style="background:#fff; border:none">
+            <img src="http://b.wwei.cn/html/image.php?filetype=PNG&dpi=72&scale=1&rotation=0&font_family=Arial.ttf&font_size=8&text={$_GPC['password']}&thickness=30&checksum=&code=BCGcode39" border=0 width="100%" />
+        </dd>
+    </dl>
+    <div class="clr"></div>
+    <dl>
+        <dt onclick="clickof('info','x2')"><span id="x2"></span>电子现金券使用说明</dt>
+        <dd id="info">
+<strong>*</strong> BOBBI BROWN电子现金券，相当于等值现金，有效期内可在BOBBI BROWN专柜购物使用。<br>
+<strong>*</strong>使用电子现金券结算时，必须领券人本人出示领券的手机上赛格官方微信号中所显示的电子现金券，经现场验证后方可结算（电子现金券转发无效）。<br>
+<strong>*</strong> BOBBI BROWN电子现金券须一次性使用完，不找零，不提供发票，不积分，不兑现。如顾客将电子现金券丢失，不挂失、遗失不补。<br> 
+<strong>*</strong>电子现金券与BOBBI BROWN专柜500升625活动不可同享。<br>
+<strong>*</strong>已参加送券活动的商品，如需退货，仅退还实际支付金额，所赠电子现金券失效，如电子现金券已使用，须补齐所使用电子现金券金额。如遇换货（须在原专柜换货），价值高于原单商品价值的，补齐商品差价，之前赠券继续有效；如遇换货后，指定专柜的单柜单笔结算水单实际支付金额不足赠券金额，所赠电子现金券失效，如电子现金券已使用，须补齐所使用电子现金券金额。<br>
+<strong>*</strong>顾客使用电子现金券购买商品，如遇退货，仅退还实际支付金额；如遇换货，商品价值低于电子现金券的使用金额，电子现金券多余金额不找零，不兑现。<br>    
+        </dd>
+    </dl>
+    <div class="clr"></div>
+    <dl>
+        <dt>有效期：{$_GPC['start_time']} - {$_GPC['end_time']}</dt>
+    </dl>
+</section>
+
+<div class="clr"></div>
+<footer>
+    <br><br>
+</footer>
+
+<script src="../../addons/member/template/mobile/static/js/ac.js"></script>
+</body>
+</html>

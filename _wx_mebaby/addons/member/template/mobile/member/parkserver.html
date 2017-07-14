@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title> 赛格国际停车场服务</title>
+	</head>
+	<link rel="stylesheet" href="../addons/eloquence/template/mobile/list/css/weui.css"/>
+    <link rel="stylesheet" href="../addons/eloquence/template/mobile/list/css/example.css"/>
+<style type="text/css">
+	a{
+		height:40px;
+	}
+</style>
+<body ontouchstart>
+	<h3 align="center">赛格国际购物中心</h3>
+	<h5 align="center">停车场服务</h5>
+	<div class="weui-cells">
+			<a class="weui-cell weui-cell_access" href="" >
+                <div class="weui-cell__hd"><img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-parkPoint.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>停车专用积分</p>
+                </div>
+                <div class="weui-cell__ft">{$pscore['score']}分</div>
+            </a>
+            
+            <a class="weui-cell weui-cell_access" href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=PlateNumber&m=member">
+                <div class="weui-cell__hd"><img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-plateBound.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>绑定车牌号</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            
+            <a class="weui-cell weui-cell_access" href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=ParkPay&m=member">
+                <div class="weui-cell__hd"><img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-parkInfo.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>停车信息查询</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            
+            <a class="weui-cell weui-cell_access" href="{php echo $serial}">
+                <div class="weui-cell__hd"><img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-autoPay.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>自动缴费</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            
+            <a class="weui-cell weui-cell_access" href="http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=Papinfo&m=member">
+                <div class="weui-cell__hd"><img src="../addons/member/template/mobile/static/skin2016/img/icon/icon-payment.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>停车缴费记录</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            
+            
+   </div>
+</body>
+</html>

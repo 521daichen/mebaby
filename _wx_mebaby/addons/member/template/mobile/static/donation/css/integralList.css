@@ -1,0 +1,81 @@
+html,body,header,section,ul,li,p,h1,h2{padding:0;margin:0;list-style: none;}
+html,body{height:100%}
+body{
+	background:#E9E9E9;
+	font-size:12px;
+}
+img{width:100%}
+header{
+	width:96%;
+	height:80px;
+	margin:0 auto;
+	position: relative;
+	background-image:-webkit-linear-gradient(top,#FD9663,#F26E41);
+	padding-top: 1em;
+	color:#fff;
+	padding-left:4%;
+}
+header strong{
+	font-size: 4em;
+	display: block;
+}
+
+nav{
+	background: #fff;
+	border-bottom:1px solid #ddd;
+	height:3em;
+	padding:.4em 0;
+}
+nav span{
+	width:50%;
+	text-align: center;
+	display:block;
+	float: left;
+	height:2.5em;
+	line-height: 2.7em;
+	font-size:1.2em;
+	overflow: hidden;
+}
+nav span:nth-child(1){
+	border-right: 1px solid #efefef;
+	-webkit-box-sizing: border-box;
+	color:#f60;
+}
+.ComeAndGo{
+	margin-top:1em;
+	border-top: 1px solid #ddd;
+	background: #fff;
+	display:block;
+}
+.ComeAndGo li{
+	display: block;
+	width:96%;
+	margin-left:2%;
+	height:2.9em;
+	padding-top: 0.9em;
+	border-bottom: 1px solid #efefef;
+	font-size:1.4em;
+	color:#444;
+	line-height: 1.2em;
+}
+.ComeAndGo .left{
+	float:left;
+	padding-left:.5em;
+}
+.ComeAndGo .left span{
+	font-size: .7em;
+	display: block;
+	color:#999;
+}
+.ComeAndGo .right{
+	float:right;
+	text-align: right;
+	padding-right:.5em;
+	color:#f60;
+}
+.ComeAndGo .right span{
+	font-size: .7em;
+	display: block;
+	color:#999;
+}
+.ComeAndGo:nth-child(2){display:none;}
