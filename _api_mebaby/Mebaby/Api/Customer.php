@@ -14,80 +14,80 @@ class Api_Customer extends PhalApi_Api{
     //输入参数设置
     public function getRules()
     {
-        return [
+        return array(
             //通过手机号返回会员信息
-            'getCustInfoByMobile' => [
-                'customerTel' => [
+            'getCustInfoByMobile' => array(
+                'customerTel' => array(
                     'name' => 'customerTel',
                     'min' => 11,
                     'max' => 11,
                     'desc' => '顾客手机号',
                     'require' => true,
-                ]
-            ],
+                )
+            ),
             //注册会员
-            'regCust' => [
-                'name' => [
+            'regCust' => array(
+                'name' => array(
                     'name' => 'name',
                     'type' => 'string',
                     'min' => 1,
                     'require' => true,
-                ],
-                'phone' => [
+                ),
+                'phone' => array(
                     'name' => 'phone',
                     'type' => 'string',
                     'min' => 11,
                     'max' => 11,
                     'require' => true,
-                ]
-            ],
+                )
+            ),
             //修改会员信息
-            'editCust' => [
-                'name' => [
+            'editCust' => array(
+                'name' => array(
                     'name' => 'name',
                     'type' => 'string',
                     'min' => 1,
                     'require' => true,
-                ],
-                'phone' => [
+                ),
+                'phone' => array(
                     'name' => 'phone',
                     'type' => 'string',
                     'min' => 11,
                     'max' => 11,
                     'require' => true,
-                ],
-                'customerUid' => [
+                ),
+                'customerUid' => array(
                     'name' => 'customerUid',
                     'type' => 'string',
                     'min' => 11,
                     'max' => 11,
                     'require' => true,
-                ]
-            ],
+                )
+            ),
             //修改会员余额积分
-            'updateBP' => [
-                'customerUid' => [
+            'updateBP' => array(
+                'customerUid' => array(
                     'name' => 'customerUid',
                     'type' => 'string',
                     'min' => 11,
                     'max' => 11,
                     'require' => true,
-                ],
-                'balanceIncrement' => [
+                ),
+                'balanceIncrement' => array(
                     'name' => 'balanceIncrement',
                     'type' => 'string',
-                ],
-                'pointIncrement'  => [
+                ),
+                'pointIncrement'  => array(
                     'name' => 'pointIncrement',
                     'type' => 'string',
-                ],
-                'type' => [
+                ),
+                'type' => array(
                     'name' => 'type',
                     'type' => 'string',
                     'require' => true,
-                ]
-            ],
-        ];
+                )
+            ),
+        );
     }
     /**
      * 日志记录
@@ -108,11 +108,11 @@ class Api_Customer extends PhalApi_Api{
     public function getCustInfoByMobile(){
         $this->report(__FUNCTION__);
 
-        $rs = [
+        $rs = array(
             'ret' => 200,
             'msg' => '',
-            'data' => []
-        ];
+            'data' => array()
+        );
 
         $domain = new Domain_Customer();
         $info = $domain->getCustInfoByMobile($this->customerTel);
@@ -137,11 +137,11 @@ class Api_Customer extends PhalApi_Api{
     public function regCust(){
         $this->report(__FUNCTION__);
 
-        $rs = [
+        $rs = array(
             'ret' => 200,
             'msg' => '',
-            'data' => []
-        ];
+            'data' => array()
+        );
 
         $customerInfo = array(
             'categoryName' => '会员',
@@ -185,11 +185,11 @@ class Api_Customer extends PhalApi_Api{
     public function editCust(){
         $this->report(__FUNCTION__);
 
-        $rs = [
+        $rs = array(
             'ret' => 200,
             'msg' => '',
-            'data' => []
-        ];
+            'data' => array()
+        );
 
         $custUpdate = array(
             'customerUid' => $this->customerUid,
@@ -223,11 +223,11 @@ class Api_Customer extends PhalApi_Api{
     public function updateBP(){
         $this->report(__FUNCTION__);
 
-        $rs = [
+        $rs = array(
             'ret' => 200,
             'msg' => '',
-            'data' => []
-        ];
+            'data' => array()
+        );
 
         switch($this->type){
             case 'B':
