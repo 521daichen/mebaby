@@ -39,10 +39,10 @@ SL('zh_cn');
 
 /** ---------------- 定制注册 可选服务组件 ---------------- **/
 
-/**
+
 //签名验证服务
-DI()->filter = 'PhalApi_Filter_SimpleMD5';
- */
+DI()->filter = 'Common_SignFilter';
+
 
 /**
 //缓存 - Memcache/Memcached

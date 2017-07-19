@@ -9,7 +9,8 @@ return array(
      * 应用接口层的统一参数
      */
     'apiCommonRules' => array(
-        //'sign' => array('name' => 'sign', 'require' => true),
+        'signature' => array('name' => 'signature', 'require' => true),
+        'timestamp' => array('name' => 'timestamp', 'require' => true)
     ),
 
 );
