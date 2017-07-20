@@ -94,6 +94,12 @@ if (!function_exists('mb_strlen')) {
 	}
 }
 
+
 if (!interface_exists('SessionHandlerInterface')) {
 	interface SessionHandlerInterface  {}
+}
+
+
+if (!function_exists("fastcgi_finish_request")) {
+	function fastcgi_finish_request() {}
 }

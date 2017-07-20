@@ -1,5 +1,6 @@
 <?php
 defined('IN_IA') or exit('Access Denied');
+load()->func('file');
 
 
 function material_sync($material, $exist_material, $type) {
@@ -85,9 +86,9 @@ function material_news_set($data, $attach_id) {
 	global $_W;
 	$attach_id = intval($attach_id);
 	foreach ($data as $key => $news) {
-		if (empty($news['title']) || 
-			(!empty($news['thumb']) && !parse_path($news['thumb'])) || 
-			(!empty($news['url']) && !parse_path($news['url'])) || 
+		if (empty($news['title']) ||
+			(!empty($news['thumb']) && !parse_path($news['thumb'])) ||
+			(!empty($news['url']) && !parse_path($news['url'])) ||
 			(!empty($news['content_source_url']) && !parse_path($news['content_source_url']))
 		) {
 			return error('-1', '参数有误');
@@ -154,7 +155,7 @@ function material_get($attach_id) {
 		$material = pdo_get('wechat_attachment', array('id' => $attach_id));
 	} else {
 		$media_id = trim($attach_id);
-		$material = pdo_get('wechat_attachment', array('media_id' => $media_id)); 
+		$material = pdo_get('wechat_attachment', array('media_id' => $media_id));
 	}
 	if (!empty($material)) {
 		if ($material['type'] == 'news') {
@@ -204,7 +205,7 @@ function material_build_reply($attach_id) {
 			foreach ($reply_material['news'] as $material) {
 				$reply[] = array(
 					'title' => $material['title'],
-					'description' => $material['description'],
+					'description' => $material['digest'],
 					'picurl' => $material['thumb_url'],
 					'url' => !empty($material['content_source_url']) ? $material['content_source_url'] : $material['url'],
 				);
@@ -258,7 +259,7 @@ function material_parse_content($content) {
 	$images = material_get_image_url($content);
 	if (!empty($images)) {
 		foreach ($images as $image) {
-			$thumb = file_fetch(tomedia($image), 1024, 'material/images');
+			$thumb = file_remote_attach_fetch(tomedia($image), 1024, 'material/images');
 			if(is_error($thumb)) {
 				return $thumb;
 			}
@@ -338,7 +339,7 @@ function material_local_upload_by_url($url, $type='images') {
 	$account_api = WeAccount::create($_W['acid']);
 	if (! empty($_W['setting']['remote']['type'])) {
 		$remote_file_url = tomedia($url);
-		$filepath = file_fetch($remote_file_url,0,'');
+		$filepath = file_remote_attach_fetch($remote_file_url,0,'');
 		if(is_error($filepath)) {
 			return $filepath;
 		}
@@ -384,7 +385,11 @@ function material_upload_limit() {
 
 function material_news_delete($material_id){
 	global $_W;
-	if (empty($_W['isfounder']) && !in_array($_W['role'], array(ACCOUNT_MANAGE_NAME_OWNER, ACCOUNT_MANAGE_NAME_MANAGER))) {
+	$permission = uni_user_menu_permission($_W['uid'], $_W['uniacid'], 'system');
+	if (is_error($permission)) {
+		return error(-1, $permission['message']);
+	}
+	if (empty($_W['isfounder']) && !empty($permission) && $permission[0] != 'all' && !in_array('platform_material', $permission)) {
 		return error('-1', '您没有权限删除该文件');
 	}
 	$material_id = intval($material_id);

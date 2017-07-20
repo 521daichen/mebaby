@@ -1087,3 +1087,18 @@ function emoji_unicode_encode($string) {
 	preg_match_all('/' . implode('|', $ranges) . '/i', $string, $match);
 	print_r($match);exit;
 }
+
+
+function getglobal($key) {
+	global $_W;
+	$key = explode('/', $key);
+	
+	$v = &$_W;
+	foreach ($key as $k) {
+		if (!isset($v[$k])) {
+			return null;
+		}
+		$v = &$v[$k];
+	}
+	return $v;
+}

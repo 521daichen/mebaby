@@ -34,7 +34,7 @@ function uni_owned($uid = 0) {
 	$uid = empty($uid) ? $_W['uid'] : intval($uid);
 	$uniaccounts = array();
 	$founders = explode(',', $_W['config']['setting']['founder']);
-	
+
 	if (in_array($uid, $founders)) {
 		$account_uniacid = pdo_fetchall("SELECT uniacid FROM " . tablename('account') . " WHERE type IN (:type_1, :type_2) GROUP BY uniacid", array(':type_1' => ACCOUNT_TYPE_OFFCIAL_NORMAL, ':type_2' => ACCOUNT_TYPE_OFFCIAL_AUTH));
 	} else {
@@ -100,10 +100,10 @@ function uni_fetch($uniacid = 0) {
 	load()->model('mc');
 	$account['groups'] = mc_groups($uniacid);
 	$account['grouplevel'] = pdo_fetchcolumn('SELECT grouplevel FROM ' . tablename('uni_settings') . ' WHERE uniacid = :uniacid', array(':uniacid' => $uniacid));
-	
+
 	$account['logo'] = tomedia('headimg_'.$account['acid']. '.jpg').'?time='.time();
 	$account['qrcode'] = tomedia('qrcode_'.$account['acid']. '.jpg').'?time='.time();
-	
+
 	cache_write($cachekey, $account);
 	return $account;
 }
@@ -290,7 +290,7 @@ function uni_templates() {
 		$groupid = $owner['groupid'];
 	}
 	$extend = pdo_getall('uni_account_group', array('uniacid' => $_W['uniacid']), array(), 'groupid');
-	if (!empty($extend)) {
+	if (!empty($extend) && $groupid != '-1') {
 		$groupid = '-2';
 	}
 	if (empty($groupid)) {
@@ -401,9 +401,9 @@ if (!function_exists('uni_setting')) {
 function uni_account_default($uniacid = 0) {
 	global $_W;
 	$uniacid = empty($uniacid) ? $_W['uniacid'] : intval($uniacid);
-	$uni_account = pdo_fetch("SELECT * FROM ".tablename('uni_account')." a LEFT JOIN ".tablename('account')." w ON a.default_acid = w.acid WHERE a.uniacid = :uniacid", array(':uniacid' => $uniacid), 'acid');
+	$uni_account = pdo_fetch("SELECT * FROM ".tablename('uni_account')." a LEFT JOIN ".tablename('account')." w ON a.uniacid = w.uniacid AND a.default_acid = w.acid WHERE a.uniacid = :uniacid", array(':uniacid' => $uniacid));
 		if (empty($uni_account)) {
-		$uni_account = pdo_fetch("SELECT * FROM ".tablename('uni_account')." a LEFT JOIN ".tablename('account')." w ON a.uniacid = w.uniacid WHERE a.uniacid = :uniacid ORDER BY w.acid DESC", array(':uniacid' => $uniacid), 'acid');
+		$uni_account = pdo_fetch("SELECT * FROM ".tablename('uni_account')." a LEFT JOIN ".tablename('account')." w ON a.uniacid = w.uniacid WHERE a.uniacid = :uniacid ORDER BY w.acid DESC", array(':uniacid' => $uniacid));
 	}
 	if (!empty($uni_account)) {
 		$account = pdo_get(uni_account_tablename($uni_account['type']), array('acid' => $uni_account['acid']));
@@ -429,7 +429,7 @@ function uni_permission($uid = 0, $uniacid = 0) {
 	global $_W;
 	$role = '';
 	$uid = empty($uid) ? $_W['uid'] : intval($uid);
-	
+
 	$founders = explode(',', $_W['config']['setting']['founder']);
 	if (in_array($uid, $founders)) {
 		return ACCOUNT_MANAGE_NAME_FOUNDER;
@@ -462,7 +462,8 @@ function uni_user_permission_exist($uid = 0, $uniacid = 0) {
 	global $_W;
 	$uid = intval($uid) > 0 ? $uid : $_W['uid'];
 	$uniacid = intval($uniacid) > 0 ? $uniacid : $_W['uniacid'];
-	if ($_W['role'] == 'founder') {
+	$founders = explode(',', $_W['config']['setting']['founder']);
+	if (in_array($uid, $founders)) {
 		return false;
 	}
 	if (FRAME == 'system') {
@@ -495,12 +496,16 @@ function uni_user_permission($type = 'system') {
 
 function uni_user_menu_permission($uid, $uniacid, $type) {
 	$user_menu_permission = array();
-	
+
 	$uid = intval($uid);
 	$uniacid = intval($uniacid);
 	$type = trim($type);
 	if (empty($uid) || empty($uniacid) || empty($type)) {
-		return array();
+		return error(-1, '参数错误！');
+	}
+	$permission_exist = uni_user_permission_exist($uid, $uniacid);
+	if (empty($permission_exist)) {
+		return array('all');
 	}
 	if ($type == 'modules') {
 		$user_menu_permission = pdo_fetchall("SELECT * FROM " . tablename('users_permission') . " WHERE uniacid = :uniacid AND uid  = :uid AND type != '" . PERMISSION_ACCOUNT . "' AND type != '" . PERMISSION_WXAPP . "'", array(':uniacid' => $uniacid, ':uid' => $uid), 'type');
@@ -514,7 +519,7 @@ function uni_user_menu_permission($uid, $uniacid, $type) {
 			}
 		}
 	}
-	
+
 	return $user_menu_permission;
 }
 
@@ -522,7 +527,7 @@ function uni_user_menu_permission($uid, $uniacid, $type) {
 function uni_permission_name() {
 	load()->model('system');
 	$menu_permission = array();
-	
+
 	$menu_list = system_menu_permission_list();
 	$middle_menu = array();
 	$middle_sub_menu = array();
@@ -546,7 +551,7 @@ function uni_permission_name() {
 			}
 		}
 	}
-	
+
 	if (!empty($middle_sub_menu)) {
 		foreach ($middle_sub_menu as $sub_menu) {
 			foreach ($sub_menu as $sub_menu_val) {
@@ -569,7 +574,7 @@ function uni_update_user_permission($uid, $uniacid, $data) {
 	if (is_error($user_menu_permission)) {
 		return error('-1', '参数错误！');
 	}
-	
+
 	if (empty($user_menu_permission)) {
 		$insert = array(
 			'uniacid' => $uniacid,
@@ -596,7 +601,7 @@ function uni_user_permission_check($permission_name, $show_message = true, $acti
 	$modulename = trim($_GPC['m']);
 	$do = trim($_GPC['do']);
 	$entry_id = intval($_GPC['eid']);
-	
+
 	if ($action == 'reply') {
 		$system_modules = system_modules();
 		if (!empty($modulename) && !in_array($modulename, $system_modules)) {
@@ -812,7 +817,7 @@ function uni_account_save_switch($uniacid) {
 	if (empty($_GPC['__switch'])) {
 		$_GPC['__switch'] = random(5);
 	}
-	
+
 	$cache_key = cache_system_key(CACHE_KEY_ACCOUNT_SWITCH, $_GPC['__switch']);
 	$cache_lastaccount = cache_load($cache_key);
 	if (empty($cache_lastaccount)) {
@@ -823,7 +828,7 @@ function uni_account_save_switch($uniacid) {
 		$cache_lastaccount['account'] = $uniacid;
 	}
 	cache_write($cache_key, $cache_lastaccount);
-	isetcookie('__switch', $_GPC['__switch']);
+	isetcookie('__switch', $_GPC['__switch'], 7 * 86400);
 	return true;
 }
 
@@ -1044,7 +1049,7 @@ function uni_account_module_shortcut_enabled($modulename, $uniacid = 0, $status 
 	}
 	$uniacid = intval($uniacid);
 	$uniacid = !empty($uniacid) ? $uniacid : $_W['uniacid'];
-	
+
 	$module_status = pdo_get('uni_account_modules', array('module' => $modulename, 'uniacid' => $uniacid), array('id', 'shortcut'));
 	if (empty($module_status)) {
 		$data = array(

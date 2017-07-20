@@ -187,7 +187,7 @@ function module_entry($eid) {
 	if (!empty($entry['state'])) {
 		$querystring['state'] = $entry['state'];
 	}
-	
+
 	$entry['url'] = murl('entry', $querystring);
 	$entry['url_show'] = murl('entry', $querystring, true, true);
 	return $entry;
@@ -275,7 +275,7 @@ function module_build_privileges() {
 	load()->model('account');
 	$uniacid_arr = pdo_fetchall("SELECT uniacid FROM " . tablename('uni_account'));
 	foreach($uniacid_arr as $row){
-		$modules = uni_modules(false);
+		$modules = uni_modules_by_uniacid($row['uniacid'], false);
 				$mymodules = pdo_getall('uni_account_modules', array('uniacid' => $row['uniacid']), array('module'), 'module');
 		$mymodules = array_keys($mymodules);
 		foreach($modules as $module){
@@ -445,6 +445,7 @@ function module_status($module) {
 	$module_status = array('upgrade' => array('upgrade' => 0), 'ban' => 0);
 
 	$cloud_m_query = cloud_m_query($module);
+	$cloud_m_query['pirate_apps'] = is_array($cloud_m_query['pirate_apps']) ? $cloud_m_query['pirate_apps'] : array();
 	$module_status['ban'] = in_array($module, $cloud_m_query['pirate_apps']) ? 1 : 0;
 
 	$cloud_m_info = cloud_m_info($module);
@@ -526,4 +527,205 @@ function module_filter_upgrade($module_list) {
 		}
 	}
 	return $modules;
+}
+
+function module_upgrade_new($type = 'account') {
+	if ($type == 'wxapp') {
+		$module_list = user_module_by_account_type('wxapp');
+	} else {
+		$module_list = user_module_by_account_type('account');
+	}
+	$upgrade_modules = module_filter_upgrade(array_keys($module_list));
+	if (!empty($upgrade_modules)) {
+		foreach ($upgrade_modules as $key => &$module) {
+			$module_fetch = module_fetch($key);
+			$module['logo'] = $module_fetch['logo'];
+			$module['link'] = url('module/manage-system/module_detail', array('name' => $module['name'], 'show' => 'upgrade'));
+		}
+		unset($module);
+	}
+	return $upgrade_modules;
+}
+
+
+function module_get_user_account_list($uid, $module_name) {
+	$accounts_list = array();
+	$uid = intval($uid);
+	$module_name = trim($module_name);
+	if (empty($uid) || empty($module_name)) {
+		return $accounts_list;
+	}
+	$module_info = module_fetch($module_name);
+	if (empty($module_info)) {
+		return $accounts_list;
+	}
+	$accounts = user_account_detail_info($uid);
+	if (empty($accounts)) {
+		return $accounts_list;
+	}
+	if (!empty($accounts['wxapp'])) {
+		foreach ($accounts['wxapp'] as $wxapp_value) {
+			if (empty($wxapp_value['uniacid'])) {
+				continue;
+			}
+			$wxapp_modules = uni_modules_by_uniacid($wxapp_value['uniacid']);
+			$wxapp_modules = array_keys($wxapp_modules);
+			$module_permission_exist = uni_user_menu_permission($uid, $wxapp_value['uniacid'], $module_name);
+			if (in_array($module_name, $wxapp_modules) && (in_array('all',$module_permission_exist) || !empty($module_permission_exist))) {
+				$accounts_list[$wxapp_value['uniacid']] = $wxapp_value;
+			}
+		}
+	}
+	if (!empty($accounts['wechat'])) {
+		foreach ($accounts['wechat'] as $wechat_value) {
+			if (empty($wechat_value['uniacid'])) {
+				continue;
+			}
+			$wechat_modules = uni_modules_by_uniacid($wechat_value['uniacid']);
+			$wechat_modules = array_keys($wechat_modules);
+			$module_permission_exist = uni_user_menu_permission($uid, $wxapp_value['uniacid'], $module_name);
+			if (in_array($module_name, $wechat_modules) && (in_array('all',$module_permission_exist) || !empty($module_permission_exist))) {
+				$accounts_list[$wechat_value['uniacid']] = $wechat_value;
+			}
+		}
+	}
+
+	foreach ($accounts_list as $key => $account_value) {
+		if ($module_info['wxapp_support'] == MODULE_SUPPORT_WXAPP && $module_info['app_support'] == MODULE_SUPPORT_ACCOUNT) {
+			continue;
+		} elseif ($module_info['wxapp_support'] == MODULE_SUPPORT_WXAPP && $account_value['type'] != ACCOUNT_TYPE_APP_NORMAL) {
+			unset($accounts_list[$key]);
+		} elseif ($module_info['app_support'] == MODULE_SUPPORT_ACCOUNT && !in_array($account_value['type'], array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH))) {
+			unset($accounts_list[$key]);
+		}
+	}
+
+	return $accounts_list;
+}
+
+
+function module_link_uniacid_fetch($uid, $module_name) {
+	$result = array();
+	$uid = intval($uid);
+	$module_name = trim($module_name);
+	if (empty($uid) || empty($module_name)) {
+		return $result;
+	}
+	$accounts_list = module_get_user_account_list($uid, $module_name);
+	if (empty($accounts_list)) {
+		return $result;
+	}
+	$accounts_link_result = array();
+	foreach ($accounts_list as $key => $account_value) {
+		if ($account_value['type'] == ACCOUNT_TYPE_APP_NORMAL) {
+			$account_value['versions'] = wxapp_version_all($account_value['uniacid']);
+			if (empty($account_value['versions'])) {
+				$accounts_link_result[$key] = $account_value;
+				continue;
+			}
+			foreach ($account_value['versions'] as $version_key => $version_value) {
+				if ($version_value['modules'][0]['name'] != $module_name) {
+					continue;
+				}
+				if (empty($version_value['modules'][0]['account']) || !is_array($version_value['modules'][0]['account'])) {
+					$accounts_link_result[$key] = $account_value;
+					continue;
+				}
+				if (!empty($version_value['modules'][0]['account']['uniacid'])) {
+					$accounts_link_result[$version_value['modules'][0]['account']['uniacid']][] = array(
+						'uniacid' => $key,
+						'version' => $version_value['version'],
+						'version_id' => $version_value['id'],
+						'name' => $account_value['name'],
+					);
+					unset($account_value['versions'][$version_key]);
+				}
+
+			}
+		}
+		if ($account_value['type'] == ACCOUNT_TYPE_OFFCIAL_NORMAL || $account_value['type'] == ACCOUNT_TYPE_OFFCIAL_AUTH) {
+			if (empty($accounts_link_result[$key])) {
+				$accounts_link_result[$key] = $account_value;
+			} else {
+				$link_wxapp = $accounts_link_result[$key];
+				$accounts_link_result[$key] = $account_value;
+				$accounts_link_result[$key]['link_wxapp'] = $link_wxapp;
+			}
+		}
+	}
+	if (!empty($accounts_link_result)) {
+		foreach ($accounts_link_result as $link_key => $link_value) {
+			if (in_array($link_value['type'], array(ACCOUNT_TYPE_OFFCIAL_NORMAL, ACCOUNT_TYPE_OFFCIAL_AUTH)) && !empty($link_value['link_wxapp']) && is_array($link_value['link_wxapp'])) {
+				foreach ($link_value['link_wxapp'] as $value) {
+					$result[] = array(
+						'app_name' => $link_value['name'],
+						'wxapp_name' => $value['name'] . ' ' . $value['version'],
+						'uniacid' => $link_value['uniacid'],
+						'version_id' => $value['version_id'],
+					);
+				}
+			} elseif ($link_value['type'] == ACCOUNT_TYPE_APP_NORMAL && !empty($link_value['versions']) && is_array($link_value['versions'])) {
+				foreach ($link_value['versions'] as $value) {
+					$result[] = array(
+						'app_name' => '',
+						'wxapp_name' => $link_value['name'] . ' ' . $value['version'],
+						'uniacid' => $link_value['uniacid'],
+						'version_id' => $value['id'],
+					);
+				}
+			} else {
+				$result[] = array(
+					'app_name' => $link_value['name'],
+					'wxapp_name' => '',
+					'uniacid' => $link_value['uniacid'],
+					'version_id' => '',
+				);
+			}
+		}
+	}
+
+	return $result;
+}
+
+
+function module_save_switch($module_name, $uniacid = 0, $version_id = 0) {
+	global $_W, $_GPC;
+	if (empty($_GPC['__switch'])) {
+		$_GPC['__switch'] = random(5);
+	}
+
+	$cache_key = cache_system_key(CACHE_KEY_ACCOUNT_SWITCH, $_GPC['__switch']);
+	$cache_lastaccount = cache_load($cache_key);
+	if (empty($cache_lastaccount)) {
+		$cache_lastaccount = array(
+			$module_name => array(
+				'module_name' => $module_name,
+				'uniacid' => $uniacid,
+				'version_id' => $version_id
+			)
+		);
+	} else {
+		$cache_lastaccount[$module_name] = array(
+			'module_name' => $module_name,
+			'uniacid' => $uniacid,
+			'version_id' => $version_id
+		);
+	}
+	cache_write($cache_key, $cache_lastaccount);
+	isetcookie('__switch', $_GPC['__switch'], 7 * 86400);
+	return true;
+}
+
+
+
+
+function module_last_switch($module_name) {
+	global $_GPC;
+	$module_name = trim($module_name);
+	if (empty($module_name)) {
+		return array();
+	}
+	$cache_key = cache_system_key(CACHE_KEY_ACCOUNT_SWITCH, $_GPC['__switch']);
+	$cache_lastaccount = (array)cache_load($cache_key);
+	return $cache_lastaccount[$module_name];
 }

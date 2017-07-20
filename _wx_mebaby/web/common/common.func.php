@@ -15,7 +15,7 @@ function url($segment, $params = array()) {
 
 function message($msg, $redirect = '', $type = '', $tips = false) {
 	global $_W, $_GPC;
-	
+
 	if($redirect == 'refresh') {
 		$redirect = $_W['script_name'] . '?' . $_SERVER['QUERY_STRING'];
 	}
@@ -56,7 +56,7 @@ function message($msg, $redirect = '', $type = '', $tips = false) {
 	if($type == 'ajax' || $type == 'sql') {
 		$label = 'warning';
 	}
-	
+
 	if ($tips) {
 		if (is_array($msg)){
 			$message_cookie['title'] = 'MYSQL 错误';
@@ -68,7 +68,7 @@ function message($msg, $redirect = '', $type = '', $tips = false) {
 		$message_cookie['type'] = $label;
 		$message_cookie['redirect'] = $redirect ? $redirect : referer();
 		$message_cookie['msg'] = rawurlencode($message_cookie['msg']);
-		
+
 		isetcookie('message', stripslashes(json_encode($message_cookie, JSON_UNESCAPED_UNICODE)));
 		if (!empty($message_cookie['redirect'])) {
 			header('Location: ' . $message_cookie['redirect']);
@@ -149,9 +149,9 @@ function buildframes($framename = ''){
 	$status = uni_user_permission_exist($_W['uid'], $_W['uniacid']);
 		if (!$_W['isfounder'] && $status) {
 		$module_permission = uni_user_menu_permission($_W['uid'], $_W['uniacid'], 'modules');
-		if (!empty($module_permission)) {
+		if (!is_error($module_permission) && !empty($module_permission)) {
 			foreach ($module_permission as $module) {
-				if (!in_array($module['type'], $sysmodules) && empty($modules[$module['type']]['main_module'])) {
+				if (!in_array($module['type'], $sysmodules) && empty($modules[$module['type']]['main_module']) && $modules[$module['type']]['app_support'] == 2) {
 					$module = $modules[$module['type']];
 					if (!empty($module)) {
 						$frames['account']['section']['platform_module']['menu']['platform_' . $module['name']] = array(
@@ -175,7 +175,7 @@ function buildframes($framename = ''){
 			foreach ($account_module as $module) {
 				if (!in_array($module['module'], $sysmodules)) {
 					$module = module_fetch($module['module']);
-					if (!empty($module) && !empty($modules[$module['name']]) && empty($module['main_module'])) {
+					if (!empty($module) && !empty($modules[$module['name']]) && empty($module['main_module']) && $module['app_support'] == 2) {
 						$frames['account']['section']['platform_module']['menu']['platform_' . $module['name']] = array(
 							'title' => $module['title'],
 							'icon' =>  tomedia("addons/{$module['name']}/icon.jpg"),
@@ -213,7 +213,7 @@ function buildframes($framename = ''){
 		if (array_diff(array_keys($modules), $sysmodules)) {
 			$frames['account']['section']['platform_module']['menu']['platform_module_more'] = array(
 				'title' => '更多应用',
-				'url' => url('profile/module'),
+				'url' => url('module/manage-account'),
 				'is_display' => 1,
 			);
 		} else {
@@ -224,7 +224,7 @@ function buildframes($framename = ''){
 		$user_permission = uni_user_permission('system');
 	}
 		if (!empty($_W['role']) && $_W['role'] == 'clerk') {
-		
+
 	}
 		if (!empty($user_permission)) {
 		foreach ($frames as $nav_id => $section) {
@@ -260,6 +260,7 @@ function buildframes($framename = ''){
 	}
 		$modulename = trim($_GPC['m']);
 	$eid = intval($_GPC['eid']);
+	$version_id = intval($_GPC['version_id']);
 	if ((!empty($modulename) || !empty($eid)) && !in_array($modulename, system_modules())) {
 		if(empty($modulename) && !empty($eid)) {
 			$modulename = pdo_getcolumn('modules_bindings', array('eid' => $eid), 'module');
@@ -309,10 +310,10 @@ function buildframes($framename = ''){
 		$frames['account']['section'] = array();
 		if($module['isrulefields'] || !empty($entries['cover']) || !empty($entries['mine'])) {
 			if (!empty($module['isrulefields'])) {
-				$url = url('platform/reply', array('m' => $modulename));
+				$url = url('platform/reply', array('m' => $modulename, 'version_id' => $version_id));
 			}
 			if (empty($url) && !empty($entries['cover'])) {
-				$url = url('platform/cover', array('eid' => $entries['cover'][0]['eid']));
+				$url = url('platform/cover', array('eid' => $entries['cover'][0]['eid'], 'version_id' => $version_id));
 			}
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_entry'] = array(
 				'title' => "<i class='wi wi-reply'></i> 应用入口",
@@ -323,28 +324,28 @@ function buildframes($framename = ''){
 		if($module['settings']) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_settings'] = array(
 				'title' => "<i class='fa fa-cog'></i> 参数设置",
-				'url' => url('profile/module/setting', array('m' => $modulename)),
+				'url' => url('profile/module/setting', array('m' => $modulename, 'version_id' => $version_id)),
 				'is_display' => 1,
 			);
 		}
 		if($entries['home']) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_home'] = array(
 				'title' => "<i class='fa fa-home'></i> 微站首页导航",
-				'url' => url('site/nav/home', array('m' => $modulename)),
+				'url' => url('site/nav/home', array('m' => $modulename, 'version_id' => $version_id)),
 				'is_display' => 1,
 			);
 		}
 		if($entries['profile']) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_profile'] = array(
 				'title' => "<i class='fa fa-user'></i> 个人中心导航",
-				'url' => url('site/nav/profile', array('m' => $modulename)),
+				'url' => url('site/nav/profile', array('m' => $modulename, 'version_id' => $version_id)),
 				'is_display' => 1,
 			);
 		}
 		if($entries['shortcut']) {
 			$frames['account']['section']['platform_module_common']['menu']['platform_module_shortcut'] = array(
 				'title' => "<i class='fa fa-plane'></i> 快捷菜单",
-				'url' => url('site/nav/shortcut', array('m' => $modulename)),
+				'url' => url('site/nav/shortcut', array('m' => $modulename, 'version_id' => $version_id)),
 				'is_display' => 1,
 			);
 		}
@@ -352,7 +353,7 @@ function buildframes($framename = ''){
 			foreach ($entries['cover'] as $key => $menu) {
 				$frames['account']['section']['platform_module_common']['menu']['platform_module_cover'][] = array(
 					'title' => "{$menu['title']}",
-					'url' => url('platform/cover', array('eid' => $menu['eid'])),
+					'url' => url('platform/cover', array('eid' => $menu['eid'], 'version_id' => $version_id)),
 					'is_display' => 0,
 				);
 			}
@@ -364,7 +365,7 @@ function buildframes($framename = ''){
 				foreach($row as $li) {
 					$frames['account']['section']['platform_module_menu']['menu']['platform_module_menu'.$row['eid']] = array(
 						'title' => "<i class='wi wi-appsetting'></i> {$row['title']}",
-						'url' => url('site/entry/', array('eid' => $row['eid'])),
+						'url' => url('site/entry/', array('eid' => $row['eid'], 'version_id' => $version_id)),
 						'is_display' => 1,
 					);
 				}
@@ -389,13 +390,13 @@ function buildframes($framename = ''){
 					$frames['account']['section']['platform_module_menu']['plugin_menu']['menu'][$modules[$plugin]['name']] = array(
 						'title' => $modules[$plugin]['title'],
 						'icon' => $modules[$plugin]['logo'],
-						'url' => url('home/welcome/ext', array('m' => $plugin)),
+						'url' => url('home/welcome/ext', array('m' => $plugin, 'version_id' => $version_id)),
 					);
 				}
 			}
 		}
 	}
-	
+
 		if (FRAME == 'wxapp') {
 		$version_id = intval($_GPC['version_id']);
 		$wxapp_version = wxapp_version($version_id);
@@ -436,6 +437,7 @@ function buildframes($framename = ''){
 			'name' => $menuid,
 			'url' => $menu['url'],
 			'blank' => $menu['blank'],
+			'icon' => $menu['icon'],
 		);
 	}
 	return !empty($framename) ? $frames[$framename] : $frames;
@@ -505,22 +507,22 @@ function frames_menu_append() {
 
 function site_profile_perfect_tips(){
 	global $_W;
-	
+
 	if ($_W['isfounder'] && (empty($_W['setting']['site']) || empty($_W['setting']['site']['profile_perfect']))) {
 		if (!defined('SITE_PROFILE_PERFECT_TIPS')) {
 			$url = url('cloud/profile');
 			return <<<EOF
 $(function() {
-	var html = 
-	    '<div class="we7-body-alert">'+
-            '<div class="container">'+
-                '<div class="alert alert-info">'+
-                    '<i class="wi wi-info-sign"></i>'+
-                    '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true" class="wi wi-error-sign"></span><span class="sr-only">Close</span></button>'+
-                    '<a href="{$url}" target="_blank">请尽快完善您在微擎云服务平台的站点注册信息。</a>'+
-                '</div>'+
-            '</div>'+
-        '</div>';
+	var html =
+		'<div class="we7-body-alert">'+
+			'<div class="container">'+
+				'<div class="alert alert-info">'+
+					'<i class="wi wi-info-sign"></i>'+
+					'<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true" class="wi wi-error-sign"></span><span class="sr-only">Close</span></button>'+
+					'<a href="{$url}" target="_blank">请尽快完善您在微擎云服务平台的站点注册信息。</a>'+
+				'</div>'+
+			'</div>'+
+		'</div>';
 	$('body').prepend(html);
 });
 EOF;

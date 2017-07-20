@@ -1,7 +1,7 @@
 <?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
 <div class="panel panel-cut">
 	<div class="panel-heading">
-		选择小程序
+		<i class="wi wi-small-routine" style="font-size: 24px; margin-right: 10px; vertical-align:middle;"></i>选择小程序
 		<div class="pull-right font-default">
 			<?php  if(!empty($account_info['wxapp_limit']) || $_W['isfounder']) { ?>
 			<a href="<?php  echo url('wxapp/post/design_method')?>" class="color-default"><i class="wi wi-registersite"></i>新建小程序</a>

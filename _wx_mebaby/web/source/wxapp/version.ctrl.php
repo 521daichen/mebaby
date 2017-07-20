@@ -9,10 +9,10 @@ load()->model('module');
 load()->model('wxapp');
 load()->model('welcome');
 
-$dos = array('display', 'home', 'module_link_uniacid', 'search_link_account', 'module_unlink_uniacid', 'get_daily_visittrend');
+$dos = array('display', 'home', 'module_link_uniacid', 'search_link_account', 'module_unlink_uniacid', 'get_daily_visittrend', 'front_download');
 $do = in_array($do, $dos) ? $do : 'display';
-if ($do == 'module_link_uniacid') {
-	uni_user_permission_check('wxapp_module_link_uniacid', true, 'wxapp');
+if ($do == 'module_link_uniacid' || $do == 'front_download') {
+	uni_user_permission_check('wxapp_' . $do, true, 'wxapp');
 }
 $_W['page']['title'] = '小程序 - 管理';
 
@@ -43,7 +43,7 @@ if ($do == 'home') {
 
 if ($do == 'module_link_uniacid') {
 	$module_name = $_GPC['module_name'];
-	
+
 	$version_info = wxapp_version($version_id);
 
 	if (checksubmit('submit')) {
@@ -82,7 +82,7 @@ if ($do == 'module_unlink_uniacid') {
 }
 
 if ($do == 'search_link_account') {
-	$module_name = $_GPC['module_name'];
+	$module_name = trim($_GPC['module_name']);
 	if (empty($module_name)) {
 		iajax(0, array());
 	}
@@ -98,4 +98,8 @@ if ($do == 'get_daily_visittrend') {
 		$yesterday_stat = array('session_cnt' => 0, 'visit_pv' => 0, 'visit_uv' => 0, 'visit_uv_new' => 0);
 	}
 	iajax(0, array('yesterday' => $yesterday_stat), '');
+}
+if ($do == 'front_download') {
+	$wxapp_versions_info = wxapp_version($version_id);
+	template('wxapp/version-front-download');
 }

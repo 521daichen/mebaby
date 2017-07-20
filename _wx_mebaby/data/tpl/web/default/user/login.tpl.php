@@ -1,5 +1,5 @@
 <?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header-base', TEMPLATE_INCLUDEPATH)) : (include template('common/header-base', TEMPLATE_INCLUDEPATH));?>
-<div class="system-login">
+<div class="system-login" <?php  if(!empty($_W['setting']['copyright']['background_img'])) { ?> style="background-image:url('<?php  echo tomedia($_W['setting']['copyright']['background_img']);?>')" <?php  } else { ?> style="background-image: url('./resource/images/bg-login.png');" <?php  } ?>>
 	<div class="head">
 		<a href="/" class="logo-version">
 			<img src="<?php  if(!empty($_W['setting']['copyright']['blogo'])) { ?><?php  echo tomedia($_W['setting']['copyright']['blogo'])?><?php  } else { ?>./resource/images/logo/logo.png<?php  } ?>" class="logo">

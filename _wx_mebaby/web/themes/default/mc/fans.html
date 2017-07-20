@@ -170,7 +170,15 @@
 						</td>
 						<td>
 							<p><a href="{php echo url('mc/chats', array('openid' => $fan['openid']))}" target="_blank" class="nick-name" data-fanid="{$fan['fanid']}" data-group="{$fan['groupid']}">{$fan['nickname']}</a></p>
-							<p class="remark-name"><a href="">{$fan['member']['realname']}</a> {if !empty($fan['member']['mobile'])}<i class="wi wi-iphone fans-tel"></i>{/if}</p>
+							{if !empty($fan['uid'])}
+							<p class="remark-name"><a href="{php echo url('mc/member/post', array('uid' => $fan['uid']));}">
+								{if !empty($fan['member']['realname'])}
+								{$fan['member']['realname']}
+								{else}
+								{$fan['uid']}
+								{/if}
+							</a> {if !empty($fan['member']['mobile'])}<i class="wi wi-iphone fans-tel"></i>{/if}</p>
+							{/if}
 							<div class="fans-tag-area">
 								<span class="tag-list get-fans-tag js-group" data-id="{$fan['fanid']}" data-toggle='popover'>
 									{loop $fan['tag_show'] $k $tag_show}
@@ -189,6 +197,9 @@
 						</td>
 						<td class="text-right">
 							<div class="send-message">
+								{if empty($fan['uid'])}
+								<a href="{php echo url('mc/member/post', array('uid' => $fan['uid'],'openid' => $fan['openid'], 'fanid' => $fan['fanid']));}" class="color-default" title="该用户尚未注册会员，请为其手动注册！">注册为会员&nbsp;&nbsp;&nbsp;&nbsp;</a>
+								{/if}
 								<a  href="{php echo url('mc/chats', array('openid' => $fan['openid']))}" target="_blank" class="color-default">
 									发送消息<span class="wi wi-angle-right"></span>
 								</a>
@@ -357,9 +368,9 @@
 		$.post("{php echo url('mc/fans/batch_edit_fans_tag')}", {'openid' : openid, 'tag' : checktags}, function(data) {
 			data = $.parseJSON(data);
 			if (data.message.errno == 0) {
-				util.message('修改成功', '{php echo url('mc/fans')}', 'success');
+				util.message('修改成功', "{php echo url('mc/fans')}", 'success');
 			} else {
-				util.message(data.message.message, '', 'info');
+				util.message(data.message.message.message, '', 'info');
 			}
 		});
 	}

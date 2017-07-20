@@ -1,0 +1,103 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+  <li class="active"><a href="{php echo $this->createWebUrl('Upgrade')}">自动更新</a></li>
+</ul>
+<div class="alert alert-danger">
+  <i class="fa fa-exclamation-triangle"></i>正在更新系统文件, 请不要关闭窗口.
+</div>
+<div class="alert alert-danger">
+  <i class="fa fa-exclamation-triangle"></i>如果下载文件失败，可能造成的原因：写入失败，请仔细检查目录写入权限是否正确，建议目录和文件权限为 775。
+</div>
+
+
+{if isset($data['pushmsg']) && !empty($data['pushmsg']) }
+<div class="alert alert-danger">
+  {$data['pushmsg']}
+</div>
+{/if}
+
+<div class="alert alert-info form-horizontal">
+    <dl class="dl-horizontal">
+        <dt>整体进度</dt>
+        <dd id="progressNumber">连接服务器中...</dd>
+        <dt>正在下载文件</dt>
+        <dd id="progressFile"></dd>
+    </dl>
+    <dl id="fail" class="dl-horizontal" class="hidden">
+        <dt>下载失败的文件</dt>
+        <dd id="failList">
+        </dd>
+    </dl>
+    <dl id="success" class="dl-horizontal" class="hidden">
+    </dl>
+</div>
+
+<script>
+$(function() {
+  var files = [
+    {loop $files $item}
+    '{$item['file']}',
+    {/loop}
+  ];
+  var total = files.length;
+  var fail = [];
+  var success = [];
+  var progress = 1;
+
+  function next_step() {
+     file = files.shift();
+     beforeUpdate(file);
+     $.get("{php echo $this->createWebUrl('FetchFile')}", {'file': file}, function(data) {
+        progress++;
+        var result = $.parseJSON(data);
+        console.log(result);
+        if (result.error != '200') {
+            fail.push(result);
+        } else {
+            success.push(result);
+        }
+        afterUpdate(result, file);
+        if (result.error == '401') { //Unauthorized
+          alert('没有权限! 请联系作者购买。如已经购买，请检查认证秘钥是否正确。');
+          final_step();
+        } else if (result.error == '423') { // Locked
+          alert('没有权限! 如需使用最新版功能，请联系作者续费');
+          final_step();
+        } else if (progress <= total) {
+          next_step();
+        } else {
+          final_step();
+        }
+     });
+   }
+
+   function final_step() {
+    setTimeout(function() {
+      if (fail.length == 0) {
+        alert('更新完成, 前往安装模块');
+        location.href="{php echo wurl('extension/module/prepared') }";
+        // location.href = "{php echo $this->createWebUrl('RefreshUpgrade')}";
+      } else if (confirm('有部分文件未成功更新， 是否立即再试一次？')) {
+        location.href = "{php echo $this->createWebUrl('RefreshUpgrade')}";
+      }
+    }, 100);
+   }
+
+  function beforeUpdate(file) {
+    $('#progressNumber').html(progress + '/' + total);
+    $('#progressFile').html(file);
+  }
+
+  function afterUpdate(result) {
+    if (result && result.error != '200') {
+      $('#fail').removeClass('hidden');
+      $('#failList').append('<p class="text-danger" style="margin:0;">[' + result['message'] + '] ' + result['file'] + '</p>');
+    }
+  }
+
+
+  // begin update, trigger it!
+  next_step(files);
+});
+</script>
+{template 'common/footer'}

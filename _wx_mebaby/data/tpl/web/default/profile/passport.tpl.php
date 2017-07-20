@@ -1,28 +1,5 @@
 <?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
-<div class="we7-page-title">
-	参数设置
-</div>
-<ul class="we7-page-tab">
-	<li class="active">
-		<a href="<?php  echo url('profile/passport')?>">借用权限</a>
-	</li>
-	<li>
-		<a href="<?php  echo url('profile/payment')?>">支付参数</a>
-	</li>
-	<li>
-		<a href="<?php  echo url('profile/tplnotice')?>">微信通知设置</a>
-	</li>
-	<li>
-		<a href="<?php  echo url('profile/notify')?>">邮件通知参数</a>
-	</li>
-	<li>
-		<a href="<?php  echo url('profile/common/uc_setting')?>">uc站点整合</a>
-	</li>
-	<li>
-		<a href="<?php  echo url('profile/common/upload_file')?>">上传js接口文件</a>
-	</li>
-</ul>
-
+<?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('profile/common', TEMPLATE_INCLUDEPATH)) : (include template('profile/common', TEMPLATE_INCLUDEPATH));?>
 <?php  if($do == 'oauth') { ?>
 
 <div id="js-profile-passport" ng-controller="oauthCtrl" ng-cloak>
@@ -65,7 +42,7 @@
 							<option value="" ng-selected="oauthAccount == ''">不借用任何权限</option>
 							<option value="{{ key }}" ng-selected="key == oauthAccount" ng-repeat="(key,account) in oauthAccounts track by key">{{ account }}</option>
 						</select>
-						<span class="help-block">在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的【开发者中心】<b>网页服务</b>中配置授权回调域名。<a href="http://www.we7.cc/manual/dev:v0.6:qa:mobile_redirect_url_error" target="_black" class="color-default">查看详情</a></span>
+						<span class="help-block">在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的【开发者中心】<b>网页服务</b>中配置授权回调域名.</span>
 					</div>
 				</div>
 				<div class="modal-footer">

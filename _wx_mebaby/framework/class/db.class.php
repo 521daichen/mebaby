@@ -54,7 +54,7 @@ class DB {
 		}
 		$this->pdo = new $dbclass($dsn, $cfg['username'], $cfg['password'], $options);
 		//$this->pdo->setAttribute(pdo::ATTR_EMULATE_PREPARES, false);
-		
+
 		$sql = "SET NAMES '{$cfg['charset']}';";
 		$this->pdo->exec($sql);
 		$this->pdo->exec("SET sql_mode='';");
@@ -84,7 +84,7 @@ class DB {
 		}
 		return $statement;
 	}
-	
+
 	
 	public function query($sql, $params = array()) {
 		$sqlsafe = SqlChecker::checkquery($sql);
@@ -150,7 +150,7 @@ class DB {
 			return $data;
 		}
 	}
-	
+
 	
 	public function fetch($sql, $params = array()) {
 		$cachekey = $this->cacheKey($sql, $params);
@@ -218,32 +218,32 @@ class DB {
 			return $result;
 		}
 	}
-	
+
 	public function get($tablename, $params = array(), $fields = array(), $orderby = array()) {
 		$select = $this->parseSelect($fields);
 		$condition = $this->implode($params, 'AND');
 		$orderbysql = $this->parseOrderby($orderby);
-		
+
 		$sql = "SELECT {$select} FROM " . $this->tablename($tablename) . (!empty($condition['fields']) ? " WHERE {$condition['fields']}" : '') . " $orderbysql LIMIT 1";
 		return $this->fetch($sql, $condition['params']);
 	}
-	
+
 	public function getall($tablename, $params = array(), $fields = array(), $keyfield = '', $orderby = array(), $limit = array()) {
 		$select = $this->parseSelect($fields);
 		$condition = $this->implode($params, 'AND');
-		
+
 		$limitsql = $this->parseLimit($limit);
 		$orderbysql = $this->parseOrderby($orderby);
-		
+
 		$sql = "SELECT {$select} FROM " .$this->tablename($tablename) . (!empty($condition['fields']) ? " WHERE {$condition['fields']}" : '') . $orderbysql . $limitsql;
 		return $this->fetchall($sql, $condition['params'], $keyfield);
 	}
-	
+
 	public function getslice($tablename, $params = array(), $limit = array(), &$total = null, $fields = array(), $keyfield = '', $orderby = array()) {
 		$select = $this->parseSelect($fields);
 		$condition = $this->implode($params, 'AND');
 		$limitsql = $this->parseLimit($limit);
-		
+
 		if (!empty($orderby)) {
 			if (is_array($orderby)) {
 				$orderbysql = implode(',', $orderby);
@@ -255,7 +255,7 @@ class DB {
 		$total = pdo_fetchcolumn("SELECT COUNT(*) FROM " . tablename($tablename) . (!empty($condition['fields']) ? " WHERE {$condition['fields']}" : ''), $condition['params']);
 		return $this->fetchall($sql, $condition['params'], $keyfield);
 	}
-	
+
 	public function getcolumn($tablename, $params = array(), $field = '') {
 		$result = $this->get($tablename, $params, $field);
 		if (!empty($result)) {
@@ -285,7 +285,7 @@ class DB {
 		$condition = $this->implode($data, ',');
 		return $this->query("$cmd " . $this->tablename($table) . " SET {$condition['fields']}", $condition['params']);
 	}
-	
+
 	
 	public function insertid() {
 		return $this->pdo->lastInsertId();
@@ -371,7 +371,7 @@ class DB {
 		}
 		return $result;
 	}
-	
+
 	private function parseSelect($field = array()) {
 		if (empty($field)) {
 			return '*';
@@ -403,7 +403,7 @@ class DB {
 		}
 		return implode(',', $select);
 	}
-	
+
 	private function parseLimit($limit) {
 		$limitsql = '';
 		if (empty($limit)) {
@@ -412,7 +412,7 @@ class DB {
 		if (is_array($limit)) {
 			$limit[0] = intval($limit[0]);
 			$limit[1] = intval($limit[1]);
-	
+
 			if (empty($limit[0]) && empty($limit[1])) {
 				$limitsql = '';
 			} elseif (!empty($limit[0]) && empty($limit[1])) {
@@ -428,20 +428,26 @@ class DB {
 		}
 		return $limitsql;
 	}
-	
+
 	private function parseOrderby($orderby) {
 		$orderbysql = '';
 		if (empty($orderby)) {
 			return $orderbysql;
 		}
-		if (is_array($orderby)) {
-			$orderbysql = implode(',', $orderby);
-		} else {
-			$orderbysql = $orderby;
+
+		if (!is_array($orderby)) {
+			$orderby = explode(',', $orderby);
 		}
+		foreach ($orderby as $i => $row) {
+			$row = strtolower($row);
+			if (substr($row, -3) != 'asc' && substr($row, -4) != 'desc') {
+				unset($orderby[$i]);
+			}
+		}
+		$orderbysql = implode(',', $orderby);
 		return !empty($orderbysql) ? " ORDER BY $orderbysql " : '';
 	}
-	
+
 	
 	public function run($sql, $stuff = 'ims_') {
 		if(!isset($sql) || empty($sql)) return;
@@ -467,7 +473,7 @@ class DB {
 			}
 		}
 	}
-	
+
 	
 	public function fieldexists($tablename, $fieldname) {
 		$isexists = $this->fetch("DESCRIBE " . $this->tablename($tablename) . " `{$fieldname}`", array());
@@ -508,7 +514,7 @@ class DB {
 		}
 		return false;
 	}
-	
+
 	
 	public function tablename($table) {
 		return "`{$this->tablepre}{$table}`";
@@ -562,7 +568,7 @@ class DB {
 			return false;
 		}
 	}
-	
+
 	private function performance($sql, $runtime = 0) {
 		global $_W;
 		if ($runtime == 0) {
@@ -586,7 +592,7 @@ class DB {
 		}
 		return true;
 	}
-	
+
 	private function cacheRead($cachekey) {
 		global $_W;
 		if (empty($cachekey) || $_W['config']['setting']['cache'] != 'memcache' || empty($_W['config']['setting']['memcache']['sql'])) {
@@ -598,7 +604,7 @@ class DB {
 		}
 		return $data;
 	}
-	
+
 	private function cacheWrite($cachekey, $data) {
 		global $_W;
 		if (empty($data) || empty($cachekey) || $_W['config']['setting']['cache'] != 'memcache' || empty($_W['config']['setting']['memcache']['sql'])) {
@@ -611,7 +617,7 @@ class DB {
 		cache_write($cachekey, $cachedata, 0, true);
 		return true;
 	}
-	
+
 	private function cacheKey($sql, $params) {
 		global $_W;
 		if ($_W['config']['setting']['cache'] != 'memcache' || empty($_W['config']['setting']['memcache']['sql'])) {
@@ -623,7 +629,7 @@ class DB {
 		}
 		return $namespace . ':' . md5($sql . serialize($params));
 	}
-	
+
 	
 	private function cacheNameSpace($sql, $forcenew = false) {
 		global $_W;
@@ -673,7 +679,7 @@ class SqlChecker {
 			} else {
 				$cleansql = self::stripSafeChar($sql);
 			}
-			
+
 			$cleansql = preg_replace("/[^a-z0-9_\-\(\)#\*\/\"]+/is", "", strtolower($cleansql));
 			if (is_array(self::$disable['function'])) {
 				foreach (self::$disable['function'] as $fun) {
@@ -682,7 +688,7 @@ class SqlChecker {
 					}
 				}
 			}
-			
+
 			if (is_array(self::$disable['action'])) {
 				foreach (self::$disable['action'] as $action) {
 					if (strpos($cleansql, $action) !== false) {
@@ -690,7 +696,7 @@ class SqlChecker {
 					}
 				}
 			}
-			
+
 			if (is_array(self::$disable['note'])) {
 				foreach (self::$disable['note'] as $note) {
 					if (strpos($cleansql, $note) !== false) {
@@ -702,7 +708,7 @@ class SqlChecker {
 			return error(3, 'SQL中包含注释信息');
 		}
 	}
-	
+
 	private static function stripSafeChar($sql) {
 		$len = strlen($sql);
 		$mark = $clean = '';

@@ -258,7 +258,7 @@
 			</script>
 			{else}
 			<script>
-				location.href = '{url "system/module/install" array("module_name" => $m, "flag" => 1, "account_type" => $_GPC["account_type"])}';
+				location.href = '{url "module/manage-system/install" array("module_name" => $m, "flag" => 1, "account_type" => $_GPC["account_type"])}';
 			</script>
 			{/if}
 		{/if}
@@ -323,7 +323,7 @@
 			</script>
 			{else}
 			<script>
-				location.href = '{url "system/module/upgrade" array("module_name" => $m, "flag" => 1, "account_type" => $_GPC["account_type"])}';
+				location.href = '{url "module/manage-system/upgrade" array("module_name" => $m, "flag" => 1, "account_type" => $_GPC["account_type"])}';
 			</script>
 			{/if}
 			

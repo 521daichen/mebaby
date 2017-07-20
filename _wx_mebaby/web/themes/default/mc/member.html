@@ -146,16 +146,16 @@
 							<a href="javascript:;" title="消费" class="modal-trade-consume" data-type="consume" data-uid="{$li['uid']}">消费</a>
 							<div class="btn-group">
 								<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{if count($_W['account']['groups']) > 0}
-										{$_W['account']['groups'][$li['groupid']]['title']}
+									{if !empty($groups)}
+										{$groups[$li['groupid']]['title']}
 										<span class="caret"></span>
 									{else}
 										暂无分组
 									{/if}
 								</a>
 								<ul class="dropdown-menu more-group">
-									{loop $_W['account']['groups'] $group}
-									{if $group ['groupid'] != $li['groupid']}
+									{loop $groups $group}
+									{if $group['groupid'] != $li['groupid']}
 									<li class="user-group" data-id="{$group['groupid']}" data-uid="{$li['uid']}"><a href="javascript:;">{$group['title']}</a></li>
 									{/if}
 									{/loop}
@@ -163,7 +163,7 @@
 							</div>
 							<a href="{php echo url('mc/member/post',array('uid' => $li['uid']))}" title="编辑" class="">编辑</a>
 							<a href="{php echo url('mc/member/credit_stat',array('uid' => $li['uid'], 'type' => 1))}" title="日志" class="">日志</a>
-							<!--<a href="">管理设置</a>-->
+							<!--<a href="javasctipt:;">管理设置</a>-->
 							<a href="{php echo url('mc/member/del',array('uid' => $li['uid']))}" onclick="return confirm('确定删除会员吗?')" title="删除" class="">删除</a>
 						</div>
 					</td>
@@ -794,7 +794,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">登陆密码</label>
+				<label class="col-sm-2 control-label">登录密码</label>
 				<div class="col-sm-9 col-xs-12">
 					<input type="password" name="password" value="" class="form-control"/>
 				</div>
@@ -1154,13 +1154,13 @@
 					<div class="we7-form">
 						<div class="form-group">
 							<div class="form-controls">
-								<input type="text" name="" class="form-control" ng-model="creditTitle" placeholder="输入积分名称" ng-model="paysetting.alipay.partner">
+								<input type="text" name="" class="form-control" ng-model="creditTitle" placeholder="输入积分名称">
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" ng-click="setCreditName(key)" data-dismiss="modal">确定</button>
+					<button type="button" class="btn btn-primary" ng-click="setCreditName()" data-dismiss="modal">确定</button>
 				</div>
 			</div>
 		</div>

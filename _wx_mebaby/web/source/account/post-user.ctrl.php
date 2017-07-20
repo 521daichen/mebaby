@@ -144,10 +144,10 @@ if ($do == 'edit') {
 	
 	if ($account['type'] == ACCOUNT_TYPE_OFFCIAL_NORMAL || $account['type'] == ACCOUNT_TYPE_OFFCIAL_AUTH) {
 				$user_menu_permission_account = uni_user_menu_permission($uid, $uniacid, PERMISSION_ACCOUNT);
-		if (is_error($user_menu_permission_account)) {
+				$module_permission = uni_user_menu_permission($uid, $uniacid, 'modules');
+		if (is_error($user_menu_permission_account) || is_error($module_permission)) {
 			itoast('参数错误！');
 		}
-				$module_permission = uni_user_menu_permission($uid, $uniacid, 'modules');
 		$module_permission_keys = array_keys($module_permission);
 		$module = uni_modules_by_uniacid($uniacid);
 	} elseif ($account['type'] == ACCOUNT_TYPE_APP_NORMAL) {

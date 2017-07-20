@@ -14,11 +14,11 @@ function system_menu_permission_list($role = '') {
 	}
 		if ($role == ACCOUNT_MANAGE_NAME_OPERATOR) {
 		unset($system_menu['appmarket']);
-		unset($system_menu['adviertisement']);
+		unset($system_menu['advertisement']);
 		unset($system_menu['system']);
 	} if ($role == ACCOUNT_MANAGE_NAME_OPERATOR) {
 		unset($system_menu['appmarket']);
-		unset($system_menu['adviertisement']);
+		unset($system_menu['advertisement']);
 	}
 	return $system_menu;
 }
@@ -35,6 +35,7 @@ function system_database_backup() {
 			if ($bakdir == '.' || $bakdir == '..') {
 				continue;
 			}
+			$times[] = date("Y-m-d H:i:s", filemtime($path.$bakdir));
 			if (preg_match('/^(?P<time>\d{10})_[a-z\d]{8}$/i', $bakdir, $match)) {
 				$time = $match['time'];
 				if ($handle1= opendir($path . $bakdir)) {
@@ -79,6 +80,10 @@ function system_database_backup() {
 			}
 			rmdirs($path . $bakdir);
 		}
+		closedir($handle);
+	}
+	if (!empty($times)) {
+		array_multisort($times, SORT_DESC, SORT_STRING, $reduction);
 	}
 	return $reduction;
 }

@@ -7,9 +7,9 @@ ini_set("display_errors", "On");
 error_reporting(E_ALL | E_STRICT);*/
 require 'function.php';
 
-load()->classs('CardApi');
+//load()->classs('CardApi');
 
-load()->classs('Contract');
+//load()->classs('Contract');
 
 
 
@@ -332,9 +332,12 @@ class MemberModuleSite extends WeModuleSite
 
 
              $mobile = $memberInfo['mobile'];
+			 /*
+			 返回委托代扣状态
              $serial = Contract::entrustwebData($mobile);
              $httprequest = ContractContents::SIGN_CONTRACT_HTTP;
              $serial = $httprequest.'?'.$serial;
+			 */
 
             /**
              * 首次绑定送1000积分
@@ -2255,10 +2258,19 @@ class MemberModuleSite extends WeModuleSite
 
     public function doMobileGetToken()
     {
-    	$token = pdo_fetch("SELECT `access_token` FROM `ims_account_wechats` WHERE acid = 4");
-
-        $token = unserialize($token['access_token']);
-
+		global $_W,$_GPC;
+		/*
+    	$token = pdo_fetch("SELECT `access_token` FROM `ims_account_wechats` WHERE acid = 2");
+		
+		$token = $_W['account']['uniaccount']['access_token'];
+		echo "<pre>";
+		var_dump($_W);
+		echo "</pre>";
+        $token = unserialize($token);
+		
+		var_dump($token);
+		
+		
         if($token['expire'] > time()){
             return $token['token'];
         }else{
@@ -2274,9 +2286,10 @@ class MemberModuleSite extends WeModuleSite
 
             return $info_array['token'];
         }
-
-        //$weiObj = WeAccount::create(4);
-        //echo $weiObj->fetch_token();
+		*/
+        $weiObj = WeAccount::create(2);
+        echo $weiObj->fetch_token();
+		
     }
 
     /**

@@ -46,9 +46,8 @@ if ($do == 'display') {
                         "member_card": {
                              "auto_activate":'.$auto_activate.',
                              "wx_activate": '.$wx_activate.',
-                             "wx_activate":   '.$wx_activate.',
                              "wx_activate_after_submit" : '.$wx_activate_after_submit.',
-                             "wx_activate_after_submit_url":"http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=RedirectActive&m=eloquence",
+                             "wx_activate_after_submit_url":"http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=RedirectActive&m=eloquence",
                              "background_pic_url": "'.$background_pic_url.'",
                              "base_info": {
                               	 "pay_info": 
@@ -60,11 +59,11 @@ if ($do == 'display') {
                         		},
                                 "logo_url":  "'.$logo_url.'",
                                 "brand_name":"'.$brand_name.'", 
-                                "code_type": "CODE_TYPE_BARCODE",
+                                "code_type": "CODE_TYPE_QRCODE",
                                 "title": "'.$cardname.'",
                                 "color": "Color040",
                                 "notice": "使用时向服务员出示此券",
-                                "service_phone": "029-86300000",
+                                "service_phone": "029-82460823"
                                 "description": "不可与其他优惠同享",
                                 "date_info": {
                                     "type": "DATE_TYPE_PERMANENT"
@@ -87,17 +86,7 @@ if ($do == 'display') {
                              },
                              "supply_bonus": true,
                              "supply_balance": false,
-                             "prerogative": "尊享品牌满4000减1000，满600减100
-                                            折上满减、可拼单累计、以此类推
-                                            凭小票至各楼层收银台结算
-                                            单件商品不可拆分开具小票
-                                            不与商场其他活动共享
-                                            特价商品除外
-                                            优先就餐
-                                            就餐优先免排队
-                                            免费停车
-                                            本中心广场、空中花园停车场随意免费停车不限时。
-                                            全程导购专享服务及免费包装礼品",
+                             "prerogative": "1元1积分，1000积分抵现金50元",
                              
                              "custom_field1": {
                                 "name_type": "FIELD_NAME_TYPE_LEVEL",
@@ -114,8 +103,9 @@ if ($do == 'display') {
                         } 
                   }
         }';
-
-		$token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+		$weiObj = WeAccount::create($_W['uniacid']);
+        $token = $weiObj->fetch_token();
+	
         $url = "https://api.weixin.qq.com/card/create?access_token=".$token;
 
         $rest = http_attach_post($url, $post);

@@ -385,6 +385,8 @@ class WeEngine {
 
 	private function receive($par, $keyword, $response) {
 		global $_W;
+		fastcgi_finish_request();
+		
 		$subscribe = cache_load('module_receive_enable');
 		$modules = uni_modules();
 		$obj = WeUtility::createModuleReceiver('core');
@@ -398,95 +400,16 @@ class WeEngine {
 		if(method_exists($obj, 'receive')) {
 			@$obj->receive();
 		}
-		if (!empty($subscribe['subscribe']) && ($this->message['event'] == 'subscribe' || $this->message['type'] == 'subscribe')) {
-			foreach($subscribe['subscribe'] as $modulename) {
-				$obj = WeUtility::createModuleReceiver($modulename);
-				$obj->message = $this->message;
-				$obj->params = $par;
-				$obj->response = $response;
-				$obj->keyword = $keyword;
-				$obj->module = $modules[$modulename];
-				$obj->uniacid = $_W['uniacid'];
-				$obj->acid = $_W['acid'];
-				if(method_exists($obj, 'receive')) {
-					@$obj->receive();
-				}
-			}
-		} elseif (!empty($subscribe['unsubscribe']) && ($this->message['event'] == 'unsubscribe' || $this->message['type'] == 'unsubscribe')) {
-			foreach($subscribe['unsubscribe'] as $modulename) {
-				$obj = WeUtility::createModuleReceiver($modulename);
-				$obj->message = $this->message;
-				$obj->params = $par;
-				$obj->response = $response;
-				$obj->keyword = $keyword;
-				$obj->module = $modules[$modulename];
-				$obj->uniacid = $_W['uniacid'];
-				$obj->acid = $_W['acid'];
-				if(method_exists($obj, 'receive')) {
-					@$obj->receive();
-				}
-			}
-		} elseif (!empty($subscribe['user_get_card']) && $this->message['event'] == 'user_get_card') {
-			foreach($subscribe['user_get_card'] as $modulename) {
-				$obj = WeUtility::createModuleReceiver($modulename);
-				$obj->message = $this->message;
-				$obj->params = $par;
-				$obj->response = $response;
-				$obj->keyword = $keyword;
-				$obj->module = $modules[$modulename];
-				$obj->uniacid = $_W['uniacid'];
-				$obj->acid = $_W['acid'];
-				if(method_exists($obj, 'receive')) {
-					@$obj->receive();
-				}
-			}
-		} elseif (!empty($subscribe['user_consume_card']) && $this->message['event'] == 'user_consume_card') {
-			foreach($subscribe['user_consume_card'] as $modulename) {
-				$obj = WeUtility::createModuleReceiver($modulename);
-				$obj->message = $this->message;
-				$obj->params = $par;
-				$obj->response = $response;
-				$obj->keyword = $keyword;
-				$obj->module = $modules[$modulename];
-				$obj->uniacid = $_W['uniacid'];
-				$obj->acid = $_W['acid'];
-				if(method_exists($obj, 'receive')) {
-					@$obj->receive();
-				}
-			}
-		} elseif (!empty($subscribe['user_del_card']) && $this->message['event'] == 'user_del_card') {
-			foreach($subscribe['user_del_card'] as $modulename) {
-				$obj = WeUtility::createModuleReceiver($modulename);
-				$obj->message = $this->message;
-				$obj->params = $par;
-				$obj->response = $response;
-				$obj->keyword = $keyword;
-				$obj->module = $modules[$modulename];
-				$obj->uniacid = $_W['uniacid'];
-				$obj->acid = $_W['acid'];
-				if(method_exists($obj, 'receive')) {
-					@$obj->receive();
-				}
-			}
-		} else {
-			$modules = $subscribe[$this->message['type']];
-			if (!empty($modules)) {
-				foreach ($modules as $modulename) {
-					$row = array();
-					$row['uniacid'] = $_W['uniacid'];
-					$row['acid'] = $_W['acid'];
-					$row['dateline'] = $_W['timestamp'];
-					$row['message'] = iserializer($this->message);
-					$row['keyword'] = iserializer($keyword);
-					$row['params'] = iserializer($par);
-					$row['response'] = iserializer($response);
-					$row['module'] = $modulename;
-					$row['type'] = 1;
-					pdo_insert('core_queue', $row);
-				}
-			}
-						if (date('N') == '1') {
-				pdo_query("DELETE FROM ".tablename('core_queue')." WHERE dateline < '".($_W['timestamp'] - 2592000)."'");
+		load()->func('communication');
+		if (!empty($subscribe[$this->message['type']])) {
+			foreach ($subscribe[$this->message['type']] as $modulename) {
+								$response = ihttp_request(wurl('utility/subscribe/receive'), array(
+					'i' => $GLOBALS['uniacid'], 
+					'modulename' => $modulename,
+					'request' => json_encode($par),
+					'response' => json_encode($response),
+					'message' => json_encode($this->message),
+				), array(), 0);
 			}
 		}
 	}

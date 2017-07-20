@@ -22,9 +22,6 @@ define('ACCOUNT_TYPE_OFFCIAL_NORMAL', 1);
 define('ACCOUNT_TYPE_OFFCIAL_AUTH', 3);
 define('ACCOUNT_TYPE_APP_NORMAL', 4);
 
-define('WXAPP_DIY', 1);
-define('WXAPP_TEMPLATE', 2);
-define('WXAPP_MODULE', 3);
 
 define('ACCOUNT_OAUTH_LOGIN', 3);
 define('ACCOUNT_NORMAL_LOGIN', 1);
@@ -81,5 +78,10 @@ define('PAYMENT_WECHAT_TYPE_CLOSE', 4);
 define('FANS_CHATS_FROM_SYSTEM', 1);
 
 define('WXAPP_STATISTICS_DAILYVISITTREND', 2);
+define('WXAPP_DIY', 1);
+define('WXAPP_TEMPLATE', 2);
+define('WXAPP_MODULE', 3);
 
 define('MATERIAL_LOCAL', 'local');define('MATERIAL_WEXIN', 'perm');
+define('MENU_CURRENTSELF', 1);
+define('MENU_CONDITIONAL', 3);

@@ -1,7 +1,7 @@
 <?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header', TEMPLATE_INCLUDEPATH)) : (include template('common/header', TEMPLATE_INCLUDEPATH));?>
 <div class="panel panel-cut" id="js-account-display" ng-controller="AccountDisplay" ng-cloak>
 	<div class="panel-heading">
-		请选择您要操作的公众号
+		<i class="wi wi-wechat" style="font-size: 24px; margin-right: 10px; vertical-align:middle;"></i>请选择您要操作的公众号
 		<div class="font-default pull-right">
 			<?php  if(!empty($account_info['uniacid_limit'])) { ?>
 			<a href="./index.php?c=account&a=post-step" class="color-default"><i class="fa fa-plus"></i>新增公众号</a>
@@ -21,7 +21,7 @@
 				可创建 <span class="text-strong"><?php  echo $account_info['maxaccount'];?> </span>个公众号，已创建<span class="text-strong"> <?php  echo $account_info['uniacid_num'];?> </span>个，还可创建 <span class="text-strong"><?php  echo $account_info['uniacid_limit'];?> </span>个公众号。
 			</div>
 		<?php  } ?>
-		
+		<?php  if($total > $psize) { ?>
 		<div class="cut-header">
 			<form action="./index.php" method="get">
 				<input type="hidden" name="c" value="account">
@@ -35,15 +35,15 @@
 				</div>
 			</form>
 		</div>
-		
+		<?php  } ?>
 		<div class="clearfix"></div>
-		
+		<?php  if($total > $psize) { ?>
 		<ul class="letters-list cut-wechat-letters">
 			<li ng-repeat="letter in alphabet" ng-style="{'background-color': letter == activeLetter ? '#ddd' : 'none'}" ng-class="{'active': letter == activeLetter}" ng-click="searchModule(letter)">
 				<a href="javascript:;" ng-bind="letter"></a>
 			</li>
 		</ul>
-	
+		<?php  } ?>
 		<div class="cut-list clearfix" ng-if="accountList" infinite-scroll='loadMore()' infinite-scroll-disabled='busy' infinite-scroll-distance='0' infinite-scroll-use-document-bottom="true">
 			<div ng-repeat="account in accountList">
 				<div class="item" ng-repeat="detail in account.details">

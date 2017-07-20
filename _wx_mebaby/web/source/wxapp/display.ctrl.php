@@ -22,25 +22,27 @@ if ($do == 'rank' || $do == 'switch') {
 }
 if ($do == 'home') {
 	$last_uniacid = uni_account_last_switch();
+	$url = url('wxapp/display');
 	if (empty($last_uniacid)) {
-		itoast('', url('wxapp/display'), 'info');
-	} else {
-		$last_version = wxapp_fetch($last_uniacid);
-		if (!empty($last_version)) {
-			uni_account_switch($last_uniacid);
-			header('Location: ' . url('wxapp/version/home', array('version_id' => $last_version['version']['id'])));
-			exit;
-		} else {
-			itoast('', url('wxapp/display'), 'info');
-		}
+		itoast('', $url, 'info');
 	}
+	$permission = uni_permission($_W['uid'], $last_uniacid);
+	if (empty($permission)) {
+		itoast('', $url, 'info');
+	}
+	$last_version = wxapp_fetch($last_uniacid);
+	if (!empty($last_version)) {
+		uni_account_switch($last_uniacid);
+		$url = url('wxapp/version/home', array('version_id' => $last_version['version']['id']));
+	}
+	itoast('', $url, 'info');
 } elseif ($do == 'display') {
 		$account_info = uni_user_account_permission();
-	
+
 	$pindex = max(1, intval($_GPC['page']));
 	$psize = 20;
 	$start = ($pindex - 1) * $psize;
-	
+
 	$condition = '';
 	$param = array();
 	$keyword = trim($_GPC['keyword']);
@@ -116,7 +118,7 @@ if ($do == 'home') {
 			itoast('版本信息错误');
 		}
 		$uniacid = !empty($module_info['account']['uniacid']) ? $module_info['account']['uniacid'] : $version_info['uniacid'];
-		uni_account_switch($uniacid, url('home/welcome/ext/', array('m' => $module_name)));
+		uni_account_switch($uniacid, url('home/welcome/ext/', array('m' => $module_name, 'version_id' => $version_id)));
 	}
 	uni_account_switch($uniacid);
 	wxapp_save_switch($uniacid);

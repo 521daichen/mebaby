@@ -125,7 +125,6 @@ function cloud_prepare() {
 function cloud_build() {
 	$pars = _cloud_build_params();
 	$pars['method'] = 'application.build2';
-	$pars['extra'] = cloud_extra_account();
 	$dat = cloud_request('http://v2.addons.we7.cc/gateway.php', $pars);
 	$file = IA_ROOT . '/data/application.build';
 	$ret = _cloud_shipping_parse($dat, $file);
@@ -1102,4 +1101,43 @@ function cloud_build_transtoken() {
 	$ret = _cloud_shipping_parse($dat, $file);
 	cache_write('cloud:transtoken', authcode($ret['token'], 'ENCODE'));
 	return $ret['token'];
+}
+
+function cloud_build_schemas($schems) {
+	$database = array();
+	if (empty($schems)) {
+		return $database;
+	}
+	foreach ($schemas as $remote) {
+		$row = array();
+		$row['tablename'] = $remote['tablename'];
+		$name = substr($remote['tablename'], 4);
+		$local = db_table_schema(pdo(), $name);
+		unset($remote['increment']);
+		unset($local['increment']);
+		if (empty($local)) {
+			$row['new'] = true;
+		} else {
+			$row['new'] = false;
+			$row['fields'] = array();
+			$row['indexes'] = array();
+			$diffs = db_schema_compare($local, $remote);
+			if (!empty($diffs['fields']['less'])) {
+				$row['fields'] = array_merge($row['fields'], $diffs['fields']['less']);
+			}
+			if (!empty($diffs['fields']['diff'])) {
+				$row['fields'] = array_merge($row['fields'], $diffs['fields']['diff']);
+			}
+			if (!empty($diffs['indexes']['less'])) {
+				$row['indexes'] = array_merge($row['indexes'], $diffs['indexes']['less']);
+			}
+			if (!empty($diffs['indexes']['diff'])) {
+				$row['indexes'] = array_merge($row['indexes'], $diffs['indexes']['diff']);
+			}
+			$row['fields'] = implode($row['fields'], ' ');
+			$row['indexes'] = implode($row['indexes'], ' ');
+		}
+		$database[] = $row;
+	}
+	return $database;
 }

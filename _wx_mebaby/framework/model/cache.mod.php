@@ -232,7 +232,7 @@ function cache_build_module_subscribe_type() {
 	foreach ($subscribe as $event => $module_group) {
 		if (!empty($module_group)) {
 			foreach ($module_group as $index => $module) {
-				if (!empty($module_ban[$module])) {
+				if (empty($module_ban[$module])) {
 					unset($subscribe[$event][$index]);
 				}
 			}
@@ -274,13 +274,12 @@ function cache_build_uninstalled_module() {
 	$recycle_modules = pdo_getall('modules_recycle', array(), array(), 'modulename');
 	$recycle_modules = array_keys($recycle_modules);
 	$cloud_module = cloud_m_query();
-	$cloud_module['ewei_shopping']['site_branch']['wxapp_support'] = 2;
-	unset($cloud_module['pirate_apps']);
+
 	if (!empty($cloud_module) && !is_error($cloud_module)) {
 		foreach ($cloud_module as $module) {
 			$upgrade_support_module = false;
-			$wxapp_support = !empty($module['site_branch']['wxapp_support']) ? $module['site_branch']['wxapp_support'] : 1;
-			$app_support = !empty($module['site_branch']['app_support']) ? $module['site_branch']['app_support'] : 2;
+			$wxapp_support = !empty($module['site_branch']['wxapp_support']) && in_array('wxapp', $module['site_branch']['bought']) ? $module['site_branch']['wxapp_support'] : 1;
+			$app_support = !empty($module['site_branch']['app_support']) && in_array('app', $module['site_branch']['bought']) ? $module['site_branch']['app_support'] : 1;
 			if ($wxapp_support ==  1 && $app_support == 1) {
 				$app_support = 2;
 			}

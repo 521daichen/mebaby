@@ -42,14 +42,14 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="<?php  echo url('user/register');?>">注册</a></li>
-					<li class="dropdown"><a href="<?php  echo url('user/login');?>">登陆</a></li>
+					<li class="dropdown"><a href="<?php  echo url('user/login');?>">登录</a></li>
 				</ul>
 			</div>
 			<?php  } ?>
 		</div>
 	</nav>
 </div>
-<?php  if(empty($_COOKIE['check_setmeal']) && !empty($_W['account']['endtime']) && ($_W['account']['endtime'] - TIMESTAMP < (6*86400))) { ?> 
+<?php  if(empty($_COOKIE['check_setmeal']) && !empty($_W['account']['endtime']) && ($_W['account']['endtime'] - TIMESTAMP < (6*86400))) { ?>
 <div class="system-tips we7-body-alert" id="setmeal-tips">
 	<div class="container text-right">
 		<div class="alert-info">
@@ -76,67 +76,14 @@
 <div class="main">
 <?php  if(!defined('IN_MESSAGE')) { ?>
 <div class="container">
-	<?php  if(in_array(FRAME, array('account', 'system', 'adviertisement', 'wxapp', 'site')) && !in_array($_GPC['a'], array('news-show', 'notice-show'))) { ?>
-		<a href="javascript:;" class="js-big-main button-to-big color-gray" title="加宽"><?php  if($_GPC['main-lg']) { ?>正常<?php  } else { ?>宽屏<?php  } ?></a>
+	<a href="javascript:;" class="js-big-main button-to-big color-gray" title="加宽"><?php  if($_GPC['main-lg']) { ?>正常<?php  } else { ?>宽屏<?php  } ?></a>
+	<?php  if(in_array(FRAME, array('account', 'system', 'advertisement', 'wxapp', 'site')) && !in_array($_GPC['a'], array('news-show', 'notice-show'))) { ?>
 	<div class="panel panel-content main-panel-content <?php  if(!empty($frames['section']['platform_module_menu']['plugin_menu'])) { ?>panel-content-plugin<?php  } ?>">
 		<div class="content-head panel-heading main-panel-heading">
 			<?php  if(($_GPC['c'] != 'cloud' && !empty($_GPC['m']) && !in_array($_GPC['m'], array('keyword', 'special', 'welcome', 'default', 'userapi', 'service'))) || defined('IN_MODULE')) { ?>
-				<a href="<?php  echo url('home/welcome/account')?>" class="we7-head-back"><i class="wi wi-back-circle"></i></a>
-				<span class="we7-head-account"><a href="<?php  echo url('home/welcome/account')?>"><?php  echo $_W['account']['name'];?></a></span>
-				<?php  if(file_exists(IA_ROOT. "/addons/". $_W['current_module']['name']. "/icon-custom.jpg")) { ?>
-				<img src="<?php  echo tomedia("addons/".$_W['current_module']['name']."/icon-custom.jpg")?>" class="head-app-logo" onerror="this.src='./resource/images/gw-wx.gif'">
-				<?php  } else { ?>
-				<img src="<?php  echo tomedia("addons/".$_W['current_module']['name']."/icon.jpg")?>" class="head-app-logo" onerror="this.src='./resource/images/gw-wx.gif'">
-				<?php  } ?>
-				<span class="font-lg"><?php  echo $_W['current_module']['title'];?></span>
-
-				<!-- 兼容历史性问题：模块内获取不到模块信息$module的问题-start -->
-				<?php  if(CRUMBS_NAV == 1) { ?>
-				<?php  global $module;?>
-				<?php  } ?>
-				<!-- end -->
-			<?php  } else if(FRAME == 'account') { ?>
-				<img src="<?php  echo tomedia('headimg_'.$_W['account']['acid'].'.jpg')?>?time=<?php  echo time()?>" class="head-logo">
-				<span class="font-lg"><?php  echo $_W['account']['name'];?></span>
-
-				<?php  if($_W['account']['level'] == 1 || $_W['account']['level'] == 3) { ?>
-					<span class="label label-primary">订阅号</span><?php  if($_W['account']['level'] == 3) { ?><span class="label label-primary">已认证</span><?php  } ?>
-				<?php  } ?>
-				<?php  if($_W['account']['level'] == 2 || $_W['account']['level'] == 4) { ?>
-					<span class="label label-primary">服务号</span> <?php  if($_W['account']['level'] == 4) { ?><span class="label label-primary">已认证</span><?php  } ?>
-				<?php  } ?>
-				<?php  if($_W['uniaccount']['isconnect'] == 0) { ?>
-					<span class="tips-danger">
-						<i class="wi wi-warning-sign"></i>未接入微信公众号
-						<a href="<?php  echo url('account/post', array('uniacid' => $_W['account']['uniacid'], 'acid' => $_W['acid']))?>">立即接入</a>
-					</span>
-					<?php  } ?>
-					<span class="pull-right"><a href="<?php  echo url('account/display')?>" class="color-default we7-margin-left"><i class="wi wi-cut color-default"></i>切换公众号</a></span>
-				<?php  if(uni_permission($_W['uid'], $_W['uniacid']) != ACCOUNT_MANAGE_NAME_OPERATOR) { ?>
-					<span class="pull-right"><a href="<?php  echo url('account/post', array('uniacid' => $_W['account']['uniacid'], 'acid' => $_W['acid']))?>"><i class="wi wi-appsetting"></i>公众号设置</a></span>
-				<?php  } ?>
-				<span class="pull-right"><a href="<?php  echo url('utility/emulator');?>" target="_blank"><i class="wi wi-iphone"></i>模拟测试</a></span>
-			<?php  } ?>
-			<?php  if(FRAME == 'system') { ?>
-				<span class="font-lg"><i class="wi wi-setting"></i> 系统管理</span>
-			<?php  } ?>
-			<?php  if(FRAME == 'site') { ?>
-				<span class="font-lg"><i class="wi wi-system-site"></i> 站点管理</span>
-			<?php  } ?>
-			<?php  if(FRAME == 'adviertisement') { ?>
-				<span class="font-lg"><i class="wi wi-ad"></i>广告联盟</span>
-			<?php  } ?>
-			<?php  if(FRAME == 'wxapp') { ?>
-				<img src="<?php  echo tomedia('headimg_'.$_W['account']['acid'].'.jpg')?>?time=<?php  echo time()?>" class="head-logo">
-				<span class="wxapp-name"><?php  echo $wxapp_info['name'];?></span>
-				<span class="wxapp-version"><?php  echo $version_info['version'];?></span>
-				<div class="pull-right">
-					<a href="<?php  echo url('wxapp/version/display', array('uniacid' => $version_info['uniacid']))?>" class="color-default"><i class="wi wi-cut"></i>切换版本</a>
-					<?php  if(in_array($role, array(ACCOUNT_MANAGE_NAME_OWNER, ACCOUNT_MANAGE_NAME_MANAGER)) || $_W['isfounder']) { ?>
-					<a href="<?php  echo url('wxapp/manage/display', array('uniacid' => $version_info['uniacid']))?>" class="color-default"><i class="wi wi-text"></i>管理</a>
-					<?php  } ?>
-					<a href="<?php  echo url('wxapp/display')?>" class="color-default"><i class="wi wi-small-routine"></i>切换小程序</a>
-				</div>
+				<?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header-module', TEMPLATE_INCLUDEPATH)) : (include template('common/header-module', TEMPLATE_INCLUDEPATH));?>
+			<?php  } else { ?>
+				<?php (!empty($this) && $this instanceof WeModuleSite || 0) ? (include $this->template('common/header-' . FRAME, TEMPLATE_INCLUDEPATH)) : (include template('common/header-' . FRAME, TEMPLATE_INCLUDEPATH));?>
 			<?php  } ?>
 		</div>
 	<div class="panel-body clearfix main-panel-body <?php  if(!empty($_W['setting']['copyright']['leftmenufixed'])) { ?>menu-fixed<?php  } ?>">
@@ -154,25 +101,27 @@
 					<ul class="list-group">
 						<?php  if(is_array($frame_section['menu'])) { foreach($frame_section['menu'] as $menu_id => $menu) { ?>
 						<?php  if(!empty($menu['is_display'])) { ?>
-							<?php  if($menu_id == 'platform_module_more') { ?>
-							<li class="list-group-item list-group-more">
-								<a href="<?php  echo url('profile/module');?>"><span class="label label-more">更多应用</span></a>
-							</li>
-							<?php  } else { ?>
-							<li class="list-group-item <?php  if($menu['active']) { ?>active<?php  } ?>">
-								<a href="<?php  echo $menu['url'];?>" class="text-over" <?php  if($frame_section_id == 'platform_module') { ?>target="_blank"<?php  } ?>>
-								<?php  if($menu['icon']) { ?>
-								<?php  if($frame_section_id == 'platform_module') { ?>
-								<img src="<?php  echo $menu['icon'];?>"/>
-								<?php  } else { ?>
-								<i class="<?php  echo $menu['icon'];?>"></i>
+								<?php  if($menu_id == 'platform_module_more') { ?>
+									<li class="list-group-item list-group-more">
+										<a href="<?php  echo url('module/manage-account');?>"><span class="label label-more">更多应用</span></a>
+									</li>
+									<?php  } else { ?>
+									<?php  if(in_array($_W['role'], array(ACCOUNT_MANAGE_NAME_OWNER, ACCOUNT_MANAGE_NAME_FOUNDER)) && $menu_id == 'front_download' || $menu_id != 'front_download') { ?>
+									<li class="list-group-item <?php  if($menu['active']) { ?>active<?php  } ?>">
+										<a href="<?php  echo $menu['url'];?>" class="text-over" <?php  if($frame_section_id == 'platform_module') { ?>target="_blank"<?php  } ?>>
+										<?php  if($menu['icon']) { ?>
+											<?php  if($frame_section_id == 'platform_module') { ?>
+												<img src="<?php  echo $menu['icon'];?>"/>
+											<?php  } else { ?>
+												<i class="<?php  echo $menu['icon'];?>"></i>
+											<?php  } ?>
+										<?php  } ?>
+										<?php  echo $menu['title'];?>
+										</a>
+									</li>
+									<?php  } ?>
 								<?php  } ?>
-								<?php  } ?>
-								<?php  echo $menu['title'];?>
-								</a>
-							</li>
 							<?php  } ?>
-						<?php  } ?>
 						<?php  } } ?>
 					</ul>
 				</div>
@@ -218,7 +167,7 @@
 									<?php  if(!empty($menu['is_display'])) { ?>
 									<?php  if($menu_id == 'platform_module_more') { ?>
 									<li class="list-group-item list-group-more">
-										<a href="<?php  echo url('profile/module');?>"><span class="label label-more">更多应用</span></a>
+										<a href="<?php  echo url('module/manage-account');?>"><span class="label label-more">更多应用</span></a>
 									</li>
 									<?php  } else { ?>
 									<li class="list-group-item <?php  if($menu['active']) { ?>active<?php  } ?>">
@@ -243,7 +192,7 @@
 					</div>
 				</div>
 			<?php  } ?>
-			</div>
+		</div>
 		<div class="right-content">
 	<?php  } ?>
 <?php  } ?>
