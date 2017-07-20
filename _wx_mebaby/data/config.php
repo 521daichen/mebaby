@@ -3,11 +3,11 @@ defined('IN_IA') or exit('Access Denied');
 
 $config = array();
 
-$config['db']['master']['host'] = '127.0.0.1';
-$config['db']['master']['username'] = 'root';
-$config['db']['master']['password'] = 'root';
+$config['db']['master']['host'] = 'db1server.mysql.rds.aliyuncs.com';
+$config['db']['master']['username'] = 'wx_mebaby_root';
+$config['db']['master']['password'] = ')P9o*I7u^Y';
 $config['db']['master']['port'] = '3306';
-$config['db']['master']['database'] = '_wx_mebaby';
+$config['db']['master']['database'] = 'wx_mebaby';
 $config['db']['master']['charset'] = 'utf8';
 $config['db']['master']['pconnect'] = 0;
 $config['db']['master']['tablepre'] = 'ims_';
