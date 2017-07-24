@@ -107,7 +107,6 @@ if ($do == 'display') {
                         } 
                   }
         }';
-        $post = str_replace('\r\n','',$post);
 		$weiObj = WeAccount::create($_W['uniacid']);
         $token = $weiObj->fetch_token();
 	
@@ -374,7 +373,7 @@ function http_attach_post($url, $param)
         curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
     }
     if (is_string($param)) {
-        $strPOST = $param;
+        $strPOST = preg_replace('/\s/', '', $param);
     } else {
         $aPOST = array();
         foreach($param as $key=>$val){
