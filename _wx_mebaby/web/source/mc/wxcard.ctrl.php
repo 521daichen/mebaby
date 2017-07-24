@@ -129,6 +129,11 @@ if ($do == 'display') {
                 }';
                 $urlcr = "https://api.weixin.qq.com/card/membercard/activateuserform/set?access_token=".$token;
                 $restcr= http_attach_post($urlcr, $listcr);
+                $actErrCode=json_decode($rest)->errcode;
+                $actErrMsg=json_decode($rest)->errmsg;
+                if($actErrCode != 0){
+                    message("$actErrMsg", url('mc/wxcard/display'), 'error');
+                }
                 //var_dump($restcr);
             }
             $data = array(
