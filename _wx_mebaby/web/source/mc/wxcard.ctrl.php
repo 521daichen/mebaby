@@ -144,7 +144,8 @@ if ($do == 'display') {
             pdo_insert('mc_create_cards', $data);
             message('创建成功', url('mc/wxcard/manage'), 'success');
         }else{
-            message("$errmsg", url('mc/wxcard/display'), 'error');
+            echo $errmsg;
+            //message("$errmsg", url('mc/wxcard/display'), 'error');
         }
     }
 }
