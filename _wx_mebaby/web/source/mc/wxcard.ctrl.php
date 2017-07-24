@@ -107,6 +107,7 @@ if ($do == 'display') {
                         } 
                   }
         }';
+        $post = str_replace('\r\n','',$post);
 		$weiObj = WeAccount::create($_W['uniacid']);
         $token = $weiObj->fetch_token();
 	
