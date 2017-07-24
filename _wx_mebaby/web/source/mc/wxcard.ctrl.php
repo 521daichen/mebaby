@@ -48,10 +48,10 @@ if ($do == 'display') {
                   "card": {
                         "card_type": "MEMBER_CARD",
                         "member_card": {
-                             "auto_activate":'.$auto_activate.',
-                             "wx_activate": '.$wx_activate.',
-                             "wx_activate_after_submit" : '.$wx_activate_after_submit.',
-                             "wx_activate_after_submit_url":'.$wx_activate_url.',
+                             "auto_activate":"'.$auto_activate.'",
+                             "wx_activate": "'.$wx_activate.'",
+                             "wx_activate_after_submit" : "'.$wx_activate_after_submit.'",
+                             "wx_activate_after_submit_url":"'.$wx_activate_url.'",
                              "background_pic_url": "'.$background_pic_url.'",
                              "base_info": {
                               	 "pay_info": 
@@ -73,9 +73,9 @@ if ($do == 'display') {
                                     "type": "DATE_TYPE_PERMANENT"
                                 },
                                 "sku": {
-                                    "quantity": '.$quantity.'
+                                    "quantity": "'.$quantity.'"
                                 },                                
-                                "get_limit": '.$get_limit.',
+                                "get_limit": "'.$get_limit.'",
                                 
                                 "use_custom_code": false,
                                 "can_give_friend": false,
