@@ -67,7 +67,7 @@ if ($do == 'display') {
                                 "title":"'.$title.'",
                                 "color":"Color040",
                                 "notice":"使用时向服务员出示此券",
-                                "service_phone":"'.$service_phone.'"
+                                "service_phone":"'.$service_phone.'",
                                 "description":"'.$description.'",
                                 "date_info":{
                                     "type":"DATE_TYPE_PERMANENT"
