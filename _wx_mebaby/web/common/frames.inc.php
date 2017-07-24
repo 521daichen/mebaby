@@ -99,7 +99,7 @@ $we7_system_menu['account'] = array(
                     'title' => '卡券会员卡配置',
                     'url' => url('mc/wxcard'),
                     'icon' => 'wi wi-parameter-stting',
-                    'permission_name' => 'profile_setting',
+                    'permission_name' => 'profile_setting', 
                 ),
 			),
 		),

@@ -15,7 +15,7 @@ $setting = pdo_fetch("SELECT * FROM ".tablename('mc_create_cards')." WHERE uniac
 if ($do == 'display') {
 
     if (checksubmit('submit')) {
-		if (empty($_GPC['cardname'])) {
+		if (empty($_GPC['title'])) {
 			message('请填写会员卡名称');
 		}
 		if (empty($_GPC['create_method'])) {
@@ -24,13 +24,17 @@ if ($do == 'display') {
 
         $auto_activate=($_GPC['create_method']=='1')?'true':'false';
 		$wx_activate=(($_GPC['create_method']=='3')||($_GPC['create_method']=='2'))?'true':'false';
+		$wx_activate_url = $_GPC['wx_activate_after_submit_url'];
         $wx_activate_after_submit=($_GPC['create_method']=='3')?'true':'false';
-        $cardname=$_GPC['cardname'];
+        $title=$_GPC['title'];
+        $service_phone = $_GPC['service_phone'];
+        $description = $_GPC['description'];
         $quantity=$_GPC['quantity'];
         $get_limit=$_GPC['get_limit'];
         $brand_name=$_GPC['brand_name'];
         $background_pic_url=$_GPC['background_pic_url'];
         $logo_url=$_GPC['logo_url'];
+        $prerogative = $_GPC['prerogative'];
         $custom_field1_url=$_GPC['custom_field1_url'];
         $custom_field2_url=$_GPC['custom_field2_url'];
         $custom_url_name=$_GPC['custom_url_name'];
@@ -47,7 +51,7 @@ if ($do == 'display') {
                              "auto_activate":'.$auto_activate.',
                              "wx_activate": '.$wx_activate.',
                              "wx_activate_after_submit" : '.$wx_activate_after_submit.',
-                             "wx_activate_after_submit_url":"http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=RedirectActive&m=eloquence",
+                             "wx_activate_after_submit_url":'.$wx_activate_url.',
                              "background_pic_url": "'.$background_pic_url.'",
                              "base_info": {
                               	 "pay_info": 
@@ -60,11 +64,11 @@ if ($do == 'display') {
                                 "logo_url":  "'.$logo_url.'",
                                 "brand_name":"'.$brand_name.'", 
                                 "code_type": "CODE_TYPE_QRCODE",
-                                "title": "'.$cardname.'",
+                                "title": "'.$title.'",
                                 "color": "Color040",
                                 "notice": "使用时向服务员出示此券",
-                                "service_phone": "029-82460823"
-                                "description": "不可与其他优惠同享",
+                                "service_phone": "'.$service_phone.'"
+                                "description": "'.$description.'",
                                 "date_info": {
                                     "type": "DATE_TYPE_PERMANENT"
                                 },
@@ -76,7 +80,7 @@ if ($do == 'display') {
                                 "use_custom_code": false,
                                 "can_give_friend": false,
                                 "location_id_list": [
-                                    464836533
+                                    477402424
                                 ],
                                 "custom_url_name":"'.$custom_url_name.'",
                                 "custom_url": "'.$custom_url.'",
@@ -86,7 +90,7 @@ if ($do == 'display') {
                              },
                              "supply_bonus": true,
                              "supply_balance": false,
-                             "prerogative": "1元1积分，1000积分抵现金50元",
+                             "prerogative": "'.$prerogative.'",
                              
                              "custom_field1": {
                                 "name_type": "FIELD_NAME_TYPE_LEVEL",
@@ -113,15 +117,14 @@ if ($do == 'display') {
         $errcode=json_decode($rest)->errcode;
         $errmsg=json_decode($rest)->errmsg;
         if($errcode==0){
-            $card_id=json_decode($rest)->card_id;
+            $card_id=$rest['card_id'];
             if($wx_activate&&$card_id){
                 $listcr = '{
                               "card_id":"'.$card_id.'",
                               "required_form":{
                                       "common_field_id_list": [
                                                "USER_FORM_INFO_FLAG_MOBILE",
-                                               "USER_FORM_INFO_FLAG_NAME",
-                                               "USER_FORM_INFO_FLAG_IDCARD"
+                                               "USER_FORM_INFO_FLAG_NAME"
                                       ]
                               }
                 }';
@@ -130,7 +133,7 @@ if ($do == 'display') {
                 //var_dump($restcr);
             }
             $data = array(
-                'cardname' => $_GPC['cardname'],
+                'cardname' => $_GPC['title'],
                 'create_method' => $_GPC['create_method'],
                 'uniacid'=>$_GPC['__uniacid'],
                 'card_id'=>$card_id,
@@ -144,7 +147,6 @@ if ($do == 'display') {
             message("$errmsg", url('mc/wxcard/display'), 'error');
         }
     }
-
 }
 
 
@@ -359,4 +361,35 @@ if ($do == 'delcur') {
             message('取消当前卡状态失败',url('mc/wxcard/manage'),'error');
     }
 }
+
+function http_attach_post($url, $param)
+{
+    $oCurl = curl_init();
+    if(stripos($url,"https://")!==FALSE){
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+    }
+    if (is_string($param)) {
+        $strPOST = $param;
+    } else {
+        $aPOST = array();
+        foreach($param as $key=>$val){
+            $aPOST[] = $key."=".urlencode($val);
+        }
+        $strPOST =  join("&", $aPOST);
+    }
+    curl_setopt($oCurl, CURLOPT_URL, $url);
+    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+    curl_setopt($oCurl, CURLOPT_POST,true);
+    curl_setopt($oCurl, CURLOPT_POSTFIELDS,$strPOST);
+    $sContent = curl_exec($oCurl);
+    $aStatus = curl_getinfo($oCurl);
+    curl_close($oCurl);
+    if(intval($aStatus["http_code"])==200){
+        return $sContent;
+    }else{
+        return false;
+    }
+}
+
 template('mc/wxcard');
