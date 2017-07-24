@@ -113,13 +113,10 @@ if ($do == 'display') {
         $url = "https://api.weixin.qq.com/card/create?access_token=".$token;
 
         $rest = http_attach_post($url, $post);
-        echo "<pre>";
-        var_dump($rest);
-        echo "</pre>";
         $errcode=json_decode($rest)->errcode;
         $errmsg=json_decode($rest)->errmsg;
         if($errcode==0){
-            $card_id=$rest['card_id'];
+            $card_id=json_decode($rest)->card_id;
             if($wx_activate&&$card_id){
                 $listcr = '{
                               "card_id":"'.$card_id.'",
@@ -146,8 +143,7 @@ if ($do == 'display') {
             pdo_insert('mc_create_cards', $data);
             message('创建成功', url('mc/wxcard/manage'), 'success');
         }else{
-            echo $post."<br />".$errmsg;
-            //message("$errmsg", url('mc/wxcard/display'), 'error');
+            message("$errmsg", url('mc/wxcard/display'), 'error');
         }
     }
 }
@@ -163,7 +159,8 @@ if ($do == 'manage') {
 }
 
 if ($do == 'delete') {
-    $token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+    $weiObj = WeAccount::create($_W['uniacid']);
+    $token = $weiObj->fetch_token();
     $urlde = "https://api.weixin.qq.com/card/delete?access_token=".$token;
     $card_id = $_GPC['card_id'];
     $postde='{
@@ -182,7 +179,8 @@ if ($do == 'delete') {
     }
 }
 if ($do == 'QR') {
-    $token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+    $weiObj = WeAccount::create($_W['uniacid']);
+    $token = $weiObj->fetch_token();
     $urlqr = "https://api.weixin.qq.com/card/qrcode/create?access_token=".$token;
     $card_id = $_GPC['card_id'];
     $postqr='{
@@ -205,7 +203,8 @@ if ($do == 'QR') {
     echo "<script>location.href='$show_qrcode_url'</script>";
 }
 if ($do == 'paygift') {
-    $token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+    $weiObj = WeAccount::create($_W['uniacid']);
+    $token = $weiObj->fetch_token();
     $urlgc="https://api.weixin.qq.com/card/paygiftcard/add?access_token=".$token;
     $card_id = $_GPC['card_id'];
     //var_dump($card_id);
@@ -263,7 +262,8 @@ if ($do == 'paygift') {
 }
 
 if ($do == 'delgc') {
-    $token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+    $weiObj = WeAccount::create($_W['uniacid']);
+    $token = $weiObj->fetch_token();
     $urlde =  "https://api.weixin.qq.com/card/paygiftcard/delete?access_token=" . $token;
     $rule_id = $_GPC['rule_id'];
     $postde='{
@@ -287,7 +287,8 @@ if ($do == 'update') {
     $card_id = $_GPC['card_id'];
 }
 if ($do == 'wxupdate') {
-    $token = file_get_contents("http://wx.cnsaga.com/app/index.php?i=4&c=entry&do=getToken&m=member");
+    $weiObj = WeAccount::create($_W['uniacid']);
+    $token = $weiObj->fetch_token();
     $urlup = "https://api.weixin.qq.com/card/update?access_token=".$token;
     $card_id = $_GPC['card_id'];
      $background_pic_url=$_GPC['background_pic_url'];
