@@ -49,10 +49,10 @@ if ($do == 'display') {
                         "card_type": "MEMBER_CARD",
                         "member_card": {
                              "auto_activate":"'.$auto_activate.'",
-                             "wx_activate": "'.$wx_activate.'",
-                             "wx_activate_after_submit" : "'.$wx_activate_after_submit.'",
+                             "wx_activate":"'.$wx_activate.'",
+                             "wx_activate_after_submit":"'.$wx_activate_after_submit.'",
                              "wx_activate_after_submit_url":"'.$wx_activate_url.'",
-                             "background_pic_url": "'.$background_pic_url.'",
+                             "background_pic_url":"'.$background_pic_url.'",
                              "base_info": {
                               	 "pay_info": 
                  				{
@@ -61,48 +61,48 @@ if ($do == 'display') {
                             			"is_swipe_card":true
                          			}
                         		},
-                                "logo_url":  "'.$logo_url.'",
+                                "logo_url":"'.$logo_url.'",
                                 "brand_name":"'.$brand_name.'", 
-                                "code_type": "CODE_TYPE_QRCODE",
-                                "title": "'.$title.'",
-                                "color": "Color040",
-                                "notice": "使用时向服务员出示此券",
-                                "service_phone": "'.$service_phone.'"
-                                "description": "'.$description.'",
-                                "date_info": {
-                                    "type": "DATE_TYPE_PERMANENT"
+                                "code_type":"CODE_TYPE_QRCODE",
+                                "title":"'.$title.'",
+                                "color":"Color040",
+                                "notice":"使用时向服务员出示此券",
+                                "service_phone":"'.$service_phone.'"
+                                "description":"'.$description.'",
+                                "date_info":{
+                                    "type":"DATE_TYPE_PERMANENT"
                                 },
-                                "sku": {
-                                    "quantity": "'.$quantity.'"
+                                "sku":{
+                                    "quantity":"'.$quantity.'"
                                 },                                
-                                "get_limit": "'.$get_limit.'",
+                                "get_limit":"'.$get_limit.'",
                                 
-                                "use_custom_code": false,
-                                "can_give_friend": false,
-                                "location_id_list": [
+                                "use_custom_code":false,
+                                "can_give_friend":false,
+                                "location_id_list":[
                                     477402424
                                 ],
                                 "custom_url_name":"'.$custom_url_name.'",
-                                "custom_url": "'.$custom_url.'",
+                                "custom_url":"'.$custom_url.'",
                                 "promotion_url_name":"'.$promotion_url_name.'",
                                 "promotion_url":"'.$promotion_url.'",
-                                "need_push_on_view": false
+                                "need_push_on_view":false
                              },
-                             "supply_bonus": true,
-                             "supply_balance": false,
-                             "prerogative": "'.$prerogative.'",
+                             "supply_bonus":true,
+                             "supply_balance":false,
+                             "prerogative":"'.$prerogative.'",
                              
-                             "custom_field1": {
-                                "name_type": "FIELD_NAME_TYPE_LEVEL",
-                                "url": "'.$custom_field1_url.'"
+                             "custom_field1":{
+                                "name_type":"FIELD_NAME_TYPE_LEVEL",
+                                "url":"'.$custom_field1_url.'"
                              },
-                             "custom_field2": {
-                                "name_type": "FIELD_NAME_TYPE_COUPON",
+                             "custom_field2":{
+                                "name_type":"FIELD_NAME_TYPE_COUPON",
                                 "url":"'.$custom_field2_url.'"
                              },
-                             "custom_cell1": {
+                             "custom_cell1":{
                                 "name":"'.$custom_cell1_name.'",
-                                "url": "'.$custom_cell1_url.'"
+                                "url":"'.$custom_cell1_url.'"
                              }
                         } 
                   }
@@ -113,7 +113,9 @@ if ($do == 'display') {
         $url = "https://api.weixin.qq.com/card/create?access_token=".$token;
 
         $rest = http_attach_post($url, $post);
-        //var_dump($rest);
+        echo "<pre>";
+        var_dump($rest);
+        echo "</pre>";
         $errcode=json_decode($rest)->errcode;
         $errmsg=json_decode($rest)->errmsg;
         if($errcode==0){
