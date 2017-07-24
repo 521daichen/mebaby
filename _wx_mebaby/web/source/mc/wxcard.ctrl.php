@@ -375,11 +375,7 @@ function http_attach_post($url, $param)
     if (is_string($param)) {
         $strPOST = preg_replace('/\s/', '', $param);
     } else {
-        $aPOST = array();
-        foreach($param as $key=>$val){
-            $aPOST[] = $key."=".urlencode($val);
-        }
-        $strPOST =  join("&", $aPOST);
+        return false;
     }
     curl_setopt($oCurl, CURLOPT_URL, $url);
     curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
