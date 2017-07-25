@@ -93,7 +93,7 @@ class MemberModuleSite extends WeModuleSite
      */
     protected function regCrmCust($name,$tel){
 
-        $request_url = $this->apiHost['crm_regCust']."&name=".$name."&phone=".$tel.$this->apiSignature();
+        $request_url = $this->hostList['crm_regCust']."&name=".$name."&phone=".$tel.$this->apiSignature();
 
         $rs = $this->http_attach_post($request_url,NULL);
 
@@ -176,7 +176,7 @@ class MemberModuleSite extends WeModuleSite
      * 查询CRM会员信息
      */
     protected function getCustInfoFromCRM($tel){
-        $request_url = $this->apiHost['crm_getCustInfo'].$this->apiSignature();
+        $request_url = $this->hostList['crm_getCustInfo'].$this->apiSignature();
         $requestData = "&customerTel=".$tel;
 
         $rs = $this->http_attach_post($request_url.$requestData,NULL);
@@ -223,7 +223,7 @@ class MemberModuleSite extends WeModuleSite
      */
     protected function redirectActive($activate_ticket){
         $rsArr = array();
-        $request_url = $this->apiHost['activatempinfo'].$this->linkToken();
+        $request_url = $this->hostList['activatempinfo'].$this->linkToken();
         $requestData = array("activate_ticket"=>$activate_ticket);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
         echo "url:".$request_url."<br />";
