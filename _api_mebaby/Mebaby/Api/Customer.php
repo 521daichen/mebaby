@@ -124,7 +124,7 @@ class Api_Customer extends PhalApi_Api{
         }
 
         $rs['data'] = $info['data'];
-        return $rs;
+        return $info['data'];
 
     }
     /**
