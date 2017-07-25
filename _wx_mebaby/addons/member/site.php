@@ -26,7 +26,8 @@ class MemberModuleSite extends WeModuleSite
         'userinfo'          =>  'https://api.weixin.qq.com/card/membercard/userinfo/get',//拉取会员信息接口
         'activatetempinfo'  =>  'https://api.weixin.qq.com/card/membercard/activatetempinfo/get',//获取用户提交资料, 开发者根据activate_ticket获取
         'updateuser'        =>  'https://api.weixin.qq.com/card/membercard/updateuser',//更新会员信息
-        'decrypt'           =>  'https://api.weixin.qq.com/card/code/decrypt',//解码
+        'activatempinfo'    =>  'https://api.weixin.qq.com/card/membercard/activatetempinfo/get',//解码ticket
+        'decrypt'           =>  'https://api.weixin.qq.com/card/code/decrypt',//
         'crm_getCustInfo'   =>  'http://api.mebaby.cn/index.php?service=Customer.GetCustInfoByMobile', //获取会员信息
         'crm_regCust'       =>  'http://api.mebaby.cn/index.php?service=Customer.RegCust',//注册会员
 
@@ -222,7 +223,7 @@ class MemberModuleSite extends WeModuleSite
      */
     protected function redirectActive($activate_ticket){
         $rsArr = array();
-        $request_url = $this->apiHost['activetempinfo'].$this->linkToken();
+        $request_url = $this->apiHost['activatempinfo'].$this->linkToken();
         $requestData = array("activate_ticket"=>$activate_ticket);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
         echo "url:".$request_url."<br />";
