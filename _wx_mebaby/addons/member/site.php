@@ -39,10 +39,12 @@ class MemberModuleSite extends WeModuleSite
 
         global $_W,$_GPC;
 
+        $activate_ticket = $_GPC['activate_ticket'];
+
         //获取激活会员信息
         $openid = $_W['openid'];
         $code = $this->decryptCode();
-        $afterCommitInfo = $this->redirectActive();
+        $afterCommitInfo = $this->redirectActive($activate_ticket);
         $name = $afterCommitInfo['USER_FORM_INFO_FLAG_NAME'];
         $tel = $afterCommitInfo['USER_FORM_INFO_FLAG_MOBILE'];
         if($name && $tel){
@@ -218,11 +220,10 @@ class MemberModuleSite extends WeModuleSite
     /*
      * 使用ticket获取 微信字段信息
      */
-    protected function redirectActive(){
+    protected function redirectActive($activate_ticket){
         $rsArr = array();
-
         $request_url = $this->apiHost['activetempinfo'].$this->linkToken();
-        $requestData = array("activate_ticket"=>$_GET['activate_ticket']);
+        $requestData = array("activate_ticket"=>$activate_ticket);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
         $rs = json_decode($afterCommitInfo,true);
         echo "11111<br />";
