@@ -7,7 +7,7 @@ ini_set("display_errors", "On");
 error_reporting(E_ALL | E_STRICT);*/
 require 'function.php';
 
-load()->classs('WeAccount');
+load()->classs('account');
 
 //load()->classs('Contract');
 
