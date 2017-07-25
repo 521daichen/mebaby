@@ -46,6 +46,8 @@ class MemberModuleSite extends WeModuleSite
         $openid = $_W['openid'];
         $code = $this->decryptCode();
         $afterCommitInfo = $this->redirectActive($activate_ticket);
+        print_r($afterCommitInfo);
+        exit();
         $name = $afterCommitInfo['USER_FORM_INFO_FLAG_NAME'];
         $tel = $afterCommitInfo['USER_FORM_INFO_FLAG_MOBILE'];
         if($name && $tel){
