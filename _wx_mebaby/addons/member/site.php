@@ -225,6 +225,8 @@ class MemberModuleSite extends WeModuleSite
         $request_url = $this->apiHost['activetempinfo'].$this->linkToken();
         $requestData = array("activate_ticket"=>$activate_ticket);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
+        echo "url:".$request_url."<br />";
+        echo "param:".json_encode($requestData)."<br />";
         echo $afterCommitInfo;
         $rs = json_decode($afterCommitInfo,true);
         echo "11111<br />";
