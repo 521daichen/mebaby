@@ -58,10 +58,14 @@ class MemberModuleSite extends WeModuleSite
                     include $this->template("reg/checkCustInfo");
                 }else{
                     //crm有数据 激活会员
-                    $customerUid = $crm['customerUid'];
-                    $rs = $this->doMobileactiviteMember($openid,$name,$tel,$customerUid);
+                    $rs = $this->doMobileactiviteMember($openid,$name,$tel,$crm['customerUid']);
                     if($rs){
-                        header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
+                        $actCardRs = $this->ActivateCard($tel,$code,$crm['point']);
+                        if($actCardRs) {
+                            header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
+                        }else{
+                            echo "<script>alert('对不起，卡券激活失败，请联系客服：029-82460823！');window.close();</script>";
+                        }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
                         include $this->template("reg/checkCustInfo");
@@ -71,10 +75,15 @@ class MemberModuleSite extends WeModuleSite
                 //crm没有数据 注册会员 激活会员操作
                 $regRs = $this->regCrmCust($name,$tel);
                 if($regRs){
-                    $custInfo = $this->getCustInfoFromCRM($tel);
-                    $actRs = $this->doMobilememberActive($openid,$name,$tel,$custInfo['customerUid']);
+                    $crm = $this->getCustInfoFromCRM($tel);
+                    $actRs = $this->doMobilememberActive($openid,$name,$tel,$crm['customerUid']);
                     if($actRs){
-                        header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
+                        $actCardRs = $this->ActivateCard($tel,$code,$crm['point']);
+                        if($actCardRs) {
+                            header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
+                        }else{
+                            echo "<script>alert('对不起，卡券激活失败，请联系客服：029-82460823！');window.close();</script>";
+                        }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
                         include $this->template("reg/checkCustInfo");
@@ -86,6 +95,30 @@ class MemberModuleSite extends WeModuleSite
         }else{
             echo "<script>alert('对不起，获取注册信息异常，请再试一次！');window.close();</script>";
         }
+    }
+
+    /**
+     * 激活会员卡接口
+     * @param $memberShip
+     * @param $code
+     */
+    protected function ActivateCard($memberShip, $code, $score)
+    {
+        $sendInfo = array(
+            "init_bonus"=>$score,
+            "membership_number"=>$memberShip,
+            "code"=>$code
+        );
+        $sendData = json_encode($sendInfo);
+        $request_url = $this->hostList['activate'] . $this->linkToken();
+        $response = $this->http_attach_post($request_url, $sendData);
+
+        $reMsg = json_decode($response, true);
+        if (0 == $reMsg['errcode']) {
+            return true;
+        }
+        return false;
+
     }
 
     /*
@@ -226,12 +259,7 @@ class MemberModuleSite extends WeModuleSite
         $request_url = $this->hostList['activatempinfo'].$this->linkToken();
         $requestData = array("activate_ticket"=>$activate_ticket);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
-        echo "url:".$request_url."<br />";
-        echo "param:".json_encode($requestData)."<br />";
-        echo $afterCommitInfo;
         $rs = json_decode($afterCommitInfo,true);
-        echo "11111<br />";
-        var_dump($rs);
         if($rs['errcode'] == 0){
             $commitArr = $rs['info']['common_field_list'];
             foreach($commitArr as $k => $v){
