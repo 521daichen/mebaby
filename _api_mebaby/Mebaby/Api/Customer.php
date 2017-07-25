@@ -108,24 +108,14 @@ class Api_Customer extends PhalApi_Api{
     public function getCustInfoByMobile(){
         $this->report(__FUNCTION__);
 
-        $rs = array(
-            'ret' => 200,
-            'msg' => '',
-            'data' => array()
-        );
-
         $domain = new Domain_Customer();
         $info = $domain->getCustInfoByMobile($this->customerTel);
 
-        if($info['status'] != 'success' ){
-            DI()->logger->debug(__FUNCTION__.'找不到用户信息，参数信息为： '.$this->customerTel.' 错误代码：'.$info['data']." ");
-            $rs['ret'] = 500;
-            $rs['msg'] = $info['data'];
+        if($info['status'] != 'success' ) {
+            DI()->logger->debug(__FUNCTION__ . '找不到用户信息，参数信息为： ' . $this->customerTel . ' 错误代码：' . $info['data'] . " ");
         }
 
-        $rs['data'] = $info['data'];
         return $info['data'];
-
     }
     /**
      * 添加会员
@@ -136,12 +126,6 @@ class Api_Customer extends PhalApi_Api{
      */
     public function regCust(){
         $this->report(__FUNCTION__);
-
-        $rs = array(
-            'ret' => 200,
-            'msg' => '',
-            'data' => array()
-        );
 
         $customerInfo = array(
             'categoryName' => '会员',
@@ -163,15 +147,11 @@ class Api_Customer extends PhalApi_Api{
         $domain = new Domain_Customer();
         $info = $domain->addCustomer($customerInfo);
 
-        if($info['status'] != 'success'){
-            DI()->logger->debug(__FUNCTION__.'注册会员失败，参数信息为：电话：'.$this->phone.' 姓名：'.$this->name.' 错误代码：'.$info['data']." ");
-            $rs['ret'] = 500;
-            $rs['msg'] = $info['data'];
+        if($info['status'] != 'success') {
+            DI()->logger->debug(__FUNCTION__ . '注册会员失败，参数信息为：电话：' . $this->phone . ' 姓名：' . $this->name . ' 错误代码：' . $info['data'] . " ");
         }
 
-        $rs['data'] = $info['data'];
-
-        return $rs;
+        return $info['data'];
 
     }
 
@@ -185,12 +165,6 @@ class Api_Customer extends PhalApi_Api{
     public function editCust(){
         $this->report(__FUNCTION__);
 
-        $rs = array(
-            'ret' => 200,
-            'msg' => '',
-            'data' => array()
-        );
-
         $custUpdate = array(
             'customerUid' => $this->customerUid,
             'name' => $this->name,
@@ -203,14 +177,9 @@ class Api_Customer extends PhalApi_Api{
 
         if($info['status'] != 'success'){
             DI()->logger->debug(__FUNCTION__.'修改会员信息失败，参数信息为： uid:'.$this->customerUid.' 姓名：'.$this->name.' 电话：'.$this->phone.' 错误代码：'.$info['data']." ");
-            $rs['ret'] = 500;
-            $rs['msg'] = $info['data'];
         }
 
-        $rs['data'] = $info['data'];
-
-        return $rs;
-
+        return $info['data'];
     }
 
     /**
@@ -223,11 +192,6 @@ class Api_Customer extends PhalApi_Api{
     public function updateBP(){
         $this->report(__FUNCTION__);
 
-        $rs = array(
-            'ret' => 200,
-            'msg' => '',
-            'data' => array()
-        );
 
         switch($this->type){
             case 'B':
@@ -265,13 +229,10 @@ class Api_Customer extends PhalApi_Api{
 
         if($info['status'] != 'success'){
             DI()->logger->debug(__FUNCTION__.'修改会员'.$typeString.'失败，参数信息为： uid:'.$this->customerUid.' 姓名：'.$this->name.' 电话：'.$this->phone.' 错误代码：'.$info['data']." ");
-            $rs['ret'] = 500;
-            $rs['msg'] = $info['data'];
+
         }
 
-        $rs['data'] = $info['data'];
-
-        return $rs;
+        return $info['data'];
 
     }
 
