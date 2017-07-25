@@ -101,7 +101,7 @@ class Model_Customer extends PhalApi_Model_NotORM{
 
         if($rs['status'] == 'success'){
 
-            return array('status'=>'success','data'=>'');
+            return array('status'=>'success','data'=>'success');
 
         }else{
 
