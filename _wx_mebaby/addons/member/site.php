@@ -46,8 +46,6 @@ class MemberModuleSite extends WeModuleSite
         $openid = $_W['openid'];
         $code = $this->decryptCode();
         $afterCommitInfo = $this->redirectActive($activate_ticket);
-        print_r($afterCommitInfo);
-        exit();
         $name = $afterCommitInfo['USER_FORM_INFO_FLAG_NAME'];
         $tel = $afterCommitInfo['USER_FORM_INFO_FLAG_MOBILE'];
         if($name && $tel){
@@ -264,11 +262,8 @@ class MemberModuleSite extends WeModuleSite
         $rs = json_decode($afterCommitInfo,true);
         if($rs['errcode'] == 0){
             $commitArr = $rs['info']['common_field_list'];
-            echo "<pre>";
-            print_r($commitArr);
-            echo "</pre>";
             foreach($commitArr as $k => $v){
-
+                $rsArr[$v['name']] = $v['value'];
             }
             return $rsArr;
         }else{
