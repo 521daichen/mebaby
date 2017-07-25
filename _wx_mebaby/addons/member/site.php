@@ -225,11 +225,10 @@ class MemberModuleSite extends WeModuleSite
         $requestData = array("activate_ticket"=>$_GET['activate_ticket']);
         $afterCommitInfo = $this->http_attach_post($request_url,json_encode($requestData));
         $rs = json_decode($afterCommitInfo,true);
-
+        echo "11111<br />";
+        var_dump($rs);
         if($rs['errcode'] == 0){
             $commitArr = $rs['info']['common_field_list'];
-            print_r($commitArr);
-            exit();
             foreach($commitArr as $k => $v){
                $rsArr[$v['name']] = $v['val'];
             }
