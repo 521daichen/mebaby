@@ -264,9 +264,11 @@ class MemberModuleSite extends WeModuleSite
         $rs = json_decode($afterCommitInfo,true);
         if($rs['errcode'] == 0){
             $commitArr = $rs['info']['common_field_list'];
+            echo "<pre>";
             print_r($commitArr);
+            echo "</pre>";
             foreach($commitArr as $k => $v){
-               $rsArr[$v['name']] = $v['val'];
+
             }
             return $rsArr;
         }else{
