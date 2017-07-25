@@ -80,6 +80,8 @@ class MemberModuleSite extends WeModuleSite
                    echo "<script>alert('对不起，服务器异常，请再试一次！');window.close();</script>";
                 }
             }
+        }else{
+            echo "<script>alert('对不起，获取注册信息异常，请再试一次！');window.close();</script>";
         }
     }
 
