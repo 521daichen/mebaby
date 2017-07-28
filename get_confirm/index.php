@@ -5,7 +5,7 @@ $action = $_REQUEST['action'];
 $scene = $_REQUEST['scene'];
 $reserved = $_REQUEST['reserved'];
 
-$token = "AMdnZsQEbwgdMz49VAhvI63yxwiWmrLdLnlxRnNbXhMcB4TjxZUp3Gfn-d_pHrQp4J_LjqN11LUrpC8Yc5BzpRaX1fcO4crkzYzOfIY_SSjwjaW0Kfz7JK1Qi5KwR9_aLKYaADAHGU";
+$token = "AMdnZsQEbwgdMz49VAhvI_FRT9aHvyW6mnFBW1INqcdIfB5Ff3lt4PAihKr2fUbl_3mGV5FRb4GgtSW8O-fyx0pfseihI5jnqNZh6kzrwihrkNX758yWjZWThk9ueR9lFGPcAEAIJS";
 
 if($action == "confirm"){
 
