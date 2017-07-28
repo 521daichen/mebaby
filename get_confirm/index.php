@@ -9,7 +9,7 @@ $token = "AMdnZsQEbwgdMz49VAhvI_FRT9aHvyW6mnFBW1INqcdIfB5Ff3lt4PAihKr2fUbl_3mGV5
 
 if($action == "confirm"){
 
-	$url = "http://www.baidu.com";
+	$url = "http://wechat.mebaby.cn/app/index.php?i=2&c=entry&eid=41";
 
 	$title = "测试一次性订阅授权";
 
