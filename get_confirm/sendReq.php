@@ -7,8 +7,6 @@ $reserved = md5("pangziwang");
 
 $http = "https://mp.weixin.qq.com/mp/subscribemsg?action=get_confirm&appid=".$appid."&scene=".$scene."&template_id=".$template_id."&redirect_url=".$redirect_url."&reserved=".$reserved;
 
-echo "<img src='http://qr.topscan.com/api.php?text=".$http."' width=500 /> <br />";
-
 echo $http;
 
 
