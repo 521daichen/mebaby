@@ -20,15 +20,15 @@ if($action == "confirm"){
 	$http = "https://api.weixin.qq.com/cgi-bin/message/template/subscribe?access_token=".$token;
 
 	$param = '{
-				“touser”:"'.$openid.'",
-				“template_id”:"'.$template_id.'",
-				“url”:"'.$url.'",
-				“scene”:"'.$scene.'",
-				“title”:"'.$title.'",
-				“data”:{
-					“content”:{
-						“value”:"'.$value.'",
-						“color”:"'.$color.'"
+				"touser":"'.$openid.'",
+				"template_id":"'.$template_id.'",
+				"url":"'.$url.'",
+				"scene":"'.$scene.'",
+				"title":"'.$title.'",
+				"data":{
+					"content":{
+						"value":"'.$value.'",
+						"color":"'.$color.'"
 	                }
 	            }
 			}';
