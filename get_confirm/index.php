@@ -37,6 +37,8 @@ if($action == "confirm"){
 
 	$rs = json_decode($rs,true);
 
+	var_dump($rs);
+
 	if($rs['errcode'] != '0'){
 		file_put_contents('logs', $rs['errmsg']);
 	}
