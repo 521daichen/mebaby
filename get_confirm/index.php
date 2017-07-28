@@ -5,7 +5,7 @@ $action = $_REQUEST['action'];
 $scene = $_REQUEST['scene'];
 $reserved = $_REQUEST['reserved'];
 
-$token = "bykY4X0GC1pBLE32kkHWPIvS7YIfZ6MoCQv327p0cdks2LuShbPJ3WSM7KVbDDzUKYwxwJb7PE-63TUfj1yo0o9pupikS4BMnlHrPR0I7IHPtnKxA_2a8HVa_6UT5VX3EVJdAFAIZN";
+$token = "AMdnZsQEbwgdMz49VAhvI63yxwiWmrLdLnlxRnNbXhMcB4TjxZUp3Gfn-d_pHrQp4J_LjqN11LUrpC8Yc5BzpRaX1fcO4crkzYzOfIY_SSjwjaW0Kfz7JK1Qi5KwR9_aLKYaADAHGU";
 
 if($action == "confirm"){
 
@@ -20,18 +20,18 @@ if($action == "confirm"){
 	$http = "https://api.weixin.qq.com/cgi-bin/message/template/subscribe?access_token=".$token;
 
 	$param = '{
-“touser”:"'.$openid.'",
-“template_id”:"'.$template_id.'",
-“url”:"'.$url.'",
-“scene”:"'.$scene.'",
-“title”:"'.$title.'",
-“data”:{
-“content”:{
-“value”:"'.$value.'",
-“color”:"'.$color.'"
-                    }
-               }
-}';
+				“touser”:"'.$openid.'",
+				“template_id”:"'.$template_id.'",
+				“url”:"'.$url.'",
+				“scene”:"'.$scene.'",
+				“title”:"'.$title.'",
+				“data”:{
+					“content”:{
+						“value”:"'.$value.'",
+						“color”:"'.$color.'"
+	                }
+	            }
+			}';
 
 	$rs = http_attach_post($http,$param);
 
