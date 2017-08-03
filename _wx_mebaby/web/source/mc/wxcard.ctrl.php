@@ -218,7 +218,7 @@ if ($do == 'paygift') {
                                    "type": "RULE_TYPE_PAY_MEMBER_CARD",
                                    "base_info": {
                                          "mchid_list": [
-                                                   "10058915"
+                                                   "1294322901"
                                          ],
                                          "begin_time": 1480317217,
                                          "end_time": 1680317217
