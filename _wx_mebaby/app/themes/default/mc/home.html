@@ -9,15 +9,15 @@
 				<div class="mui-mt5">{if !empty($profile['mobile'])}<span style="color:white">{$profile['mobile']}</span>{else}<a href="{php echo url('mc/bond/mobile', array('op' => 'mobilechange'))}" class="mui-btn mui-btn-outlined">绑定手机</a>{/if}</div>
 			</div>
 			<div class="mui-row banner-nav">
+				<!--
 				<div class="mui-col-xs-6 mui-text-center">
-					<!--
 					<a href="{php echo url('mc/bond/credits', array('credittype' => 'credit2', 'type' => 'record', 'period' => '1'))}">
 
 						<span class="fa fa-rmb"></span>
 						{$creditnames[$behavior['currency']]['title']}: <span class="mui-ml5 mui-big">{$credits[$behavior['currency']]}</span>
 					</a>
-					-->
 				</div>
+				-->
 				<div class="mui-col-xs-6 mui-text-center">
 					<a href="{php echo url('mc/bond/credits', array('credittype' => 'credit1', 'type' => 'record', 'period' => '1'))}">
 						<span class="fa fa-database"></span>
