@@ -110,7 +110,7 @@ function setCustPointFromCRM($tel,$uid){
         $point = $rsArr['data'][0]['point'];
         $rs = pdo_fetch("select code from ims_mc_card_members where uid = '".$uid."'");
         $code = $rs['code'];
-        $rs = pdo_fetch("select card_id from ims_mc_create_cards where cur_card_id = '1' limit 1 order by id desc");
+        $rs = pdo_fetch("select card_id from ims_mc_create_cards where cur_card_id = '1' order by id desc limit 1 ");
         $card_id = $rs['card_id'];
         //同步本地积分
         pdo_update('mc_members', array('credit1'=>$point), array('uid'=>$uid));
