@@ -124,8 +124,7 @@ function setCustPointFromCRM($tel,$uid){
             "bonus" => $point
         );
         $sendJson = json_encode($sendInfo);
-        echo $sendJson;
-
+        http_attach_post($host, $sendJson);
     }else{
         return false;
     }
