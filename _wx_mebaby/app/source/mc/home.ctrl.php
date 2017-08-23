@@ -34,6 +34,7 @@ if ($do == 'display') {
 		}
 	}
 	$profile = mc_fetch($_W['member']['uid'], array('nickname', 'avatar', 'mobile', 'groupid'));
+    setCustPointFromCRM($profile['mobile'],$_W['member']['uid']);
 	$mcgroups = mc_groups();
 	$profile['group'] = $mcgroups[$profile['groupid']];
 	if(isset($setting['uc']['status']) && $setting['uc']['status'] == '1') {
@@ -62,5 +63,83 @@ if ($do == 'display') {
 		}
 	}
 }
+function setCustPointFromCRM($tel,$uid){
+    $token = "2cc72e8f408480bee24a73bec67fa8a7";
+    $timestamp = time();
+    $tmpArr = array($token,$timestamp);
+    $tmpStr = implode($tmpArr);
+    $tmpStr = sha1(strtoupper($tmpStr));
+    $apiSign = "&signature=".$tmpStr."&timestamp=".$timestamp;
 
+    $request_url = 'http://api.mebaby.cn/index.php?service=Customer.GetCustInfoByMobile'.$apiSign;
+    $requestData = "&customerTel=".$tel;
+
+    $rs = http_attach_post($request_url.$requestData,NULL);
+    $rsArr = json_decode($rs,true);
+    /*
+     * request Demo
+     * Array(
+                [ret] => 200
+                [data] => Array
+                    (
+                        [0] => Array
+                            (
+                                [customrUid] => 345541423225932707
+                                [customerUid] => 345541423225932707
+                                [categoryName] => 会员
+                                [number] => 13186184263
+                                [name] => 代彦伟
+                                [point] => 0
+                                [discount] => 100
+                                [balance] => 0
+                                [phone] => 13186184263
+                                [createdDate] => 2017-07-15 00:00:00
+                                [onAccount] => 0
+                                [enable] => 1
+                                [password] => 96E79218965EB72C92A549DD5A330112
+                                [createStoreAppIdOrAccount] => E3E505E7F461E28FAEAA27B6013661FF
+                            )
+
+                    )
+
+                [msg] =>
+            )
+     */
+    if($rsArr['ret'] == 200 && count($rsArr['data']) ){
+        $point = $rsArr['data'][0]['point'];
+        pdo_update('mc_members', array('uid'=>$uid), array('credit1'=>$point));
+    }else{
+        return false;
+    }
+
+}
+function http_attach_post($url, $param)
+{
+    $oCurl = curl_init();
+    if (stripos($url, "https://") !== FALSE) {
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+    }
+    if (is_string($param)) {
+        $strPOST = $param;
+    } else {
+        $aPOST = array();
+        foreach ($param as $key => $val) {
+            $aPOST[] = $key . "=" . urlencode($val);
+        }
+        $strPOST = join("&", $aPOST);
+    }
+    curl_setopt($oCurl, CURLOPT_URL, $url);
+    curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($oCurl, CURLOPT_POST, true);
+    curl_setopt($oCurl, CURLOPT_POSTFIELDS, $strPOST);
+    $sContent = curl_exec($oCurl);
+    $aStatus = curl_getinfo($oCurl);
+    curl_close($oCurl);
+    if (intval($aStatus["http_code"]) == 200) {
+        return $sContent;
+    } else {
+        return false;
+    }
+}
 template('mc/home');
