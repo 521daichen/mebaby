@@ -64,6 +64,7 @@ if ($do == 'display') {
 	}
 }
 function setCustPointFromCRM($tel,$uid){
+    global $_W;
     $token = "2cc72e8f408480bee24a73bec67fa8a7";
     $timestamp = time();
     $tmpArr = array($token,$timestamp);
@@ -107,7 +108,23 @@ function setCustPointFromCRM($tel,$uid){
      */
     if($rsArr['ret'] == 200 && count($rsArr['data']) ){
         $point = $rsArr['data'][0]['point'];
+        $rs = pdo_fetch("select code from ims_mc_card_members where uid = '".$uid."'");
+        $code = $rs['code'];
+        $rs = pdo_fetch("select card_id from ims_mc_create_cards where cur_card_id = '1' limit 1 order by id desc");
+        $card_id = $rs['card_id'];
+        //同步本地积分
         pdo_update('mc_members', array('credit1'=>$point), array('uid'=>$uid));
+        //同步卡券积分
+        $weiObj = WeAccount::create($_W['uniacid']);
+        $token = $weiObj->fetch_token();
+        $host = "https://api.weixin.qq.com/card/membercard/updateuser?access_token=".$token;
+        $sendInfo = array(
+            "code"=>$code,
+            "card_id" => $card_id,
+            "bonus" => $point
+        );
+        echo $sendInfo;
+
     }else{
         return false;
     }
