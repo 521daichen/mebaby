@@ -17,7 +17,7 @@ load()->classs('account');
 class MemberModuleSite extends WeModuleSite
 {
 	/**
-	 * 会员中心页
+	 * API host
 	 */
 	protected $hostList = array(
         'create'            =>  'https://api.weixin.qq.com/card/create',// 创建会员卡
@@ -32,6 +32,41 @@ class MemberModuleSite extends WeModuleSite
         'crm_regCust'       =>  'http://api.mebaby.cn/index.php?service=Customer.RegCust',//注册会员
 
     );
+
+	/*
+	 * 会员等级页
+	 * H5 显示基本的会员升降级规则
+	 */
+	public function doMobileMemberLeval(){
+
+	    global $_W,$_GPC;
+
+	    include $this->template("memberCard/memberLeval");
+
+    }
+
+    /*
+     * 会员权益页
+     * H5 显示会员权益
+     */
+    public function doMobileMemberRights(){
+
+        global $_W,$_GPC;
+
+        include $this->template("memberCard/memberRight");
+
+    }
+
+	/*
+	 * 领取会员卡
+	 */
+	public function doMobilegetMemberCard(){
+
+	    global $_W,$_GPC;
+
+	    include $this->template("reg/getMemberCard");
+
+    }
 
     /*
      * 激活会员卡入口
@@ -349,6 +384,8 @@ class MemberModuleSite extends WeModuleSite
             return false;
         }
     }
+
+
 
 
 }
