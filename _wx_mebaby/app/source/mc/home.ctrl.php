@@ -124,10 +124,12 @@ function http_attach_post($url, $param)
         $strPOST = $param;
     } else {
         $aPOST = array();
-        foreach ($param as $key => $val) {
-            $aPOST[] = $key . "=" . urlencode($val);
+        if($param) {
+            foreach ($param as $key => $val) {
+                $aPOST[] = $key . "=" . urlencode($val);
+            }
+            $strPOST = join("&", $aPOST);
         }
-        $strPOST = join("&", $aPOST);
     }
     curl_setopt($oCurl, CURLOPT_URL, $url);
     curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
