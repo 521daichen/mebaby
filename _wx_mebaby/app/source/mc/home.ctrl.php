@@ -107,7 +107,7 @@ function setCustPointFromCRM($tel,$uid){
      */
     if($rsArr['ret'] == 200 && count($rsArr['data']) ){
         $point = $rsArr['data'][0]['point'];
-        pdo_update('mc_members', array('uid'=>$uid), array('credit1'=>$point));
+        pdo_update('mc_members', array('credit1'=>$point), array('uid'=>$uid));
     }else{
         return false;
     }
