@@ -93,7 +93,7 @@ class MemberModuleSite extends WeModuleSite
                     include $this->template("reg/checkCustInfo");
                 }else{
                     //crm有数据 激活会员
-                    $rs = $this->doMobileactiviteMember($openid,$name,$tel,$crm['customerUid']);
+                    $rs = $this->doMobileactiviteMember($openid,$name,$tel,$crm['customerUid'],$code);
                     if($rs){
                         $actCardRs = $this->ActivateCard($tel,$code,$crm['point']);
                         if($actCardRs) {
@@ -111,7 +111,7 @@ class MemberModuleSite extends WeModuleSite
                 $regRs = $this->regCrmCust($name,$tel);
                 if($regRs){
                     $crm = $this->getCustInfoFromCRM($tel);
-                    $actRs = $this->doMobilememberActive($openid,$name,$tel,$crm['customerUid']);
+                    $actRs = $this->doMobilememberActive($openid,$name,$tel,$crm['customerUid'],$code);
                     if($actRs){
                         $actCardRs = $this->ActivateCard($tel,$code,$crm['point']);
                         if($actCardRs) {
@@ -181,7 +181,7 @@ class MemberModuleSite extends WeModuleSite
     /*
      * 激活会员
      */
-    public function doMobileactiviteMember($openid = 0,$name = 0,$tel = 0,$customerUid = 0){
+    public function doMobileactiviteMember($openid = 0,$name = 0,$tel = 0,$customerUid = 0 ,$code = ""){
 
         global $_W,$_GPC;
 
@@ -208,7 +208,8 @@ class MemberModuleSite extends WeModuleSite
                     'openid' => $openid,
                     'uniacid' => '2',
                     'cardsn' => $tel,
-                    'createtime' => time()
+                    'createtime' => time(),
+                    'code' => $code
                 );
                 pdo_insert('mc_card_members',$card_data);
 
