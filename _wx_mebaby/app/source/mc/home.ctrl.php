@@ -123,7 +123,8 @@ function setCustPointFromCRM($tel,$uid){
             "card_id" => $card_id,
             "bonus" => $point
         );
-        echo $sendInfo;
+        $sendJson = json_encode($sendInfo);
+        echo $sendJson;
 
     }else{
         return false;
