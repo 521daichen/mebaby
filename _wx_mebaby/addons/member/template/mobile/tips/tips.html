@@ -8,22 +8,22 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <link href="./addons/member/template/mobile/tips/style.css" rel="stylesheet" type="text/css">
-    <link href="./addons/member/template/mobile/tips/tips.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/tips/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/tips/tips.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <section>
     <div class="tips">
-        <img src="./addons/member/template/mobile/tips/x.png" /><h1>{$title}</h1>{$errMsg}
+        <img src="../addons/member/template/mobile/tips/x.png" /><h1>{$title}</h1>{$errMsg}
     </div>
     <div class="clr"></div>
 
     <a href="{if !empty($_GPC['url'])}{$_GPC['url']}{else}javascript:void(0){/if}" class="a1" id="btn">确 定</a>
 
 </section>
-<script src="../addons/member/template/zhuxue/js/zepto.min.js"></script>
+
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="application/javascript">
     wx.config({
