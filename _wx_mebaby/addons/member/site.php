@@ -90,7 +90,7 @@ class MemberModuleSite extends WeModuleSite
                 if($local){
                     //本地有会员信息 确认信息
                     $errMsg = "对不起，您输入的信息已存在，请核实后再次尝试激活，如有疑问请拨打客服：029-82460823";
-                    include $this->template("reg/checkCustInfo");
+                    include $this->template("tips/tips");
                 }else{
                     //crm有数据 激活会员
                     $rs = $this->doMobileactiviteMember($openid,$name,$tel,$crm['customerUid'],$code);
@@ -103,7 +103,7 @@ class MemberModuleSite extends WeModuleSite
                         }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
-                        include $this->template("reg/checkCustInfo");
+                        include $this->template("tips/tips");
                     }
                 }
             }else{
@@ -121,14 +121,16 @@ class MemberModuleSite extends WeModuleSite
                         }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
-                        include $this->template("reg/checkCustInfo");
+                        include $this->template("tips/tips");
                     }
                 }else{
-                   echo "<script>alert('对不起，服务器异常，请再试一次！');window.close();</script>";
+                   $errMsg = '对不起，服务器异常，请再试一次！';
+                   include $this->template("tips/tips");
                 }
             }
         }else{
-            echo "<script>alert('对不起，获取注册信息异常，请再试一次！');window.close();</script>";
+            $errMsg = '对不起，获取注册信息异常，请再试一次！';
+            include $this->template("tips/tips");
         }
     }
 
@@ -237,8 +239,8 @@ class MemberModuleSite extends WeModuleSite
      */
     protected function getCustInfoFromLocal($tel){
         $sql = " select uid from ".tablename("mc_members")." where mobile = '{$tel}' ";
-        $rs = pdo_fetchall($sql);
-        return empty($data[0]) ? false : $data[0];
+        $rs = pdo_fetch($sql);
+        return empty($rs) ? false : $rs;
     }
 
     /*
