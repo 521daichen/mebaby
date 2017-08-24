@@ -34,6 +34,7 @@ if ($do == 'display') {
 		}
 	}
 	$profile = mc_fetch($_W['member']['uid'], array('nickname', 'avatar', 'mobile', 'groupid'));
+	print_r($profile);
     setCustPointFromCRM($profile['mobile'],$_W['member']['uid']);
 	$mcgroups = mc_groups();
 	$profile['group'] = $mcgroups[$profile['groupid']];
