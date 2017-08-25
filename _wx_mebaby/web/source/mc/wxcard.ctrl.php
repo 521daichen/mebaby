@@ -53,8 +53,11 @@ if ($do == 'display') {
                              "wx_activate_after_submit":'.$wx_activate_after_submit.',
                              "wx_activate_after_submit_url":"'.$wx_activate_url.'",
                              "background_pic_url":"'.$background_pic_url.'",
+                             "supply_bonus":true,
+                             "supply_balance":false,
+                             "prerogative":"'.$prerogative.'",  
                              "base_info": {
-                              	 "pay_info": 
+                              	"pay_info": 
                  				{
                          			"swipe_card":
                          			{
@@ -86,13 +89,7 @@ if ($do == 'display') {
                                 "custom_url":"'.$custom_url.'",
                              
                                 "need_push_on_view":false
-                             },
-                             "supply_bonus":true,
-                             "supply_balance":false,
-                             "prerogative":"'.$prerogative.'",
-                             
-                             
-                            
+                             }
                         } 
                   }
         }';
