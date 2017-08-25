@@ -99,7 +99,8 @@ class MemberModuleSite extends WeModuleSite
                         if($actCardRs) {
                             header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
                         }else{
-                            echo "<script>alert('对不起，卡券激活失败，请联系客服：029-82460823！');window.close();</script>";
+                            $errMsg = '对不起，卡券激活失败，请联系客服：029-82460823！';
+                            include $this->template("tips/tips");
                         }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
@@ -117,14 +118,15 @@ class MemberModuleSite extends WeModuleSite
                         if($actCardRs) {
                             header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
                         }else{
-                            echo "<script>alert('对不起，卡券激活失败，请联系客服：029-82460823！');window.close();</script>";
+                            $errMsg = '对不起，卡券激活失败，请联系客服：029-82460823！';
+                            include $this->template("tips/tips");
                         }
                     }else{
                         $errMsg = "激活会员卡失败，请核对信息后再次尝试激活！";
                         include $this->template("tips/tips");
                     }
                 }else{
-                   $errMsg = '对不起，服务器异常，请再试一次！';
+                   $errMsg = '对不起，CRM服务异常，请再试一次！';
                    include $this->template("tips/tips");
                 }
             }

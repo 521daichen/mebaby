@@ -84,26 +84,15 @@ if ($do == 'display') {
                                 ],
                                 "custom_url_name":"'.$custom_url_name.'",
                                 "custom_url":"'.$custom_url.'",
-                                "promotion_url_name":"'.$promotion_url_name.'",
-                                "promotion_url":"'.$promotion_url.'",
+                             
                                 "need_push_on_view":false
                              },
                              "supply_bonus":true,
                              "supply_balance":false,
                              "prerogative":"'.$prerogative.'",
                              
-                             "custom_field1":{
-                                "name_type":"FIELD_NAME_TYPE_LEVEL",
-                                "url":"'.$custom_field1_url.'"
-                             },
-                             "custom_field2":{
-                                "name_type":"FIELD_NAME_TYPE_COUPON",
-                                "url":"'.$custom_field2_url.'"
-                             },
-                             "custom_cell1":{
-                                "name":"'.$custom_cell1_name.'",
-                                "url":"'.$custom_cell1_url.'"
-                             }
+                             
+                            
                         } 
                   }
         }';
