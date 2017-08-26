@@ -201,6 +201,7 @@ class MemberModuleSite extends WeModuleSite
                     'mobile' => $tel,
                     'uniacid' => '2',
                     'realname' => $name,
+                    'nickname' => $name,
                     'idcard' => $customerUid,
                     'createtime' => time()
                 );
