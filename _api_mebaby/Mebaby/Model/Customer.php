@@ -179,9 +179,9 @@ class Model_Customer extends PhalApi_Model_NotORM{
         $http = "pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn";
 
         $sendData = array(
-            'SN' => $SN,
+            'sn' => $SN,
             'appId' => $this->appId
-        ); 
+        );
 
         $jsonData = json_encode($sendData);
 
