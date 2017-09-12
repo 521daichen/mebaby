@@ -89,4 +89,22 @@ class Domain_Customer{
         return $rs;
 
     }
+
+    public function getOrderInfoBySN($SN){
+        $rs = array();
+
+        if(empty($SN)){
+
+            return array('status' => 'error' , 'data'=> '参数未按要求传递');
+
+        }
+
+        $model = new Model_Customer();
+
+        $rs = $model->getOrderInfoBySN($SN);
+
+        return $rs;
+
+    }
+
 }

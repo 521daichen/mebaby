@@ -87,6 +87,14 @@ class Api_Customer extends PhalApi_Api{
                     'require' => true,
                 )
             ),
+            //根据水单号查询水单信息
+            'getOrderInfoBySN' => array(
+                'SN' => array(
+                    'name' => 'SN',
+                    'type' => 'string',
+                    'require' => true
+                )
+            ),
         );
     }
     /**
@@ -233,6 +241,28 @@ class Api_Customer extends PhalApi_Api{
         }
 
         return $info['data'];
+
+    }
+    /**
+     * 查询水单信息
+     * @desc 根据水单号 查询水单信息
+     * @return int ret ‘200’ 表示成功 Obj orderinfo 水单内容
+     * @exception 500 服务器内部错误
+     * @author Dv
+     */
+    public function getOrderInfoBySN(){
+        $this->report(__FUNCTION__);
+
+        $domain = new Domain_Customer();
+
+        $orderInfo = $domain->getOrderInfoBySN($this->SN);
+
+        if($orderInfo['status'] != 'success'){
+            DI()->logger->debug(__FUNCTION__.'通过"'.$this->SN.'"查询水单信息失败,错误代码：'.$info['data']." ");
+
+        }
+
+        return $orderInfo['data'];
 
     }
 

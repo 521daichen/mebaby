@@ -169,5 +169,35 @@ class Model_Customer extends PhalApi_Model_NotORM{
 
     }
 
+    /**
+     * @param $SN
+     * @return $rs
+     * @author Dv
+     */
+    public function getOrderInfoBySN($SN){
+
+        $http = "pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn";
+
+        $sendData = array(
+            'SN' => $SN,
+            'appId' => $this->appId
+        ); 
+
+        $jsonData = json_encode($sendData);
+
+        $rs = $this->sendPost($http,$jsonData);
+
+        if($rs['status'] == 'success'){
+
+            return array('status'=>'success','data'=>$rs['data']);
+
+        }else{
+
+            return array('status'=>'error','data'=>$rs['errorCode']);
+
+        }
+
+    }
+
 
 }
