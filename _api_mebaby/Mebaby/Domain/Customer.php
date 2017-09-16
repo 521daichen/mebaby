@@ -20,7 +20,7 @@ class Domain_Customer{
 
         $model = new Model_Customer();
 
-        $rs = $model->getCustInfoByMobile($customerTel);
+        $rs = $model->getCustInfoByMobile($customerTel,'zb');
 
         return $rs;
 
