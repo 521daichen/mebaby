@@ -7,7 +7,16 @@
  */
 class Model_Customer extends PhalApi_Model_NotORM{
 
-    var $appId = "E3E505E7F461E28FAEAA27B6013661FF";
+    var $appKeys = array(
+        "zb" => "39189481346018285",
+        "saga_mebaby" => "993768071904363597"
+    );
+
+    var $appIds = array(
+        "zb" => "E3E505E7F461E28FAEAA27B6013661FF",
+        "saga_mebaby"=>"AAE6F123AA75A17EC642B230EC9019D0"
+    );
+
 
     /*
      * 模拟提交数据函数
@@ -40,9 +49,9 @@ class Model_Customer extends PhalApi_Model_NotORM{
         return $output; // 返回数据
     }
 
-    protected function sendPost($http,$jsondata){
+    protected function sendPost($http,$jsondata,$shopID){
         //整理请求验证
-        $appKey = "39189481346018285";
+        $appKey = $this->appKeys[$shopID];
         $host = "https://service.pospal.cn:443/";
         $signature = strtoupper(md5($appKey.$jsondata));
         //提交结构体获得返回值
@@ -56,18 +65,18 @@ class Model_Customer extends PhalApi_Model_NotORM{
      * @return custInfo
      * @author Dv
      */
-    public function getCustInfoByMobile($customerTel){
+    public function getCustInfoByMobile($customerTel,$shopID){
 
         $http = "pospal-api2/openapi/v1/customerOpenapi/queryBytel";
 
         $sendData = array(
-            "appId" => $this->appId,
+            "appId" => $this->appIds[$shopID],
             "customerTel" => $customerTel
         );
 
         $jsonData = json_encode($sendData);
 
-        $rs = $this->sendPost($http,$jsonData);
+        $rs = $this->sendPost($http,$jsonData,$shopID);
 
         if($rs['status'] == "success"){
 
@@ -86,18 +95,18 @@ class Model_Customer extends PhalApi_Model_NotORM{
      * @return $rs
      * @author Dv
      */
-    public function addCustomer($customerInfo){
+    public function addCustomer($customerInfo,$shopID){
 
         $http = "pospal-api2/openapi/v1/customerOpenApi/add";
 
         $sendData = array(
-            "appId" => $this->appId,
+            "appId" => $this->appIds[$shopID],
             "customerInfo" => $customerInfo
         );
 
         $jsonData = json_encode($sendData);
 
-        $rs = $this->sendPost($http,$jsonData);
+        $rs = $this->sendPost($http,$jsonData,$shopID);
 
         if($rs['status'] == 'success'){
 
@@ -116,18 +125,18 @@ class Model_Customer extends PhalApi_Model_NotORM{
      * @return $rs
      * @author Dv
      */
-    public function updateCustomer($customerUpdateData){
+    public function updateCustomer($customerUpdateData,$shopID){
 
         $http = "pospal-api2/openapi/v1/customerOpenApi/updateBaseInfo";
 
         $sendData = array(
-            "appId" => $this->appId,
+            "appId" => $this->appIds[$shopID],
             "customerInfo" => $customerUpdateData
         );
 
         $jsonData = json_encode($sendData);
 
-        $rs = $this->sendPost($http,$jsonData);
+        $rs = $this->sendPost($http,$jsonData,$shopID);
 
         if($rs['status'] == 'success'){
 
@@ -146,16 +155,16 @@ class Model_Customer extends PhalApi_Model_NotORM{
      * @return $rs
      * @author Dv
      */
-    public function updateBPIncrement($custBPInfo){
+    public function updateBPIncrement($custBPInfo,$shopID){
 
         $http = "pospal-api2/openapi/v1/customerOpenApi/updateBalancePointByIncrement";
 
         $sendData = $custBPInfo;
-        $sendData['appId'] = $this->appId;
+        $sendData['appId'] = $this->appIds[$shopID];
 
         $jsonData = json_encode($sendData);
 
-        $rs = $this->sendPost($http,$jsonData);
+        $rs = $this->sendPost($http,$jsonData,$shopID);
 
         if($rs['status'] == 'success'){
 
@@ -174,18 +183,52 @@ class Model_Customer extends PhalApi_Model_NotORM{
      * @return $rs
      * @author Dv
      */
-    public function getOrderInfoBySN($SN){
+    public function getOrderInfoBySN($SN,$shopID){
 
         $http = "pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn";
 
         $sendData = array(
             'sn' => $SN,
-            'appId' => $this->appId
+            'appId' => $this->appIds[$shopID]
         );
 
         $jsonData = json_encode($sendData);
 
-        $rs = $this->sendPost($http,$jsonData);
+        $rs = $this->sendPost($http,$jsonData,$shopID);
+
+        if($rs['status'] == 'success'){
+
+            return array('status'=>'success','data'=>$rs['data']);
+
+        }else{
+
+            return array('status'=>'error','data'=>$rs['errorCode']);
+
+        }
+
+    }
+
+    /**
+     * @param $couponUid $customerUid
+     * @return $rs
+     * @author Dv
+     */
+    public function addCustomerCard($customerUid,$couponUid,$code,$shopID){
+
+        $http = "pospal-api/api/auth/openapi/promotion/addCouponcode/";
+
+        $sendData = array(
+
+            'appId' => $this->appIds[$shopID],
+            'code' => $code,
+            'customerUid' => $customerUid,
+            'promotionCouponUid' => $couponUid
+
+        );
+
+        $jsonData = json_encode($sendData);
+
+        $rs = $this->sendPost($http,$jsonData,$shopID);
 
         if($rs['status'] == 'success'){
 

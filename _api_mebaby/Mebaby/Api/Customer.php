@@ -93,7 +93,32 @@ class Api_Customer extends PhalApi_Api{
                     'name' => 'SN',
                     'type' => 'string',
                     'require' => true
+                ),
+                'shopID' => array(
+                    'name' => 'shopID',
+                    'type' => 'string',
+                    'require' => true
                 )
+            ),
+            //发放会员优惠券
+            'addCustomerCoupon' => array(
+                'customerTel' => array(
+                    'name' => 'customerTel',
+                    'type' => 'string',
+                    'min' => 11,
+                    'max' => 11,
+                    'require' => true
+                ),
+                'couponUid' => array(
+                    'name' => 'couponUid',
+                    'type' => 'string',
+                    'require' => true
+                ),
+                'code' => array(
+                    'name' => 'code',
+                    'type' => 'string',
+                    'require' => true
+                ),
             ),
         );
     }
@@ -255,14 +280,36 @@ class Api_Customer extends PhalApi_Api{
 
         $domain = new Domain_Customer();
 
-        $orderInfo = $domain->getOrderInfoBySN($this->SN);
+        $orderInfo = $domain->getOrderInfoBySN($this->SN,$this->shopID);
 
         if($orderInfo['status'] != 'success'){
-            DI()->logger->debug(__FUNCTION__.'通过"'.$this->SN.'"查询水单信息失败,错误代码：'.$info['data']." ");
+            DI()->logger->debug(__FUNCTION__.'通过"'.$this->SN.'"查询水单信息失败,错误代码：'.$orderInfo['data']." ");
 
         }
 
         return $orderInfo['data'];
+
+    }
+
+    /**
+     * 会员增加优惠券
+     * @desc 给会员发放优惠券
+     * @return int ret '200' 表示成功 错误返回错误信息
+     * @exception 500 服务器内部错误
+     * @author Dv
+     */
+    public function addCustomerCoupon(){
+        $this->report(__FUNCTION__);
+
+        $domain = new Domain_Customer();
+
+        $rsInfo = $domain->addCustomerCoupon($this->customerTel,$this->couponUid,$this->code,'zb');
+
+        if($rsInfo['status'] != 'success'){
+            DI()->logger->debug(__FUNCTION__."会员".$this->customerTel."发放优惠券".$this->code.",发放失败。");
+        }
+
+        return $rsInfo['data'];
 
     }
 

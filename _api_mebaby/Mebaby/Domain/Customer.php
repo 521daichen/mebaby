@@ -41,7 +41,7 @@ class Domain_Customer{
 
         $model = new Model_Customer();
 
-        $rs = $model->addCustomer($customerInfo);
+        $rs = $model->addCustomer($customerInfo,'zb');
 
         return $rs;
 
@@ -62,7 +62,7 @@ class Domain_Customer{
 
         $model = new Model_Customer();
 
-        $rs = $model->updateCustomer($customerUpdateData);
+        $rs = $model->updateCustomer($customerUpdateData,'zb');
 
         return $rs;
 
@@ -84,13 +84,18 @@ class Domain_Customer{
 
         $model = new Model_Customer();
 
-        $rs = $model->updateBPIncrement($custBPInfo);
+        $rs = $model->updateBPIncrement($custBPInfo,'zb');
 
         return $rs;
 
     }
 
-    public function getOrderInfoBySN($SN){
+    /**
+     * 根据水单号查询水单信息
+     * @param $sn $shopID
+     * @return $rs 'success'成功 失败返回错误代码
+     */
+    public function getOrderInfoBySN($SN,$shopID){
         $rs = array();
 
         if(empty($SN)){
@@ -101,9 +106,44 @@ class Domain_Customer{
 
         $model = new Model_Customer();
 
-        $rs = $model->getOrderInfoBySN($SN);
+        $rs = $model->getOrderInfoBySN($SN,$shopID);
 
         return $rs;
+
+    }
+
+    /**
+     * 发放优惠券给会员
+     * @param $customerTel $couponUid $code $shopID
+     * @return $rs 'success'成功 失败返回错误代码
+     */
+
+    public function addCustomerCoupon($customerTel,$couponUid,$code,$shopID){
+        $rs = array();
+
+        if(empty($customerTel) || empty($couponUid) || empty($code) || empty($shopID)){
+
+            return array('status' => 'error' , 'data'=> '参数未按要求传递');
+
+        }
+
+        $model = new Model_Customer();
+
+        $custRs = $model->getCustInfoByMobile($customerTel,'zb');
+
+        if($custRs['status'] == 'success'){
+
+            $customerUid = $custRs['data']['customerUid'];
+
+            $addCouponRs = $model->addCustomerCard($customerUid,$couponUid,$code,'zb');
+
+            return $addCouponRs;
+
+        }else{
+
+            return array('status' => 'error' , 'data'=> '未找到该会员');
+
+        }
 
     }
 
