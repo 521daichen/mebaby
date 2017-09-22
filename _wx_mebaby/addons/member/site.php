@@ -459,7 +459,7 @@ class MemberModuleSite extends WeModuleSite
     public function doMobileGetCardS(){
         global $_W;
         //取缓存
-        $dcdyr_ticket=cache_load('dcdyr_api_ticket');
+        $dcdyr_ticket=cache_load('api_ticket');
 
         //如果缓存的时间 那么 重新获取并缓存
         if(@$dcdyr_ticket['exp'] < time()){
@@ -476,7 +476,7 @@ class MemberModuleSite extends WeModuleSite
                 'ticket'=>$ticket,
                 'exp'=>$cacheTime,
             );
-            cache_write('dcdyr_api_ticket', $cacheTicket);
+            cache_write('api_ticket', $cacheTicket);
 
             $dcdyr_ticket['ticket'] = $cacheTicket['ticket'];
         }
