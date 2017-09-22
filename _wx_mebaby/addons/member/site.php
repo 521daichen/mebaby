@@ -461,11 +461,11 @@ class MemberModuleSite extends WeModuleSite
         //取缓存
         $dcdyr_ticket=cache_load('dcdyr_api_ticket');
 
-        //如果缓存的时间 小鱼当前时间 那么 重新获取并缓存
+        //如果缓存的时间 那么 重新获取并缓存
         if(@$dcdyr_ticket['exp'] < time()){
             $access_token=$this->doMobileGetToken();
             $userinfo = file_get_contents("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
-            $ticketJson=$userinfo['content'];
+            $ticketJson=$userinfo;
             $ticketArr=json_decode($ticketJson,true);
             $ticket=$ticketArr['ticket'];
             //缓存时间为当前时间加7000秒  实际为7200秒
@@ -478,9 +478,7 @@ class MemberModuleSite extends WeModuleSite
 
             return $cacheTicket['ticket'];
         }
-//			cache_delete('api_ticket');
-        //echo "走了缓存";
-        //var_dump($dcdyr_ticket['ticket']);
+
         return $dcdyr_ticket['ticket'];
     }
     /*
