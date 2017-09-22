@@ -462,10 +462,9 @@ class MemberModuleSite extends WeModuleSite
         $dcdyr_ticket=cache_load('dcdyr_api_ticket');
 
         //如果缓存的时间 小鱼当前时间 那么 重新获取并缓存
-        if($dcdyr_ticket['exp']<time()){
-            load()->func('communication');
+        if(@$dcdyr_ticket['exp'] < time()){
             $access_token=$this->doMobileGetToken();
-            $userinfo = ihttp_get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
+            $userinfo = file_get_contents("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
             $ticketJson=$userinfo['content'];
             $ticketArr=json_decode($ticketJson,true);
             $ticket=$ticketArr['ticket'];
