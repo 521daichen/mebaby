@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
 <script>
 	
-		
+
 	 wx.config({
         debug: false,
         appId: "{$_W['account']['jssdkconfig']['appId']}",
@@ -37,7 +37,7 @@
         ]
     });
 
-	 	$.post('http://wx.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+	 	$.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
                     function(data){
                         var resdata = JSON.parse(data);
                         wx.addCard({
