@@ -463,9 +463,10 @@ class MemberModuleSite extends WeModuleSite
 
         //如果缓存的时间 那么 重新获取并缓存
         if(@$dcdyr_ticket['exp'] < time()){
+            load()->func('communication');
             $access_token=$this->doMobileGetToken();
-            $userinfo = file_get_contents("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
-            $ticketJson=$userinfo;
+            $userinfo = ihttp_get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
+            $ticketJson = $userinfo['content'];
             $ticketArr=json_decode($ticketJson,true);
             $ticket=$ticketArr['ticket'];
             //缓存时间为当前时间加7000秒  实际为7200秒
@@ -476,7 +477,7 @@ class MemberModuleSite extends WeModuleSite
             );
             cache_write('dcdyr_api_ticket', $cacheTicket);
 
-            return $cacheTicket['ticket'];
+            $dcdyr_ticket['ticket'] = $cacheTicket['ticket'];
         }
 
         return $dcdyr_ticket['ticket'];
