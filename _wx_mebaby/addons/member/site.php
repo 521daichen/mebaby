@@ -344,6 +344,18 @@ class MemberModuleSite extends WeModuleSite
     }
 
     /*
+     * 打印token
+     */
+    public function doMobileGetToken(){
+        global $_W;
+        $weiObj = WeAccount::create($_W['uniacid']);
+        $token = $weiObj->fetch_token();
+
+        echo $token;
+
+    }
+
+    /*
      * mebaby API加密算法
      */
     protected function apiSignature(){
