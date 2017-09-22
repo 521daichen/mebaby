@@ -466,6 +466,7 @@ class MemberModuleSite extends WeModuleSite
             load()->func('communication');
             $access_token=$this->doMobileGetToken();
             $userinfo = ihttp_get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
+            file_put_contents("log.txt",$userinfo);
             $ticketJson = $userinfo['content'];
             $ticketArr=json_decode($ticketJson,true);
             $ticket=$ticketArr['ticket'];
