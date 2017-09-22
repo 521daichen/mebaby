@@ -1,0 +1,68 @@
+<script src='../addons/member/template/mobile/dxr/jquery-1.11.3.js'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
+<script>
+	
+		
+	 wx.config({
+        debug: false,
+        appId: "{$_W['account']['jssdkconfig']['appId']}",
+        timestamp: "{$_W['account']['jssdkconfig']['timestamp']}",
+        nonceStr: "{$_W['account']['jssdkconfig']['nonceStr']}",
+        signature: "{$_W['account']['jssdkconfig']['signature']}",
+        jsApiList: [
+            'checkJsApi',               // 判断当前客户端版本是否支持指定JS接口
+            'onMenuShareTimeline',      // 分享到朋友圈
+            'onMenuShareAppMessage',    // 分享给朋友
+            'onMenuShareQQ',            // 分享到QQ
+            'onMenuShareWeibo',         // 分享到腾讯微博
+            'hideMenuItems',            // 批量隐藏功能按钮接口
+            'showMenuItems',            // 批量显示功能按钮接口
+            'hideAllNonBaseMenuItem',   // 隐藏所有非基础按钮接口
+            'showAllNonBaseMenuItem',   // 显示所有功能按钮接口
+            'getNetworkType',           // 获取网络状态接口
+            'openLocation',             // 使用微信内置地图查看位置接口
+            'getLocation',              // 获取地理位置接口
+            'hideOptionMenu',           // 批量隐藏功能按钮接口
+            'showOptionMenu',           // 批量显示功能按钮接口
+            'closeWindow',              // 关闭当前网页窗口接口
+            'addCard',                  // 批量添加卡券接口
+            'chooseCard',               // 调起适用于门店的卡券列表并获取用户选择列表
+            'openCard',                 // 查看微信卡包中的卡券接口
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage'
+        ]
+    });
+
+	 	$.post('http://wx.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+                    function(data){
+                        var resdata = JSON.parse(data);
+                        wx.addCard({
+                            cardList: [
+                                {
+                                    cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                                    cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                                }
+                            ], // 需要添加的卡券列表
+                            success: function (res) {
+                                window.closeWindow();                               
+                            },
+                            cancel:function(res){
+                            	window.closeWindow();    
+                            	
+                            },
+                            fail:function(res){
+                            	window.closeWindow();    
+                            }
+                    	});
+                    }
+               );
+
+
+	 
+    
+
+</script>

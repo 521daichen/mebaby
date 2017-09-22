@@ -405,6 +405,99 @@ class MemberModuleSite extends WeModuleSite
         }
     }
 
+    //送卡券
+    public function doMobilesendCard(){
+
+        global $_W;
+
+        $openid = $_W['openid'];
+
+        $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '".$openid."' ";
+
+        $rs = pdo_fetch($sql);
+
+        if(!empty($rs)){
+
+            include $this->template("member/mebabySendCard");
+
+        }
+
+    }
+
+    //拉起卡券 签名算法
+    public function doMobileCardSignInfo(){
+        global $_W;
+        $return = "";
+        $timestamp=$_W['timestamp'];
+        $cticket=$this->doMobileGetCardS();
+        $card_id='pV6-Cs7fytjacwYZ850aFgEh99R4';
+
+        $nonce_str=$this->generateNonceStr();
+        $card = array(
+            $timestamp,
+            $cticket,
+            $card_id,
+            $nonce_str
+        );
+        sort($card,SORT_STRING);
+        foreach($card as $k=>$v){
+            $return .= $v;
+        }
+
+        $sign=sha1($return);
+        $res=array(
+            'timestamp'=>$timestamp,
+            'signature'=>$sign,
+            'noncestr'=>$nonce_str,
+        );
+
+        echo json_encode($res);
+    }
+    /**
+     * 卡券 获得 $api_ticket
+     */
+    public function doMobileGetCardS(){
+        global $_W;
+        //取缓存
+        $dcdyr_ticket=cache_load('dcdyr_api_ticket');
+
+        //如果缓存的时间 小鱼当前时间 那么 重新获取并缓存
+        if($dcdyr_ticket['exp']<time()){
+            load()->func('communication');
+            $access_token=$this->doMobileGetToken();
+            $userinfo = ihttp_get("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={$access_token}&type=wx_card");
+            $ticketJson=$userinfo['content'];
+            $ticketArr=json_decode($ticketJson,true);
+            $ticket=$ticketArr['ticket'];
+            //缓存时间为当前时间加7000秒  实际为7200秒
+            $cacheTime=time()+6000;
+            $cacheTicket=array(
+                'ticket'=>$ticket,
+                'exp'=>$cacheTime,
+            );
+            cache_write('dcdyr_api_ticket', $cacheTicket);
+
+            return $cacheTicket['ticket'];
+        }
+//			cache_delete('api_ticket');
+        //echo "走了缓存";
+        //var_dump($dcdyr_ticket['ticket']);
+        return $dcdyr_ticket['ticket'];
+    }
+    /*
+     * 随机字符串
+     */
+    public function generateNonceStr($length=16){
+        // 密码字符集，可任意添加你需要的字符
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $str = "";
+        for($i = 0; $i < $length; $i++)
+        {
+            $str .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+        return $str;
+    }
+
 
 
 
