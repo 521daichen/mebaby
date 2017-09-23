@@ -80,7 +80,7 @@ class CardAction extends AdminAction
 
         if($customerTel && $ordersn){
 
-            $sql = " select b.openid from `_wx_mebaby`.`ims_mc_members` as a , `_wx_mebaby`.`ims_mc_mapping_fans` as b  where a.uid = b.uid and a.mobile = '".$customerTel."' ";
+            $sql = " select b.openid from `wx_mebaby`.`ims_mc_members` as a , `wx_mebaby`.`ims_mc_mapping_fans` as b  where a.uid = b.uid and a.mobile = '".$customerTel."' ";
 
             $rs = $model->query($sql);
 
