@@ -465,7 +465,6 @@ class MemberModuleSite extends WeModuleSite
         if(@$dcdyr_ticket['exp'] < time()){
             $access_token=$this->linkToken();
             $userinfo = $this->http_attach_post("https://api.weixin.qq.com/cgi-bin/ticket/getticket{$access_token}&type=wx_card","");
-            echo $userinfo;
             $ticketArr=json_decode($userinfo,true);
             $ticket=$ticketArr['ticket'];
             //缓存时间为当前时间加7000秒  实际为7200秒
