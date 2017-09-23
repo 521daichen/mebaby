@@ -34,6 +34,30 @@ class CardAction extends AdminAction
 
     }
 
+    //查看优惠券发放记录
+    public function useIndex(){
+
+        import('ORG.Util.Page');// 导入分页类
+
+        $map = array(
+
+            "create_by" => $_SESSION[C('USER_AUTH_KEY')]
+
+        );
+        $model = D('usecard_log');
+        $count = $model->where($map)->count();
+        $Page       = new Page($count);// 实例化分页类 传入总记录数
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $nowPage = isset($_GET['p'])?$_GET['p']:1;
+        $show       = $Page->show();// 分页显示输出
+        $list = $model->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display();
+
+    }
+
     //发放优惠券
     public function add(){
 
@@ -222,6 +246,51 @@ class CardAction extends AdminAction
     //核销优惠券信息保存
     public function updateCard(){
 
+        $cardNum = $_REQUEST['cardnum'];
+        $ordersn = $_REQUEST['ordersn'];
+        $emp_name = $_REQUEST['emp_name'];
+
+        if($cardNum && $ordersn && $emp_name){
+
+            $wxdata = array(
+                "code"=>$cardNum,
+            );
+            $sendData = json_encode($wxdata);
+            $wechat_token = file_get_Contents("http://wx.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=gettoken");
+            $url = "https://api.weixin.qq.com/card/code/consume?access_token=".$wechat_token;
+            $result =  $this->https_post($url,$sendData);
+            $rsArr = json_decode($result,TRUE);
+            $errcode=$rsArr['errcode'];
+            if($errcode != 0){
+
+                $model = D("usecard_log");
+
+                $data = array(
+                    "cardnum" => $cardNum,
+                    "ordersn" => $ordersn,
+                    "create_by" => $_SESSION[C('USER_AUTH_KEY')],
+                    "create_time" => date('Y-m-d H:i:s'),
+                    "emp_name" => $emp_name
+                );
+
+                $rs = $model->add($data);
+
+                if($rs){
+
+                    $this->success("核销成功");
+
+                }else{
+
+                    $this->error("对不起，用户核销成功，但系统记录失败，错误码：SQ01");
+
+                }
+
+            }else{
+                $this->error("对不起，优惠券核销失败，错误码：WE01");
+            }
+        }else{
+            $this->error("对不起，请将优惠券号码、销售水单号填写完整，并选择对应收银员");
+        }
 
     }
 

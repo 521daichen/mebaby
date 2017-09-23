@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$tpltitle}优惠券发放</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/formValidator.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+
+	});
+</script>
+</head>
+<body>
+		<gt name="info.id" value="0">
+			<form action="{:U('/Admin/Card/edit/')}" method="post" name="form" id="myform">
+			<input type="hidden" name="id" value="{$info.id}">
+		<else />
+			<form action="{:U('/Admin/Card/updateCard/')}" method="post" name="form" id="myform">
+		</gt>
+			<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+
+				<tr class="table_title">
+					<td colspan="4">{$tpltitle}优惠券核销</td>
+				</tr>
+
+				<tr class="tr rt">
+					<td width="100">优惠券编号：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="cardnum" id="cardnum" style="width:200px" value="{$info.cardnum}">(*让用户进入微信选择 "我"、"卡包"、"我的票券"，找到"西安贝米商贸有限公司 50元代金券"点击立即使用)
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td width="100">销售水单号：</td>
+					<td colspan="3" class="lt">
+						<input type="ordersn" name="ordersn" id="ordersn" style="width:200px" value="{$info.ordersn}">(*使用优惠券的商场水单号码)
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td width="100">收银员：</td>
+					<td colspan="3" class="lt">
+						<select name="emp_name">
+							<option value="">请选择...</option>
+							<option value="张晓莹">张晓莹</option>
+							<option value="胡雪玲">胡雪玲</option>
+							<option value="贾明利">贾明利</option>
+							<option value="冯军芳">冯军芳</option>
+							<option value="宋海静">宋海静</option>
+							<option value="高采红">高采红</option>
+							<option value="何紫琪">何紫琪</option>
+							<option value="王妍">王妍</option>
+							<option value="岳胜男">岳胜男</option>
+							<option value="刘琼">刘琼</option>
+							<option value="高珍珍">高珍珍</option>
+						</select>
+					</td>
+				</tr>
+	<tr class="tr lt">
+		<td colspan="4">
+			<gt name="info.id" value="0">
+				<input class="bginput" type="submit" name="dosubmit" value="修 改" >
+				<else />
+				<input class="bginput" type="submit" name="dosubmit" value="核 销">
+			</gt>
+			<input type="hidden" name="openid" id="openid" value="" />
+			<input class="bginput" type="button" onclick="javascript:history.back(-1);" value="返 回" >
+		</td>
+	</tr>
+</table>
+</form>
+<include file="Index:footer" />
+</body>
+</html>
