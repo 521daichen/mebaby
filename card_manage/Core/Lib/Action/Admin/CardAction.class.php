@@ -258,7 +258,7 @@ class CardAction extends AdminAction
             $sendData = json_encode($wxdata);
             $wechat_token = file_get_Contents("http://wx.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=gettoken");
             $url = "https://api.weixin.qq.com/card/code/consume?access_token=".$wechat_token;
-            $result =  $this->https_post($url,$sendData);
+            $result =  $this->https_request($url,$sendData);
             $rsArr = json_decode($result,TRUE);
             $errcode=$rsArr['errcode'];
             if($errcode != 0){
