@@ -261,7 +261,7 @@ class CardAction extends AdminAction
             $result =  $this->https_request($url,$sendData);
             $rsArr = json_decode($result,TRUE);
             $errcode=$rsArr['errcode'];
-            if($errcode != 0){
+            if($errcode == 0){
 
                 $model = D("usecard_log");
 
