@@ -6,7 +6,7 @@ class LoginAction extends AdminAction{
     //登陆界面
     public function index(){
     	//检测后台登录入口是否正确
-        if(!session('?right_enter')) {
+        if(!session('right_enter')) {
         	redirect(C('web_url'));exit;
         }
 		if (session(C('USER_AUTH_KEY'))){
