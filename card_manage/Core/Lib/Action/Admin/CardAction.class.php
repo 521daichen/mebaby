@@ -84,8 +84,6 @@ class CardAction extends AdminAction
 
             $rs = $model->query($sql);
 
-            print_r($rs);
-
             if($rs){
 
                 $openid = $rs[0]['openid'];
