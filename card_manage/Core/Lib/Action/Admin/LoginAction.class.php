@@ -5,8 +5,10 @@
 class LoginAction extends AdminAction{
     //登陆界面
     public function index(){
-        print_R($_SESSION);
     	//检测后台登录入口是否正确
+        if(!session('?right_enter')) {
+        	redirect(C('web_url'));exit;
+        }
 		if (session(C('USER_AUTH_KEY'))){
 			redirect(C('cms_admin').'?s=Admin/Index');exit;
 		}
