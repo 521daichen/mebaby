@@ -418,9 +418,7 @@ class MemberModuleSite extends WeModuleSite
 
         $rs = pdo_fetch($sql);
 
-        print_r($rs);
-
-        if(!empty($rs['openid'])){
+        if($rs['openid'] != $openid){
 
             include $this->template("member/mebabySendCard");
 
