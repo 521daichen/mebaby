@@ -1,10 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
+    <title>赛格mebaby全场通用代金券</title>
 <script src='../addons/member/template/mobile/dxr/jquery-1.11.3.js'></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
+</head>
+<body>
 <script>
-	
-
 	 wx.config({
         debug: false,
         appId: "{$_W['account']['jssdkconfig']['appId']}",
@@ -36,69 +47,73 @@
             'downloadImage'
         ]
     });
+     wx.ready(function(){
+         wx.hideMenuItems({
+             menuList: [
+                 //发送给朋友:
+                 "menuItem:share:appMessage",
+                 //分享到朋友圈:
+                 "menuItem:share:timeline",
+                 //分享到QQ:
+                 "menuItem:share:qq",
+                 //分享到Weibo:
+                 "menuItem:share:weiboApp",
+                 //收藏:
+                 "menuItem:favorite",
+                 //分享到FB:
+                 "menuItem:share:facebook",
+                 //分享到 QQ 空间/
+                 "menuItem:share:QZone",
 
-	 	$.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
-                    function(data){
-                        var resdata = JSON.parse(data);
-                        wx.addCard({
-                            cardList: [
-                                {
-                                    cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
-                                    cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
-                                }
-                            ], // 需要添加的卡券列表
-                            success: function (res) {
-                                //wx.closeWindow();
-                            },
-                            cancel:function(res){
-                            	//wx.closeWindow();
-                            },
-                            fail:function(res){
-                            	//wx.closeWindow();
-                            }
-                    	});
-                    }
-               );
-	 	wx.hideMenuItems({
-    		menuList: [
-    			//发送给朋友: 
-    			"menuItem:share:appMessage",
-				//分享到朋友圈: 
-				"menuItem:share:timeline",
-				//分享到QQ: 
-				"menuItem:share:qq",
-				//分享到Weibo: 
-				"menuItem:share:weiboApp",
-				//收藏: 
-				"menuItem:favorite",
-				//分享到FB: 
-				"menuItem:share:facebook",
-				//分享到 QQ 空间/
-				"menuItem:share:QZone",
+                 //编辑标签:
+                 "menuItem:editTag",
+                 //删除:
+                 "menuItem:delete",
+                 //复制链接:
+                 "menuItem:copyUrl",
+                 //原网页:
+                 "menuItem:originPage",
+                 //阅读模式:
+                 "menuItem:readMode",
+                 //在QQ浏览器中打开:
+                 "menuItem:openWithQQBrowser",
+                 //在Safari中打开:
+                 "menuItem:openWithSafari",
+                 //邮件:
+                 "menuItem:share:email",
+                 //一些特殊公众号:
+                 "menuItem:share:brand",
+             ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+         });
+         $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+             function(data){
+                 var resdata = JSON.parse(data);
+                 wx.addCard({
+                     cardList: [
+                         {
+                             cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                             cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                         }
+                     ], // 需要添加的卡券列表
+                     success: function (res) {
+                         //wx.closeWindow();
+                     },
+                     cancel:function(res){
+                         //wx.closeWindow();
+                     },
+                     fail:function(res){
+                         //wx.closeWindow();
+                     }
+                 });
+             }
+         );
 
-				//编辑标签: 
-				"menuItem:editTag",
-				//删除: 
-				"menuItem:delete",
-				//复制链接: 
-				"menuItem:copyUrl",
-				//原网页: 
-				"menuItem:originPage",
-				//阅读模式: 
-				"menuItem:readMode",
-				//在QQ浏览器中打开: 
-				"menuItem:openWithQQBrowser",
-				//在Safari中打开: 
-				"menuItem:openWithSafari",
-				//邮件: 
-				"menuItem:share:email",
-				//一些特殊公众号: 
-				"menuItem:share:brand",
-    		] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-		});
+     });
 
 
 	 
     
 
 </script>
+</body>
+</html>
