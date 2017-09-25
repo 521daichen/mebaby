@@ -416,6 +416,8 @@ class MemberModuleSite extends WeModuleSite
 
         $rs = pdo_fetch($sql);
 
+        print_r($rs);
+
         if(!empty($rs)){
 
             include $this->template("member/mebabySendCard");
