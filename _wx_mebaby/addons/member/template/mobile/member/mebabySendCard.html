@@ -52,6 +52,9 @@
                      }
                  ], // 需要添加的卡券列表
                  success: function (res) {
+
+                     var cardList = res.cardList;
+                     alert(cardList);
                      //wx.closeWindow();
                  },
                  cancel:function(res){
