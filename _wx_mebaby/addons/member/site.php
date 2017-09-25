@@ -420,7 +420,7 @@ class MemberModuleSite extends WeModuleSite
 
         print_r($rs);
 
-        if(!empty($rs)){
+        if(!empty($rs['openid'])){
 
             include $this->template("member/mebabySendCard");
 
