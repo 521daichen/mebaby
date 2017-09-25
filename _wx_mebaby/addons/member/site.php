@@ -416,13 +416,13 @@ class MemberModuleSite extends WeModuleSite
 
         $rs = pdo_fetch($sql);
 
-        if($rs['openid'] != $openid){
+        if($rs['openid'] == $openid){
 
             include $this->template("member/mebabySendCard");
 
         }else{
 
-            $errMsg = '对不起，您已经领取过代金券。';
+            $errMsg = '对不起，请联系导购进行发券。';
             include $this->template("tips/tips");
 
         }
