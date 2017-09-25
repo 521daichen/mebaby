@@ -414,8 +414,6 @@ class MemberModuleSite extends WeModuleSite
 
         $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '".$openid."' ";
 
-        echo $sql;
-
         $rs = pdo_fetch($sql);
 
         if($rs['openid'] != $openid){
