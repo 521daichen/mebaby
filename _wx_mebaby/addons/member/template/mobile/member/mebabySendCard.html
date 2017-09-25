@@ -9,10 +9,10 @@
     <link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
     <title>赛格mebaby全场通用代金券</title>
-<script src='../addons/member/template/mobile/dxr/jquery-1.11.3.js'></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
+    <script src='../addons/member/template/mobile/dxr/jquery-1.11.3.js'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link href="../addons/member/template/mobile/work51/css/input.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../addons/member/template/mobile/weui-master/dist/style/weui.min.css"/>
 </head>
 <body>
 <script>
@@ -47,6 +47,28 @@
             'downloadImage'
         ]
     });
+     $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+         function(data){
+             var resdata = JSON.parse(data);
+             wx.addCard({
+                 cardList: [
+                     {
+                         cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                         cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
+                     }
+                 ], // 需要添加的卡券列表
+                 success: function (res) {
+                     //wx.closeWindow();
+                 },
+                 cancel:function(res){
+                     //wx.closeWindow();
+                 },
+                 fail:function(res){
+                     //wx.closeWindow();
+                 }
+             });
+         }
+     );
      wx.ready(function(){
          wx.hideMenuItems({
              menuList: [
@@ -85,28 +107,6 @@
                  "menuItem:share:brand",
              ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
          });
-         $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
-             function(data){
-                 var resdata = JSON.parse(data);
-                 wx.addCard({
-                     cardList: [
-                         {
-                             cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
-                             cardExt:'{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'","outer_id": 1}'                            //cardExt: cardListStr
-                         }
-                     ], // 需要添加的卡券列表
-                     success: function (res) {
-                         //wx.closeWindow();
-                     },
-                     cancel:function(res){
-                         //wx.closeWindow();
-                     },
-                     fail:function(res){
-                         //wx.closeWindow();
-                     }
-                 });
-             }
-         );
 
      });
 
