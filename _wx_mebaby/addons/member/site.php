@@ -420,6 +420,11 @@ class MemberModuleSite extends WeModuleSite
 
             include $this->template("member/mebabySendCard");
 
+        }else{
+
+            $errMsg = '对不起，您已经领取过代金券。';
+            include $this->template("tips/tips");
+
         }
 
     }
