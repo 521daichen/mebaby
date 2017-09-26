@@ -198,7 +198,7 @@ class CardAction extends AdminAction
 
                         if($res['errcode'] != 0){
 
-                            $this->error("对不起，发送失败，错误编号：WE01".$result);
+                            $this->error("对不起，发送失败，错误编号：WE01 ".$result);
 
                         }else{
 
