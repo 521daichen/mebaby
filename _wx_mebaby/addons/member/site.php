@@ -416,6 +416,8 @@ class MemberModuleSite extends WeModuleSite
 
         if($hdid == 1) {
 
+            $title = "赛格mebaby全场通用代金券";
+
             $card_id = 'pV6-Cs7fytjacwYZ850aFgEh99R4';
 
             $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '" . $openid . "' ";
@@ -433,6 +435,8 @@ class MemberModuleSite extends WeModuleSite
 
             }
         }else if($hdid == 2){
+
+            $title = "赛格mebaby安全座椅专用";
 
             $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
 
