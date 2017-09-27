@@ -44,7 +44,7 @@
     $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
          function(data){
              var resdata = JSON.parse(data);
-             alert(data);
+             alert('{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'"}' );
              wx.addCard({
                  cardList: [
                      {
