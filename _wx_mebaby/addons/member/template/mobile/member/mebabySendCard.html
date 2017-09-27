@@ -10,6 +10,7 @@
 <body>
 
 <script>
+
 	 wx.config({
         debug: false,
         appId: "{$_W['account']['jssdkconfig']['appId']}",
@@ -44,14 +45,15 @@
 
      wx.ready(function(){
          //alert("wx Ready");
-         $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+         $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member&hdid={$hdid}',
              function(data){
                  var resdata = JSON.parse(data);
                  //alert('{"code": "","openid":"", "timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'"}' );
                  wx.addCard({
+                     //pV6-Cs7fytjacwYZ850aFgEh99R4
                      cardList: [
                          {
-                             cardId:"pV6-Cs7fytjacwYZ850aFgEh99R4", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
+                             cardId:"{$cardId}", //cardExt:"{'timestamp':'{$wxtimestamp}','signature':'{$wxsignature}'}"
                              cardExt:'{"timestamp": "'+ resdata.timestamp+ '", "nonce_str":"'+ resdata.noncestr+ '","signature":"' +resdata.signature +'"}'                            //cardExt: cardListStr
                          }
                      ], // 需要添加的卡券列表

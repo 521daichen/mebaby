@@ -412,18 +412,31 @@ class MemberModuleSite extends WeModuleSite
 
         $openid = $_W['openid'];
 
-        $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '".$openid."' ";
+        $hdid = $_GET['hdid'];
 
-        $rs = pdo_fetch($sql);
+        if($hdid == 1) {
 
-        if($rs['openid'] == $openid){
+            $card_id = 'pV6-Cs7fytjacwYZ850aFgEh99R4';
+
+            $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '" . $openid . "' ";
+
+            $rs = pdo_fetch($sql);
+
+            if ($rs['openid'] == $openid) {
+
+                include $this->template("member/mebabySendCard");
+
+            } else {
+
+                $errMsg = '对不起，请联系导购进行发券。';
+                include $this->template("tips/tips");
+
+            }
+        }else if($hdid == 2){
+
+            $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
 
             include $this->template("member/mebabySendCard");
-
-        }else{
-
-            $errMsg = '对不起，请联系导购进行发券。';
-            include $this->template("tips/tips");
 
         }
 
@@ -435,7 +448,12 @@ class MemberModuleSite extends WeModuleSite
         $return = "";
         $timestamp=$_W['timestamp'];
         $cticket=$this->doMobileGetCardS();
-        $card_id='pV6-Cs7fytjacwYZ850aFgEh99R4';
+        $hdid = $_GET['hdid'];
+        if($hdid == 1) {
+            $card_id = 'pV6-Cs7fytjacwYZ850aFgEh99R4';
+        }else if($hdid == 2){
+            $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
+        }
 
         $nonce_str=$this->generateNonceStr();
         $card = array(
