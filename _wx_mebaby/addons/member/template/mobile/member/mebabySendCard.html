@@ -41,9 +41,10 @@
             'downloadImage'
         ]
     });
-     $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
+    $.post('http://wechat.mebaby.cn/app/index.php?i=2&c=entry&do=CardSignInfo&m=member',
          function(data){
              var resdata = JSON.parse(data);
+             alert(data);
              wx.addCard({
                  cardList: [
                      {
@@ -53,18 +54,23 @@
                  ], // 需要添加的卡券列表
                  success: function (res) {
                      var cardList = res.cardList;
+                     alert(cardList);
                      wx.closeWindow();
                  },
                  cancel:function(res){
+                     alert(res);
                      wx.closeWindow();
                  },
                  fail:function(res){
+                     alert(res);
                      wx.closeWindow();
                  }
              });
+
          }
      );
      wx.ready(function(){
+         alert("wx Ready");
          wx.hideMenuItems({
              menuList: [
                  //发送给朋友:
