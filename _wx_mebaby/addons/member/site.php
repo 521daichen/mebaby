@@ -89,7 +89,7 @@ class MemberModuleSite extends WeModuleSite
                 $local = $this->getCustInfoFromLocal($tel);
                 if($local){
                     //本地有会员信息 确认信息
-                    $errMsg = "对不起，您输入的信息已存在，请核实后再次尝试激活，如有疑问请拨打客服：029-82460823";
+                    $errMsg = "对不起，您输入的信息已存在，请核实后再次尝试激活，如有疑问请询问店内导购";
                     include $this->template("tips/tips");
                 }else{
                     //crm有数据 激活会员
@@ -99,7 +99,7 @@ class MemberModuleSite extends WeModuleSite
                         if($actCardRs) {
                             header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
                         }else{
-                            $errMsg = '对不起，卡券激活失败，请联系客服：029-82460823！';
+                            $errMsg = '对不起，卡券激活失败，如有疑问请询问店内导购';
                             include $this->template("tips/tips");
                         }
                     }else{
@@ -118,7 +118,7 @@ class MemberModuleSite extends WeModuleSite
                         if($actCardRs) {
                             header("Location: http://wechat.mebaby.cn/app/index.php?i=2&c=mc");
                         }else{
-                            $errMsg = '对不起，卡券激活失败，请联系客服：029-82460823！';
+                            $errMsg = '对不起，卡券激活失败，如有疑问请询问店内导购';
                             include $this->template("tips/tips");
                         }
                     }else{
@@ -438,7 +438,7 @@ class MemberModuleSite extends WeModuleSite
 
             $title = "赛格mebaby安全座椅专用";
 
-            $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
+            $card_id = 'pV6-Cs1J5OSSN0JtmEuTJMvUMNkI';
 
             include $this->template("member/mebabySendCard");
 
@@ -456,7 +456,7 @@ class MemberModuleSite extends WeModuleSite
         if($hdid == 1) {
             $card_id = 'pV6-Cs5z52v2gIf9perIW7zG2_8Y';
         }else if($hdid == 2){
-            $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
+            $card_id = 'pV6-Cs1J5OSSN0JtmEuTJMvUMNkI';
         }
 
         $nonce_str=$this->generateNonceStr();
