@@ -418,7 +418,7 @@ class MemberModuleSite extends WeModuleSite
 
             $title = "赛格mebaby全场通用代金券";
 
-            $card_id = 'pV6-Cs7fytjacwYZ850aFgEh99R4';
+            $card_id = 'pV6-Cs5z52v2gIf9perIW7zG2_8Y';
 
             $sql = " select * from `card_manage`.`tp_sendcard_log` where openid = '" . $openid . "' ";
 
@@ -454,7 +454,7 @@ class MemberModuleSite extends WeModuleSite
         $cticket=$this->doMobileGetCardS();
         $hdid = $_GET['hdid'];
         if($hdid == 1) {
-            $card_id = 'pV6-Cs7fytjacwYZ850aFgEh99R4';
+            $card_id = 'pV6-Cs5z52v2gIf9perIW7zG2_8Y';
         }else if($hdid == 2){
             $card_id = 'pV6-Cs-OPotekF7epOmbkG5AUyYM';
         }
