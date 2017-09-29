@@ -181,7 +181,7 @@ class CardAction extends AdminAction
                         $data = array(
                             "touser"=>$openid,
                             "template_id" => "oiiAdScdJPS1mbLBiNAP0QPkFAhR3mhy-FZ8MgyVw0U",
-                            "url"=>"http://wechat.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=sendCard",
+                            "url"=>"http://wechat.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=sendCard&hdid=1",
                             "topcolor"=>"#FF683F",
                             "data" => $tempData
                         );
@@ -198,7 +198,7 @@ class CardAction extends AdminAction
 
                         if($res['errcode'] != 0){
 
-                            $this->error("对不起，发送失败，错误编号：WE01");
+                            $this->error("对不起，发送失败，错误编号：WE01 ".$result);
 
                         }else{
 
