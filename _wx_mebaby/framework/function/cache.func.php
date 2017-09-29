@@ -33,9 +33,11 @@ function cache_type() {
 
 function cache_load($key, $unserialize = false) {
 	global $_W;
+	/*
 	if (!empty($_W['cache'][$key])) {
 		return $_W['cache'][$key];
 	}
+	*/
 	$data = $_W['cache'][$key] = cache_read($key);
 	if ($key == 'setting') {
 		$_W['setting'] = $data;
