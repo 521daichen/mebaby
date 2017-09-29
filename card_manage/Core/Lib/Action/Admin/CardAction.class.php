@@ -188,7 +188,7 @@ class CardAction extends AdminAction
 
                         $sendData = json_encode($data);
 
-                        $wechat_token = file_get_Contents("http://wx.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=gettoken");
+                        $wechat_token = file_get_Contents("http://wx.mebaby.cn/app/index.php?i=2&c=entry&m=member&do=gettoken&round=".time());
 
                         $wechat_http = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$wechat_token;
 
