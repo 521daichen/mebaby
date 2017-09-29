@@ -148,7 +148,7 @@ class CardAction extends AdminAction
 
                     }
 
-                    if($orderTotal >= 400){
+                    if($orderTotal >= 4000){
 
                         $tempData = array(
                             'first'    => array(
