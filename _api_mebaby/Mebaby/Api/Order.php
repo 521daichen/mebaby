@@ -58,7 +58,7 @@ class Api_Order extends PhalApi_Api{
         $info = $domain->getOrderByDate($this->date,$this->shopName,$this->postBackParameter);
 
         if($info['status'] != 'success' ) {
-            DI()->logger->debug(__FUNCTION__ . '找不到用户信息，参数信息为： ' . $this->customerTel . ' 错误代码：' . $info['data'] . " ");
+            DI()->logger->debug(__FUNCTION__ . '返回销售订单失败，参数信息为： ' . $this->date." ".$this->shopName." ".$this->postBackParameter . ' 错误代码：' . $info['data'] . " ");
         }
 
         return $info['data'];
