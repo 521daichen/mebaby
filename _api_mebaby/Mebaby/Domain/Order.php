@@ -11,7 +11,7 @@ class Domain_Order{
      * @param $date $shopName $postBackParameter
      * @return json data
      */
-    public function getOrderByDate($date,$shopName,$postBackParameter){
+    public function getOrderByDate($date,$shopName,$parameterType,$parameterValue){
 
         $rs = array();
 
@@ -21,7 +21,7 @@ class Domain_Order{
 
         $model = new Model_Order();
 
-        $rs = $model->getOrderByDate($date,$shopName,$postBackParameter);
+        $rs = $model->getOrderByDate($date,$shopName,$parameterType,$parameterValue);
 
         return $rs;
 

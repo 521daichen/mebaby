@@ -76,7 +76,7 @@ class Model_Order extends PhalApi_Model_NotORM{
      * @return orderList
      * @author Dv
      */
-    public function getOrderByDate($date,$shopName,$postBackParameter){
+    public function getOrderByDate($date,$shopName,$parameterType,$parameterValue){
 
         $http = "pospal-api2/openapi/v1/ticketOpenApi/queryTicketPages";
 
@@ -86,8 +86,8 @@ class Model_Order extends PhalApi_Model_NotORM{
             "endTime"=> $date." 23:59:59"
         );
 
-        if($postBackParameter){
-            $sendData['postBackParameter'] = $postBackParameter;
+        if($parameterType && $parameterValue){
+            $sendData['postBackParameter'] = array('parameterType'=>$parameterType,'parameterValue'=>$parameterValue);
         }
 
         $jsonData = json_encode($sendData);

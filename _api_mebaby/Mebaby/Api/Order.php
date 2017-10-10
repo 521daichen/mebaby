@@ -27,9 +27,13 @@ class Api_Order extends PhalApi_Api{
                     'type' => 'string',
                     'require' => true,
                 ),
-                'postBackParameter' => array(
-                    'name' => 'postBackParameter',
-                    'type' => 'array'
+                'parameterType' => array(
+                    'name' => 'parameterType',
+                    'type' => 'string'
+                ),
+                'parameterValue' => array(
+                    'name' => 'parameterValue',
+                    'type' => 'string'
                 )
             )
         );
@@ -50,12 +54,12 @@ class Api_Order extends PhalApi_Api{
      * @exception 500 服务器内部错误
      * @author Dv
      */
-    public function getOrderByDate($date,$shopName,$postBackParameter){
+    public function getOrderByDate($date,$shopName,$parameterType,$parameterValue){
 
         $this->report(__FUNCTION__);
 
         $domain = new Domain_Order();
-        $info = $domain->getOrderByDate($this->date,$this->shopName,$this->postBackParameter);
+        $info = $domain->getOrderByDate($this->date,$this->shopName,$this->parameterType,$this->parameterValue);
 
         if($info['status'] != 'success' ) {
             DI()->logger->debug(__FUNCTION__ . '返回销售订单失败，参数信息为： ' . $this->date." ".$this->shopName." ".$this->postBackParameter . ' 错误代码：' . $info['data'] . " ");

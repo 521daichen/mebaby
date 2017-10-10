@@ -9,12 +9,24 @@ class Model_Customer extends PhalApi_Model_NotORM{
 
     var $appKeys = array(
         "zb" => "39189481346018285",
-        "saga_mebaby" => "993768071904363597"
+        "saga_mebaby" => "993768071904363597",
+        "saga_marcolor" => "868352013077412152",
+        "saga_mayoral"=>"280117440332410826",
+        "sl"=>"512890545288789549",
+        "saga_gxg"=>"387739642275161862",
+        "szc_mm"=>"557218596762085153",
+        "xdg_marcolor"=>"451293052739070634"
     );
 
     var $appIds = array(
         "zb" => "E3E505E7F461E28FAEAA27B6013661FF",
-        "saga_mebaby"=>"AAE6F123AA75A17EC642B230EC9019D0"
+        "saga_mebaby"=>"AAE6F123AA75A17EC642B230EC9019D0",
+        "saga_marcolor" => "AEF43D607CEA18F5AE4C93C8000608A6",
+        "saga_mayoral" => "64242502038EA263A7B9B6D85EBC967D",
+        "sl"=>"D823ECF7F607516F0867183C2A62A5C7",
+        "saga_gxg"=>"23F177738419E5DECD6F619B048B0FE3",
+        "szc_mm"=>"E099EF7197D966478270FCEF5F0BCBE8",
+        "xdg_marcolor"=>"839C5981D84C59B96746E7DB7C525FE8"
     );
 
 
