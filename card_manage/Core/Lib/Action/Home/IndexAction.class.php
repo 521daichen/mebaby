@@ -47,17 +47,18 @@ class IndexAction extends HomeAction {
 
             }else{
 
-                $data = array(
-                    "dateTime" => $date,
-                    "shopName" => $v,
-                    "create_time" => time()
-                );
+                $result = $model->execute(" insert into tp_syncOrder_log (dateTime,shopName,create_time) value ('".$date."','".$v."','".time()."') ");
 
-                $result = $model->add($data);
+                if($result){
 
-                echo $result."11";
+                    //$rs = $this->syncOrderByApi($v,$date,"","");
 
-                //$rs = $this->syncOrderByApi($v,$date,"","");
+                }else{
+
+                    echo "ERROR:insert logs error";
+                    exit();
+
+                }
 
             }
 
