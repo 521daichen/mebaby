@@ -33,9 +33,31 @@ class IndexAction extends HomeAction {
 
         }
 
+        $model = D("syncOrder_log");
+
+
         foreach($shopNames as $k=>$v){
 
-            $rs = $this->syncOrderByApi($v,$date,"","");
+            $row = $model->query("select * from tp_syncOrder_log where dateTime = '".$date."' and shopName = '".$v."' ");
+
+            if($row['create_time']){
+
+                echo $date."销售订单已于".date('Y-m-d H:i:s',$row['create_time'])." 进行过同步！";
+                exit();
+
+            }else{
+
+                $data = array(
+                    "dateTime" => $date,
+                    "shopName" => $v,
+                    "create_time" => time()
+                );
+
+                $model->add($data);
+
+                //$rs = $this->syncOrderByApi($v,$date,"","");
+
+            }
 
         }
 
