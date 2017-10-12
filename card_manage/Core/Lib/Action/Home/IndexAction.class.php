@@ -25,7 +25,13 @@ class IndexAction extends HomeAction {
             "xdg_marcolor"
          );
 
-        $date = date("Y-m-d");
+        $date = $_REQUEST['date'];
+
+        if(empty($date)) {
+
+            $date = date("Y-m-d");
+
+        }
 
         foreach($shopNames as $k=>$v){
 
