@@ -42,7 +42,7 @@ class IndexAction extends HomeAction {
 
             if($row['create_time']){
 
-                echo $date."销售订单已于".date('Y-m-d H:i:s',$row['create_time'])." 进行过同步！";
+                echo $date."  ".$v."店销售订单已于".date('Y-m-d H:i:s',$row['create_time'])." 进行过同步！";
                 exit();
 
             }else{
@@ -53,7 +53,9 @@ class IndexAction extends HomeAction {
                     "create_time" => time()
                 );
 
-                $model->add($data);
+                $result = $model->add($data);
+
+                echo $result;
 
                 //$rs = $this->syncOrderByApi($v,$date,"","");
 
@@ -61,7 +63,7 @@ class IndexAction extends HomeAction {
 
         }
 
-        echo $date."订单同步执行完毕";
+        echo $date." 订单同步执行完毕";
 
 
 
