@@ -40,7 +40,9 @@ class IndexAction extends HomeAction {
 
             $row = $model->query("select * from tp_syncOrder_log where dateTime = '".$date."' and shopName = '".$v."' ");
 
-            if($row['create_time']){
+            var_dump($row);
+
+            if($row[0]['create_time']){
 
                 echo $date."  ".$v."店销售订单已于".date('Y-m-d H:i:s',$row['create_time'])." 进行过同步！";
                 exit();
