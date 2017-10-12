@@ -55,7 +55,7 @@ class IndexAction extends HomeAction {
 
                 $result = $model->add($data);
 
-                echo $result;
+                echo $result."11";
 
                 //$rs = $this->syncOrderByApi($v,$date,"","");
 
