@@ -40,8 +40,6 @@ class IndexAction extends HomeAction {
 
             $row = $model->query("select * from tp_syncOrder_log where dateTime = '".$date."' and shopName = '".$v."' ");
 
-            var_dump($row);
-
             if($row[0]['create_time']){
 
                 echo $date."  ".$v."店销售订单已于".date('Y-m-d H:i:s',$row[0]['create_time'])." 进行过同步！";
@@ -118,8 +116,6 @@ class IndexAction extends HomeAction {
                 mkdir("./orderData/".$dateArr[0]."/".$dateArr[1]."/".$dateArr[2]."/");
 
             }
-
-
 
             $fileContents = file_get_contents("./orderData/".$dateArr[0]."/".$dateArr[1]."/".$dateArr[2]."/".$shopName.".sql");
 
@@ -223,13 +219,11 @@ class IndexAction extends HomeAction {
 
             $pageSize = $orderObj['data']['pageSize'];
 
-            if(count($orderArr) == $pageSize && $postBackParameter['parameterValue']){
+            if(count($orderArr) == $pageSize && $postBackParameter['parameterValue']) {
 
-                $this->syncOrderByApi($shopName,$date,$postBackParameter['parameterType'],$postBackParameter['parameterValue']);
+                $this->syncOrderByApi($shopName, $date, $postBackParameter['parameterType'], $postBackParameter['parameterValue']);
 
             }
-
-            return true;
 
         }
 
