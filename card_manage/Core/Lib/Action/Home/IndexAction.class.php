@@ -38,6 +38,8 @@ class IndexAction extends HomeAction {
 
         foreach($shopNames as $k=>$v){
 
+            echo $v." ".$date."<br />";
+
             $row = $model->query("select * from tp_syncOrder_log where dateTime = '".$date."' and shopName = '".$v."' ");
 
             if($row[0]['create_time']){
@@ -51,7 +53,19 @@ class IndexAction extends HomeAction {
 
                 if($result){
 
-                    $rs = $this->syncOrderByApi($v,$date,"","");
+                    echo $v." 开始同步订单<br />";
+
+                    $rs = array();
+
+                    do{
+                        echo $v."  ".$date."  ".$rs['parameterType']."  ".$rs['parameterValue']."<br />";
+
+                        $rs = $this->syncOrderByApi($v, $date, $rs['parameterType'], $rs['parameterValue']);
+
+                        echo $v." ".$rs."<br />";
+
+                    }while($rs != 'success');
+
 
                 }else{
 
@@ -62,11 +76,11 @@ class IndexAction extends HomeAction {
 
             }
 
+            echo $date." ".$v." 店 订单同步执行完毕<br />";
+
         }
 
-        echo $date." 订单同步执行完毕";
-
-
+        echo "全部执行完毕";
 
     }
 
@@ -94,10 +108,11 @@ class IndexAction extends HomeAction {
 
         $orderObj = json_decode($rs,TRUE);
 
+        echo $orderObj['ret']."  ".$orderObj['data']['postBackParameter']['parameterType']."  ".$orderObj['data']['postBackParameter']['parameterType'];
 
-        if($orderObj['ret'] == 200){
+        if($orderObj['ret'] == 200 && $orderObj['data']){
 
-            $orderArr = $orderObj['data']['result'];
+            $orderArr =  $orderObj['data']['result'];
 
             if(!is_dir("./orderData/".$dateArr[0]."/")){
 
@@ -203,6 +218,8 @@ class IndexAction extends HomeAction {
                     }
 
                     $fileContents .= $sql." \r\n";
+
+
                 }
 
             }
@@ -219,13 +236,17 @@ class IndexAction extends HomeAction {
 
             $pageSize = $orderObj['data']['pageSize'];
 
-            if(count($orderArr) == $pageSize && $postBackParameter['parameterValue']) {
+            if( !(count($orderObj['data']['result']) < $pageSize) ) {
 
-                $this->syncOrderByApi($shopName, $date, $postBackParameter['parameterType'], $postBackParameter['parameterValue']);
+                //$this->syncOrderByApi($shopName, $date, $postBackParameter['parameterType'], $postBackParameter['parameterValue'],$orderArr);
+
+                return $postBackParameter;
 
             }
 
         }
+
+        return "success";
 
     }
     /*
