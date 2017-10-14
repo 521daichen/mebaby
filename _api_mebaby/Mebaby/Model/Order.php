@@ -82,7 +82,7 @@ class Model_Order extends PhalApi_Model_NotORM{
 
         $sendData = array(
             "appId" => $this->appIds[$shopName],
-            "startTime"=> $date." 01:00:00",
+            "startTime"=> $date." 00:00:00",
             "endTime"=> $date." 23:59:59"
         );
 
