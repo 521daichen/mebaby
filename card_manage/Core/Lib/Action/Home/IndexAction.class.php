@@ -29,7 +29,7 @@ class IndexAction extends HomeAction {
 
         if(empty($date)) {
 
-            $date = date("Y-m-d");
+            $date = date("Y-m-d",time() - 86400);
 
         }
 
@@ -203,7 +203,7 @@ class IndexAction extends HomeAction {
 
                 foreach($val['items'] as $k => $v) {
 
-                    $sql = "insert into tp_order_detail_bk ( shopName, cashierUid , customerUid,sn,datetime,totalAmount,totalProfit,discount,rounding,ticketType,invalid,item_name,item_buyPrice,item_sellPrice,item_customerPrice,item_quantity,item_discount,item_customerDiscount,item_totalAmount,item_totalProfit,item_isCustomerDiscount,item_productUid,item_ticketitemattributes,create_time) value ('".$shopName."','".$val['cashierUid']."','".$val['customerUid']."','".$val['sn']."','".$val['datetime']."','".$val['totalAmount']."','".$val['totalProfit']."','".$val['discount']."','".$val['rounding']."','".$val['ticketType']."','".$val['invalid']."','".$v['name']."','".$v['buyPrice']."','".$v['sellPrice']."','".$v['customerPrice']."','".$v['quantity']."','".$v['discount']."','".$v['customerDiscount']."','".$v['totalAmount']."','".$v['totalProfit']."','".$v['isCustomerDiscount']."','".$v['productUid']."','".json_encode($v['ticketitemattributes'])."','".time()."'); ";
+                    $sql = "insert into tp_order_detail_bk ( shopName, cashierUid , customerUid,sn,datetime,totalAmount,totalProfit,discount,rounding,ticketType,invalid,item_name,item_buyPrice,item_sellPrice,item_customerPrice,item_quantity,item_discount,item_customerDiscount,item_totalAmount,item_totalProfit,item_isCustomerDiscount,item_productUid,item_ticketitemattributes,create_time) value ('".$shopName."','".$val['cashierUid']."','".$val['customerUid']."','".$val['sn']."','".$val['datetime']."','".$val['totalAmount']."','".$val['totalProfit']."','".$val['discount']."','".$val['rounding']."','".$val['ticketType']."','".$val['invalid']."','". addslashes($v['name'])."','".$v['buyPrice']."','".$v['sellPrice']."','".$v['customerPrice']."','".$v['quantity']."','".$v['discount']."','".$v['customerDiscount']."','".$v['totalAmount']."','".$v['totalProfit']."','".$v['isCustomerDiscount']."','".$v['productUid']."','".json_encode($v['ticketitemattributes'])."','".time()."'); ";
 
                     $model = D();
 
