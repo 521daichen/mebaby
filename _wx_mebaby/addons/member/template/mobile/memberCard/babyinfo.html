@@ -29,8 +29,6 @@
                 return false;
             }
 
-            $('form').submit();
-            /*
             $.post("{php echo $this->createMobileUrl('savebabyinfo','',true)}",$('form').serialize(),function(msg){
                 if(msg.status){
                     var uniacid = "{$_W['uniacid']}";
@@ -41,8 +39,6 @@
                 }
             },'json');
     //            $('#form').submit();
-
-            */
     
         }
   </script>
@@ -54,7 +50,7 @@
     <section>
       <div class="radbox">
         <div class="forms">
-          <form id="form" action="{php echo $this->createMobileUrl('savebabyinfo','',true)}" method="post">
+          <form id="form" method="post">
             <input type="text" name="name" value="{$babyinfo['name']}" placeholder="宝贝姓名" />
             <div class="gender">
               <input type="hidden" name="gender" value="{$babyinfo['sex']}" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
