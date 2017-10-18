@@ -98,7 +98,7 @@ class MemberModuleSite extends WeModuleSite
 
         $row = pdo_fetch("select * from ims_mc_members_babyinfo");
 
-        $custinfo = pdo_fetch("select * from ims_mc_members");
+        $custinfo = pdo_fetch("select a.uid,a.idcard from ims_mc_members as a,ims_mc_mapping_fans as b where a.uid = b.uid and b.openid = '".$openid."' ");
 
         if($custinfo['idcard']){
 
