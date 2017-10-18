@@ -33,7 +33,7 @@
                 if(msg.status){
                     var uniacid = "{$_W['uniacid']}";
                     layer.msg(msg.msg, 2, -1);
-                    setTimeout("location.href='{$_W['siteroot']}app/index.php?i="+uniacid+"&c=entry&eid=1';",2000);
+                    setTimeout("location.href='http://wechat.mebaby.cn/app/index.php?i=2&c=mc&';",2000);
                 }else{
                     layer.msg(msg.msg, 2, -1);
                 }
@@ -55,7 +55,7 @@
             <div class="gender">
               <input type="hidden" name="gender" value="1" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
             </div>            
-            <input type="datetime" name="birthday" id="birthday" placeholder="宝贝生日" />            
+            <input type="date" name="birthday" id="birthday" placeholder="宝贝生日" />            
             <input type="button" value="提 交" id="but" onclick="return checkfrom()" />
           </form>
         </div>
