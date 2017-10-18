@@ -216,6 +216,32 @@ class Api_Customer extends PhalApi_Api{
     }
 
     /**
+     * 修改会员生日
+     * @desc 修改会员生日
+     * @return int ret '200' 表示成功
+     * @exception 500 服务器内部错误
+     * @author Dv
+     */
+    public function editCustBirthday(){
+        $this->report(__FUNCTION__);
+
+        $custUpdate = array(
+            'customerUid' => $this->customerUid,
+            'birthday' => $this->birthday
+        );
+
+        $domain = new Domain_Customer();
+
+        $info = $domain->updateCustomer($custUpdate);
+
+        if($info['status'] != 'success'){
+            DI()->logger->debug(__FUNCTION__.'修改会员信息失败，参数信息为： uid:'.$this->customerUid.' 生日：'.$this->birthday.'  错误代码：'.$info['data']." ");
+        }
+
+        return $info['data'];
+    }
+
+    /**
      * 修改会员积分、修改会员余额
      * @desc 修改会员积分、修改会员余额
      * @return int ret '200'表示成功
