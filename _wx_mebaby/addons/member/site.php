@@ -106,7 +106,7 @@ class MemberModuleSite extends WeModuleSite
 
         }else{
 
-            return json_encode(array('status'=>0,'msg'=>'保存失败'));
+            return json_encode(array('status'=>0,'msg'=>'保存失败 错误1'));
 
         }
 
@@ -135,15 +135,15 @@ class MemberModuleSite extends WeModuleSite
 
                     }else{
 
-                        return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                        return json_encode(array('status'=>0,'msg'=>'保存失败 错误2'));
                     }
                 }else{
 
-                    return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                    return json_encode(array('status'=>0,'msg'=>'保存失败 错误3'));
                 }
 
             }else{
-                return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                return json_encode(array('status'=>0,'msg'=>'保存失败 错误4'));
             }
 
         }else{
@@ -167,10 +167,10 @@ class MemberModuleSite extends WeModuleSite
 
                 }else{
 
-                    return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                    return json_encode(array('status'=>0,'msg'=>'保存失败 错误5'));
                 }
             }else{
-                return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                return json_encode(array('status'=>0,'msg'=>'保存失败 错误6'));
             }
         }
     }
