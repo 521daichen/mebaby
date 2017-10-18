@@ -65,7 +65,7 @@ class Api_Customer extends PhalApi_Api{
                 )
             ),
             //修改会员信息
-            'editCust' => array(
+            'editCustBirthday' => array(
                 'birthday' => array(
                     'name' => 'birthday',
                     'type' => 'string',
