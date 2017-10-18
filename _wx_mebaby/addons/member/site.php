@@ -102,7 +102,7 @@ class MemberModuleSite extends WeModuleSite
 
         if($custinfo['idcard']){
 
-            $custmonerUid = $custinfo['idcard'];
+            $customerUid = $custinfo['idcard'];
 
         }else{
 
@@ -127,7 +127,7 @@ class MemberModuleSite extends WeModuleSite
 
                 if($rs){
 
-                    $apiRs = $this->updateCustBirthday($custmonerUid,$birthday);
+                    $apiRs = $this->updateCustBirthday($customerUid,$birthday);
 
                     if($apiRs){
 
@@ -160,9 +160,9 @@ class MemberModuleSite extends WeModuleSite
 
             if($rs){
 
-                echo $custmonerUid."     ".$birthday;
+                echo $customerUid."     ".$birthday;
 
-                $apiRs = $this->updateCustBirthday($custmonerUid,$birthday);
+                $apiRs = $this->updateCustBirthday($customerUid,$birthday);
 
                 var_dump($apiRs);
 
@@ -184,7 +184,7 @@ class MemberModuleSite extends WeModuleSite
      */
     public function updateCustBirthday($custmoerUid,$birthday){
 
-        $request_url = $this->hostList['update_custBirthday']."&custmoerUid=".$custmoerUid."&birthday=".$birthday.$this->apiSignature();
+        $request_url = $this->hostList['update_custBirthday']."&customerUid=".$custmoerUid."&birthday=".$birthday.$this->apiSignature();
 
         $rs = $this->http_attach_post($request_url,NULL);
 
