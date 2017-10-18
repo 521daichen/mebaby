@@ -123,7 +123,7 @@ class MemberModuleSite extends WeModuleSite
                     "create_time" => time()
                 );
 
-                $rs = pdo_update($data);
+                $rs = pdo_update('mc_members_babyinfo',$data);
 
                 if($rs){
 
