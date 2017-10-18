@@ -67,7 +67,7 @@ class MemberModuleSite extends WeModuleSite
 
         $openid = $_W['openid'];
 
-        $sql = " select * from `ims_` where openid = '" . $openid . "' ";
+        $sql = " select * from `ims_mc_members_babyinfo` where openid = '" . $openid . "' ";
 
         $rs = pdo_fetch($sql);
 
