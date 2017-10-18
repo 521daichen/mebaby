@@ -129,13 +129,13 @@ class MemberModuleSite extends WeModuleSite
 
                     $apiRs = $this->updateCustBirthday($customerUid,$birthday);
 
-                    if($apiRs){
+                    if($apiRs == true){
 
                         return json_encode(array('status'=>1,'msg'=>'保存成功'));
 
                     }else{
 
-                        return json_encode(array('status'=>0,'msg'=>'保存失败 错误2'));
+                        return json_encode(array('status'=>0,'msg'=>'保存失败 错误2'.$apiRs));
                     }
                 }else{
 
@@ -196,7 +196,7 @@ class MemberModuleSite extends WeModuleSite
 
         }else{
 
-            return false;
+            return $rsArr;
 
         }
 
