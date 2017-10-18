@@ -30,6 +30,7 @@ class MemberModuleSite extends WeModuleSite
         'decrypt'           =>  'https://api.weixin.qq.com/card/code/decrypt',//
         'crm_getCustInfo'   =>  'http://api.mebaby.cn/index.php?service=Customer.GetCustInfoByMobile', //获取会员信息
         'crm_regCust'       =>  'http://api.mebaby.cn/index.php?service=Customer.RegCust',//注册会员
+        'update_custBirthday' => 'http://api.mebaby.cn/index.php?service=Customer.EditCustBirthday',//修改会员生日
 
     );
 
@@ -75,6 +76,8 @@ class MemberModuleSite extends WeModuleSite
 
             $babyinfo = $rs;
 
+        }else{
+            $babyinfo['sex'] = 1;
         }
 
         include $this->template("memberCard/babyinfo");
@@ -93,20 +96,103 @@ class MemberModuleSite extends WeModuleSite
         $gender = $_GPC['gender'];
         $openid = $_W['openid'];
 
-        $data = array(
-            "openid" => $openid,
-            "name" => $name,
-            "birthday" => $birthday,
-            "sex" => $gender,
-            "create_time" => time()
-        );
+        $row = pdo_fetch("select * from ims_mc_members_babyinfo");
 
-        $rs = pdo_insert('mc_members_babyinfo', $data);
+        $custinfo = pdo_fetch("select * from ims_mc_members");
 
-        if($rs){
-            return json_encode(array('status'=>1,'msg'=>'保存成功'));
+        if($custinfo['idcard']){
+
+            $custmonerUid = $custinfo['idcard'];
+
         }else{
+
             return json_encode(array('status'=>0,'msg'=>'保存失败'));
+
+        }
+
+        if($row['id']){
+
+            if($custinfo['idcard']){
+
+                $data = array(
+                    "id" => $row['id'],
+                    "openid" => $openid,
+                    "name" => $name,
+                    "birthday" => $birthday,
+                    "sex" => $gender,
+                    "create_time" => time()
+                );
+
+                $rs = pdo_update($data);
+
+                if($rs){
+
+                    $apiRs = $this->updateCustBirthday($custmonerUid,$birthday);
+
+                    if($apiRs){
+
+                        return json_encode(array('status'=>1,'msg'=>'保存成功'));
+
+                    }else{
+
+                        return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                    }
+                }else{
+
+                    return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                }
+
+            }else{
+                return json_encode(array('status'=>0,'msg'=>'保存失败'));
+            }
+
+        }else{
+
+            $data = array(
+                "openid" => $openid,
+                "name" => $name,
+                "birthday" => $birthday,
+                "sex" => $gender,
+                "create_time" => time()
+            );
+
+            $rs = pdo_insert('mc_members_babyinfo', $data);
+
+            if($rs){
+                $apiRs = $this->updateCustBirthday($custmonerUid,$birthday);
+
+                if($apiRs){
+
+                    return json_encode(array('status'=>1,'msg'=>'保存成功'));
+
+                }else{
+
+                    return json_encode(array('status'=>0,'msg'=>'保存失败'));
+                }
+            }else{
+                return json_encode(array('status'=>0,'msg'=>'保存失败'));
+            }
+        }
+    }
+    /*
+     * 修改会员生日
+     */
+    public function updateCustBirthday($custmoerUid,$birthday){
+
+        $request_url = $this->hostList['update_custBirthday']."&custmoerUid=".$custmoerUid."&birthday=".$birthday.$this->apiSignature();
+
+        $rs = $this->http_attach_post($request_url,NULL);
+
+        $rsArr = json_decode($rs,true);
+
+        if($rsArr['ret'] == '200' && $rsArr['data'] == 'success'){
+
+            return true;
+
+        }else{
+
+            return false;
+
         }
 
     }
