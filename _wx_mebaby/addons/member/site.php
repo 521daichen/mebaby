@@ -196,7 +196,7 @@ class MemberModuleSite extends WeModuleSite
 
         }else{
 
-            return $rsArr;
+            return false;
 
         }
 
