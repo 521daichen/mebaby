@@ -69,15 +69,11 @@ class Api_Customer extends PhalApi_Api{
                 'birthday' => array(
                     'name' => 'birthday',
                     'type' => 'string',
-                    'min' => 11,
-                    'max' => 11,
                     'require' => true,
                 ),
                 'customerUid' => array(
                     'name' => 'customerUid',
                     'type' => 'string',
-                    'min' => 11,
-                    'max' => 11,
                     'require' => true,
                 )
             ),
