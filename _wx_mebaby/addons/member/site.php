@@ -159,7 +159,12 @@ class MemberModuleSite extends WeModuleSite
             $rs = pdo_insert('mc_members_babyinfo', $data);
 
             if($rs){
+
+                echo $custmonerUid."     ".$birthday;
+
                 $apiRs = $this->updateCustBirthday($custmonerUid,$birthday);
+
+                var_dump($apiRs);
 
                 if($apiRs){
 
