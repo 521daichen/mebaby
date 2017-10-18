@@ -160,19 +160,15 @@ class MemberModuleSite extends WeModuleSite
 
             if($rs){
 
-                echo $customerUid."     ".$birthday;
-
                 $apiRs = $this->updateCustBirthday($customerUid,$birthday);
 
-                var_dump($apiRs);
-
-                if($apiRs){
+                if($apiRs == true){
 
                     return json_encode(array('status'=>1,'msg'=>'保存成功'));
 
                 }else{
 
-                    return json_encode(array('status'=>0,'msg'=>'保存失败 错误5'));
+                    return json_encode(array('status'=>0,'msg'=>'保存失败 错误5'.$apiRs));
                 }
             }else{
                 return json_encode(array('status'=>0,'msg'=>'保存失败 错误6'));
