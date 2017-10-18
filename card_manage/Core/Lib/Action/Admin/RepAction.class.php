@@ -13,7 +13,7 @@ class RepAction extends AdminAction
 
     }
 
-    public function custSell(){
+    public function custrep(){
 
         $this->queryRep();
 
