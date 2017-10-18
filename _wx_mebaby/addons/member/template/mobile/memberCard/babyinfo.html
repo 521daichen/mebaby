@@ -51,11 +51,12 @@
       <div class="radbox">
         <div class="forms">
           <form id="form"> 
-            <input type="text" name="name" value="" placeholder="宝贝姓名" />
+            <input type="text" name="name" value="{$babyinfo['name']}" placeholder="宝贝姓名" />
             <div class="gender">
               <input type="hidden" name="gender" value="1" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
-            </div>            
-            <input type="date" name="birthday" id="birthday" placeholder="宝贝生日" />            
+            </div>
+            宝贝生日：<br />
+            <input type="date" name="birthday" id="birthday" value="{$babyinfo['birthday']}" />
             <input type="button" value="提 交" id="but" onclick="return checkfrom()" />
           </form>
         </div>
