@@ -64,6 +64,23 @@ class Api_Customer extends PhalApi_Api{
                     'require' => true,
                 )
             ),
+            //修改会员信息
+            'editCust' => array(
+                'birthday' => array(
+                    'name' => 'birthday',
+                    'type' => 'string',
+                    'min' => 11,
+                    'max' => 11,
+                    'require' => true,
+                ),
+                'customerUid' => array(
+                    'name' => 'customerUid',
+                    'type' => 'string',
+                    'min' => 11,
+                    'max' => 11,
+                    'require' => true,
+                )
+            ),
             //修改会员余额积分
             'updateBP' => array(
                 'customerUid' => array(
