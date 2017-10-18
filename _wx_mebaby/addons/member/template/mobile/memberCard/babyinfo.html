@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>新会员注册</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="../addons/member/template/mobile/static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../addons/member/template/mobile/static/css/newuser.css" rel="stylesheet" type="text/css">
+    <script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="../addons/member/template/mobile/static/js/layer/layer.min.js"></script>
+  </head>
+  <script>
+        //表单验证
+        function checkfrom() {
+                    
+            var name = $('input[name="name"]').val();
+            var birthday = $('input[name="birthday"]').val();
+           
+            if(name == ''){
+                layer.msg('姓名不能为空', 2, -1);
+                return false;
+            }
+            if(birthday == ''){
+                layer.msg('生日不能为空', 2, -1);
+                return false;
+            }
+                
+            $.post("{php echo $this->createMobileUrl('savebabyinfo','',true)}",$('form').serialize(),function(msg){
+                if(msg.status){
+                    var uniacid = "{$_W['uniacid']}";
+                    layer.msg(msg.msg, 2, -1);
+                    setTimeout("location.href='{$_W['siteroot']}app/index.php?i="+uniacid+"&c=entry&eid=1';",2000);
+                }else{
+                    layer.msg(msg.msg, 2, -1);
+                }
+            },'json');
+    //            $('#form').submit();
+    
+        }
+  </script>
+  <body>
+    <header>
+      <img src="../addons/member/template/mobile/static/img/tooth.png" class="tooth" /> <span>宝贝资料</span>
+    </header>
+    <div class="clr"></div>
+    <section>
+      <div class="radbox">
+        <div class="forms">
+          <form id="form"> 
+            <input type="text" name="name" value="" placeholder="宝贝姓名" />
+            <div class="gender">
+              <input type="hidden" name="gender" value="1" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
+            </div>
+            <div class="valued">
+              <input type="datetime" name="birthday" id="birthday" />
+            </div>
+            <input type="button" value="提 交" id="but" onclick="return checkfrom()" />
+          </form>
+        </div>
+      </div>
+      <div class="explain_s1">
+        <p>温馨提示：
+          <br/>1、为了您能及时享受到会员生日月的专属福利，如实填写宝贝的生日；
+          <br/>2、宝贝姓名、生日、性别是您会员身份的重要凭证，为保证您的会员权益，请您正确填写;
+          </p>
+      </div>
+    </section>
+    <div class="clr"></div>
+    <footer>
+      <br>
+      <br>
+    </footer>
+    <script src="../addons/member/template/mobile/static/js/ac.js"></script>
+  </body>
+
+</html>

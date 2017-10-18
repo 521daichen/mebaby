@@ -57,6 +57,60 @@ class MemberModuleSite extends WeModuleSite
 
     }
 
+    /*
+     * 宝宝档案填写
+     * H5 显示会员权益
+     */
+    public function doMobilebabyinfo(){
+
+        global $_W,$_GPC;
+
+        $openid = $_W['openid'];
+
+        $sql = " select * from `ims_` where openid = '" . $openid . "' ";
+
+        $rs = pdo_fetch($sql);
+
+        if($rs['openid'] == $openid){
+
+            $babyinfo = $rs;
+
+        }
+
+        include $this->template("memberCard/babyinfo");
+
+    }
+
+    /*
+     * 宝宝档案存储
+     */
+    public function doMobilesavebabyinfo(){
+
+        global $_W,$_GPC;
+
+        $name = $_GPC['name'];
+        $birthday = $_GPC['birthday'];
+        $gender = $_GPC['gender'];
+        $openid = $_W['openid'];
+
+        $data = array(
+            "openid" => $openid,
+            "name" => $name,
+            "birthday" => $birthday,
+            "sex" => $gender,
+            "create_time" => time()
+        );
+
+        $rs = pdo_insert('mc_members_babyinfo', $data);
+
+        if($rs){
+            return json_encode(array('status'=>1,'msg'=>'保存成功'));
+        }else{
+            return json_encode(array('status'=>0,'msg'=>'保存失败'));
+        }
+
+    }
+
 	/*
 	 * 领取会员卡
 	 */
