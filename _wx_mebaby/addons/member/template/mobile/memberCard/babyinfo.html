@@ -53,7 +53,8 @@
           <form id="form" method="post">
             <input type="text" name="name" value="{$babyinfo['name']}" placeholder="宝贝姓名" />
             <div class="gender">
-              <input type="hidden" name="gender" value="{$babyinfo['sex']}" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
+              <label><input type="redio" name="gender" id="gender" value="1" {php if($babyinfo['sex'] == 1) echo "checked='checked'";}>男宝</label>
+              <label><input type="redio" name="gender" id="gender" value="2" {php if($babyinfo['sex'] == 2) echo "checked='checked'";}>女宝</label>
             </div>
             宝贝生日：<br />
             <input type="date" name="birthday" id="birthday" value="{$babyinfo['birthday']}" />
