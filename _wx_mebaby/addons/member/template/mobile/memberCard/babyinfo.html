@@ -53,8 +53,8 @@
           <form id="form" method="post">
             <input type="text" name="name" value="{$babyinfo['name']}" placeholder="宝贝姓名" />
             <div class="gender">
-              <label><input type="radio" name="gender" id="gender" value="1" {php if($babyinfo['sex'] == 1) echo "checked='checked'";}>男宝</label>
-              <label><input type="radio" name="gender" id="gender" value="2" {php if($babyinfo['sex'] == 2) echo "checked='checked'";}>女宝</label>
+              <input type="radio" name="gender" id="gender" value="1" {php if($babyinfo['sex'] == 1) echo "checked='checked'";} />男宝 &nbsp;
+              <input type="radio" name="gender" id="gender" value="2" {php if($babyinfo['sex'] == 2) echo "checked='checked'";} />女宝
             </div>
             宝贝生日：<br />
             <input type="date" name="birthday" id="birthday" value="{$babyinfo['birthday']}" />
