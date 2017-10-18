@@ -53,7 +53,7 @@
           <form id="form"> 
             <input type="text" name="name" value="{$babyinfo['name']}" placeholder="宝贝姓名" />
             <div class="gender">
-              <input type="hidden" name="gender" value="1" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
+              <input type="hidden" name="gender" value="{$babyinfo['sex']}" id="gender" /><span class="pitch">男宝</span><span>女宝</span>
             </div>
             宝贝生日：<br />
             <input type="date" name="birthday" id="birthday" value="{$babyinfo['birthday']}" />
